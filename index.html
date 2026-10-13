@@ -232,6 +232,19 @@
             transform: scaleX(1);
             transform-origin: bottom left;
         }
+
+        .bg-slide {
+            opacity: 0;
+            transform: scale(1);
+            transition: opacity 1.5s ease-in-out, transform 5s ease-out;
+            will-change: opacity, transform;
+        }
+
+        .bg-slide.active {
+            opacity: 1;
+            transform: scale(1.08);
+            /* Efek zoom in pelan saat aktif */
+        }
     </style>
 
 </head>
@@ -317,23 +330,66 @@
 
     <!-- Hero Section -->
     <section class="relative w-full h-screen min-h-[600px] flex flex-col bg-gray-900 overflow-hidden pt-20">
-        <div class="absolute inset-0 z-0">
-            <img src="mangrove banner.jpeg" alt="Water and Equipment Background"
-                class="w-full h-full object-cover opacity-70">
-            <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-black/60"></div>
+        <!-- Background Carousel Container -->
+        <div class="absolute inset-0 z-0 overflow-hidden bg-gray-900">
+            <!-- Gambar 1 (Tambahkan kelas 'active' untuk slide pertama yang muncul) -->
+            <img src="mangrove banner.jpeg" alt="Mangrove Background 1"
+                class="bg-slide active absolute inset-0 w-full h-full object-cover">
+
+            <!-- Gambar 2 -->
+            <img src="mangrove banner 2.jpeg" alt="Mangrove Background 2"
+                class="bg-slide absolute inset-0 w-full h-full object-cover">
+
+            <!-- Gambar 3 -->
+            <img src="mangrove banner 3.jpeg" alt="Mangrove Background 3"
+                class="bg-slide absolute inset-0 w-full h-full object-cover">
+
+            <!-- Gambar 4 -->
+            <img src="mangrove banner 4.jpeg" alt="Mangrove Background 4"
+                class="bg-slide absolute inset-0 w-full h-full object-cover">
+
+            <!-- Gradient Overlay (Vignette / Fokus di Tengah) -->
+            <div class="absolute inset-0 z-10 pointer-events-none"
+                style="background: radial-gradient(ellipse 80% 80% at 50% 50%, rgba(0,0,0,0.90) 0%, rgba(0,0,0,0.6) 30%, rgba(0,0,0,0.45) 60%, rgba(0,0,0,0.25) 85%, transparent 100%);">
+            </div>
         </div>
-        <div class="relative z-10 flex-grow flex flex-col justify-center items-center text-center px-6 mt-[-40px]">
+
+        <!-- Konten Teks -->
+        <div class="relative z-20 flex-grow flex flex-col justify-center items-center text-center px-6 mt-[-40px]">
             <h1
-                class="font-tech text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold text-white tracking-[0.08em] sm:tracking-[0.15em] drop-shadow-lg mb-5 sm:mb-6">
-                ALBATROSS
+                class="font-tech text-4xl sm:text-5xl md:text-7xl lg:text-5xl font-bold text-white tracking-[0.08em] sm:tracking-[0.15em] drop-shadow-lg mb-5 sm:mb-6">
+                ALBATROSS: Teknologi Biru <br> untuk Pemantauan Pesisir <br> Terintegrasi Kampung Laut
             </h1>
             <p
                 class="text-white text-sm sm:text-base md:text-base lg:text-lg max-w-3xl leading-relaxed drop-shadow-md mb-8 sm:mb-10 font-medium px-4">
-                Memantau perairan dan ekosistem mangrove dari sedimentasi secara akurat untuk mendukung keberlangsungan
-                masyarakat dan biota yang hidup sekitarnya.
+                Berada di bawah naungan Marine Intrumentation Telemetry and Robotics, <br> Ilmu dan Teknologi Kelautan,
+                Fakultas Perikanan dan Ilmu Kelautan, IPB UNiversity.
             </p>
         </div>
     </section>
+
+    <!-- Script JavaScript untuk mengatur pergantian gambar setiap 3 detik -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const slides = document.querySelectorAll(".bg-slide");
+            let currentIndex = 0;
+            const totalSlides = slides.length;
+
+            function changeSlide() {
+                // Hapus kelas 'active' dari slide saat ini (otomatis fade out & reset zoom)
+                slides[currentIndex].classList.remove("active");
+
+                // Pindah ke index gambar berikutnya
+                currentIndex = (currentIndex + 1) % totalSlides;
+
+                // Tambahkan kelas 'active' ke slide baru (otomatis fade in & mulai zoom pelan)
+                slides[currentIndex].classList.add("active");
+            }
+
+            // Jalankan fungsi pergantian gambar setiap 5 detik (bisa diubah sesuai selera)
+            setInterval(changeSlide, 5000);
+        });
+    </script>
 
     <!-- Content Section -->
     <section class="w-full bg-white py-20 px-6 lg:px-12">
