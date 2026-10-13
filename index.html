@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Albatross - Sistem Pemantauan Perairan</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- 1. PERUBAHAN DI SINI: Link Google Fonts mengganti Exo 2 dengan Anta -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anta&family=Inter:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Config Tailwind CSS untuk mendukung Utility Class font-anta & font-inter -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        anta: ['Anta', 'sans-serif'],
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            blue: '#1b85b8',
+                            dark: '#2d3748',
+                            slate: '#4d566c',
+                            bg: '#eef5f9'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* 2. PERUBAHAN DI SINI: Mengubah font-family Exo 2 menjadi Anta */
+        .font-tech {
+            font-family: 'Anta', sans-serif;
+        }
+
+        /* Glassmorphism effect for buttons */
+        .glass-btn {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .glass-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+
+        .card-tab {
+            clip-path: polygon(5% 0%, 95% 0%, 100% 100%, 0% 100%);
+        }
+
+        /* Sembunyikan scrollbar horizontal jika item overflow di layar sangat kecil */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        textarea::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        textarea::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        textarea::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        /* Kontainer utama untuk menyembunyikan elemen yang keluar layar */
+        .slider {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            padding: 20px 0;
+            cursor: grab;
+            touch-action: pan-x;
+        }
+
+        .slider:active {
+            cursor: grabbing;
+        }
+
+        /* PALING PENTING */
+        .slide-track {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+
+            width: max-content;
+
+            gap: 24px;
+
+            align-items: center;
+
+            will-change: transform;
+        }
+
+        .slide {
+            flex: 0 0 450px;
+
+            width: 450px;
+
+            display: block;
+        }
+
+        .slide-card {
+            width: 100%;
+
+            background: white;
+
+            padding: 12px;
+
+            border: 2px solid #bae6fd;
+
+            border-radius: 24px;
+
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+
+            box-sizing: border-box;
+        }
+
+        .slide img {
+            display: block;
+
+            width: 100%;
+
+            height: 260px;
+
+            object-fit: cover;
+
+            border-radius: 16px;
+        }
+
+        /* Tablet */
+        @media (max-width: 768px) {
+
+            .slide {
+                flex: 0 0 350px;
+                width: 350px;
+            }
+
+            .slide img {
+                height: 220px;
+            }
+        }
+
+        /* HP */
+        @media (max-width: 480px) {
+
+            .slide {
+                flex: 0 0 280px;
+                width: 280px;
+            }
+
+            .slide img {
+                height: 180px;
+            }
+        }
+
+        /* RESPONSIVE NAVBAR */
+        @media (max-width: 768px) {
+            #navbar {
+                padding: 12px 16px;
+            }
+
+            #navbar img {
+                height: 42px;
+            }
+
+            #logo-circle {
+                width: 50px;
+                height: 50px;
+            }
+
+            #mobile-toggle-btn {
+                font-size: 22px;
+                padding: 8px;
+            }
+        }
+
+        /* Pembungkus teks agar garisnya pas selebar tulisan */
+        .nav-text-wrap {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Garis bawah animasi fill-in */
+        .nav-line {
+            position: absolute;
+            bottom: -2px;
+            /* Jarak pas di bawah huruf */
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: currentColor;
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.3s ease-out;
+        }
+
+        /* Saat kursor diarahkan ke menu, garis bergerak dari kiri ke kanan */
+        .nav-item:hover .nav-line {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+    </style>
+
+</head>
+
+<body class="bg-white text-gray-800 font-inter">
+
+    <!-- Sticky Navigation Bar -->
+    <nav id="navbar"
+        class="fixed top-0 left-0 w-full z-50 p-4 lg:px-12 transition-all duration-300 text-white bg-transparent">
+
+        <div class="max-w-7xl mx-auto flex justify-between items-center relative">
+
+            <!-- Logo ALBATROSS -->
+            <div class="relative flex items-center justify-center">
+
+                <!-- SHAPE HIJAU DI BELAKANG LOGO -->
+                <div id="logo-circle"
+                    class="absolute bg-[#2A7C13] rounded-full w-14 h-14 -z-0 opacity-0 scale-75 transition-all duration-300 ease-in-out pointer-events-none">
+                </div>
+
+                <!-- Tombol Logo -->
+                <a href="#" id="logo-btn"
+                    class="relative z-10 flex items-center justify-center transition-transform hover:scale-105">
+                    <img src="foto/logo ALBATROSS.png" alt="LOGO ALBATROSS" class="h-12 w-auto object-contain">
+                </a>
+
+            </div>
+
+            <!-- Container Kanan -->
+            <div class="flex items-center space-x-3">
+
+                <ul id="nav-links"
+                    class="hidden md:flex items-center space-x-2 sm:space-x-3 text-xs sm:text-sm font-semibold tracking-wider sm:tracking-widest uppercase transition-all duration-300 py-1 font-inter">
+
+                    <li>
+                        <a href="index.html"
+                            class="nav-item whitespace-nowrap px-3 sm:px-4 py-2 rounded-full transition-all duration-200 text-white hover:bg-[#76C457]/40 hover:text-white nav-underline">
+                            <span class="nav-text-wrap">
+                                BERANDA
+                                <span class="nav-line"></span>
+                            </span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="profil.html"
+                            class="nav-item whitespace-nowrap px-3 sm:px-4 py-2 rounded-full transition-all duration-200 text-white hover:bg-[#76C457]/40 hover:text-white nav-underline">
+                            <span class="nav-text-wrap">
+                                PROFIL
+                                <span class="nav-line"></span>
+                            </span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="hubungi.html"
+                            class="nav-item whitespace-nowrap px-3 sm:px-4 py-2 rounded-full transition-all duration-200 text-white hover:bg-[#76C457]/40 hover:text-white nav-underline">
+                            <span class="nav-text-wrap">
+                                HUBUNGI
+                                <span class="nav-line"></span>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- Tombol Mobile -->
+                <button id="mobile-toggle-btn" class="md:hidden text-2xl p-2 transition-colors focus:outline-none"
+                    aria-label="Buka menu navigasi">
+                    <i id="toggle-icon" class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Menu Mobile -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white mt-4 rounded-xl shadow-lg p-4">
+            <div class="flex flex-col space-y-2 text-sm font-semibold text-[#76C457]">
+                <a href="index.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">BERANDA</a>
+                <a href="profil.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">PROFIL</a>
+                <a href="hubungi.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">HUBUNGI</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative w-full h-screen min-h-[600px] flex flex-col bg-gray-900 overflow-hidden pt-20">
+        <div class="absolute inset-0 z-0">
+            <img src="foto/mangrove banner.jpeg" alt="Water and Equipment Background"
+                class="w-full h-full object-cover opacity-70">
+            <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-black/60"></div>
+        </div>
+        <div class="relative z-10 flex-grow flex flex-col justify-center items-center text-center px-6 mt-[-40px]">
+            <h1
+                class="font-tech text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold text-white tracking-[0.08em] sm:tracking-[0.15em] drop-shadow-lg mb-5 sm:mb-6">
+                ALBATROSS
+            </h1>
+            <p
+                class="text-white text-sm sm:text-base md:text-base lg:text-lg max-w-3xl leading-relaxed drop-shadow-md mb-8 sm:mb-10 font-medium px-4">
+                Memantau perairan dan ekosistem mangrove dari sedimentasi secara akurat untuk mendukung keberlangsungan
+                masyarakat dan biota yang hidup sekitarnya.
+            </p>
+        </div>
+    </section>
+
+    <!-- Content Section -->
+    <section class="w-full bg-white py-20 px-6 lg:px-12">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <!-- Left Column: Image -->
+            <div class="w-full relative group">
+                <div
+                    class="absolute -inset-2 bg-gradient-to-r from-blue-100 to-cyan-100 rounded-3xl blur-lg opacity-70 group-hover:opacity-100 transition duration-500">
+                </div>
+
+                <img src="Foto di Aquatic.jpg" alt="Tim Albatross di Aquatic Center"
+                    class="relative w-full h-auto aspect-[4/3] object-cover rounded-2xl shadow-xl z-10 transition-transform duration-500 group-hover:scale-[1.02]">
+            </div>
+            <!-- Right Column: Info Card -->
+            <div class="w-full relative mt-8 lg:mt-0">
+                <div
+                    class="relative bg-[#1a7f9f] rounded-2xl p-6 pt-16 sm:p-8 sm:pt-20 md:p-20 md:pt-30 shadow-2xl mt-0">
+                    <div class="absolute -top-5 sm:-top-6 left-1/2 transform -translate-x-1/2">
+                        <div
+                            class="bg-white px-5 sm:px-10 py-4 sm:py-6 rounded-xl shadow-lg border-b-4 border-[#1a7f9f] flex justify-center items-center whitespace-nowrap">
+                            <h2
+                                class="relative top-2 font-tech text-lg sm:text-xl md:text-3xl font-bold text-[#445b73] tracking-wide text-center whitespace-nowrap">
+                                Apa itu Albatross?
+                            </h2>
+                        </div>
+                    </div>
+
+                    <p class="text-white/95 text-base md:text-lg leading-relaxed text-justify mt-7 font-light">
+                        Sistem pemantauan yang mengintegrasikan pengukuran kondisi perairan dan pengamatan ekosistem
+                        mangrove melalui tiga subsistem, yaitu
+                        <strong class="font-semibold text-white">ALBA</strong> <i class="text-white/80">(Autonomous
+                            Littoral Bathymetric and Aquatic)</i>,
+                        <strong class="font-semibold text-white">BAT</strong> <i class="text-white/80">(Buoy-based
+                            Aquatic Tracking)</i>, dan
+                        <strong class="font-semibold text-white">TROSS</strong> <i class="text-white/80">(Trap-based
+                            Recognition and Observation Surveillance System)</i>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript Toggle & Scroll Navbar -->
+    <script>
+        const mobileToggleBtn = document.getElementById('mobile-toggle-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const toggleIcon = document.getElementById('toggle-icon');
+
+        mobileToggleBtn.addEventListener('click', function () {
+            mobileMenu.classList.toggle('hidden');
+            if (mobileMenu.classList.contains('hidden')) {
+                toggleIcon.classList.remove('fa-times');
+                toggleIcon.classList.add('fa-bars');
+            } else {
+                toggleIcon.classList.remove('fa-bars');
+                toggleIcon.classList.add('fa-times');
+            }
+        });
+
+        window.addEventListener('scroll', function () {
+            const navbar = document.getElementById('navbar');
+            const navItems = document.querySelectorAll('.nav-item');
+            const mobileBtn = document.getElementById('mobile-toggle-btn');
+            const logoCircle = document.getElementById('logo-circle');
+
+            if (window.scrollY > 50) {
+                // === SAAT DISCROLL ===
+                // Navbar jadi putih solid
+                navbar.classList.remove('bg-transparent', 'text-white');
+                navbar.classList.add('bg-white', 'shadow-md');
+
+                // Teks menu jadi hijau tua, dan saat di-hover background hijau muda + teks TETAP hijau tua
+                navItems.forEach(link => {
+                    link.classList.remove('text-white');
+                    link.classList.add('text-[#2A7C13]', 'hover:bg-[#76C457]/25', 'hover:text-[#2A7C13]');
+                });
+
+                if (mobileBtn) mobileBtn.classList.add('text-[#2A7C13]');
+
+                // Lingkaran hijau di belakang logo muncul
+                if (logoCircle) {
+                    logoCircle.classList.remove('opacity-0', 'scale-75');
+                    logoCircle.classList.add('opacity-100', 'scale-100');
+                }
+
+            } else {
+                // === SAAT DI ATAS (BELUM DISCROLL) ===
+                // Navbar kembali transparan
+                navbar.classList.add('bg-transparent', 'text-white');
+                navbar.classList.remove('bg-white', 'shadow-md');
+
+                // Teks menu kembali putih bersih dan reset efek hover-nya
+                navItems.forEach(link => {
+                    link.classList.remove('text-[#2A7C13]', 'hover:bg-[#76C457]/20', 'hover:text-[#2A7C13]');
+                    link.classList.add('text-white');
+                });
+
+                if (mobileBtn) mobileBtn.classList.remove('text-[#2A7C13]');
+
+                // Lingkaran hijau di belakang logo hilang
+                if (logoCircle) {
+                    logoCircle.classList.remove('opacity-100', 'scale-100');
+                    logoCircle.classList.add('opacity-0', 'scale-75');
+                }
+            }
+        });
+    </script>
+
+    <footer class="bg-[#2A7C13] px-4 sm:px-6 py-10 border-t-[2px] border-[#2A7C13]">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+
+            <!-- Kolom 1 (Dibuat lebih lebar/span 2): Lokasi, Email, dan WhatsApp -->
+            <div class="md:col-span-2 flex flex-col gap-4 text-white">
+                <h3 class="font-bold text-xl mb-2">Kontak Kami</h3>
+
+                <a href="https://maps.app.goo.gl/mirmGEEjNxX9zrjp9"
+                    class="flex items-start gap-3 hover:text-[#76C457] transition">
+                    <i class="fa-solid fa-location-dot text-xl mt-1"></i>
+                    <span class="leading-relaxed break-words">
+                        Workshop Instrumentasi dan Robotika Kelautan (Bengkel) ITK, Babakan,
+                        Dramaga, Bogor, Indonesia 16680
+                    </span>
+                </a>
+
+                <a href="mailto:mitr.ipb@gmail.com" class="flex items-center gap-3 hover:text-[#76C457] transition">
+                    <i class="fa-regular fa-envelope text-xl"></i>
+                    <span>diklatmitrxvi@gmail.com</span>
+                </a>
+
+                <a href="https://wa.me/6283898339620" class="flex items-center gap-3 hover:text-[#76C457] transition">
+                    <i class="fa-brands fa-whatsapp text-xl"></i>
+                    <span class="break-words">+6283898339620 (Deni Rizkiana Anwar Hidayat)</span>
+                </a>
+            </div>
+
+            <!-- Kolom 2: Sosial Media -->
+            <div class="flex flex-col gap-4 text-white">
+                <h3 class="font-bold text-xl mb-2">Media Sosial</h3>
+
+                <a href="https://www.instagram.com/dmitr6teen/"
+                    class="flex items-center gap-3 hover:text-[#76C457] transition">
+                    <i class="fa-brands fa-instagram text-xl"></i>
+                    <span>@dmitr16teen</span>
+                </a>
+                <!-- Kamu bisa tambahkan link LinkedIn atau YouTube di sini jika ada -->
+            </div>
+
+            <!-- Kolom 3: Logo dan Tombol Back to Top -->
+            <div class="flex flex-col items-start gap-7 text-white">
+                <!-- Tempat untuk Logo MIT+R -->
+                <div class="w-full flex items-center justify-start">
+                    <!-- Ganti "URL_LOGO_KAMU.png" dengan path/link logo yang sebenarnya -->
+                    <img src="foto/logo ALBATROSS.png" alt="Logo Albatross" class="h-40 sm:h-56 object-contain">
+                </div>
+
+                <!-- Tombol Back to Top -->
+                <div class="w-full flex justify-end mt-auto">
+                    <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
+                        class="group flex items-center p-3 bg-white text-white rounded-full shadow-md hover:bg-[#FFFFFF] hover:shadow-xl hover:-translate-y-1 transition-all duration-500 ease-in-out cursor-pointer">
+
+                        <!-- Teks yang Muncul Saat Hover (Sekarang di urutan pertama / sebelah kiri) -->
+                        <span
+                            class="whitespace-nowrap overflow-hidden transition-all duration-500 ease-in-out max-w-0 opacity-0 group-hover:max-w-[160px] group-hover:opacity-100 group-hover:mr-3 group-hover:pl-2 font-semibold text-[#2A7C13]">
+                            Kembali ke Atas
+                        </span>
+
+                        <!-- Lingkaran Icon Panah (Sekarang di urutan kedua / sebelah kanan) -->
+                        <span
+                            class="flex items-center justify-center w-7 h-7 bg-white text-[#2A7C13] rounded-full transition-transform duration-500 group-hover:scale-110 shrink-0">
+                            <i class="fa-solid fa-arrow-up text-sm"></i>
+                        </span>
+
+                    </button>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Tambahan kotak/bar kuning diletakkan di LUAR tag footer aslimu -->
+    <div class="w-full relative bg-[#E2F0F3] py-4 px-6 border-t-[1px] border-[#2A7C13] overflow-hidden">
+
+        <!-- Pola Pattern di Background -->
+        <div class="absolute inset-0 opacity-15 pointer-events-none"
+            style="background-image: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpath d='M30 0l15 15-15 15-15-15zm0 30l15 15-15 15-15-15z' fill='%232A7C13' fill-opacity='0.4' fill-rule='evenodd' /%3E%3C/svg%3E&quot;); background-size: 30px 30px;">
+        </div>
+
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 relative z-10">
+
+            <!-- Teks/Hak Cipta di sebelah Kanan -->
+            <div class="text-[#403100] font-semibold text-sm text-center md:text-right">
+                © 2026 Diklat MIT+R 16. All Rights Reserved.
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
