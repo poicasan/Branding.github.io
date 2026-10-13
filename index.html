@@ -391,46 +391,84 @@
         });
     </script>
 
-    <!-- Content Section -->
-    <section class="w-full bg-white py-20 px-6 lg:px-12">
-        <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            <!-- Left Column: Image -->
-            <div class="w-full relative group">
-                <div
-                    class="absolute -inset-2 bg-gradient-to-r from-blue-100 to-cyan-100 rounded-3xl blur-lg opacity-70 group-hover:opacity-100 transition duration-500">
+    <br>
+    <!-- WRAPPER UTAMA -->
+    <div
+        style="width: 100%; max-width: 1200px; margin: 0 auto; padding: 20px; box-sizing: border-box; font-family: Arial, sans-serif;">
+
+        <!-- CONTAINER UTAMA (2 Kolom: Kiri untuk Teks+Foto, Kanan untuk Visi Misi) -->
+        <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: stretch;">
+
+            <!-- KOLOM KIRI: Teks di Atas, Foto Kotak di Bawah -->
+            <div style="flex: 1 1 480px; min-width: 300px; display: flex; flex-direction: column; gap: 24px;">
+
+                <!-- 1. Teks Narasi (Berada di Atas) -->
+                <div style="font-size: 16px; line-height: 1.6; color: #454545;">
+                    <p style="margin-bottom: 14px; text-align: justify;">
+                        <strong>Laguna Segara Anakan (LSA)</strong> merupakan kawasan perairan yang terletak di antara Pulau Jawa dan
+                        Pulau Nusakambangan, Kabupaten Cilacap, yang menjadi <strong>tempat bertemunya tiga sungai utama</strong>, yaitu
+                        Sungai Citanduy, Sungai Cibeureum, dan Sungai Cikonde, serta beberapa sungai kecil lainnya.
+                    </p>
+                    <p style="margin: 0; text-align: justify;">
+                        Luas perairan LSA <strong>mengalami penurunan</strong> dari sekitar 2.906 ha pada tahun 1984 menjadi kurang dari
+                        400 ha pada tahun 2023. Pada skala kawasan, sekitar 4,5 juta ton sedimen bermuara di LSA setiap tahunnya. Sebagai bagian dari kawasan Laguna Segara Anakan, Kecamatan Kampung Laut turut berada dalam lingkungan perairan yang mengalami tekanan sedimentasi tersebut. 
+
+                    </p>
                 </div>
 
-                <img src="Foto di Aquatic.jpg" alt="Tim Albatross di Aquatic Center"
-                    class="relative w-full h-auto aspect-[4/3] object-cover rounded-2xl shadow-xl z-10 transition-transform duration-500 group-hover:scale-[1.02]">
+                <!-- 2. Foto Kotak (Berada di Bawah Teks) -->
+                <div style="width: 100%;">
+                    <img src="mangrove vm.jpg" alt="Foto Profil Organisasi"
+                        style="width: 100%; height: 200px; object-fit: cover; border-radius: 16px; display: block;" />
+                </div>
+
             </div>
-            <!-- Right Column: Info Card -->
-            <div class="w-full relative mt-8 lg:mt-0">
+
+            <!-- KOLOM KANAN: Kotak Visi Misi (Memanjang ke bawah menyesuaikan tinggi kolom kiri) -->
+            <div style="flex: 1 1 480px; min-width: 300px; display: flex; flex-direction: column;">
                 <div
-                    class="relative bg-[#1a7f9f] rounded-2xl p-6 pt-16 sm:p-8 sm:pt-20 md:p-20 md:pt-30 shadow-2xl mt-0">
-                    <div class="absolute -top-5 sm:-top-6 left-1/2 transform -translate-x-1/2">
+                    style="background-color: rgba(110, 53, 17, 0.05); border: 2px solid rgba(110, 53, 17, 0.3); border-radius: 12px; padding: 24px; display: flex; flex-direction: column; justify-content: space-between; gap: 18px; height: 100%; box-sizing: border-box;">
+
+                    <!-- Visi -->
+                    <div style="display: flex; gap: 14px; align-items: flex-start;">
                         <div
-                            class="bg-white px-5 sm:px-10 py-4 sm:py-6 rounded-xl shadow-lg border-b-4 border-[#1a7f9f] flex justify-center items-center whitespace-nowrap">
-                            <h2
-                                class="relative top-2 font-tech text-lg sm:text-xl md:text-3xl font-bold text-[#445b73] tracking-wide text-center whitespace-nowrap">
-                                Apa itu Albatross?
-                            </h2>
+                            style="flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%; border: 2px solid #76C457; display: flex; justify-content: center; align-items: center; color: #76C457; font-weight: bold; font-size: 13px; margin-top: 2px;">
+                            ✓</div>
+                        <div>
+                            <h3 style="font-size: 17px; font-weight: bold; color: #333333; margin: 0 0 4px 0;">VISI</h3>
+                            <p style="font-size: 16px; line-height: 1.5; color: #454545; margin: 0;">
+                                Mewujudkan pemantauan pesisir terintegrasi berbasis teknologi dan data untuk mendukung kelestarian ekosistem perairan dan mangrove serta masa depan Kampung Laut yang berkelanjutan.
+                            </p>
                         </div>
                     </div>
 
-                    <p class="text-white/95 text-base md:text-lg leading-relaxed text-justify mt-7 font-light">
-                        Sistem pemantauan yang mengintegrasikan pengukuran kondisi perairan dan pengamatan ekosistem
-                        mangrove melalui tiga subsistem, yaitu
-                        <strong class="font-semibold text-white">ALBA</strong> <i class="text-white/80">(Autonomous
-                            Littoral Bathymetric and Aquatic)</i>,
-                        <strong class="font-semibold text-white">BAT</strong> <i class="text-white/80">(Buoy-based
-                            Aquatic Tracking)</i>, dan
-                        <strong class="font-semibold text-white">TROSS</strong> <i class="text-white/80">(Trap-based
-                            Recognition and Observation Surveillance System)</i>.
-                    </p>
+                    <!-- Misi -->
+                    <div style="display: flex; gap: 14px; align-items: flex-start;">
+                        <div
+                            style="flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%; border: 2px solid #22c55e; display: flex; justify-content: center; align-items: center; color: #22c55e; font-weight: bold; font-size: 13px; margin-top: 2px;">
+                            ✓</div>
+                        <div>
+                            <h3 style="font-size: 17px; font-weight: bold; color: #333333; margin: 0 0 4px 0;">MISI</h3>
+                            <li style="font-size: 16px; line-height: 1.5; color: #454545; margin: 0;">
+                                Mengintegrasikan pemantauan kondisi perairan, dinamika arus, dan aktivitas fauna mangrove melalui inovasi ALBA, BAT, dan TROSS.
+                            </li>
+                            <li style="font-size: 16px; line-height: 1.5; color: #454545; margin: 0;">
+                                Mengolah data lingkungan menjadi informasi yang terstruktur, informatif, dan mudah dipahami melalui visualisasi digital.
+                            </li>
+                            <li style="font-size: 16px; line-height: 1.5; color: #454545; margin: 0;">
+                                Mendukung pemahaman terhadap sedimentasi dan perubahan ekosistem sebagai dasar penentuan langkah konservasi, termasuk penanaman mangrove berbasis data.
+                            </li>
+                            <li style="font-size: 16px; line-height: 1.5; color: #454545; margin: 0;">
+                                Mendorong kolaborasi antara akademisi, masyarakat lokal, dan pemangku kepentingan untuk mendukung pemantauan serta pengelolaan lingkungan pesisir yang berkelanjutan.
+                            </li>
+                        </div>
+                    </div>
+
                 </div>
             </div>
+
         </div>
-    </section>
+    </div>>
 
     <!-- JavaScript Toggle & Scroll Navbar -->
     <script>
