@@ -474,6 +474,41 @@
                 observer.observe(section);
             }
         });
+
+        document.addEventListener("DOMContentLoaded", function () {
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15 // Animasi aktif saat card masuk 15% ke layar
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const direction = entry.target.getAttribute('data-direction');
+
+                if (entry.isIntersecting) {
+                    // Ketika card masuk ke layar (muncul & kembali ke posisi normal)
+                    entry.target.classList.remove('opacity-0', '-translate-x-12', 'translate-y-12', 'translate-x-12');
+                    entry.target.classList.add('opacity-100', 'translate-x-0', 'translate-y-0');
+                } else {
+                    // Ketika card keluar dari layar (direset posisinya agar bisa dianimasikan ulang saat scroll lagi)
+                    entry.target.classList.remove('opacity-100', 'translate-x-0', 'translate-y-0');
+                    
+                    if (direction === 'left') {
+                        entry.target.classList.add('opacity-0', '-translate-x-12');
+                    } else if (direction === 'bottom') {
+                        entry.target.classList.add('opacity-0', 'translate-y-12');
+                    } else if (direction === 'right') {
+                        entry.target.classList.add('opacity-0', 'translate-x-12');
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Daftarkan semua card ke observer
+        const animatedCards = document.querySelectorAll('.program-card-animate');
+        animatedCards.forEach(card => observer.observe(card));
+    });
     </script>
 
     <br>
@@ -607,8 +642,9 @@
                 <!-- Grid 3 Kotak -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
 
-                    <!-- Card 1: Alat Pemantauan Perairan -->
-                    <div class="program-card relative bg-white rounded-2xl flex flex-col justify-between overflow-hidden transition-all duration-300"
+                    <!-- Card 1: Alat Pemantauan Perairan (Geser dari Kiri + Fade In) -->
+                    <div class="program-card program-card-animate relative bg-white rounded-2xl flex flex-col justify-between overflow-hidden transition-all duration-1000 ease-out opacity-0 -translate-x-12"
+                        data-direction="left"
                         style="background-color: rgba(110, 53, 17, 0.04); border: 2px solid rgba(110, 53, 17, 0.25); box-shadow: 0 5px 18px rgba(45, 55, 72, 0.08);">
 
                         <!-- FOTO BACKGROUND (alat.jpg) -->
@@ -639,8 +675,9 @@
                         </div>
                     </div>
 
-                    <!-- Card 2: Penanaman Mangrove -->
-                    <div class="program-card relative bg-white rounded-2xl flex flex-col justify-between overflow-hidden transition-all duration-300"
+                    <!-- Card 2: Penanaman Mangrove (Geser dari Bawah + Fade In) -->
+                    <div class="program-card program-card-animate relative bg-white rounded-2xl flex flex-col justify-between overflow-hidden transition-all duration-1000 ease-out opacity-0 translate-y-12"
+                        data-direction="bottom"
                         style="background-color: rgba(110, 53, 17, 0.04); border: 2px solid rgba(110, 53, 17, 0.25); box-shadow: 0 5px 18px rgba(45, 55, 72, 0.08);">
 
                         <!-- FOTO BACKGROUND (tanam.jpg) -->
@@ -669,8 +706,9 @@
                         </div>
                     </div>
 
-                    <!-- Card 3: Edukasi Olahan Pangan -->
-                    <div class="program-card relative bg-white rounded-2xl flex flex-col justify-between overflow-hidden transition-all duration-300"
+                    <!-- Card 3: Edukasi Olahan Pangan (Geser dari Kanan + Fade In) -->
+                    <div class="program-card program-card-animate relative bg-white rounded-2xl flex flex-col justify-between overflow-hidden transition-all duration-1000 ease-out opacity-0 translate-x-12"
+                        data-direction="right"
                         style="background-color: rgba(110, 53, 17, 0.04); border: 2px solid rgba(110, 53, 17, 0.25); box-shadow: 0 5px 18px rgba(45, 55, 72, 0.08);">
 
                         <!-- FOTO BACKGROUND (produk.jpg) -->
