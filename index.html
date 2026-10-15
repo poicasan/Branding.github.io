@@ -397,15 +397,12 @@
 
             <h1
                 class="font-tech text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-white tracking-[0.05em] sm:tracking-[0.08em] drop-shadow-lg mb-4 sm:mb-6 leading-tight">
-                LOREM IPSUM:
-                <span class="block text-xl sm:text-2xl md:text-3xl font-semibold mt-2">
-                    simply dummy text of the <br> printing and typesetting industry.
-                </span>
+                Terbang Lebih Jauh untuk Pesisir yang Hijau
             </h1>
 
             <p
-                class="text-white text-xs sm:text-sm md:text-base lg:text-lg max-w-3xl leading-relaxed drop-shadow-md mb-6 sm:mb-10 font-medium px-2">
-                Lorem ipsum, dolor sit amet consectetur adipisicing.
+                class="text-white text-base sm:text-lg md:text-xl lg:text-2xl max-w-none whitespace-nowrap leading-relaxed drop-shadow-md mb-6 sm:mb-10 font-medium px-2">
+                Memantau, melestarikan, dan mengedukasi demi keberlanjutan lingkungan.
             </p>
         </div>
     </section>
@@ -476,39 +473,39 @@
         });
 
         document.addEventListener("DOMContentLoaded", function () {
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.15 // Animasi aktif saat card masuk 15% ke layar
-        };
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15 // Animasi aktif saat card masuk 15% ke layar
+            };
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                const direction = entry.target.getAttribute('data-direction');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    const direction = entry.target.getAttribute('data-direction');
 
-                if (entry.isIntersecting) {
-                    // Ketika card masuk ke layar (muncul & kembali ke posisi normal)
-                    entry.target.classList.remove('opacity-0', '-translate-x-12', 'translate-y-12', 'translate-x-12');
-                    entry.target.classList.add('opacity-100', 'translate-x-0', 'translate-y-0');
-                } else {
-                    // Ketika card keluar dari layar (direset posisinya agar bisa dianimasikan ulang saat scroll lagi)
-                    entry.target.classList.remove('opacity-100', 'translate-x-0', 'translate-y-0');
-                    
-                    if (direction === 'left') {
-                        entry.target.classList.add('opacity-0', '-translate-x-12');
-                    } else if (direction === 'bottom') {
-                        entry.target.classList.add('opacity-0', 'translate-y-12');
-                    } else if (direction === 'right') {
-                        entry.target.classList.add('opacity-0', 'translate-x-12');
+                    if (entry.isIntersecting) {
+                        // Ketika card masuk ke layar (muncul & kembali ke posisi normal)
+                        entry.target.classList.remove('opacity-0', '-translate-x-12', 'translate-y-12', 'translate-x-12');
+                        entry.target.classList.add('opacity-100', 'translate-x-0', 'translate-y-0');
+                    } else {
+                        // Ketika card keluar dari layar (direset posisinya agar bisa dianimasikan ulang saat scroll lagi)
+                        entry.target.classList.remove('opacity-100', 'translate-x-0', 'translate-y-0');
+
+                        if (direction === 'left') {
+                            entry.target.classList.add('opacity-0', '-translate-x-12');
+                        } else if (direction === 'bottom') {
+                            entry.target.classList.add('opacity-0', 'translate-y-12');
+                        } else if (direction === 'right') {
+                            entry.target.classList.add('opacity-0', 'translate-x-12');
+                        }
                     }
-                }
-            });
-        }, observerOptions);
+                });
+            }, observerOptions);
 
-        // Daftarkan semua card ke observer
-        const animatedCards = document.querySelectorAll('.program-card-animate');
-        animatedCards.forEach(card => observer.observe(card));
-    });
+            // Daftarkan semua card ke observer
+            const animatedCards = document.querySelectorAll('.program-card-animate');
+            animatedCards.forEach(card => observer.observe(card));
+        });
     </script>
 
     <br>
@@ -522,9 +519,10 @@
 
         <!-- Paragraf Pembuka -->
         <p style="font-size: 16px; line-height: 1.6; color: #454545; text-align: justify; margin: 0;">
-            Laguna Segara Anakan di Kabupaten Cilacap menghadapi tekanan lingkungan yang memengaruhi keberlangsungan
-            ekosistem pesisir. Mulai dari
-            <strong>penyusutan luas perairan akibat sedimentasi</strong>, kondisi ekosistem mangrove, hingga pemanfaatan
+            Laguna Segara Anakan di Kabupaten Cilacap menghadapi <strong>tekanan lingkungan</strong> yang memengaruhi
+            keberlangsungan
+            ekosistem pesisir. Mulai dari penyusutan luas perairan akibat sedimentasi, kondisi ekosistem mangrove,
+            hingga pemanfaatan
             potensi mangrove yang masih perlu dikembangkan.
         </p>
 
@@ -533,10 +531,10 @@
 
             <!-- Kolom Foto -->
             <div class="transition-transform hover:scale-105 duration-300"
-                style="flex: 1 1 400px; min-width: 0; position: relative; align-self: stretch;">
+                style="flex: 1 1 400px; min-width: 0; position: relative; align-self: stretch; overflow: hidden; border-radius: 16px;">
 
-                <img src="sedimentasi.png" alt="Foto Sedimentasi"
-                    style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 16px; display: block;" />
+                <img src="sedimentasii.jpeg" alt="Foto Sedimentasi"
+                    style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center bottom; transform: scale(1.15); border-radius: 16px; display: block;" />
             </div>
 
             <!-- Kolom Teks Isu -->
@@ -566,9 +564,10 @@
                         <li>
                             <strong>Potensi Mangrove yang Belum Optimal</strong>
                             <p style="margin: 4px 0 0; text-align: justify;">
-                                Mangrove memiliki potensi untuk diolah menjadi produk bernilai guna. Namun, pengembangan
-                                pengetahuan dan keterampilan dalam pengolahannya menjadi bagian penting agar potensi
-                                tersebut dapat dimanfaatkan secara berkelanjutan.
+                                Kampung Laut memiliki kawasan mangrove yang berpotensi menjadi sumber daya alam bernilai
+                                guna. Selain berperan penting dalam menjaga keseimbangan ekosistem pesisir, mangrove
+                                juga dapat diolah menjadi berbagai produk. Namun, pemanfaatan potensi tersebut masih
+                                perlu dikembangkan agar dapat memberikan nilai tambah bagi masyarakat.
                             </p>
                         </li>
 
@@ -664,13 +663,7 @@
                             </h3>
                             <!-- Deskripsi -->
                             <p class="text-[#454545] text-sm leading-relaxed">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus beatae tenetur sit
-                                aut
-                                ratione amet vel reprehenderit voluptas mollitia dignissimos neque laboriosam maxime
-                                delectus totam incidunt cum labore corporis quas facere excepturi obcaecati ea, fugiat
-                                qui
-                                consequatur. Eveniet maxime unde non ipsa officia facere suscipit in. Pariatur nobis
-                                assumenda ab?
+                                Data parameter perairan diolah dan divisualisasikan dalam bentuk peta untuk menggambarkan kondisi kawasan Kampung Laut, serta digunakan sebagai informasi pendukung mengenai aktivitas fauna di kawasan mangrove
                             </p>
                         </div>
                     </div>
