@@ -54,7 +54,7 @@
 
         .nav-line {
             position: absolute;
-            bottom: -4px;
+            bottom: -2px;
             left: 0;
             width: 100%;
             height: 2px;
@@ -64,8 +64,7 @@
             transition: transform 0.3s ease-out;
         }
 
-        .nav-item:hover .nav-line,
-        .nav-item.active .nav-line {
+        .nav-item:hover .nav-line {
             transform: scaleX(1);
             transform-origin: bottom left;
         }
@@ -209,6 +208,27 @@
                 scroll-behavior: auto !important;
             }
         }
+
+        /* RESPONSIVE NAVBAR, disamakan dengan homepage */
+        @media (max-width: 768px) {
+            #navbar {
+                padding: 12px 16px;
+            }
+
+            #navbar img {
+                height: 42px;
+            }
+
+            #logo-circle {
+                width: 50px;
+                height: 50px;
+            }
+
+            #mobile-toggle-btn {
+                font-size: 22px;
+                padding: 8px;
+            }
+        }
     </style>
 </head>
 
@@ -217,90 +237,110 @@
     <!-- STICKY NAVIGATION BAR -->
     <nav id="navbar"
         class="fixed top-0 left-0 w-full z-50 p-4 lg:px-12 transition-all duration-300 text-white bg-transparent">
+
         <div class="max-w-7xl mx-auto flex justify-between items-center relative">
+
             <!-- Logo ALBATROSS -->
-            <div class="relative flex items-center justify-center group">
+            <div class="relative flex items-center justify-center">
+
+                <!-- Shape hijau di belakang logo -->
                 <div id="logo-circle"
-                    class="absolute bg-primary rounded-full w-14 h-14 -z-0 opacity-0 scale-75 transition-all duration-300 pointer-events-none">
+                    class="absolute bg-[#2A7C13] rounded-full w-14 h-14 -z-0 opacity-0 scale-75 transition-all duration-300 ease-in-out pointer-events-none">
                 </div>
-                <a href="index.html"
-                    class="relative z-10 flex items-center justify-center transition-transform group-hover:scale-105">
+
+                <a href="index.html" id="logo-btn"
+                    class="relative z-10 flex items-center justify-center transition-transform hover:scale-105">
                     <img src="logo ALBATROSS.png" alt="Logo ALBATROSS" class="h-12 w-auto object-contain">
                 </a>
+
             </div>
 
-            <!-- Menu Navigasi Desktop -->
+            <!-- Menu Navigasi -->
             <div class="flex items-center space-x-3">
+
                 <ul id="nav-links"
-                    class="hidden md:flex items-center space-x-4 text-sm font-semibold tracking-widest uppercase transition-all duration-300 py-1">
+                    class="hidden md:flex items-center space-x-2 sm:space-x-3 text-xs sm:text-sm font-semibold tracking-wider sm:tracking-widest uppercase transition-all duration-300 py-1 font-inter">
+
                     <li>
                         <a href="index.html"
-                            class="nav-item px-4 py-2 rounded-full transition-all duration-200 text-white hover:bg-white/20">
-                            <span class="nav-text-wrap">BERANDA<span class="nav-line"></span></span>
+                            class="nav-item whitespace-nowrap px-3 sm:px-4 py-2 rounded-full transition-all duration-200 text-white hover:bg-[#76C457]/40 hover:text-white">
+                            <span class="nav-text-wrap">
+                                BERANDA
+                                <span class="nav-line"></span>
+                            </span>
                         </a>
                     </li>
+
                     <li>
                         <a href="profil.html"
-                            class="nav-item px-4 py-2 rounded-full transition-all duration-200 text-white hover:bg-white/20">
-                            <span class="nav-text-wrap">PROFIL<span class="nav-line"></span></span>
+                            class="nav-item whitespace-nowrap px-3 sm:px-4 py-2 rounded-full transition-all duration-200 text-white hover:bg-[#76C457]/40 hover:text-white">
+                            <span class="nav-text-wrap">
+                                PROFIL
+                                <span class="nav-line"></span>
+                            </span>
                         </a>
                     </li>
+
                     <li>
                         <a href="hubungi.html" aria-current="page"
-                            class="nav-item active px-4 py-2 rounded-full transition-all duration-200 text-white hover:bg-white/20">
-                            <span class="nav-text-wrap">HUBUNGI<span class="nav-line"></span></span>
+                            class="nav-item whitespace-nowrap px-3 sm:px-4 py-2 rounded-full transition-all duration-200 text-white hover:bg-[#76C457]/40 hover:text-white">
+                            <span class="nav-text-wrap">
+                                HUBUNGI
+                                <span class="nav-line"></span>
+                            </span>
                         </a>
                     </li>
+
                 </ul>
 
                 <!-- Tombol Menu Mobile -->
-                <button id="mobile-toggle-btn" class="md:hidden text-2xl p-2 transition-colors focus:outline-none">
+                <button id="mobile-toggle-btn" class="md:hidden text-2xl p-2 transition-colors focus:outline-none"
+                    aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="mobile-menu">
                     <i id="toggle-icon" class="fa-solid fa-bars"></i>
                 </button>
+
             </div>
         </div>
 
         <!-- Menu Mobile -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white mt-4 rounded-xl shadow-2xl p-4 border border-gray-100">
-            <div class="flex flex-col space-y-2 text-sm font-semibold text-primary">
-                <a href="index.html" class="px-4 py-3 rounded-lg hover:bg-gray-50 transition-colors">BERANDA</a>
-                <a href="profil.html" class="px-4 py-3 rounded-lg hover:bg-gray-50 transition-colors">PROFIL</a>
-                <a href="hubungi.html" class="px-4 py-3 rounded-lg bg-secondary/10 text-primary">HUBUNGI</a>
+        <div id="mobile-menu" class="hidden md:hidden bg-white mt-4 rounded-xl shadow-lg p-4">
+
+            <div class="flex flex-col space-y-2 text-sm font-semibold text-[#76C457]">
+
+                <a href="index.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">
+                    BERANDA
+                </a>
+
+                <a href="profil.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">
+                    PROFIL
+                </a>
+
+                <a href="hubungi.html" class="px-4 py-3 rounded-lg bg-[#76C457]/20">
+                    HUBUNGI
+                </a>
+
             </div>
         </div>
     </nav>
 
     <main>
-        <!-- BANNER HEADER -->
-        <section class="relative overflow-hidden bg-gray-900 px-5 pt-16 pb-10 sm:pt-20 sm:pb-12 md:pt-24 md:pb-12">
-
-            <!-- Background Foto -->
+        <!-- BANNER KONTAK KAMI -->
+        <section class="relative overflow-hidden bg-gray-900 px-5 py-16 sm:py-20 md:py-24">
             <div class="absolute inset-0 z-0">
                 <img src="bg hubungi.jpg" alt="Latar belakang banner Kontak Kami"
                     class="w-full h-full object-cover object-[center_60%]">
-
-                <!-- Overlay agar tulisan tetap terbaca -->
                 <div class="absolute inset-0 bg-black/50"></div>
             </div>
 
-            <!-- Konten Banner -->
             <div class="relative z-10 max-w-4xl mx-auto text-center">
-
-                <h1 class="font-tech text-4xl sm:text-5xl md:text-6xl
-            font-bold text-white mb-4 drop-shadow-lg">
+                <h1 class="font-tech text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-4 drop-shadow-lg">
                     KONTAK KAMI
                 </h1>
-
-                <p class="text-sm sm:text-base leading-relaxed text-white
-            max-w-2xl mx-auto drop-shadow-md">
-                    Hubungi tim kami untuk berkolaborasi dalam pengembangan teknologi pemantauan perairan dan pelestarian ekosistem pesisir.
-                </p>
-
             </div>
         </section>
 
         <!-- PENGANTAR HALAMAN KONTAK -->
-        <section class="px-5 pt-12 pb-8 sm:pt-16 sm:pb-10">
+        <section class="px-5 pt-6 pb-8 sm:pt-10 sm:pb-10 bg-gray-100">
             <div class="max-w-3xl mx-auto text-center">
 
                 <span class="inline-flex items-center gap-2 text-primary
@@ -317,8 +357,9 @@
                 </h2>
 
                 <p class="text-gray-500 text-sm sm:text-base
-                  leading-relaxed max-w-2xl mx-auto">
-                   Kami percaya inovasi lahir dari komunikasi yang baik. Sampaikan gagasan, potensi kerja sama, atau pertanyaan Anda melalui formulir di bawah ini. Tim kami akan segera menindaklanjutinya.
+                  leading-relaxed max-w-3xl mx-auto">
+                    Kami percaya inovasi lahir dari komunikasi yang baik. Sampaikan gagasan, potensi kerja sama, atau
+                    pertanyaan Anda melalui formulir di bawah ini. Tim kami akan segera menindaklanjutinya.
                 </p>
 
             </div>
@@ -342,11 +383,6 @@
 
                     <div class="relative z-10">
                         <div class="mb-7 sm:mb-8">
-                            <span
-                                class="inline-flex items-center gap-2 text-primary text-[11px] sm:text-xs font-bold uppercase tracking-[0.14em] mb-2">
-                                <span class="inline-block w-6 h-[3px] rounded-full bg-secondary"></span>
-                                Hubungi ALBATROSS
-                            </span>
                             <h2 class="font-tech text-2xl sm:text-3xl font-bold text-gray-800 mb-2">Kirim Pesan</h2>
                             <p class="text-gray-500 text-sm sm:text-[15px] leading-relaxed max-w-2xl">
                                 Gunakan formulir di bawah ini untuk mengirimkan pesan langsung ke email kami.
@@ -404,17 +440,23 @@
         </section>
 
         <!-- LOKASI PETA MAPS -->
-        <section class="max-w-[1200px] mx-auto px-4 sm:px-6 pb-20">
-            <div class="text-center mb-10">
-                <h2 class="font-tech text-3xl font-bold text-primary">Kunjungi Lokasi Kami</h2>
-                <div class="w-16 h-1 bg-secondary mx-auto mt-4 rounded-full"></div>
+        <section class="max-w-[1200px] mx-auto px-4 sm:px-6 pb-16">
+            <div class="text-center mb-8">
+                <h2 class="font-tech text-3xl font-bold text-gray-800 mb-3">
+                    Kunjungi Lokasi Kami
+                </h2>
+
+                <p class="text-gray-500 text-sm sm:text-base leading-relaxed max-w-4xl mx-auto">
+                    Workshop Instrumentasi dan Robotika Kelautan (Bengkel) ITK,
+                    Babakan, Dramaga, Bogor, Indonesia 16680
+                </p>
             </div>
 
-            <div class="w-full bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden p-2">
+            <div class="w-full overflow-hidden rounded-3xl shadow-lg">
                 <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3432.116223214542!2d106.72390709999999!3d-6.5586025999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69c4ad56ee1525%3A0x16aeacee84366f06!2sWorkshop%20Instrumentasi%20dan%20Robotika%20Kelautan%20(Bengkel)%20ITK!5e1!3m2!1sen!2sid!4v1792046221888!5m2!1sen!2sid"
-                    class="block w-full h-[350px] md:h-[450px] rounded-2xl" style="border: 0;" allowfullscreen
-                    loading="lazy" referrerpolicy="strict-origin-when-cross-origin">
+                    class="block w-full h-[350px] md:h-[450px]" style="border: 0;" allowfullscreen loading="lazy"
+                    referrerpolicy="strict-origin-when-cross-origin">
                 </iframe>
             </div>
         </section>
@@ -509,63 +551,83 @@
     </div>
 
     <!-- JAVASCRIPT NAVBAR -->
+
     <script>
-        const navbar = document.getElementById('navbar');
-        const logoCircle = document.getElementById('logo-circle');
         const mobileToggleBtn = document.getElementById('mobile-toggle-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         const toggleIcon = document.getElementById('toggle-icon');
-        const navLinks = document.querySelectorAll('.nav-item');
-
-        function updateNavbar() {
-            const isScrolled = window.scrollY > 50;
-
-            if (isScrolled) {
-                navbar.classList.remove('bg-transparent', 'text-white', 'py-4');
-                navbar.classList.add('bg-white/90', 'backdrop-blur-md', 'shadow-sm', 'text-gray-800', 'py-3');
-
-                logoCircle.classList.remove('opacity-0', 'scale-75');
-                logoCircle.classList.add('opacity-100', 'scale-100');
-
-                navLinks.forEach(link => {
-                    link.classList.remove('text-white', 'hover:bg-white/20');
-                    if (link.classList.contains('active')) {
-                        link.classList.add('text-primary', 'font-bold');
-                    } else {
-                        link.classList.add('text-gray-600', 'hover:text-primary', 'hover:bg-gray-100');
-                    }
-                });
-
-                mobileToggleBtn.classList.remove('text-white');
-                mobileToggleBtn.classList.add('text-gray-800');
-
-            } else {
-                navbar.classList.add('bg-transparent', 'text-white', 'py-4');
-                navbar.classList.remove('bg-white/90', 'backdrop-blur-md', 'shadow-sm', 'text-gray-800', 'py-3');
-
-                logoCircle.classList.add('opacity-0', 'scale-75');
-                logoCircle.classList.remove('opacity-100', 'scale-100');
-
-                navLinks.forEach(link => {
-                    link.classList.remove('text-gray-600', 'text-primary', 'hover:text-primary', 'hover:bg-gray-100', 'font-bold');
-                    link.classList.add('text-white', 'hover:bg-white/20');
-                });
-
-                mobileToggleBtn.classList.add('text-white');
-                mobileToggleBtn.classList.remove('text-gray-800');
-            }
-        }
-
-        window.addEventListener('scroll', updateNavbar);
-        updateNavbar();
 
         mobileToggleBtn.addEventListener('click', function () {
             mobileMenu.classList.toggle('hidden');
-            const isHidden = mobileMenu.classList.contains('hidden');
-            toggleIcon.classList.toggle('fa-bars', isHidden);
-            toggleIcon.classList.toggle('fa-xmark', !isHidden);
+
+            if (mobileMenu.classList.contains('hidden')) {
+                toggleIcon.classList.remove('fa-times');
+                toggleIcon.classList.add('fa-bars');
+            } else {
+                toggleIcon.classList.remove('fa-bars');
+                toggleIcon.classList.add('fa-times');
+            }
+        });
+
+        window.addEventListener('scroll', function () {
+            const navbar = document.getElementById('navbar');
+            const navItems = document.querySelectorAll('.nav-item');
+            const mobileBtn = document.getElementById('mobile-toggle-btn');
+            const logoCircle = document.getElementById('logo-circle');
+
+            if (window.scrollY > 50) {
+                // Navbar putih dengan bayangan
+                navbar.classList.remove('bg-transparent', 'text-white');
+                navbar.classList.add('bg-white', 'shadow-md');
+
+                // Menu berubah menjadi hijau
+                navItems.forEach(link => {
+                    link.classList.remove('text-white');
+                    link.classList.add(
+                        'text-[#2A7C13]',
+                        'hover:bg-[#76C457]/25',
+                        'hover:text-[#2A7C13]'
+                    );
+                });
+
+                if (mobileBtn) {
+                    mobileBtn.classList.add('text-[#2A7C13]');
+                }
+
+                // Lingkaran hijau di belakang logo muncul
+                if (logoCircle) {
+                    logoCircle.classList.remove('opacity-0', 'scale-75');
+                    logoCircle.classList.add('opacity-100', 'scale-100');
+                }
+
+            } else {
+                // Navbar kembali transparan
+                navbar.classList.add('bg-transparent', 'text-white');
+                navbar.classList.remove('bg-white', 'shadow-md');
+
+                // Menu kembali putih
+                navItems.forEach(link => {
+                    link.classList.remove(
+                        'text-[#2A7C13]',
+                        'hover:bg-[#76C457]/20',
+                        'hover:text-[#2A7C13]'
+                    );
+                    link.classList.add('text-white');
+                });
+
+                if (mobileBtn) {
+                    mobileBtn.classList.remove('text-[#2A7C13]');
+                }
+
+                // Lingkaran logo menghilang
+                if (logoCircle) {
+                    logoCircle.classList.remove('opacity-100', 'scale-100');
+                    logoCircle.classList.add('opacity-0', 'scale-75');
+                }
+            }
         });
     </script>
+
 </body>
 
 </html>
