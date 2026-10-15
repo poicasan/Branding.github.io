@@ -361,8 +361,7 @@
                         <!-- Image Container (Left Side) -->
                         <div
                             class="w-full sm:w-1/2 lg:w-5/12 aspect-[4/5] bg-white rounded-lg p-2 flex items-center justify-center overflow-hidden flex-shrink-0 shadow-md">
-                            <img src="sedimen.jpeg"
-                                alt="Sedimen" class="w-full h-full object-cover rounded"
+                            <img src="sedimen.jpeg" alt="Sedimen" class="w-full h-full object-cover rounded"
                                 onerror="this.onerror=null; this.src='https://placehold.co/400x500/ffffff/132E22?text=Koran+Hutan+Adat+Belayan';" />
                         </div>
 
@@ -395,7 +394,7 @@
                             class="w-full sm:w-1/2 lg:w-5/12 aspect-[4/5] bg-white rounded-lg p-2 flex items-center justify-center overflow-hidden flex-shrink-0 shadow-md">
                             <img src="https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=600&q=80"
                                 alt="Katalog Produk KKI Warsi" class="w-full h-full object-cover rounded"
-                                onerror="this.onerror=null; this.src='https://placehold.co/400x500/ffffff/132E22?text=Katalog+Produk';" >
+                                onerror="this.onerror=null; this.src='https://placehold.co/400x500/ffffff/132E22?text=Katalog+Produk';">
                         </div>
 
                         <!-- Text Content (Right Side) -->
@@ -690,13 +689,15 @@
         </section>
     </main>
 
+    <br>
+    
     <!-- Container dengan padding horizontal yang longgar -->
     <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
 
         <!-- Header Section -->
         <div class="text-center max-w-3xl mx-auto mb-16">
             <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 tracking-tight mb-4">
-                Aktifitas Terkini
+                Aktivitas Terkini
             </h2>
             <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
                 Ikuti perkembangan terbaru inovasi teknologi kelautan, pengembangan alat pemantauan perairan, serta
@@ -1077,7 +1078,7 @@
         function openModal(id) {
             const modal = document.getElementById(id);
             const card = document.getElementById(id + '-card');
-            
+
             modal.classList.remove('hidden');
             setTimeout(() => {
                 modal.classList.remove('opacity-0');
@@ -1090,11 +1091,11 @@
         function closeModal(id) {
             const modal = document.getElementById(id);
             const card = document.getElementById(id + '-card');
-            
+
             modal.classList.add('opacity-0');
             card.classList.remove('scale-100');
             card.classList.add('scale-95');
-            
+
             setTimeout(() => {
                 modal.classList.add('hidden');
                 document.body.style.overflow = 'auto';
@@ -1102,7 +1103,7 @@
         }
 
         // Close modal when clicking outside
-        window.onclick = function(event) {
+        window.onclick = function (event) {
             const modalBelayan = document.getElementById('modal-belayan');
             const modalKatalog = document.getElementById('modal-katalog');
             if (event.target === modalBelayan) closeModal('modal-belayan');
@@ -1112,7 +1113,7 @@
         function copyCode() {
             // Get full HTML document string
             const htmlContent = document.documentElement.outerHTML;
-            
+
             // Fallback copy method
             const textarea = document.createElement('textarea');
             textarea.value = htmlContent;
