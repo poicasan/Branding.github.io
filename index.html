@@ -41,6 +41,10 @@
     </script>
 
     <style>
+        html {
+            overflow-y: scroll;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
             margin: 0;
@@ -245,6 +249,39 @@
             transform: scale(1.08);
             /* Efek zoom in pelan saat aktif */
         }
+
+        /* Menjaga gambar hero tetap memenuhi area tanpa mengubah layout */
+        .bg-slide {
+            display: block;
+            backface-visibility: hidden;
+        }
+
+        .bg-slide.active {
+            transform: scale(1.08);
+        }
+
+        /* Efek hover kartu Program & Solusi */
+        .program-card {
+            transition: transform 0.3s ease,
+                box-shadow 0.3s ease,
+                border-color 0.3s ease;
+        }
+
+        .program-card:hover {
+            transform: translateY(-4px);
+            border-color: #2A7C13 !important;
+            box-shadow: 0 12px 28px rgba(45, 55, 72, 0.15);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .program-card {
+                transition: none;
+            }
+
+            .program-card:hover {
+                transform: none;
+            }
+        }
     </style>
 
 </head>
@@ -329,7 +366,7 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="relative w-full h-screen min-h-[600px] flex flex-col bg-gray-900 overflow-hidden pt-20">
+    <section class="relative w-full min-h-[600px] h-[100svh] flex flex-col bg-gray-900 overflow-hidden pt-20">
         <!-- Background Carousel Container -->
         <div class="absolute inset-0 z-0 overflow-hidden bg-gray-900">
             <!-- Gambar 1 (Tambahkan kelas 'active' untuk slide pertama yang muncul) -->
@@ -360,17 +397,16 @@
 
             <h1
                 class="font-tech text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-white tracking-[0.05em] sm:tracking-[0.08em] drop-shadow-lg mb-4 sm:mb-6 leading-tight">
-                ALBATROSS:
+                LOREM IPSUM:
                 <span class="block text-xl sm:text-2xl md:text-3xl font-semibold mt-2">
-                    Teknologi Biru untuk Pemantauan <br> Pesisir Terintegrasi Kampung Laut
+                    simply dummy text of the <br> printing and typesetting industry.
                 </span>
             </h1>
 
             <p
                 class="text-white text-xs sm:text-sm md:text-base lg:text-lg max-w-3xl leading-relaxed drop-shadow-md mb-6 sm:mb-10 font-medium px-2">
-                Marine Instrumentation Telemetry and Robotics, IPB University.
+                Lorem ipsum, dolor sit amet consectetur adipisicing.
             </p>
-
         </div>
     </section>
 
@@ -395,97 +431,415 @@
             // Jalankan fungsi pergantian gambar setiap 5 detik (bisa diubah sesuai selera)
             setInterval(changeSlide, 5000);
         });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const counters = document.querySelectorAll('.counter');
+            const section = document.getElementById('statistik-counter');
+            let started = false; // Mencegah animasi berulang
+
+            const animateCounters = () => {
+                counters.forEach(counter => {
+                    const target = parseFloat(counter.getAttribute('data-target'));
+                    const isDecimal = target % 1 !== 0; // Cek apakah target mengandung desimal
+
+                    const updateCount = () => {
+                        const count = parseFloat(counter.innerText);
+                        // Kecepatan animasi (semakin besar pembagi, semakin lambat)
+                        const increment = target / 80;
+
+                        if (count < target) {
+                            if (isDecimal) {
+                                counter.innerText = (count + increment).toFixed(1);
+                            } else {
+                                counter.innerText = Math.ceil(count + increment);
+                            }
+                            setTimeout(updateCount, 30);
+                        } else {
+                            counter.innerText = target; // Setel ke angka akhir agar presisi
+                        }
+                    };
+                    updateCount();
+                });
+            };
+
+            // Menggunakan Intersection Observer agar animasi berjalan saat elemen terlihat di layar
+            const observer = new IntersectionObserver((entries) => {
+                if (entries[0].isIntersecting && !started) {
+                    animateCounters();
+                    started = true; // Tandai agar animasi tidak ngulang lagi saat di-scroll bolak-balik
+                }
+            }, { threshold: 0.5 }); // threshold 0.5 artinya animasi mulai saat 50% elemen masuk layar
+
+            if (section) {
+                observer.observe(section);
+            }
+        });
     </script>
 
     <br>
     <!-- WRAPPER UTAMA -->
-    <div
-        style="width: 100%; max-width: 1200px; margin: 0 auto; padding: 20px; box-sizing: border-box; font-family: Arial, sans-serif;">
 
-        <!-- CONTAINER UTAMA (2 Kolom: Kiri untuk Teks+Foto, Kanan untuk Visi Misi) -->
+    <div
+        style="width: 100%; max-width: 1200px; margin: 0 auto; padding: 20px 20px 0; box-sizing: border-box; font-family: Arial, sans-serif; display: flex; flex-direction: column; gap: 20px;">
+        <h2 style="font-size: 35px; font-weight: bold; color: #2A7C13; margin-top: 0; text-align: center;">
+            Apa yang terjadi di Laguna Segara Anakan?
+        </h2>
+
+        <!-- Paragraf Pembuka -->
+        <p style="font-size: 16px; line-height: 1.6; color: #454545; text-align: justify; margin: 0;">
+            Laguna Segara Anakan di Kabupaten Cilacap menghadapi tekanan lingkungan yang memengaruhi keberlangsungan
+            ekosistem pesisir. Mulai dari
+            <strong>penyusutan luas perairan akibat sedimentasi</strong>, kondisi ekosistem mangrove, hingga pemanfaatan
+            potensi mangrove yang masih perlu dikembangkan.
+        </p>
+
+        <!-- Bagian Isu: Foto Kiri dan Teks Kanan -->
         <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: stretch;">
 
-            <!-- KOLOM KIRI: Teks di Atas, Foto Kotak di Bawah -->
-            <div style="flex: 1 1 480px; min-width: 300px; display: flex; flex-direction: column; gap: 24px;">
+            <!-- Kolom Foto -->
+            <div class="transition-transform hover:scale-105 duration-300"
+                style="flex: 1 1 400px; min-width: 0; position: relative; align-self: stretch;">
 
-                <!-- 1. Teks Narasi (Berada di Atas) -->
-                <div style="font-size: 16px; line-height: 1.6; color: #454545;">
-                    <p style="margin-bottom: 14px; text-align: justify;">
-                        <strong>Laguna Segara Anakan (LSA)</strong> merupakan kawasan perairan yang terletak di antara
-                        Pulau Jawa dan
-                        Pulau Nusakambangan, Kabupaten Cilacap, yang menjadi <strong>tempat bertemunya tiga sungai
-                            utama</strong>, yaitu
-                        Sungai Citanduy, Sungai Cibeureum, dan Sungai Cikonde, serta beberapa sungai kecil lainnya.
-                    </p>
-                    <p style="margin: 0; text-align: justify;">
-                        Luas perairan LSA <strong>mengalami penurunan</strong> dari sekitar 2.906 ha pada tahun 1984
-                        menjadi kurang dari
-                        400 ha pada tahun 2023. Pada skala kawasan, sekitar 4,5 juta ton sedimen bermuara di LSA setiap
-                        tahunnya. Sebagai bagian dari kawasan Laguna Segara Anakan, Kecamatan Kampung Laut turut berada
-                        dalam lingkungan perairan yang mengalami tekanan sedimentasi tersebut.
-
-                    </p>
-                </div>
-
-                <!-- 2. Foto Kotak (Berada di Bawah Teks) -->
-                <div style="width: 100%;">
-                    <img src="sedimentasi.png" alt="Foto Sedimentasi"
-                        style="width: 100%; height: 200px; object-fit: cover; border-radius: 16px; display: block;" />
-                </div>
-
+                <img src="sedimentasi.png" alt="Foto Sedimentasi"
+                    style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 16px; display: block;" />
             </div>
 
-            <!-- KOLOM KANAN: Kotak Visi Misi (Memanjang ke bawah menyesuaikan tinggi kolom kiri) -->
-            <div style="flex: 1 1 480px; min-width: 300px; display: flex; flex-direction: column;">
-                <div
-                    style="background-color: rgba(110, 53, 17, 0.05); border: 2px solid rgba(110, 53, 17, 0.3); border-radius: 12px; padding: 24px; display: flex; flex-direction: column; justify-content: space-between; gap: 18px; height: 100%; box-sizing: border-box;">
+            <!-- Kolom Teks Isu -->
+            <div style="flex: 1 1 400px; min-width: 0; display: flex; flex-direction: column; justify-content: center;">
 
-                    <!-- Visi -->
-                    <div style="display: flex; gap: 14px; align-items: flex-start;">
-                        <div
-                            style="flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%; border: 2px solid #76C457; display: flex; justify-content: center; align-items: center; color: #76C457; font-weight: bold; font-size: 13px; margin-top: 2px;">
-                            ✓</div>
-                        <div>
-                            <h3 style="font-size: 17px; font-weight: bold; color: #333333; margin: 0 0 4px 0;">VISI</h3>
-                            <p style="font-size: 16px; line-height: 1.5; color: #454545; margin: 0;">
-                                Mewujudkan pemantauan pesisir terintegrasi berbasis teknologi dan data untuk mendukung
-                                kelestarian ekosistem perairan dan mangrove serta masa depan Kampung Laut yang
-                                berkelanjutan.
+                <div style="font-size: 16px; line-height: 1.6; color: #454545;">
+                    <ul style="margin: 0; padding-left: 20px; list-style-type: disc;">
+
+                        <li style="margin-bottom: 14px;">
+                            <strong>Penyusutan Luas Perairan</strong>
+                            <p style="margin: 4px 0 0; text-align: justify;">
+                                Sedimentasi yang terus berlangsung menyebabkan Laguna Segara Anakan mengalami
+                                pendangkalan
+                                dan penyusutan luas perairan.
                             </p>
-                        </div>
-                    </div>
+                        </li>
 
-                    <!-- Misi -->
-                    <div style="display: flex; gap: 14px; align-items: flex-start;">
-                        <div
-                            style="flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%; border: 2px solid #22c55e; display: flex; justify-content: center; align-items: center; color: #22c55e; font-weight: bold; font-size: 13px; margin-top: 2px;">
-                            ✓</div>
-                        <div>
-                            <h3 style="font-size: 17px; font-weight: bold; color: #333333; margin: 0 0 4px 0;">MISI</h3>
-                            <li style="font-size: 16px; line-height: 1.5; color: #454545; margin: 0;">
-                                Mengintegrasikan pemantauan kondisi perairan, dinamika arus, dan aktivitas fauna
-                                mangrove melalui inovasi ALBA, BAT, dan TROSS.
-                            </li>
-                            <li style="font-size: 16px; line-height: 1.5; color: #454545; margin: 0;">
-                                Mengolah data lingkungan menjadi informasi yang terstruktur, informatif, dan mudah
-                                dipahami melalui visualisasi digital.
-                            </li>
-                            <li style="font-size: 16px; line-height: 1.5; color: #454545; margin: 0;">
-                                Mendukung pemahaman terhadap sedimentasi dan perubahan ekosistem sebagai dasar penentuan
-                                langkah konservasi, termasuk penanaman mangrove berbasis data.
-                            </li>
-                            <li style="font-size: 16px; line-height: 1.5; color: #454545; margin: 0;">
-                                Mendorong kolaborasi antara akademisi, masyarakat lokal, dan pemangku kepentingan untuk
-                                mendukung pemantauan serta pengelolaan lingkungan pesisir yang berkelanjutan.
-                            </li>
-                        </div>
-                    </div>
+                        <li style="margin-bottom: 14px;">
+                            <strong>Ancaman terhadap Ekosistem Mangrove</strong>
+                            <p style="margin: 4px 0 0; text-align: justify;">
+                                Perubahan kondisi kawasan pesisir dapat memengaruhi kelestarian mangrove, termasuk
+                                perannya
+                                sebagai habitat biota dan pelindung alami wilayah pesisir.
+                            </p>
+                        </li>
 
+                        <li>
+                            <strong>Potensi Mangrove yang Belum Optimal</strong>
+                            <p style="margin: 4px 0 0; text-align: justify;">
+                                Mangrove memiliki potensi untuk diolah menjadi produk bernilai guna. Namun, pengembangan
+                                pengetahuan dan keterampilan dalam pengolahannya menjadi bagian penting agar potensi
+                                tersebut dapat dimanfaatkan secara berkelanjutan.
+                            </p>
+                        </li>
+
+                    </ul>
                 </div>
             </div>
 
         </div>
-    </div>>
+        <!-- ================= Section Animasi Angka (Counter dengan Tanda Panah) ================= -->
+        <div class="w-full py-10">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6">
+                <div class="flex flex-col md:flex-row items-center justify-around gap-6 text-center"
+                    id="statistik-counter">
+
+                    <!-- Angka 1: 1984 -->
+                    <div class="flex-1 p-2 transition-transform hover:scale-105 duration-300">
+                        <h3 class="font-tech text-4xl sm:text-5xl font-bold text-[#2A7C13] mb-2 drop-shadow-sm">
+                            <span class="counter" data-target="2906">0</span> <span class="text-2xl">ha</span>
+                        </h3>
+                        <p class="text-[#454545] font-semibold text-sm sm:text-base">Luas Perairan LSA (1984)</p>
+                    </div>
+
+                    <!-- TANDA PANAH (Pengganti garis pembatas 1 & 2) -->
+                    <div
+                        class="flex items-center justify-center text-[#76C457] text-2xl sm:text-3xl my-2 md:my-0 transition-transform hover:scale-125 duration-300">
+                        <i class="fa-solid fa-arrow-right md:rotate-0 rotate-90 transition-transform duration-300"></i>
+                    </div>
+
+                    <!-- Angka 2: 2023 -->
+                    <div class="flex-1 p-2 transition-transform hover:scale-105 duration-300">
+                        <h3 class="font-tech text-4xl sm:text-5xl font-bold text-[#2A7C13] mb-2 drop-shadow-sm">
+                            &lt; <span class="counter" data-target="400">0</span> <span class="text-2xl">ha</span>
+                        </h3>
+                        <p class="text-[#454545] font-semibold text-sm sm:text-base">Luas Perairan LSA (2023)</p>
+                    </div>
+
+                    <!-- Garis Pembatas sebelum Angka 3 (Vertikal di Laptop / Horizontal di HP) -->
+                    <div
+                        class="w-full md:w-[2px] h-[2px] md:h-24 bg-[#76C457] my-2 md:my-0 transition-transform hover:scale-125 duration-300">
+                    </div>
+
+                    <!-- Angka 3: Sedimen -->
+                    <div class="flex-1 p-2 transition-transform hover:scale-105 duration-300">
+                        <h3 class="font-tech text-4xl sm:text-5xl font-bold text-[#2A7C13] mb-2 drop-shadow-sm">
+                            <span class="counter" data-target="4.5">0</span> <span class="text-2xl">Juta Ton</span>
+                        </h3>
+                        <p class="text-[#454545] font-semibold text-sm sm:text-base">Sedimen Masuk per Tahun</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="w-full relative bg-gray-100 py-16 px-4 sm:px-12 mb-10 border-y border-gray-300/70 shadow-inner">
+            <div class="max-w-7xl mx-auto px-3">
+
+                <!-- Judul Section -->
+                <div class="text-center mb-12">
+                    <h2 class="font-tech text-3xl sm:text-4xl font-bold text-gray-800 tracking-wide mb-3">
+                        PROGRAM & SOLUSI KAMI
+                    </h2>
+                    <p class="text-[#454545] text-sm sm:text-base max-w-2xl mx-auto">
+                        Pendekatan terpadu berbasis teknologi dan partisipasi aktif untuk menjawab tantangan pesisir
+                        Laguna
+                        Segara Anakan.
+                    </p>
+                </div>
+
+                <!-- Grid 3 Kotak -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                    <!-- Card 1: Alat Pemantauan Perairan -->
+                    <div class="program-card relative bg-white rounded-2xl flex flex-col justify-between overflow-hidden transition-all duration-300"
+                        style="background-color: rgba(110, 53, 17, 0.04); border: 2px solid rgba(110, 53, 17, 0.25); box-shadow: 0 5px 18px rgba(45, 55, 72, 0.08);">
+
+                        <!-- FOTO BACKGROUND (alat.jpg) -->
+                        <img src="alat.jpeg" alt="Background Alat Pemantauan"
+                            class="absolute inset-0 w-full h-full object-cover opacity-15 pointer-events-none z-0">
+
+                        <!-- KONTEN KOTAK -->
+                        <div class="relative z-10 p-8 flex flex-col items-center text-center flex-grow">
+                            <!-- Lingkaran Ikon -->
+                            <div
+                                class="w-16 h-16 rounded-full bg-white flex items-center justify-center text-[#2A7C13] text-2xl mb-6 shadow-sm border border-[#76c457]">
+                                <i class="fa-solid fa-microchip"></i>
+                            </div>
+                            <!-- Judul Card -->
+                            <h3 class="font-bold text-xl text-gray-800 mb-3">
+                                Alat Pemantauan Perairan
+                            </h3>
+                            <!-- Deskripsi -->
+                            <p class="text-[#454545] text-sm leading-relaxed">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus beatae tenetur sit
+                                aut
+                                ratione amet vel reprehenderit voluptas mollitia dignissimos neque laboriosam maxime
+                                delectus totam incidunt cum labore corporis quas facere excepturi obcaecati ea, fugiat
+                                qui
+                                consequatur. Eveniet maxime unde non ipsa officia facere suscipit in. Pariatur nobis
+                                assumenda ab?
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Penanaman Mangrove -->
+                    <div class="program-card relative bg-white rounded-2xl flex flex-col justify-between overflow-hidden transition-all duration-300"
+                        style="background-color: rgba(110, 53, 17, 0.04); border: 2px solid rgba(110, 53, 17, 0.25); box-shadow: 0 5px 18px rgba(45, 55, 72, 0.08);">
+
+                        <!-- FOTO BACKGROUND (tanam.jpg) -->
+                        <img src="tanam.jpg" alt="Background Penanaman Mangrove"
+                            class="absolute inset-0 w-full h-full object-cover opacity-15 pointer-events-none z-0">
+
+                        <!-- KONTEN KOTAK -->
+                        <div class="relative z-10 p-8 flex flex-col items-center text-center flex-grow">
+                            <!-- Lingkaran Ikon -->
+                            <div
+                                class="w-16 h-16 rounded-full bg-white flex items-center justify-center text-[#2A7C13] text-2xl mb-6 shadow-sm border border-[#76c457]">
+                                <i class="fa-solid fa-seedling"></i>
+                            </div>
+                            <!-- Judul Card -->
+                            <h3 class="font-bold text-xl text-gray-800 mb-3">
+                                Penanaman Mangrove
+                            </h3>
+                            <!-- Deskripsi -->
+                            <p class="text-[#454545] text-sm leading-relaxed">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo saepe repellat error
+                                soluta enim, deleniti ea doloremque, nihil voluptates facilis culpa at non hic. Harum,
+                                nobis
+                                ipsum quidem minus odio animi officiis quos fugiat vero beatae saepe iusto. Ad minima
+                                suscipit exercitationem dolorem ipsum quibusdam corrupti quasi hic cupiditate culpa!
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Edukasi Olahan Pangan -->
+                    <div class="program-card relative bg-white rounded-2xl flex flex-col justify-between overflow-hidden transition-all duration-300"
+                        style="background-color: rgba(110, 53, 17, 0.04); border: 2px solid rgba(110, 53, 17, 0.25); box-shadow: 0 5px 18px rgba(45, 55, 72, 0.08);">
+
+                        <!-- FOTO BACKGROUND (produk.jpg) -->
+                        <img src="produk.jpg" alt="Background Produk Mangrove"
+                            class="absolute inset-0 w-full h-full object-cover opacity-15 pointer-events-none z-0">
+
+                        <!-- KONTEN KOTAK -->
+                        <div class="relative z-10 p-8 flex flex-col items-center text-center flex-grow">
+                            <!-- Lingkaran Ikon -->
+                            <div
+                                class="w-16 h-16 rounded-full bg-white flex items-center justify-center text-[#2A7C13] text-2xl mb-6 shadow-sm border border-[#76c457]">
+                                <i class="fa-solid fa-utensils"></i>
+                            </div>
+                            <!-- Judul Card -->
+                            <h3 class="font-bold text-xl text-gray-800 mb-3">
+                                Edukasi Olahan Pangan
+                            </h3>
+                            <!-- Deskripsi -->
+                            <p class="text-[#454545] text-sm leading-relaxed">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto quam temporibus
+                                molestiae
+                                perspiciatis officiis illo quidem iste exercitationem, deleniti cupiditate ab doloribus
+                                sint, sit vitae? Aut molestiae assumenda fugiat maiores, expedita pariatur porro placeat
+                                consequuntur. Iste, quis quod itaque non repellendus temporibus sit placeat officiis
+                                vitae
+                                consequuntur unde dolor beatae?
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION FULL WIDTH VISI DAN MISI -->
+        <div
+            style="position: relative; isolation: isolate; width: 100vw; margin-left: calc(50% - 50vw); margin-top: -20px; margin-bottom: 0; padding: 50px 20px; box-sizing: border-box;">
+            <!-- BACKGROUND FOTO FULL LAYAR -->
+            <div
+                style="position: absolute; inset: 0; background-image: url('bg visi misi.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; opacity: 0.15; z-index: -1; pointer-events: none;">
+            </div>
+
+            <!-- PEMBUNGKUS KONTEN VISI DAN MISI -->
+            <div
+                style="width: 100%; max-width: 1160px; margin: 0 auto; display: flex; flex-direction: column; gap: 22px;">
+
+
+                <!-- BAGIAN VISI -->
+                <div class="visi-misi-card"
+                    style="position: relative; overflow: hidden; background-color: #FFFFFF; border: 2px solid rgba(110, 53, 17, 0.25); border-radius: 16px; padding: 30px; box-sizing: border-box; box-shadow: 0 5px 18px rgba(45, 55, 72, 0.12); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+
+                    <!-- Dekorasi lingkaran -->
+                    <div
+                        style="position: absolute; top: -70px; right: -15px; width: 150px; height: 150px; border: 22px solid rgba(42, 124, 19, 0.07); border-radius: 50%; box-sizing: border-box; pointer-events: none;">
+                    </div>
+
+                    <div style="position: relative; z-index: 1;">
+                        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px;">
+                            <div
+                                style="width: 38px; height: 38px; border-radius: 11px; background-color: #2A7C13; display: flex; justify-content: center; align-items: center; color: white; font-size: 20px; flex-shrink: 0;">
+                                ◎
+                            </div>
+                            <h3 style="font-size: 22px; font-weight: bold; color: #2d3748; margin: 0;">VISI</h3>
+                        </div>
+
+                        <p
+                            style="font-size: 16px; line-height: 1.8; color: #35475a; margin: 0; width: 100%; max-width: 100%; text-align: justify; text-align-last: left;">
+                            Mewujudkan pemantauan pesisir terintegrasi berbasis teknologi dan data untuk mendukung
+                            kelestarian ekosistem perairan dan mangrove serta masa depan Kampung Laut yang
+                            berkelanjutan.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- BAGIAN MISI -->
+                <div class="visi-misi-card"
+                    style="position: relative; overflow: hidden; background-color: #FFFFFF; border: 2px solid rgba(110, 53, 17, 0.25); border-radius: 16px; padding: 30px 30px 20px; box-sizing: border-box; box-shadow: 0 5px 18px rgba(45, 55, 72, 0.12); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+
+                    <!-- Dekorasi lingkaran -->
+                    <div
+                        style="position: absolute; top: -90px; right: -35px; width: 170px; height: 170px; border: 24px solid rgba(42, 124, 19, 0.05); border-radius: 50%; box-sizing: border-box; pointer-events: none;">
+                    </div>
+
+                    <div style="position: relative; z-index: 1;">
+
+                        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 24px;">
+                            <div
+                                style="width: 38px; height: 38px; border-radius: 11px; background-color: #2A7C13; display: flex; justify-content: center; align-items: center; color: white; font-size: 20px; flex-shrink: 0;">
+                                ≋
+                            </div>
+                            <h3 style="font-size: 22px; font-weight: bold; color: #2d3748; margin: 0;">MISI</h3>
+                        </div>
+
+                        <!-- Daftar Misi -->
+                        <div style="display: flex; flex-direction: column; gap: 0;">
+
+                            <!-- Misi 1 -->
+                            <div
+                                style="display: grid; grid-template-columns: 22px minmax(0, 1fr); column-gap: 4px; padding-bottom: 8px;">
+                                <span style="font-size: 16px; line-height: 1.7; color: #454545;">1.</span>
+                                <p
+                                    style="font-size: 16px; line-height: 1.7; color: #454545; text-align: justify; margin: 0;">
+                                    Mengintegrasikan pemantauan kondisi perairan, dinamika arus, dan aktivitas fauna
+                                    mangrove
+                                    melalui inovasi ALBA, BAT, dan TROSS.
+                                </p>
+                            </div>
+
+                            <!-- Misi 2 -->
+                            <div
+                                style="display: grid; grid-template-columns: 22px minmax(0, 1fr); column-gap: 4px; padding-bottom: 8px;">
+                                <span style="font-size: 16px; line-height: 1.7; color: #454545;">2.</span>
+                                <p
+                                    style="font-size: 16px; line-height: 1.7; color: #454545; text-align: justify; margin: 0;">
+                                    Mengolah data lingkungan menjadi informasi yang terstruktur, informatif, dan mudah
+                                    dipahami
+                                    melalui visualisasi digital.
+                                </p>
+                            </div>
+
+                            <!-- Misi 3 -->
+                            <div
+                                style="display: grid; grid-template-columns: 22px minmax(0, 1fr); column-gap: 4px; padding-bottom: 8px;">
+                                <span style="font-size: 16px; line-height: 1.7; color: #454545;">3.</span>
+                                <p
+                                    style="font-size: 16px; line-height: 1.7; color: #454545; text-align: justify; margin: 0;">
+                                    Mendukung pemahaman terhadap sedimentasi dan perubahan ekosistem sebagai dasar
+                                    penentuan
+                                    langkah konservasi, termasuk penanaman mangrove berbasis data.
+                                </p>
+                            </div>
+
+                            <!-- Misi 4 -->
+                            <div
+                                style="display: grid; grid-template-columns: 22px minmax(0, 1fr); column-gap: 4px; padding-bottom: 8px;">
+                                <span style="font-size: 16px; line-height: 1.7; color: #454545;">4.</span>
+                                <p
+                                    style="font-size: 16px; line-height: 1.7; color: #454545; text-align: justify; margin: 0;">
+                                    Mendorong kolaborasi antara akademisi, masyarakat lokal, dan pemangku kepentingan
+                                    untuk
+                                    mendukung pemantauan serta pengelolaan lingkungan pesisir yang berkelanjutan.
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Efek hover kartu -->
+        <style>
+            .visi-misi-card:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 12px 28px rgba(45, 55, 72, 0.13) !important;
+                border-color: #2A7C13 !important;
+            }
+
+            @media (prefers-reduced-motion: reduce) {
+                .visi-misi-card {
+                    transition: none !important;
+                }
+
+                .visi-misi-card:hover {
+                    transform: none;
+                }
+            }
+        </style>
+
+
+
+    </div>
 
     <!-- JavaScript Toggle & Scroll Navbar -->
     <script>
@@ -587,7 +941,7 @@
                 <a href="https://www.instagram.com/dmitr6teen/"
                     class="flex items-center gap-3 hover:text-[#76C457] transition">
                     <i class="fa-brands fa-instagram text-xl"></i>
-                    <span>@dmitr16teen</span>
+                    <span>@dmitr6teen</span>
                 </a>
                 <!-- Kamu bisa tambahkan link LinkedIn atau YouTube di sini jika ada -->
             </div>
@@ -616,7 +970,6 @@
                             class="flex items-center justify-center w-7 h-7 bg-white text-[#2A7C13] rounded-full transition-transform duration-500 group-hover:scale-110 shrink-0">
                             <i class="fa-solid fa-arrow-up text-sm"></i>
                         </span>
-
                     </button>
                 </div>
             </div>
