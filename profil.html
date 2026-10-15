@@ -67,37 +67,147 @@
             transform-origin: bottom left;
         }
 
-        .contact-input {
+        /* ----------------------------------------------------
+           DIV UTAMA LINIMASA (CONTAINER SECTION)
+           ---------------------------------------------------- */
+        .timeline-section-wrapper {
+            position: relative;
+            overflow: hidden;
+            background-color: #f8fafc;
+        }
+
+        /* 
+           DIV KHUSUS BACKGROUND SEDIMENTASI DI DALAM DIV LINIMASA
+        */
+        .sediment-background-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            box-sizing: border-box;
-            padding: 12px 16px;
-            border-radius: 6px;
-            color: #2d3748;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            /* Berada di belakang teks dan kartu */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sediment-svg-flow {
+            width: 100%;
+            height: 2%;
+            /* Mulai dari paling atas kotak section linimasa */
+            transition: height 0.03s linear;
+            will-change: height;
+        }
+
+        /* DIV KONTEN KARTU LINIMASA (BERADA DI DEPAN SEDIMEN) */
+        .timeline-content-container {
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Styling untuk Roadmap Zig-Zag */
+        .roadmap-container {
+            position: relative;
+            padding: 40px 0;
+        }
+
+        .roadmap-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 3px;
+            background-color: #cbd5e1;
+            transform: translateX(-50%);
+        }
+
+        .roadmap-item {
+            position: relative;
+            width: 50%;
+            padding: 20px 40px;
+            margin-bottom: 20px;
+        }
+
+        .roadmap-item.left {
+            left: 0;
+            text-align: right;
+        }
+
+        .roadmap-item.right {
+            left: 50%;
+            text-align: left;
+        }
+
+        .roadmap-pin {
+            position: absolute;
+            top: 35px;
+            width: 18px;
+            height: 18px;
             background-color: #ffffff;
-            border: 1px solid #d1d5db;
-            outline: none;
-            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            border: 4px solid #2A7C13;
+            border-radius: 50%;
+            z-index: 2;
         }
 
-        .contact-input:focus {
+        .roadmap-item.left .roadmap-pin {
+            right: -9px;
+        }
+
+        .roadmap-item.right .roadmap-pin {
+            left: -9px;
+        }
+
+        .roadmap-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .roadmap-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
             border-color: #76C457;
-            box-shadow: 0 0 0 3px rgba(118, 196, 87, 0.25);
         }
 
-        .send-button {
-            transition: transform 0.2s ease, background-color 0.2s ease;
+        @media (max-width: 768px) {
+            .roadmap-container::before {
+                left: 20px;
+            }
+
+            .roadmap-item {
+                width: 100%;
+                padding-left: 50px;
+                padding-right: 15px;
+                text-align: left !important;
+            }
+
+            .roadmap-item.right {
+                left: 0;
+            }
+
+            .roadmap-pin {
+                left: 11px !important;
+            }
         }
 
-        .send-button:hover {
-            transform: scale(1.08);
-            background-color: #236510;
+        .visi-misi-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(45, 55, 72, 0.13) !important;
+            border-color: #2A7C13 !important;
         }
 
         @media (prefers-reduced-motion: reduce) {
+            .visi-misi-card {
+                transition: none !important;
+            }
 
-            .nav-line,
-            .send-button {
-                transition: none;
+            .visi-misi-card:hover {
+                transform: none;
             }
         }
     </style>
@@ -113,8 +223,6 @@
 
             <!-- Logo ALBATROSS -->
             <div class="relative flex items-center justify-center">
-
-                <!-- Shape hijau di belakang logo -->
                 <div id="logo-circle"
                     class="absolute bg-[#2A7C13] rounded-full w-14 h-14 -z-0 opacity-0 scale-75 transition-all duration-300 ease-in-out pointer-events-none">
                 </div>
@@ -123,45 +231,30 @@
                     class="relative z-10 flex items-center justify-center transition-transform hover:scale-105">
                     <img src="logo ALBATROSS.png" alt="Logo ALBATROSS" class="h-12 w-auto object-contain">
                 </a>
-
             </div>
 
             <!-- Menu Navigasi -->
             <div class="flex items-center space-x-3">
-
                 <ul id="nav-links"
                     class="hidden md:flex items-center space-x-2 sm:space-x-3 text-xs sm:text-sm font-semibold tracking-wider sm:tracking-widest uppercase transition-all duration-300 py-1 font-inter">
-
                     <li>
                         <a href="index.html"
                             class="nav-item whitespace-nowrap px-3 sm:px-4 py-2 rounded-full transition-all duration-200 text-white hover:bg-[#76C457]/40 hover:text-white">
-                            <span class="nav-text-wrap">
-                                BERANDA
-                                <span class="nav-line"></span>
-                            </span>
+                            <span class="nav-text-wrap">BERANDA<span class="nav-line"></span></span>
                         </a>
                     </li>
-
                     <li>
                         <a href="profil.html"
                             class="nav-item whitespace-nowrap px-3 sm:px-4 py-2 rounded-full transition-all duration-200 text-white hover:bg-[#76C457]/40 hover:text-white">
-                            <span class="nav-text-wrap">
-                                PROFIL
-                                <span class="nav-line"></span>
-                            </span>
+                            <span class="nav-text-wrap">PROFIL<span class="nav-line"></span></span>
                         </a>
                     </li>
-
                     <li>
                         <a href="hubungi.html" aria-current="page"
                             class="nav-item whitespace-nowrap px-3 sm:px-4 py-2 rounded-full transition-all duration-200 text-white hover:bg-[#76C457]/40 hover:text-white">
-                            <span class="nav-text-wrap">
-                                HUBUNGI
-                                <span class="nav-line"></span>
-                            </span>
+                            <span class="nav-text-wrap">HUBUNGI<span class="nav-line"></span></span>
                         </a>
                     </li>
-
                 </ul>
 
                 <!-- Tombol Menu Mobile -->
@@ -169,27 +262,15 @@
                     aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="mobile-menu">
                     <i id="toggle-icon" class="fa-solid fa-bars"></i>
                 </button>
-
             </div>
         </div>
 
         <!-- Menu Mobile -->
         <div id="mobile-menu" class="hidden md:hidden bg-white mt-4 rounded-xl shadow-lg p-4">
-
             <div class="flex flex-col space-y-2 text-sm font-semibold text-[#76C457]">
-
-                <a href="index.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">
-                    BERANDA
-                </a>
-
-                <a href="profil.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">
-                    PROFIL
-                </a>
-
-                <a href="hubungi.html" class="px-4 py-3 rounded-lg bg-[#76C457]/20">
-                    HUBUNGI
-                </a>
-
+                <a href="index.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">BERANDA</a>
+                <a href="profil.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">PROFIL</a>
+                <a href="hubungi.html" class="px-4 py-3 rounded-lg bg-[#76C457]/20">HUBUNGI</a>
             </div>
         </div>
     </nav>
@@ -197,122 +278,320 @@
     <!-- KONTEN UTAMA -->
     <main>
 
-
         <!-- BANNER KONTAK KAMI -->
         <section class="relative overflow-hidden bg-gray-900 px-5 py-16 sm:py-20 md:py-24">
-
-            <!-- Background Foto -->
             <div class="absolute inset-0 z-0">
                 <img src="bg hubungi.jpg" alt="Latar belakang banner Kontak Kami"
                     class="w-full h-full object-cover object-[center_60%]">
-
-                <!-- Overlay agar tulisan tetap terbaca -->
                 <div class="absolute inset-0 bg-black/50"></div>
             </div>
 
-            <!-- Konten Banner -->
             <div class="relative z-10 max-w-4xl mx-auto text-center">
-
-                <h1 class="font-tech text-4xl sm:text-5xl md:text-6xl
-            font-bold text-white mb-4 drop-shadow-lg">
+                <h1 class="font-tech text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-4 drop-shadow-lg">
                     PROFIL
                 </h1>
+                <p class="text-sm sm:text-base leading-relaxed text-white max-w-2xl mx-auto drop-shadow-md text-center">
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quia molestiae ut amet quis eum obcaecati
+                    accusamus saepe repellendus nihil harum neque sit sed maiores numquam consectetur natus, tenetur
+                    rerum ratione.
+            </div>
+        </section>
 
-                <p class="text-sm sm:text-base leading-relaxed text-white
-            max-w-2xl mx-auto drop-shadow-md">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis, beatae. Est modi eos totam rerum illum? Ipsam delectus suscipit quasi illum ab omnis commodi ea? Enim et doloribus vitae libero.
+        <br> <br>
+
+        <!-- Container Utama: Layout Dua Kolom, Membentang Penuh ke Samping -->
+        <div class="flex flex-col lg:flex-row w-full h-auto lg:h-[450px]">
+            <!-- Kolom Kiri: Teks Fakta (Latar Hitam, Ujung Kotak) -->
+            <div class="w-full lg:w-5/12 bg-black flex flex-col justify-center px-8 lg:px-20 py-10 rounded-none">
+                <p class="text-gray-300 text-1xl leading-relaxed mb-6" style="text-align: justify;">
+                    Alam membutuhkan lebih dari sekadar kepedulian. Ia membutuhkan pemantauan, pelestarian, dan pemberdayaan. Melalui inovasi ALBATROSS, penanaman mangrove, dan edukasi pemanfaatannya, kami bergerak bersama untuk menjaga ekosistem Segara Anakan dan membangun masa depan pesisir yang berkelanjutan.
                 </p>
+            </div>
 
+            <!-- Kolom Kanan: Gambar Hutan & Teks Sorotan (Ujung Kotak) -->
+            <div class="w-full lg:w-7/12 relative min-h-[300px] lg:min-h-full overflow-hidden rounded-none">
+                <!-- Gambar Latar -->
+                <img src="sedimentasi.png"
+                    alt="Sedimentasi Segara Anakan" class="absolute inset-0 w-full h-full object-cover">
+                <!-- Overlay Gelap agar teks lebih terbaca -->
+                <div class="absolute inset-0 bg-black/35"></div>
+            </div>
+        </div>
+
+        <br> <br>
+
+        <!-- SECTION FULL WIDTH VISI DAN MISI -->
+        <div
+            style="position: relative; isolation: isolate; width: 100vw; margin-left: calc(50% - 50vw); margin-top: -20px; margin-bottom: 0; padding: 50px 20px; box-sizing: border-box;">
+            <!-- BACKGROUND FOTO FULL LAYAR -->
+            <div
+                style="position: absolute; inset: 0; background-image: url('bg visi misi.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; opacity: 0.15; z-index: -1; pointer-events: none;">
+            </div>
+
+            <!-- PEMBUNGKUS KONTEN VISI DAN MISI -->
+            <div
+                style="width: 100%; max-width: 1160px; margin: 0 auto; display: flex; flex-direction: column; gap: 22px;">
+
+
+                <!-- BAGIAN VISI -->
+                <div class="visi-misi-card"
+                    style="position: relative; overflow: hidden; background-color: #FFFFFF; border: 2px solid rgba(110, 53, 17, 0.25); border-radius: 16px; padding: 30px; box-sizing: border-box; box-shadow: 0 5px 18px rgba(45, 55, 72, 0.12); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+
+                    <!-- Dekorasi lingkaran -->
+                    <div
+                        style="position: absolute; top: -70px; right: -15px; width: 150px; height: 150px; border: 22px solid rgba(42, 124, 19, 0.07); border-radius: 50%; box-sizing: border-box; pointer-events: none;">
+                    </div>
+
+                    <div style="position: relative; z-index: 1;">
+                        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px;">
+                            <div
+                                style="width: 38px; height: 38px; border-radius: 11px; background-color: #2A7C13; display: flex; justify-content: center; align-items: center; color: white; font-size: 20px; flex-shrink: 0;">
+                                ◎
+                            </div>
+                            <h3 style="font-size: 22px; font-weight: bold; color: #2d3748; margin: 0;">VISI</h3>
+                        </div>
+
+                        <p
+                            style="font-size: 16px; line-height: 1.8; color: #35475a; margin: 0; width: 100%; max-width: 100%; text-align: justify; text-align-last: left;">
+                            Mewujudkan sistem pemantauan lingkungan pesisir yang terintegrasi melalui inovasi teknologi dan pemanfaatan data untuk mendukung kelestarian ekosistem perairan dan mangrove serta keberlanjutan Kampung Laut.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- BAGIAN MISI -->
+                <div class="visi-misi-card"
+                    style="position: relative; overflow: hidden; background-color: #FFFFFF; border: 2px solid rgba(110, 53, 17, 0.25); border-radius: 16px; padding: 30px 30px 20px; box-sizing: border-box; box-shadow: 0 5px 18px rgba(45, 55, 72, 0.12); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+
+                    <!-- Dekorasi lingkaran -->
+                    <div
+                        style="position: absolute; top: -90px; right: -35px; width: 170px; height: 170px; border: 24px solid rgba(42, 124, 19, 0.05); border-radius: 50%; box-sizing: border-box; pointer-events: none;">
+                    </div>
+
+                    <div style="position: relative; z-index: 1;">
+
+                        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 24px;">
+                            <div
+                                style="width: 38px; height: 38px; border-radius: 11px; background-color: #2A7C13; display: flex; justify-content: center; align-items: center; color: white; font-size: 20px; flex-shrink: 0;">
+                                ≋
+                            </div>
+                            <h3 style="font-size: 22px; font-weight: bold; color: #2d3748; margin: 0;">MISI</h3>
+                        </div>
+
+                        <!-- Daftar Misi -->
+                        <div style="display: flex; flex-direction: column; gap: 0;">
+
+                            <!-- Misi 1 -->
+                            <div
+                                style="display: grid; grid-template-columns: 22px minmax(0, 1fr); column-gap: 4px; padding-bottom: 8px;">
+                                <span style="font-size: 16px; line-height: 1.7; color: #454545;">1.</span>
+                                <p
+                                    style="font-size: 16px; line-height: 1.7; color: #454545; text-align: justify; margin: 0;">
+                                    Mengintegrasikan pemantauan kondisi perairan, dinamika arus, dan aktivitas fauna mangrove melalui tiga subsistem ALBATROSS, yaitu ALBA, BAT, dan TROSS. Integrasi ini dilakukan untuk memperoleh gambaran kondisi lingkungan pesisir yang lebih menyeluruh, mulai dari karakteristik perairan dan kedalaman, pergerakan massa air, hingga aktivitas fauna pada ekosistem mangrove.
+                                </p>
+                            </div>
+
+                            <!-- Misi 2 -->
+                            <div
+                                style="display: grid; grid-template-columns: 22px minmax(0, 1fr); column-gap: 4px; padding-bottom: 8px;">
+                                <span style="font-size: 16px; line-height: 1.7; color: #454545;">2.</span>
+                                <p
+                                    style="font-size: 16px; line-height: 1.7; color: #454545; text-align: justify; margin: 0;">
+                                    Mengumpulkan, mengolah, dan mengintegrasikan data lingkungan menjadi informasi yang terstruktur dan mudah dipahami melalui visualisasi digital. Data kedalaman, kualitas perairan, dinamika arus, serta dokumentasi fauna mangrove disajikan untuk membantu memahami kondisi lingkungan, mengidentifikasi perubahan ekosistem, dan mendukung pemantauan kawasan pesisir secara lebih sistematis.
+                                </p>
+                            </div>
+
+                            <!-- Misi 3 -->
+                            <div
+                                style="display: grid; grid-template-columns: 22px minmax(0, 1fr); column-gap: 4px; padding-bottom: 8px;">
+                                <span style="font-size: 16px; line-height: 1.7; color: #454545;">3.</span>
+                                <p
+                                    style="font-size: 16px; line-height: 1.7; color: #454545; text-align: justify; margin: 0;">
+                                    Memanfaatkan hasil pemantauan sebagai dasar untuk memahami proses sedimentasi, pendangkalan perairan, dan perubahan kondisi ekosistem pesisir. Data batimetri dan kualitas perairan diharapkan dapat mendukung identifikasi kawasan potensial untuk penanaman mangrove berdasarkan kesesuaian kondisi lingkungan, sekaligus menjadi bahan pertimbangan dalam merencanakan aksi konservasi yang lebih terarah dan berkelanjutan.
+                                </p>
+                            </div>
+
+                            <!-- Misi 4 -->
+                            <div
+                                style="display: grid; grid-template-columns: 22px minmax(0, 1fr); column-gap: 4px; padding-bottom: 8px;">
+                                <span style="font-size: 16px; line-height: 1.7; color: #454545;">4.</span>
+                                <p
+                                    style="font-size: 16px; line-height: 1.7; color: #454545; text-align: justify; margin: 0;">
+                                    Mendorong keterlibatan masyarakat lokal, akademisi, dan pemangku kepentingan dalam upaya pemantauan serta pelestarian lingkungan pesisir. Melalui pendekatan partisipatif, pertukaran informasi, dan edukasi lingkungan, ALBATROSS berupaya meningkatkan pemahaman mengenai pentingnya ekosistem perairan dan mangrove serta mendorong pemanfaatan hasil pemantauan untuk mendukung pengelolaan lingkungan Kampung Laut secara berkelanjutan.
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br> <br>
+        <!-- 
+          ========================================================
+          DIV UTAMA SECTION LINIMASA 
+          ========================================================
+        -->
+        <section id="timelineSection" class="timeline-section-wrapper py-16 px-4 sm:px-6 lg:px-8 pb-32">
+
+            <!-- 1. DIV LATAR BELAKANG SEDIMENTASI (MULAI DARI GARIS ATAS / GARIS BIRU) -->
+            <div class="sediment-background-layer">
+                <svg id="sedimentFlowSvg" class="sediment-svg-flow" viewBox="0 0 1440 320" preserveAspectRatio="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="brownSedimentGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="#b08d57" stop-opacity="0.95" />
+                            <stop offset="100%" stop-color="#543c1d" stop-opacity="0.98" />
+                        </linearGradient>
+                    </defs>
+
+                    <!-- Gelombang rapat yang dimulai tepat dari batas paling atas section linimasa -->
+                    <path fill="url(#brownSedimentGrad)"
+                        d="M0,64L48,80C96,96,192,128,288,122.7C384,117,480,75,576,80C672,85,768,139,864,149.3C960,160,1056,128,1152,112C1248,96,1344,96,1392,96L1440,96L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z">
+                    </path>
+                </svg>
+            </div>
+
+            <!-- 2. DIV KONTEN KARTU ROADMAP -->
+            <div class="timeline-content-container max-w-5xl mx-auto">
+                <div class="text-center mb-12">
+                    <span
+                        class="text-xs font-bold uppercase tracking-widest text-[#2A7C13] bg-[#76C457]/20 px-3 py-1 rounded-full">Linimasa
+                        Waktu</span>
+                    <h2 class="font-tech text-3xl sm:text-4xl font-bold text-gray-900 mt-2">Pelaksanaan Kegiatan</h2>
+                </div>
+
+                <div class="roadmap-container">
+
+                    <!-- Item 1 (Kiri) -->
+                    <div class="roadmap-item left">
+                        <div class="roadmap-pin"></div>
+                        <div class="roadmap-card">
+                            <span
+                                class="inline-block text-xs font-bold text-[#2A7C13] bg-[#76C457]/20 px-2.5 py-1 rounded mb-2 uppercase">21
+                                Agu – 10 Sep 2026</span>
+                            <h3 class="text-lg font-bold text-gray-900 mb-1">Perencanaan Kegiatan</h3>
+                            <p class="text-sm text-gray-600 leading-relaxed">Penyusunan konsep awal dan perencanaan
+                                kegiatan secara komprehensif.</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 2 (Kanan) -->
+                    <div class="roadmap-item right">
+                        <div class="roadmap-pin"></div>
+                        <div class="roadmap-card">
+                            <span
+                                class="inline-block text-xs font-bold text-[#2A7C13] bg-[#76C457]/20 px-2.5 py-1 rounded mb-2 uppercase">11
+                                Sep 2026 – 22 Jan 2027</span>
+                            <h3 class="text-lg font-bold text-gray-900 mb-1">Pengembangan & Pengadaan</h3>
+                            <p class="text-sm text-gray-600 leading-relaxed">Pencarian dana, pembuatan alat, serta
+                                pengujian kendali mutu (quality control).</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 3 (Kiri) -->
+                    <div class="roadmap-item left">
+                        <div class="roadmap-pin"></div>
+                        <div class="roadmap-card">
+                            <span
+                                class="inline-block text-xs font-bold text-[#2A7C13] bg-[#76C457]/20 px-2.5 py-1 rounded mb-2 uppercase">24
+                                – 25 Januari 2027</span>
+                            <h3 class="text-lg font-bold text-gray-900 mb-1">Persiapan Lapangan</h3>
+                            <p class="text-sm text-gray-600 leading-relaxed">Survei lokasi, pengurusan perizinan, dan
+                                persiapan implementasi teknis.</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 4 (Kanan) -->
+                    <div class="roadmap-item right">
+                        <div class="roadmap-pin"></div>
+                        <div class="roadmap-card">
+                            <span
+                                class="inline-block text-xs font-bold text-[#2A7C13] bg-[#76C457]/20 px-2.5 py-1 rounded mb-2 uppercase">26
+                                – 28 Januari 2027</span>
+                            <h3 class="text-lg font-bold text-gray-900 mb-1">Implementasi Lapangan</h3>
+                            <p class="text-sm text-gray-600 leading-relaxed">Implementasi sistem dan pengambilan data di
+                                lapangan.</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 5 (Kiri) -->
+                    <div class="roadmap-item left">
+                        <div class="roadmap-pin"></div>
+                        <div class="roadmap-card">
+                            <span
+                                class="inline-block text-xs font-bold text-[#2A7C13] bg-[#76C457]/20 px-2.5 py-1 rounded mb-2 uppercase">29
+                                Januari 2027</span>
+                            <h3 class="text-lg font-bold text-gray-900 mb-1">Analisis Data</h3>
+                            <p class="text-sm text-gray-600 leading-relaxed">Mengolah dan memvisualisasikan data hasil
+                                monitoring kegiatan.</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 6 (Kanan) -->
+                    <div class="roadmap-item right">
+                        <div class="roadmap-pin"></div>
+                        <div class="roadmap-card">
+                            <span
+                                class="inline-block text-xs font-bold text-[#2A7C13] bg-[#76C457]/20 px-2.5 py-1 rounded mb-2 uppercase">30
+                                – 31 Januari 2027</span>
+                            <h3 class="text-lg font-bold text-gray-900 mb-1">Penyusunan Laporan</h3>
+                            <p class="text-sm text-gray-600 leading-relaxed">Penyusunan laporan akhir dan advokasi hasil
+                                pengembangan.</p>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </section>
     </main>
 
     <!-- FOOTER -->
     <footer class="bg-[#2A7C13] px-4 sm:px-6 py-10 border-t-[2px] border-[#2A7C13]">
-
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
-
-            <!-- Kolom Kontak -->
             <div class="md:col-span-2 flex flex-col gap-4 text-white">
-
-                <h3 class="font-bold text-xl mb-2">
-                    Kontak Kami
-                </h3>
-
+                <h3 class="font-bold text-xl mb-2">Kontak Kami</h3>
                 <a href="https://maps.app.goo.gl/mirmGEEjNxX9zrjp9" target="_blank" rel="noopener noreferrer"
                     class="flex items-start gap-3 hover:text-[#b9e6a4] transition">
-
                     <i class="fa-solid fa-location-dot text-xl mt-1"></i>
-
                     <span class="leading-relaxed break-words">
                         Workshop Instrumentasi dan Robotika Kelautan (Bengkel)
                         ITK, Babakan, Dramaga, Bogor, Indonesia 16680
                     </span>
-
                 </a>
-
                 <a href="mailto:diklatmitrxvi@gmail.com"
                     class="flex items-center gap-3 hover:text-[#b9e6a4] transition">
-
                     <i class="fa-regular fa-envelope text-xl"></i>
-
-                    <span class="break-all">
-                        diklatmitrxvi@gmail.com
-                    </span>
-
+                    <span class="break-all">diklatmitrxvi@gmail.com</span>
                 </a>
-
                 <a href="https://wa.me/6283898339620" target="_blank" rel="noopener noreferrer"
                     class="flex items-start gap-3 hover:text-[#b9e6a4] transition">
-
                     <i class="fa-brands fa-whatsapp text-xl mt-1"></i>
-
-                    <span class="break-words">
-                        +6283898339620 (Deni Rizkiana Anwar Hidayat)
-                    </span>
-
+                    <span class="break-words">+6283898339620 (Deni Rizkiana Anwar Hidayat)</span>
                 </a>
-
             </div>
 
-            <!-- Media Sosial -->
             <div class="flex flex-col gap-4 text-white">
-
-                <h3 class="font-bold text-xl mb-2">
-                    Media Sosial
-                </h3>
-
+                <h3 class="font-bold text-xl mb-2">Media Sosial</h3>
                 <a href="https://www.instagram.com/dmitr6teen/" target="_blank" rel="noopener noreferrer"
                     class="flex items-center gap-3 hover:text-[#b9e6a4] transition">
-
                     <i class="fa-brands fa-instagram text-xl"></i>
-
                     <span>@dmitr6teen</span>
-
                 </a>
-
             </div>
 
-            <!-- Kolom 3: Logo dan Tombol Back to Top -->
             <div class="flex flex-col items-start gap-7 text-white">
-                <!-- Tempat untuk Logo MIT+R -->
                 <div class="w-full flex items-center justify-start">
-                    <!-- Ganti "URL_LOGO_KAMU.png" dengan path/link logo yang sebenarnya -->
                     <img src="logo ALBATROSS.png" alt="Logo Albatross" class="h-40 sm:h-56 object-contain">
                 </div>
 
-                <!-- Tombol Back to Top -->
                 <div class="w-full flex justify-end mt-auto">
-                    <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
+                    <button id="back-to-top"
                         class="group flex items-center p-3 bg-white text-white rounded-full shadow-md hover:bg-[#FFFFFF] hover:shadow-xl hover:-translate-y-1 transition-all duration-500 ease-in-out cursor-pointer">
-
-                        <!-- Teks yang Muncul Saat Hover (Sekarang di urutan pertama / sebelah kiri) -->
                         <span
                             class="whitespace-nowrap overflow-hidden transition-all duration-500 ease-in-out max-w-0 opacity-0 group-hover:max-w-[160px] group-hover:opacity-100 group-hover:mr-3 group-hover:pl-2 font-semibold text-[#2A7C13]">
                             Kembali ke Atas
                         </span>
-
-                        <!-- Lingkaran Icon Panah (Sekarang di urutan kedua / sebelah kanan) -->
                         <span
                             class="flex items-center justify-center w-7 h-7 bg-white text-[#2A7C13] rounded-full transition-transform duration-500 group-hover:scale-110 shrink-0">
                             <i class="fa-solid fa-arrow-up text-sm"></i>
@@ -320,27 +599,22 @@
                     </button>
                 </div>
             </div>
-
         </div>
     </footer>
 
     <!-- BAR HAK CIPTA -->
     <div class="w-full relative bg-white py-4 px-6 border-t border-[#2A7C13] overflow-hidden">
-
         <div class="absolute inset-0 opacity-15 pointer-events-none"
             style="background-image: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpath d='M30 0l15 15-15 15-15-15zm0 30l15 15-15 15-15-15z' fill='%232A7C13' fill-opacity='0.8' fill-rule='evenodd' /%3E%3C/svg%3E&quot;); background-size: 30px 30px;">
         </div>
-
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 relative z-10">
-
-            <!-- Teks/Hak Cipta di sebelah Kanan -->
             <div class="text-[#403100] font-semibold text-sm text-center md:text-right">
                 © 2026 Diklat MIT+R 16. All Rights Reserved.
             </div>
         </div>
     </div>
 
-    <!-- JAVASCRIPT NAVBAR -->
+    <!-- JAVASCRIPT NAVBAR & RESPONSIVE SEDIMENT SCROLL DARI ATAS SECTION -->
     <script>
         const navbar = document.getElementById('navbar');
         const logoCircle = document.getElementById('logo-circle');
@@ -354,57 +628,29 @@
             const isScrolled = window.scrollY > 50;
 
             if (isScrolled) {
-                // Navbar putih ketika halaman discroll
                 navbar.classList.remove('bg-transparent', 'text-white');
-                navbar.classList.add(
-                    'bg-white',
-                    'shadow-md'
-                );
+                navbar.classList.add('bg-white', 'shadow-md');
 
-                // Logo
                 logoCircle.classList.remove('opacity-0', 'scale-75');
                 logoCircle.classList.add('opacity-100', 'scale-100');
 
-                // Warna menu dan hover saat discroll
                 navLinks.forEach(link => {
-                    link.classList.remove(
-                        'text-white',
-                        'hover:bg-[#76C457]/40',
-                        'hover:text-white'
-                    );
-
-                    link.classList.add(
-                        'text-[#2A7C13]',
-                        'hover:bg-[#76C457]/25',
-                        'hover:text-[#2A7C13]'
-                    );
+                    link.classList.remove('text-white', 'hover:bg-[#76C457]/40', 'hover:text-white');
+                    link.classList.add('text-[#2A7C13]', 'hover:bg-[#76C457]/25', 'hover:text-[#2A7C13]');
                 });
 
                 mobileToggleBtn.classList.remove('text-white');
                 mobileToggleBtn.classList.add('text-[#2A7C13]');
-
             } else {
-                // Navbar transparan di bagian paling atas
                 navbar.classList.remove('bg-white', 'shadow-md');
                 navbar.classList.add('bg-transparent', 'text-white');
 
-                // Logo
                 logoCircle.classList.remove('opacity-100', 'scale-100');
                 logoCircle.classList.add('opacity-0', 'scale-75');
 
-                // Reset menu ke kondisi awal
                 navLinks.forEach(link => {
-                    link.classList.remove(
-                        'text-[#2A7C13]',
-                        'hover:bg-[#76C457]/25',
-                        'hover:text-[#2A7C13]'
-                    );
-
-                    link.classList.add(
-                        'text-white',
-                        'hover:bg-[#76C457]/40',
-                        'hover:text-white'
-                    );
+                    link.classList.remove('text-[#2A7C13]', 'hover:bg-[#76C457]/25', 'hover:text-[#2A7C13]');
+                    link.classList.add('text-white', 'hover:bg-[#76C457]/40', 'hover:text-white');
                 });
 
                 mobileToggleBtn.classList.remove('text-[#2A7C13]');
@@ -412,36 +658,45 @@
             }
         }
 
-        // Jalankan saat halaman dibuka dan ketika discroll
         window.addEventListener('scroll', updateNavbar);
         updateNavbar();
 
-        // Menu mobile
         mobileToggleBtn.addEventListener('click', function () {
             const isOpening = mobileMenu.classList.contains('hidden');
-
             mobileMenu.classList.toggle('hidden');
-
-            mobileToggleBtn.setAttribute(
-                'aria-expanded',
-                String(isOpening)
-            );
-
-            mobileToggleBtn.setAttribute(
-                'aria-label',
-                isOpening ? 'Tutup menu navigasi' : 'Buka menu navigasi'
-            );
-
+            mobileToggleBtn.setAttribute('aria-expanded', String(isOpening));
             toggleIcon.classList.toggle('fa-bars', !isOpening);
             toggleIcon.classList.toggle('fa-xmark', isOpening);
         });
 
-        // Tombol kembali ke atas
         backToTop.addEventListener('click', function () {
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
             });
+        });
+
+        // EFEK SEDIMENTASI DIMULAI DARI GARIS ATAS SECTION DAN MENGALIR KE BAWAH MENGIKUTI SCROLL
+        window.addEventListener('scroll', function () {
+            const timelineSection = document.getElementById('timelineSection');
+            const sedimentSvg = document.getElementById('sedimentFlowSvg');
+
+            if (timelineSection && sedimentSvg) {
+                const sectionRect = timelineSection.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                const sectionHeight = timelineSection.offsetHeight;
+
+                // Cek apakah section linimasa sudah masuk ke area layar
+                if (sectionRect.top <= windowHeight && sectionRect.bottom >= 0) {
+                    // Hitung progres scroll murni dari titik paling atas section hingga akhir section
+                    let scrollProgress = (windowHeight - sectionRect.top) / (windowHeight + sectionHeight * 0.3);
+                    scrollProgress = Math.max(0.02, Math.min(1, scrollProgress));
+
+                    // Tinggi sedimentasi mengalir turun dari atas (0% hingga 100% sampai bawah section)
+                    let activeHeight = scrollProgress * 100;
+                    sedimentSvg.style.height = activeHeight + '%';
+                }
+            }
         });
     </script>
 
