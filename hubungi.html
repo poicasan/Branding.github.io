@@ -26,7 +26,11 @@
                     fontFamily: {
                         anta: ['Anta', 'sans-serif'],
                         inter: ['Inter', 'sans-serif'],
-                        tech: ['Anta', 'sans-serif']
+                    },
+                    colors: {
+                        primary: '#2A7C13',
+                        secondary: '#76C457',
+                        dark: '#1a1a1a',
                     }
                 }
             }
@@ -36,9 +40,7 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
+            scroll-behavior: smooth;
         }
 
         .font-tech {
@@ -62,144 +64,215 @@
             transition: transform 0.3s ease-out;
         }
 
-        .nav-item:hover .nav-line {
+        .nav-item:hover .nav-line,
+        .nav-item.active .nav-line {
             transform: scaleX(1);
             transform-origin: bottom left;
         }
 
         .contact-input {
             width: 100%;
-            box-sizing: border-box;
-            padding: 12px 16px;
-            border-radius: 6px;
-            color: #2d3748;
-            background-color: #ffffff;
-            border: 1px solid #d1d5db;
+            padding: 14px 16px 14px 44px;
+            border-radius: 12px;
+            color: #374151;
+            background-color: #f9fafb;
+            border: 1px solid #e5e7eb;
             outline: none;
-            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            transition: all 0.3s ease;
         }
 
         .contact-input:focus {
+            background-color: #ffffff;
             border-color: #76C457;
-            box-shadow: 0 0 0 3px rgba(118, 196, 87, 0.25);
+            box-shadow: 0 0 0 4px rgba(118, 196, 87, 0.15);
         }
 
-        .send-button {
-            transition: transform 0.2s ease, background-color 0.2s ease;
+        .input-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9ca3af;
+            transition: color 0.3s ease;
         }
 
-        .send-button:hover {
-            transform: scale(1.08);
-            background-color: #236510;
+        .contact-input:focus+.input-icon,
+        .contact-input:not(:placeholder-shown)+.input-icon {
+            color: #2A7C13;
+        }
+
+        .glass-overlay {
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+        }
+
+        /* Aksen hijau minimalis dan pattern lingkaran dekoratif */
+        .contact-card {
+            animation: contact-rise-in 0.75s cubic-bezier(.2, .7, .2, 1) both;
+        }
+
+        .contact-accent {
+            min-height: 100%;
+        }
+
+
+        /* Pattern lingkaran di sisi kiri */
+        .contact-accent-ring {
+            position: absolute;
+            width: 190px;
+            height: 190px;
+            border: 24px solid rgba(255, 255, 255, 0.25);
+            border-radius: 9999px;
+            pointer-events: none;
+        }
+
+        .contact-accent-ring-top {
+            top: 7%;
+            left: -145px;
+        }
+
+        .contact-accent-ring-bottom {
+            bottom: 5%;
+            left: -145px;
+            width: 230px;
+            height: 230px;
+        }
+
+        /* Pattern lingkaran pada area putih formulir */
+        .form-decoration {
+            position: absolute;
+            border-radius: 9999px;
+            pointer-events: none;
+            border: 1px solid rgba(42, 124, 19, 0.12);
+        }
+
+        .form-decoration-top {
+            width: 300px;
+            height: 300px;
+            top: -210px;
+            right: -130px;
+            box-shadow:
+                0 0 0 24px rgba(42, 124, 19, 0.06),
+                0 0 0 48px rgba(42, 124, 19, 0.04);
+        }
+
+        .form-decoration-bottom {
+            width: 220px;
+            height: 220px;
+            bottom: -175px;
+            left: 18%;
+            box-shadow:
+                0 0 0 22px rgba(42, 124, 19, 0.04);
+        }
+
+        .send-button:active {
+            transform: translateY(0) scale(.985);
+        }
+
+        @keyframes contact-rise-in {
+            from {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .contact-form-panel {
+                padding: 1.5rem 1.25rem;
+            }
+
+            .contact-accent-ring {
+                border-width: 14px;
+            }
+
+            .form-decoration-top {
+                width: 220px;
+                height: 220px;
+                top: -165px;
+                right: -120px;
+            }
         }
 
         @media (prefers-reduced-motion: reduce) {
 
-            .nav-line,
-            .send-button {
-                transition: none;
+            *,
+            *::before,
+            *::after {
+                animation-duration: .01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: .01ms !important;
+                scroll-behavior: auto !important;
             }
         }
     </style>
 </head>
 
-<body class="bg-white text-gray-800 font-inter">
+<body class="bg-gray-50 text-gray-800">
 
     <!-- STICKY NAVIGATION BAR -->
     <nav id="navbar"
         class="fixed top-0 left-0 w-full z-50 p-4 lg:px-12 transition-all duration-300 text-white bg-transparent">
-
         <div class="max-w-7xl mx-auto flex justify-between items-center relative">
-
             <!-- Logo ALBATROSS -->
-            <div class="relative flex items-center justify-center">
-
-                <!-- Shape hijau di belakang logo -->
+            <div class="relative flex items-center justify-center group">
                 <div id="logo-circle"
-                    class="absolute bg-[#2A7C13] rounded-full w-14 h-14 -z-0 opacity-0 scale-75 transition-all duration-300 ease-in-out pointer-events-none">
+                    class="absolute bg-primary rounded-full w-14 h-14 -z-0 opacity-0 scale-75 transition-all duration-300 pointer-events-none">
                 </div>
-
-                <a href="index.html" id="logo-btn"
-                    class="relative z-10 flex items-center justify-center transition-transform hover:scale-105">
+                <a href="index.html"
+                    class="relative z-10 flex items-center justify-center transition-transform group-hover:scale-105">
                     <img src="logo ALBATROSS.png" alt="Logo ALBATROSS" class="h-12 w-auto object-contain">
                 </a>
-
             </div>
 
-            <!-- Menu Navigasi -->
+            <!-- Menu Navigasi Desktop -->
             <div class="flex items-center space-x-3">
-
                 <ul id="nav-links"
-                    class="hidden md:flex items-center space-x-2 sm:space-x-3 text-xs sm:text-sm font-semibold tracking-wider sm:tracking-widest uppercase transition-all duration-300 py-1 font-inter">
-
+                    class="hidden md:flex items-center space-x-4 text-sm font-semibold tracking-widest uppercase transition-all duration-300 py-1">
                     <li>
                         <a href="index.html"
-                            class="nav-item whitespace-nowrap px-3 sm:px-4 py-2 rounded-full transition-all duration-200 text-white hover:bg-[#76C457]/40 hover:text-white">
-                            <span class="nav-text-wrap">
-                                BERANDA
-                                <span class="nav-line"></span>
-                            </span>
+                            class="nav-item px-4 py-2 rounded-full transition-all duration-200 text-white hover:bg-white/20">
+                            <span class="nav-text-wrap">BERANDA<span class="nav-line"></span></span>
                         </a>
                     </li>
-
                     <li>
                         <a href="profil.html"
-                            class="nav-item whitespace-nowrap px-3 sm:px-4 py-2 rounded-full transition-all duration-200 text-white hover:bg-[#76C457]/40 hover:text-white">
-                            <span class="nav-text-wrap">
-                                PROFIL
-                                <span class="nav-line"></span>
-                            </span>
+                            class="nav-item px-4 py-2 rounded-full transition-all duration-200 text-white hover:bg-white/20">
+                            <span class="nav-text-wrap">PROFIL<span class="nav-line"></span></span>
                         </a>
                     </li>
-
                     <li>
                         <a href="hubungi.html" aria-current="page"
-                            class="nav-item whitespace-nowrap px-3 sm:px-4 py-2 rounded-full transition-all duration-200 text-white hover:bg-[#76C457]/40 hover:text-white">
-                            <span class="nav-text-wrap">
-                                HUBUNGI
-                                <span class="nav-line"></span>
-                            </span>
+                            class="nav-item active px-4 py-2 rounded-full transition-all duration-200 text-white hover:bg-white/20">
+                            <span class="nav-text-wrap">HUBUNGI<span class="nav-line"></span></span>
                         </a>
                     </li>
-
                 </ul>
 
                 <!-- Tombol Menu Mobile -->
-                <button id="mobile-toggle-btn" class="md:hidden text-2xl p-2 transition-colors focus:outline-none"
-                    aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="mobile-menu">
+                <button id="mobile-toggle-btn" class="md:hidden text-2xl p-2 transition-colors focus:outline-none">
                     <i id="toggle-icon" class="fa-solid fa-bars"></i>
                 </button>
-
             </div>
         </div>
 
         <!-- Menu Mobile -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white mt-4 rounded-xl shadow-lg p-4">
-
-            <div class="flex flex-col space-y-2 text-sm font-semibold text-[#76C457]">
-
-                <a href="index.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">
-                    BERANDA
-                </a>
-
-                <a href="profil.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">
-                    PROFIL
-                </a>
-
-                <a href="hubungi.html" class="px-4 py-3 rounded-lg bg-[#76C457]/20">
-                    HUBUNGI
-                </a>
-
+        <div id="mobile-menu" class="hidden md:hidden bg-white mt-4 rounded-xl shadow-2xl p-4 border border-gray-100">
+            <div class="flex flex-col space-y-2 text-sm font-semibold text-primary">
+                <a href="index.html" class="px-4 py-3 rounded-lg hover:bg-gray-50 transition-colors">BERANDA</a>
+                <a href="profil.html" class="px-4 py-3 rounded-lg hover:bg-gray-50 transition-colors">PROFIL</a>
+                <a href="hubungi.html" class="px-4 py-3 rounded-lg bg-secondary/10 text-primary">HUBUNGI</a>
             </div>
         </div>
     </nav>
 
-    <!-- KONTEN UTAMA -->
     <main>
-
-
-        <!-- BANNER KONTAK KAMI -->
-        <section class="relative overflow-hidden bg-gray-900 px-5 py-16 sm:py-20 md:py-24">
+        <!-- BANNER HEADER -->
+        <section class="relative overflow-hidden bg-gray-900 px-5 pt-16 pb-10 sm:pt-20 sm:pb-12 md:pt-24 md:pb-12">
 
             <!-- Background Foto -->
             <div class="absolute inset-0 z-0">
@@ -220,193 +293,172 @@
 
                 <p class="text-sm sm:text-base leading-relaxed text-white
             max-w-2xl mx-auto drop-shadow-md">
-                    Kami terbuka untuk pertanyaan, saran, dan masukan
-                    mengenai pengembangan teknologi pemantauan perairan
-                    serta pelestarian ekosistem pesisir.
+                    Hubungi tim kami untuk berkolaborasi dalam pengembangan teknologi pemantauan perairan dan pelestarian ekosistem pesisir.
                 </p>
 
             </div>
         </section>
 
+        <!-- PENGANTAR HALAMAN KONTAK -->
+        <section class="px-5 pt-12 pb-8 sm:pt-16 sm:pb-10">
+            <div class="max-w-3xl mx-auto text-center">
 
-        <!-- FORMULIR KONTAK -->
-        <section class="px-4 sm:px-6 py-12 sm:py-16 bg-white">
+                <span class="inline-flex items-center gap-2 text-primary
+                     text-xs sm:text-sm font-bold uppercase
+                     tracking-[0.18em] mb-3">
+                    <span class="w-8 h-[3px] rounded-full bg-secondary"></span>
+                    Kolaborasi
+                    <span class="w-8 h-[3px] rounded-full bg-secondary"></span>
+                </span>
 
-            <div style="width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 20px; box-sizing: border-box;">
+                <h2 class="font-tech text-2xl sm:text-3xl md:text-4xl
+                   font-bold text-gray-800 mb-4">
+                    Mari Terhubung dengan ALBATROSS
+                </h2>
 
-                <div
-                    class="relative overflow-hidden bg-[#2A7C13] px-4 sm:px-6 py-5 sm:py-6 text-white rounded-2xl shadow-[0_8px_28px_rgba(45,55,72,0.12)]">
+                <p class="text-gray-500 text-sm sm:text-base
+                  leading-relaxed max-w-2xl mx-auto">
+                   Kami percaya inovasi lahir dari komunikasi yang baik. Sampaikan gagasan, potensi kerja sama, atau pertanyaan Anda melalui formulir di bawah ini. Tim kami akan segera menindaklanjutinya.
+                </p>
 
-                    <!-- Dekorasi Lingkaran -->
-                    <div
-                        class="absolute -top-16 -right-12 w-48 h-48 rounded-full border-[24px] border-white/10 pointer-events-none">
-                    </div>
+            </div>
+        </section>
 
-                    <div
-                        class="absolute -bottom-20 -left-12 w-48 h-48 rounded-full border-[24px] border-white/10 pointer-events-none">
-                    </div>
+        <br><br><br>
 
-                    <!-- Pengantar -->
-                    <div class="relative z-10 text-center mt-2 mb-6">
+        <section class="max-w-[1200px] mx-auto px-4 sm:px-6 pt-0 pb-16 md:pb-20 -mt-20 relative z-20">
+            <div
+                class="contact-card relative grid grid-cols-[16px_minmax(0,1fr)] bg-white rounded-3xl shadow-[0_18px_55px_rgba(0,0,0,0.10)] overflow-hidden border border-gray-100">
+                <!-- Aksen hijau tipis dengan pattern lingkaran dekoratif -->
+                <aside class="contact-accent relative overflow-hidden bg-primary" aria-hidden="true">
+                    <div class="contact-accent-ring contact-accent-ring-top"></div>
+                    <div class="contact-accent-ring contact-accent-ring-bottom"></div>
+                </aside>
 
-                        <p class="text-sm md:text-base font-medium max-w-lg mx-auto leading-relaxed font-inter">
-                            Silakan tinggalkan pesan melalui formulir di bawah ini.
-                        </p>
+                <!-- Formulir mengambil seluruh area utama -->
+                <div class="contact-form-panel min-w-0 p-6 sm:p-8 lg:p-10 bg-white relative overflow-hidden">
+                    <div class="form-decoration form-decoration-top" aria-hidden="true"></div>
+                    <div class="form-decoration form-decoration-bottom" aria-hidden="true"></div>
 
-                    </div>
-
-                    <!-- Formulir Formspree -->
-                    <form action="https://formspree.io/f/xwlpjjvv" method="POST"
-                        class="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 mb-0 w-full max-w-none">
-
-                        <!-- Nama dan Email -->
-                        <div class="flex flex-col gap-5 w-full min-w-0">
-
-                            <div class="w-full">
-                                <label for="nama" class="block font-semibold mb-2 text-lg font-anta">
-                                    Nama
-                                </label>
-
-                                <input type="text" id="nama" name="nama" required autocomplete="name"
-                                    placeholder="Masukkan nama Anda" class="contact-input w-full box-border">
-                            </div>
-
-                            <div class="w-full">
-                                <label for="email" class="block font-semibold mb-2 text-lg font-anta">
-                                    Email
-                                </label>
-
-                                <input type="email" id="email" name="email" required autocomplete="email"
-                                    placeholder="Masukkan email Anda" class="contact-input w-full box-border">
-                            </div>
-
+                    <div class="relative z-10">
+                        <div class="mb-7 sm:mb-8">
+                            <span
+                                class="inline-flex items-center gap-2 text-primary text-[11px] sm:text-xs font-bold uppercase tracking-[0.14em] mb-2">
+                                <span class="inline-block w-6 h-[3px] rounded-full bg-secondary"></span>
+                                Hubungi ALBATROSS
+                            </span>
+                            <h2 class="font-tech text-2xl sm:text-3xl font-bold text-gray-800 mb-2">Kirim Pesan</h2>
+                            <p class="text-gray-500 text-sm sm:text-[15px] leading-relaxed max-w-2xl">
+                                Gunakan formulir di bawah ini untuk mengirimkan pesan langsung ke email kami.
+                            </p>
                         </div>
 
-                        <!-- Pesan -->
-                        <div class="flex flex-col w-full min-w-0">
+                        <form action="https://formspree.io/f/xljgongg" method="POST" class="space-y-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
+                                <div class="relative">
+                                    <label for="nama" class="block text-sm font-semibold text-gray-700 mb-2">Nama
+                                        Lengkap</label>
+                                    <div class="relative">
+                                        <input type="text" id="nama" name="nama" autocomplete="name" maxlength="100"
+                                            required placeholder="Masukkan nama Anda" class="contact-input">
+                                        <i class="fa-regular fa-user input-icon" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                                <div class="relative">
+                                    <label for="email" class="block text-sm font-semibold text-gray-700 mb-2">Alamat
+                                        Email</label>
+                                    <div class="relative">
+                                        <input type="email" id="email" name="email" autocomplete="email" maxlength="254"
+                                            required placeholder="Masukkan email Anda" class="contact-input">
+                                        <i class="fa-regular fa-envelope input-icon" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                            </div>
 
-                            <label for="pesan" class="block font-semibold mb-2 text-lg font-anta">
-                                Pesan
-                            </label>
+                            <div class="relative">
+                                <label for="pesan" class="block text-sm font-semibold text-gray-700 mb-2">Pesan
+                                    Anda</label>
+                                <div class="relative">
+                                    <textarea id="pesan" name="pesan" required maxlength="3000"
+                                        placeholder="Tuliskan detail pesan Anda di sini..."
+                                        class="contact-input min-h-[155px] sm:min-h-[170px] resize-y py-4"></textarea>
+                                    <i class="fa-regular fa-comment-dots input-icon" style="top: 24px; transform: none;"
+                                        aria-hidden="true"></i>
+                                </div>
+                            </div>
 
-                            <div class="relative flex-grow w-full">
-
-                                <textarea id="pesan" name="pesan" required placeholder="Ketik pesan Anda"
-                                    class="contact-input w-full h-full min-h-[180px] px-4 py-3 pb-14 resize-y box-border"></textarea>
-
-                                <button type="submit" aria-label="Kirim pesan" title="Kirim pesan"
-                                    class="send-button absolute bottom-3 right-3 w-10 h-10 rounded-full bg-[#2A7C13] text-white flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-[#76C457] focus:ring-offset-2">
-
-                                    <i class="fa-regular fa-paper-plane text-lg"></i>
-
+                            <div class="flex flex-col sm:flex-row sm:items-center gap-4 pt-1">
+                                <button type="submit"
+                                    class="send-button w-full sm:w-auto px-8 py-4 bg-primary text-white rounded-xl font-semibold shadow-lg shadow-primary/25 hover:bg-[#236510] hover:-translate-y-0.5 hover:shadow-xl focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-secondary/40 transition-all duration-300 flex items-center justify-center gap-3">
+                                    <span>Kirim Pesan</span>
+                                    <i class="fa-solid fa-paper-plane text-sm" aria-hidden="true"></i>
                                 </button>
-
+                                <p class="text-xs text-gray-400 leading-relaxed">
+                                    *Pastikan email yang dimasukkan aktif
+                                </p>
                             </div>
-                        </div>
-
-                    </form>
-
+                        </form>
+                    </div>
                 </div>
             </div>
         </section>
 
+        <!-- LOKASI PETA MAPS -->
+        <section class="max-w-[1200px] mx-auto px-4 sm:px-6 pb-20">
+            <div class="text-center mb-10">
+                <h2 class="font-tech text-3xl font-bold text-primary">Kunjungi Lokasi Kami</h2>
+                <div class="w-16 h-1 bg-secondary mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="w-full bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden p-2">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3432.116223214542!2d106.72390709999999!3d-6.5586025999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69c4ad56ee1525%3A0x16aeacee84366f06!2sWorkshop%20Instrumentasi%20dan%20Robotika%20Kelautan%20(Bengkel)%20ITK!5e1!3m2!1sen!2sid!4v1792046221888!5m2!1sen!2sid"
+                    class="block w-full h-[350px] md:h-[450px] rounded-2xl" style="border: 0;" allowfullscreen
+                    loading="lazy" referrerpolicy="strict-origin-when-cross-origin">
+                </iframe>
+            </div>
+        </section>
     </main>
-
-    <!-- LOKASI WORKSHOP -->
-    <section class="bg-gray-50 pt-3 sm:pt-4 pb-0">
-
-        <!-- Judul Lokasi -->
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 text-center mb-7 sm:mb-8">
-
-            <h2 class="font-tech text-3xl sm:text-4xl font-bold text-[#2A7C13]">
-                Temukan Kami
-            </h2>
-
-            <p class="text-gray-600 text-sm sm:text-base mt-3 max-w-2xl mx-auto leading-relaxed">
-                Kunjungi lokasi Workshop Instrumentasi dan Robotika Kelautan
-                (Bengkel) ITK di Babakan, Dramaga, Bogor.
-            </p>
-
-        </div>
-
-        <!-- Peta Full Width -->
-        <div class="w-full overflow-hidden bg-white">
-
-            <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3432.116223214542!2d106.72390709999999!3d-6.5586025999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69c4ad56ee1525%3A0x16aeacee84366f06!2sWorkshop%20Instrumentasi%20dan%20Robotika%20Kelautan%20(Bengkel)%20ITK!5e1!3m2!1sen!2sid!4v1792046221888!5m2!1sen!2sid"
-                class="block w-full h-[300px] sm:h-[400px] md:h-[450px]" style="border: 0;" allowfullscreen
-                loading="lazy" referrerpolicy="strict-origin-when-cross-origin"
-                title="Peta lokasi Workshop Instrumentasi dan Robotika Kelautan">
-            </iframe>
-
-        </div>
-
-    </section>
 
     <!-- FOOTER -->
     <footer class="bg-[#2A7C13] px-4 sm:px-6 py-10 border-t-[2px] border-[#2A7C13]">
-
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
 
-            <!-- Kolom Kontak -->
+            <!-- Kolom 1 (Dibuat lebih lebar/span 2): Lokasi, Email, dan WhatsApp -->
             <div class="md:col-span-2 flex flex-col gap-4 text-white">
+                <h3 class="font-bold text-xl mb-2">Kontak Kami</h3>
 
-                <h3 class="font-bold text-xl mb-2">
-                    Kontak Kami
-                </h3>
-
-                <a href="https://maps.app.goo.gl/mirmGEEjNxX9zrjp9" target="_blank" rel="noopener noreferrer"
-                    class="flex items-start gap-3 hover:text-[#b9e6a4] transition">
-
+                <a href="https://maps.app.goo.gl/mirmGEEjNxX9zrjp9"
+                    class="flex items-start gap-3 hover:text-[#76C457] transition">
                     <i class="fa-solid fa-location-dot text-xl mt-1"></i>
-
                     <span class="leading-relaxed break-words">
-                        Workshop Instrumentasi dan Robotika Kelautan (Bengkel)
-                        ITK, Babakan, Dramaga, Bogor, Indonesia 16680
+                        Workshop Instrumentasi dan Robotika Kelautan (Bengkel) ITK, Babakan,
+                        Dramaga, Bogor, Indonesia 16680
                     </span>
-
                 </a>
 
                 <a href="mailto:diklatmitrxvi@gmail.com"
-                    class="flex items-center gap-3 hover:text-[#b9e6a4] transition">
-
+                    class="flex items-center gap-3 hover:text-[#76C457] transition">
                     <i class="fa-regular fa-envelope text-xl"></i>
-
-                    <span class="break-all">
-                        diklatmitrxvi@gmail.com
-                    </span>
-
+                    <span>diklatmitrxvi@gmail.com</span>
                 </a>
 
-                <a href="https://wa.me/6283898339620" target="_blank" rel="noopener noreferrer"
-                    class="flex items-start gap-3 hover:text-[#b9e6a4] transition">
-
-                    <i class="fa-brands fa-whatsapp text-xl mt-1"></i>
-
-                    <span class="break-words">
-                        +6283898339620 (Deni Rizkiana Anwar Hidayat)
-                    </span>
-
+                <a href="https://wa.me/6283898339620" class="flex items-center gap-3 hover:text-[#76C457] transition">
+                    <i class="fa-brands fa-whatsapp text-xl"></i>
+                    <span class="break-words">+6283898339620 (Deni Rizkiana Anwar Hidayat)</span>
                 </a>
-
             </div>
 
-            <!-- Media Sosial -->
+            <!-- Kolom 2: Sosial Media -->
             <div class="flex flex-col gap-4 text-white">
+                <h3 class="font-bold text-xl mb-2">Media Sosial</h3>
 
-                <h3 class="font-bold text-xl mb-2">
-                    Media Sosial
-                </h3>
-
-                <a href="https://www.instagram.com/dmitr6teen/" target="_blank" rel="noopener noreferrer"
-                    class="flex items-center gap-3 hover:text-[#b9e6a4] transition">
-
+                <a href="https://www.instagram.com/dmitr6teen/"
+                    class="flex items-center gap-3 hover:text-[#76C457] transition">
                     <i class="fa-brands fa-instagram text-xl"></i>
-
                     <span>@dmitr6teen</span>
-
                 </a>
-
+                <!-- Kamu bisa tambahkan link LinkedIn atau YouTube di sini jika ada -->
             </div>
 
             <!-- Kolom 3: Logo dan Tombol Back to Top -->
@@ -436,7 +488,6 @@
                     </button>
                 </div>
             </div>
-
         </div>
     </footer>
 
@@ -464,104 +515,57 @@
         const mobileToggleBtn = document.getElementById('mobile-toggle-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         const toggleIcon = document.getElementById('toggle-icon');
-        const navLinks = document.querySelectorAll('#nav-links a');
-        const backToTop = document.getElementById('back-to-top');
+        const navLinks = document.querySelectorAll('.nav-item');
 
         function updateNavbar() {
             const isScrolled = window.scrollY > 50;
 
             if (isScrolled) {
-                // Navbar putih ketika halaman discroll
-                navbar.classList.remove('bg-transparent', 'text-white');
-                navbar.classList.add(
-                    'bg-white',
-                    'shadow-md'
-                );
+                navbar.classList.remove('bg-transparent', 'text-white', 'py-4');
+                navbar.classList.add('bg-white/90', 'backdrop-blur-md', 'shadow-sm', 'text-gray-800', 'py-3');
 
-                // Logo
                 logoCircle.classList.remove('opacity-0', 'scale-75');
                 logoCircle.classList.add('opacity-100', 'scale-100');
 
-                // Warna menu dan hover saat discroll
                 navLinks.forEach(link => {
-                    link.classList.remove(
-                        'text-white',
-                        'hover:bg-[#76C457]/40',
-                        'hover:text-white'
-                    );
-
-                    link.classList.add(
-                        'text-[#2A7C13]',
-                        'hover:bg-[#76C457]/25',
-                        'hover:text-[#2A7C13]'
-                    );
+                    link.classList.remove('text-white', 'hover:bg-white/20');
+                    if (link.classList.contains('active')) {
+                        link.classList.add('text-primary', 'font-bold');
+                    } else {
+                        link.classList.add('text-gray-600', 'hover:text-primary', 'hover:bg-gray-100');
+                    }
                 });
 
                 mobileToggleBtn.classList.remove('text-white');
-                mobileToggleBtn.classList.add('text-[#2A7C13]');
+                mobileToggleBtn.classList.add('text-gray-800');
 
             } else {
-                // Navbar transparan di bagian paling atas
-                navbar.classList.remove('bg-white', 'shadow-md');
-                navbar.classList.add('bg-transparent', 'text-white');
+                navbar.classList.add('bg-transparent', 'text-white', 'py-4');
+                navbar.classList.remove('bg-white/90', 'backdrop-blur-md', 'shadow-sm', 'text-gray-800', 'py-3');
 
-                // Logo
-                logoCircle.classList.remove('opacity-100', 'scale-100');
                 logoCircle.classList.add('opacity-0', 'scale-75');
+                logoCircle.classList.remove('opacity-100', 'scale-100');
 
-                // Reset menu ke kondisi awal
                 navLinks.forEach(link => {
-                    link.classList.remove(
-                        'text-[#2A7C13]',
-                        'hover:bg-[#76C457]/25',
-                        'hover:text-[#2A7C13]'
-                    );
-
-                    link.classList.add(
-                        'text-white',
-                        'hover:bg-[#76C457]/40',
-                        'hover:text-white'
-                    );
+                    link.classList.remove('text-gray-600', 'text-primary', 'hover:text-primary', 'hover:bg-gray-100', 'font-bold');
+                    link.classList.add('text-white', 'hover:bg-white/20');
                 });
 
-                mobileToggleBtn.classList.remove('text-[#2A7C13]');
                 mobileToggleBtn.classList.add('text-white');
+                mobileToggleBtn.classList.remove('text-gray-800');
             }
         }
 
-        // Jalankan saat halaman dibuka dan ketika discroll
         window.addEventListener('scroll', updateNavbar);
         updateNavbar();
 
-        // Menu mobile
         mobileToggleBtn.addEventListener('click', function () {
-            const isOpening = mobileMenu.classList.contains('hidden');
-
             mobileMenu.classList.toggle('hidden');
-
-            mobileToggleBtn.setAttribute(
-                'aria-expanded',
-                String(isOpening)
-            );
-
-            mobileToggleBtn.setAttribute(
-                'aria-label',
-                isOpening ? 'Tutup menu navigasi' : 'Buka menu navigasi'
-            );
-
-            toggleIcon.classList.toggle('fa-bars', !isOpening);
-            toggleIcon.classList.toggle('fa-xmark', isOpening);
-        });
-
-        // Tombol kembali ke atas
-        backToTop.addEventListener('click', function () {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
+            const isHidden = mobileMenu.classList.contains('hidden');
+            toggleIcon.classList.toggle('fa-bars', isHidden);
+            toggleIcon.classList.toggle('fa-xmark', !isHidden);
         });
     </script>
-
 </body>
 
 </html>
