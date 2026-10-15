@@ -27,6 +27,12 @@
                         anta: ['Anta', 'sans-serif'],
                         inter: ['Inter', 'sans-serif'],
                         tech: ['Anta', 'sans-serif']
+                    },
+                    colors: {
+                        brandDarkGreen: '#132E22',
+                        brandGreenBorder: '#234435',
+                        brandOrange: '#FF5E2B',
+                        brandOrangeHover: '#E04818',
                     }
                 }
             }
@@ -210,6 +216,16 @@
                 transform: none;
             }
         }
+
+        /* Smooth transition effects */
+        .card-transition {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card-transition:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.3);
+        }
     </style>
 </head>
 
@@ -319,128 +335,232 @@
 
         <!-- SECTION FULL WIDTH VISI DAN MISI -->
         <div
-            style="position: relative; isolation: isolate; width: 100vw; margin-left: calc(50% - 50vw); margin-top: -20px; margin-bottom: 0; padding: 50px 20px; box-sizing: border-box;">
-            <!-- BACKGROUND FOTO FULL LAYAR -->
+            style="position: relative; isolation: isolate; width: 100%; margin-left: calc(50% - 50vw); margin-top: -20px; margin-bottom: 0; padding: 50px 20px; box-sizing: border-box; background: linear-gradient(to bottom, #ffffff 60%, #543c1d 100%);">
+
+            <!-- BACKGROUND FOTO FULL LAYAR (Tetap sama) -->
             <div
                 style="position: absolute; inset: 0; background-image: url('bg visi misi.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; opacity: 0.15; z-index: -1; pointer-events: none;">
             </div>
 
-            <!-- PEMBUNGKUS KONTEN VISI DAN MISI -->
+            <!-- PEMBUNGKUS KONTEN VISI DAN MISI (Tetap sama) -->
             <div
                 style="width: 100%; max-width: 1160px; margin: 0 auto; display: flex; flex-direction: column; gap: 22px;">
 
+                <!-- Header Title -->
+                <header class="mb-8 text-center md:text-left">
+                    <h1 class="text-3xl font-bold text-gray-900 tracking-tight">Berita</h1>
+                    <p class="text-gray-600 mt-2">Lorem.</p>
+                </header>
 
-                <!-- BAGIAN VISI -->
-                <div class="visi-misi-card"
-                    style="position: relative; overflow: hidden; background-color: #FFFFFF; border: 2px solid rgba(110, 53, 17, 0.25); border-radius: 16px; padding: 30px; box-sizing: border-box; box-shadow: 0 5px 18px rgba(45, 55, 72, 0.12); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                <!-- Cards Container Grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
 
-                    <!-- Dekorasi lingkaran -->
+                    <!-- CARD 1: Hutan Adat Belayan -->
                     <div
-                        style="position: absolute; top: -70px; right: -15px; width: 150px; height: 150px; border: 22px solid rgba(42, 124, 19, 0.07); border-radius: 50%; box-sizing: border-box; pointer-events: none;">
-                    </div>
-
-                    <div style="position: relative; z-index: 1;">
-                        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px;">
-                            <div
-                                style="width: 38px; height: 38px; border-radius: 11px; background-color: #2A7C13; display: flex; justify-content: center; align-items: center; color: white; font-size: 20px; flex-shrink: 0;">
-                                ◎
-                            </div>
-                            <h3 style="font-size: 22px; font-weight: bold; color: #2d3748; margin: 0;">VISI</h3>
+                        class="card-transition bg-[#2A7C13] border-[3px] border-white rounded-xl shadow-lg p-3 md:p-4 flex flex-col sm:flex-row gap-4 md:gap-6 items-center">
+                        <!-- Image Container (Left Side) -->
+                        <div
+                            class="w-full sm:w-1/2 lg:w-5/12 aspect-[4/5] bg-white rounded-lg p-2 flex items-center justify-center overflow-hidden flex-shrink-0 shadow-md">
+                            <img src="sedimen.jpeg"
+                                alt="Sedimen" class="w-full h-full object-cover rounded"
+                                onerror="this.onerror=null; this.src='https://placehold.co/400x500/ffffff/132E22?text=Koran+Hutan+Adat+Belayan';" />
                         </div>
 
-                        <p
-                            style="font-size: 16px; line-height: 1.8; color: #35475a; margin: 0; width: 100%; max-width: 100%; text-align: justify; text-align-last: left;">
-                            Mewujudkan sistem pemantauan lingkungan pesisir yang terintegrasi melalui inovasi teknologi
-                            dan pemanfaatan data untuk mendukung kelestarian ekosistem perairan dan mangrove serta
-                            keberlanjutan Kampung Laut.
+                        <!-- Text Content (Right Side) -->
+                        <div
+                            class="w-full sm:w-1/2 lg:w-7/12 flex flex-col justify-between h-full py-2 pr-2 text-white">
+                            <div>
+                                <h2 class="text-2xl md:text-3xl font-bold leading-tight tracking-tight mb-3">
+                                    Lorem
+                                </h2>
+                                <p class="text-gray-200 text-sm md:text-base leading-relaxed line-clamp-3 mb-6">
+                                    Ipsum
+                                </p>
+                            </div>
+
+                            <div>
+                                <button onclick="openModal('modal-belayan')"
+                                    class="bg-[#6E3511] hover:bg-brandOrangeHover text-white font-bold text-sm tracking-wider uppercase px-6 py-3 rounded-lg shadow-md transition-colors duration-200 w-full sm:w-auto inline-block text-center cursor-pointer">
+                                    LIHAT BERITA
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CARD 2: Katalog Produk -->
+                    <div
+                        class="card-transition bg-[#2A7C13] border-[3px] border-white rounded-xl shadow-lg p-3 md:p-4 flex flex-col sm:flex-row gap-4 md:gap-6 items-center">
+                        <!-- Image Container (Left Side) -->
+                        <div
+                            class="w-full sm:w-1/2 lg:w-5/12 aspect-[4/5] bg-white rounded-lg p-2 flex items-center justify-center overflow-hidden flex-shrink-0 shadow-md">
+                            <img src="https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=600&q=80"
+                                alt="Katalog Produk KKI Warsi" class="w-full h-full object-cover rounded"
+                                onerror="this.onerror=null; this.src='https://placehold.co/400x500/ffffff/132E22?text=Katalog+Produk';" >
+                        </div>
+
+                        <!-- Text Content (Right Side) -->
+                        <div
+                            class="w-full sm:w-1/2 lg:w-7/12 flex flex-col justify-between h-full py-2 pr-2 text-white">
+                            <div>
+                                <h2 class="text-2xl md:text-3xl font-bold leading-tight tracking-tight mb-3">
+                                    lorem
+                                </h2>
+                                <p class="text-gray-200 text-sm md:text-base leading-relaxed line-clamp-3 mb-6">
+                                    lorem
+                                </p>
+                            </div>
+
+                            <div>
+                                <button onclick="openModal('modal-katalog')"
+                                    class="bg-[#6E3511] hover:bg-brandOrangeHover text-white font-bold text-sm tracking-wider uppercase px-6 py-3 rounded-lg shadow-md transition-colors duration-200 w-full sm:w-auto inline-block text-center cursor-pointer">
+                                    LIHAT BERITA
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- MODAL 1: Detail Hutan Adat Belayan -->
+            <div id="modal-belayan"
+                class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
+                <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] flex flex-col overflow-hidden shadow-2xl transform scale-95 transition-transform duration-300"
+                    id="modal-belayan-card">
+                    <!-- Modal Header -->
+                    <div
+                        class="bg-brandDarkGreen text-white p-6 flex justify-between items-start border-b border-brandGreenBorder">
+                        <div>
+                            <span
+                                class="bg-brandOrange text-xs font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">Berita
+                                Utama</span>
+                            <h3 class="text-2xl font-bold mt-2">Hutan Adat Belayan</h3>
+                        </div>
+                        <button onclick="closeModal('modal-belayan')"
+                            class="text-gray-300 hover:text-white p-2 rounded-lg hover:bg-white/10 transition-colors">
+                            <i class="fa-solid fa-xmark text-xl"></i>
+                        </button>
+                    </div>
+
+                    <!-- Modal Body -->
+                    <div class="p-6 overflow-y-auto space-y-4 text-gray-700 leading-relaxed">
+                        <p class="text-lg font-medium text-gray-900 border-l-4 border-brandOrange pl-4 py-1 italic">
+                            "Menjaga Nafas Kehidupan dan Warisan Leluhur Masyarakat Tenggalan"
+                        </p>
+
+                        <p>
+                            <strong>Desa Belayan</strong> — Bagi masyarakat adat Tenggalan yang hidup di Desa Belayan,
+                            hutan bukan sekadar bentangan pepohonan, melainkan identitas, ruang hidup, dan warisan
+                            leluhur yang harus dijaga keberlangsungannya. Keberadaan hutan adat ini memainkan peran
+                            penting dalam menjaga keseimbangan ekosistem lokal serta mendukung kelangsungan hidup
+                            generasi mendatang.
+                        </p>
+
+                        <h4 class="text-lg font-bold text-gray-900 pt-2">Menjaga Tradisi di Tengah Modernisasi</h4>
+                        <p>
+                            Secara turun-temurun, masyarakat adat Tenggalan menggantungkan kebutuhan hidup mereka dari
+                            hasil alam yang dikelola secara bijaksana. Melalui aturan adat yang ketat, pemanfaatan hasil
+                            hutan dilakukan dengan prinsip keberlanjutan. Setiap pemanfaatan lahan dan hasil bumi harus
+                            melalui proses kesepakatan bersama demi mencegah kerusakan lingkungan.
+                        </p>
+
+                        <div class="bg-gray-50 border border-gray-200 rounded-xl p-4 my-3 text-sm text-gray-600">
+                            <i class="fa-solid fa-quote-left text-brandOrange text-xl block mb-1"></i>
+                            "Hutan adalah ibarat rumah bagi kami. Jika hutan rusak, maka hilang pula bagian dari
+                            kehidupan dan kebudayaan kami," ujar salah satu tokoh adat Desa Belayan.
+                        </div>
+
+                        <h4 class="text-lg font-bold text-gray-900 pt-2">Upaya Pengakuan dan Perlindungan Hukum</h4>
+                        <p>
+                            Upaya pengakuan status Hutan Adat Belayan menjadi langkah krusial untuk melindungi wilayah
+                            ini dari ancaman alih fungsi lahan dan eksploitasi skala besar. Melalui pendampingan
+                            berkelanjutan dari berbagai pihak, masyarakat adat terus berjuang memastikan hak-hak
+                            pengelolaan wilayah adat mereka terjamin secara hukum.
+                        </p>
+                        <p>
+                            Dengan adanya kepastian hukum dan pengelolaan berbasis kearifan lokal, Hutan Adat Belayan
+                            diharapkan dapat terus menjadi benteng kelestarian alam sekaligus penyokong ekonomi bagi
+                            masyarakat lokal.
                         </p>
                     </div>
-                </div>
 
-                <!-- BAGIAN MISI -->
-                <div class="visi-misi-card"
-                    style="position: relative; overflow: hidden; background-color: #FFFFFF; border: 2px solid rgba(110, 53, 17, 0.25); border-radius: 16px; padding: 30px 30px 20px; box-sizing: border-box; box-shadow: 0 5px 18px rgba(45, 55, 72, 0.12); transition: transform 0.3s ease, box-shadow 0.3s ease;">
-
-                    <!-- Dekorasi lingkaran -->
-                    <div
-                        style="position: absolute; top: -90px; right: -35px; width: 170px; height: 170px; border: 24px solid rgba(42, 124, 19, 0.05); border-radius: 50%; box-sizing: border-box; pointer-events: none;">
-                    </div>
-
-                    <div style="position: relative; z-index: 1;">
-
-                        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 24px;">
-                            <div
-                                style="width: 38px; height: 38px; border-radius: 11px; background-color: #2A7C13; display: flex; justify-content: center; align-items: center; color: white; font-size: 20px; flex-shrink: 0;">
-                                ≋
-                            </div>
-                            <h3 style="font-size: 22px; font-weight: bold; color: #2d3748; margin: 0;">MISI</h3>
-                        </div>
-
-                        <!-- Daftar Misi -->
-                        <div style="display: flex; flex-direction: column; gap: 0;">
-
-                            <!-- Misi 1 -->
-                            <div
-                                style="display: grid; grid-template-columns: 22px minmax(0, 1fr); column-gap: 4px; padding-bottom: 8px;">
-                                <span style="font-size: 16px; line-height: 1.7; color: #454545;">1.</span>
-                                <p
-                                    style="font-size: 16px; line-height: 1.7; color: #454545; text-align: justify; margin: 0;">
-                                    Mengintegrasikan pemantauan kondisi perairan, dinamika arus, dan aktivitas fauna
-                                    mangrove melalui tiga subsistem ALBATROSS, yaitu ALBA, BAT, dan TROSS. Integrasi ini
-                                    dilakukan untuk memperoleh gambaran kondisi lingkungan pesisir yang lebih
-                                    menyeluruh, mulai dari karakteristik perairan dan kedalaman, pergerakan massa air,
-                                    hingga aktivitas fauna pada ekosistem mangrove.
-                                </p>
-                            </div>
-
-                            <!-- Misi 2 -->
-                            <div
-                                style="display: grid; grid-template-columns: 22px minmax(0, 1fr); column-gap: 4px; padding-bottom: 8px;">
-                                <span style="font-size: 16px; line-height: 1.7; color: #454545;">2.</span>
-                                <p
-                                    style="font-size: 16px; line-height: 1.7; color: #454545; text-align: justify; margin: 0;">
-                                    Mengumpulkan, mengolah, dan mengintegrasikan data lingkungan menjadi informasi yang
-                                    terstruktur dan mudah dipahami melalui visualisasi digital. Data kedalaman, kualitas
-                                    perairan, dinamika arus, serta dokumentasi fauna mangrove disajikan untuk membantu
-                                    memahami kondisi lingkungan, mengidentifikasi perubahan ekosistem, dan mendukung
-                                    pemantauan kawasan pesisir secara lebih sistematis.
-                                </p>
-                            </div>
-
-                            <!-- Misi 3 -->
-                            <div
-                                style="display: grid; grid-template-columns: 22px minmax(0, 1fr); column-gap: 4px; padding-bottom: 8px;">
-                                <span style="font-size: 16px; line-height: 1.7; color: #454545;">3.</span>
-                                <p
-                                    style="font-size: 16px; line-height: 1.7; color: #454545; text-align: justify; margin: 0;">
-                                    Memanfaatkan hasil pemantauan sebagai dasar untuk memahami proses sedimentasi,
-                                    pendangkalan perairan, dan perubahan kondisi ekosistem pesisir. Data batimetri dan
-                                    kualitas perairan diharapkan dapat mendukung identifikasi kawasan potensial untuk
-                                    penanaman mangrove berdasarkan kesesuaian kondisi lingkungan, sekaligus menjadi
-                                    bahan pertimbangan dalam merencanakan aksi konservasi yang lebih terarah dan
-                                    berkelanjutan.
-                                </p>
-                            </div>
-
-                            <!-- Misi 4 -->
-                            <div
-                                style="display: grid; grid-template-columns: 22px minmax(0, 1fr); column-gap: 4px; padding-bottom: 8px;">
-                                <span style="font-size: 16px; line-height: 1.7; color: #454545;">4.</span>
-                                <p
-                                    style="font-size: 16px; line-height: 1.7; color: #454545; text-align: justify; margin: 0;">
-                                    Mendorong keterlibatan masyarakat lokal, akademisi, dan pemangku kepentingan dalam
-                                    upaya pemantauan serta pelestarian lingkungan pesisir. Melalui pendekatan
-                                    partisipatif, pertukaran informasi, dan edukasi lingkungan, ALBATROSS berupaya
-                                    meningkatkan pemahaman mengenai pentingnya ekosistem perairan dan mangrove serta
-                                    mendorong pemanfaatan hasil pemantauan untuk mendukung pengelolaan lingkungan
-                                    Kampung Laut secara berkelanjutan.
-                                </p>
-                            </div>
-
-                        </div>
+                    <!-- Modal Footer -->
+                    <div class="bg-gray-50 p-4 border-t border-gray-200 flex justify-end">
+                        <button onclick="closeModal('modal-belayan')"
+                            class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold px-5 py-2 rounded-lg transition-colors">
+                            Tutup
+                        </button>
                     </div>
                 </div>
             </div>
+
+            <!-- MODAL 2: Detail Katalog Produk -->
+            <div id="modal-katalog"
+                class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
+                <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] flex flex-col overflow-hidden shadow-2xl transform scale-95 transition-transform duration-300"
+                    id="modal-katalog-card">
+                    <!-- Modal Header -->
+                    <div
+                        class="bg-brandDarkGreen text-white p-6 flex justify-between items-start border-b border-brandGreenBorder">
+                        <div>
+                            <span
+                                class="bg-brandOrange text-xs font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">Katalog
+                                Produk</span>
+                            <h3 class="text-2xl font-bold mt-2">Katalog Produk Dampingan KKI Warsi Kalimantan Utara</h3>
+                        </div>
+                        <button onclick="closeModal('modal-katalog')"
+                            class="text-gray-300 hover:text-white p-2 rounded-lg hover:bg-white/10 transition-colors">
+                            <i class="fa-solid fa-xmark text-xl"></i>
+                        </button>
+                    </div>
+
+                    <!-- Modal Body -->
+                    <div class="p-6 overflow-y-auto space-y-4 text-gray-700 leading-relaxed">
+                        <p class="text-lg font-medium text-gray-900 border-l-4 border-brandOrange pl-4 py-1 italic">
+                            "Pemberdayaan Ekonomi Berkelanjutan Berbasis Hasil Hutan Bukan Kayu (HHBK)"
+                        </p>
+
+                        <p>
+                            Rotan jadi salah satu kekuatan utama, berkembang dari kerajinan tradisional seperti
+                            <strong>Anjat</strong> (tas anyaman khas) hingga aneka produk olahan turunan yang bernilai
+                            jual tinggi. Katalog ini merangkum karya-karya terbaik dari masyarakat adat di Kalimantan
+                            Utara di bawah pendampingan KKI Warsi.
+                        </p>
+
+                        <h4 class="text-lg font-bold text-gray-900 pt-2">Produk Unggulan Komunitas:</h4>
+                        <ul class="list-disc list-inside space-y-2 pl-2">
+                            <li><strong>Kerajinan Anyaman Rotan:</strong> Tas Anjat, tempat penyimpanan, mat/tikar ramah
+                                lingkungan.</li>
+                            <li><strong>Minyak & Herbal Alami:</strong> Olahan tanaman obat tradisional hasil budidaya
+                                hutan lokal.</li>
+                            <li><strong>Minuman Khas Adat:</strong> Olahan jahe merah dan rempah-rempah hutan alami.
+                            </li>
+                        </ul>
+
+                        <p class="pt-2">
+                            Dengan membeli dan mendukung produk-produk ini, Anda turut mendukung kelestarian hutan
+                            sekaligus kesejahteraan ekonomi komunitas adat local Kalimantan Utara.
+                        </p>
+                    </div>
+
+                    <!-- Modal Footer -->
+                    <div class="bg-gray-50 p-4 border-t border-gray-200 flex justify-end">
+                        <button onclick="closeModal('modal-katalog')"
+                            class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold px-5 py-2 rounded-lg transition-colors">
+                            Tutup
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Notification Toast for Copy -->
+            <div id="toast"
+                class="fixed bottom-5 right-5 bg-gray-900 text-white px-4 py-3 rounded-lg shadow-xl flex items-center gap-2 transform translate-y-20 opacity-0 transition-all duration-300 z-50">
+                <i class="fa-solid fa-circle-check text-green-400"></i>
+                <span>Kode berhasil disalin ke clipboard!</span>
+            </div>
+
+        </div>
         </div>
 
         <!-- 
@@ -448,24 +568,32 @@
             DIV UTAMA SECTION LINIMASA 
             ========================================================
             -->
-        <section id="timelineSection" class="timeline-section-wrapper py-16 px-4 sm:px-6 lg:px-8 pb-32">
+        <section id="timelineSection" class="timeline-section-wrapper pt-0 pb-16 px-4 sm:px-6 lg:px-8 pb-32">
 
-            <!-- 1. DIV LATAR BELAKANG SEDIMENTASI (MULAI DARI GARIS ATAS / GARIS BIRU) -->
+            <!-- 1. DIV LATAR BELAKANG SEDIMENTASI (DENGAN TRANSISI HALUS, PARTIKEL & GELOMBANG) -->
             <div class="sediment-background-layer">
-                <svg id="sedimentFlowSvg" class="sediment-svg-flow" viewBox="0 0 1440 320" preserveAspectRatio="none"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <linearGradient id="brownSedimentGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                            <stop offset="0%" stop-color="#b08d57" stop-opacity="0.95" />
-                            <stop offset="100%" stop-color="#543c1d" stop-opacity="0.98" />
-                        </linearGradient>
-                    </defs>
 
-                    <!-- Gelombang rapat yang dimulai tepat dari batas paling atas section linimasa -->
-                    <path fill="url(#brownSedimentGrad)"
-                        d="M0,64L48,80C96,96,192,128,288,122.7C384,117,480,75,576,80C672,85,768,139,864,149.3C960,160,1056,128,1152,112C1248,96,1344,96,1392,96L1440,96L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z">
-                    </path>
-                </svg>
+                <!-- Wrapper utama dengan tambahan transisi warna di lapisan paling atas -->
+                <div id="sedimentFlowSvg" class="sediment-svg-flow" style="position: relative; 
+                background-color: #543c1d;
+                background-image: 
+                    linear-gradient(180deg, #543c1d 0%, rgba(176,141,87,0) 8%),
+                    radial-gradient(circle at 15% 25%, #3e2a12 4px, transparent 5px),
+                    radial-gradient(circle at 75% 65%, #2c1d0b 6px, transparent 7px),
+                    radial-gradient(circle at 45% 85%, #473217 8px, transparent 9px),
+                    radial-gradient(circle at 85% 15%, #3e2a12 3px, transparent 4px),
+                    radial-gradient(circle at 25% 90%, #2c1d0b 7px, transparent 8px),
+                    linear-gradient(180deg, rgba(84,60,29,0.95) 0%, rgba(84,60,29,0.98) 100%);
+                background-size: 100% 100%, 120px 120px, 180px 180px, 250px 250px, 90px 90px, 200px 200px, 100% 100%;">
+
+                    <!-- SVG Gelombang -->
+                    <svg style="position: absolute; bottom: -89px; left: 0; width: 100%; height: 90px; pointer-events: none;"
+                        viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="rgba(84, 60, 29, 0.98)"
+                            d="M0,0 C240,160 480,-60 720,50 C960,160 1200,-60 1440,50 L1440,0 L0,0 Z"></path>
+                    </svg>
+
+                </div>
             </div>
 
             <!-- 2. DIV KONTEN KARTU ROADMAP -->
@@ -564,15 +692,20 @@
 
     <!-- Container dengan padding horizontal yang longgar -->
     <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+
         <!-- Header Section -->
         <div class="text-center max-w-3xl mx-auto mb-16">
             <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 tracking-tight mb-4">
                 Aktifitas Terkini
             </h2>
             <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
-                Ikuti perkembangan terbaru inovasi teknologi kelautan, pengembangan alat pemantauan perairan, serta riset. Dari pengembangan teknologi hingga implementasi di lapangan, setiap inovasi hadir untuk <strong>mendukung pemantauan ekosistem laut, pengelolaan sumber daya pesisir, dan pengembangan solusi</strong> berbasis teknologi yang berkelanjutan.
+                Ikuti perkembangan terbaru inovasi teknologi kelautan, pengembangan alat pemantauan perairan, serta
+                riset. Dari pengembangan teknologi hingga implementasi di lapangan, setiap inovasi hadir untuk
+                <strong>mendukung pemantauan ekosistem laut, pengelolaan sumber daya pesisir, dan pengembangan
+                    solusi</strong> berbasis teknologi yang berkelanjutan.
             </p>
         </div>
+
 
         <!-- Grid Cards Section (Total 9 Kartu: 3 baris x 3 kolom) -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -583,8 +716,7 @@
                 <div>
                     <!-- Foto kotak aspek rasio 1:1 menggunakan aspect-square -->
                     <div class="aspect-square w-full overflow-hidden bg-gray-100">
-                        <img src="Swarm Ship.png"
-                            alt="Gerakan Penanaman Serentak" class="w-full h-full object-cover">
+                        <img src="Swarm Ship.png" alt="Gerakan Penanaman Serentak" class="w-full h-full object-cover">
                     </div>
                     <div class="p-6">
                         <h3
@@ -604,8 +736,8 @@
                 <div>
                     <!-- Foto kotak aspek rasio 1:1 -->
                     <div class="aspect-square w-full overflow-hidden bg-gray-100">
-                        <img src="Early Warning Upwelling.png"
-                            alt="Early Warning Upwelling" class="w-full h-full object-cover">
+                        <img src="Early Warning Upwelling.png" alt="Early Warning Upwelling"
+                            class="w-full h-full object-cover">
                     </div>
                     <div class="p-6">
                         <h3
@@ -625,8 +757,7 @@
                 <div>
                     <!-- Foto kotak aspek rasio 1:1 -->
                     <div class="aspect-square w-full overflow-hidden bg-gray-100">
-                        <img src="Buoy.png"
-                            alt="Buoy" class="w-full h-full object-cover">
+                        <img src="Buoy.png" alt="Buoy" class="w-full h-full object-cover">
                     </div>
                     <div class="p-6">
                         <h3
@@ -646,8 +777,7 @@
                 <div>
                     <!-- Foto kotak aspek rasio 1:1 -->
                     <div class="aspect-square w-full overflow-hidden bg-gray-100">
-                        <img src="N1-AUV.png"
-                            alt="N1-AUV" class="w-full h-full object-cover">
+                        <img src="N1-AUV.png" alt="N1-AUV" class="w-full h-full object-cover">
                     </div>
                     <div class="p-6">
                         <h3
@@ -667,8 +797,7 @@
                 <div>
                     <!-- Foto kotak aspek rasio 1:1 -->
                     <div class="aspect-square w-full overflow-hidden bg-gray-100">
-                        <img src="N2-AUV.png"
-                            alt="Riset Biodiversitas" class="w-full h-full object-cover">
+                        <img src="N2-AUV.png" alt="Riset Biodiversitas" class="w-full h-full object-cover">
                     </div>
                     <div class="p-6">
                         <h3
@@ -688,8 +817,7 @@
                 <div>
                     <!-- Foto kotak aspek rasio 1:1 -->
                     <div class="aspect-square w-full overflow-hidden bg-gray-100">
-                        <img src="N4-AUV.png"
-                            alt="N4-AUV" class="w-full h-full object-cover">
+                        <img src="N4-AUV.png" alt="N4-AUV" class="w-full h-full object-cover">
                     </div>
                     <div class="p-6">
                         <h3
@@ -709,8 +837,7 @@
                 <div>
                     <!-- Foto kotak aspek rasio 1:1 -->
                     <div class="aspect-square w-full overflow-hidden bg-gray-100">
-                        <img src="Pelamis IV.png"
-                            alt="Pelamis IV" class="w-full h-full object-cover">
+                        <img src="Pelamis IV.png" alt="Pelamis IV" class="w-full h-full object-cover">
                     </div>
                     <div class="p-6">
                         <h3
@@ -730,8 +857,7 @@
                 <div>
                     <!-- Foto kotak aspek rasio 1:1 -->
                     <div class="aspect-square w-full overflow-hidden bg-gray-100">
-                        <img src="Pelamis VII.png"
-                            alt="Pelamis VII" class="w-full h-full object-cover">
+                        <img src="Pelamis VII.png" alt="Pelamis VII" class="w-full h-full object-cover">
                     </div>
                     <div class="p-6">
                         <h3
@@ -751,8 +877,8 @@
                 <div>
                     <!-- Foto kotak aspek rasio 1:1 -->
                     <div class="aspect-square w-full overflow-hidden bg-gray-100">
-                        <img src="Soil Temperature Humidity Logger.png"
-                            alt="Soil Temperature Humidity Logger" class="w-full h-full object-cover">
+                        <img src="Soil Temperature Humidity Logger.png" alt="Soil Temperature Humidity Logger"
+                            class="w-full h-full object-cover">
                     </div>
                     <div class="p-6">
                         <h3
@@ -904,24 +1030,104 @@
         window.addEventListener('scroll', function () {
             const timelineSection = document.getElementById('timelineSection');
             const sedimentSvg = document.getElementById('sedimentFlowSvg');
+            const timelineTitle = document.getElementById('timeline-title'); // Mengambil elemen teks judul
 
             if (timelineSection && sedimentSvg) {
                 const sectionRect = timelineSection.getBoundingClientRect();
                 const windowHeight = window.innerHeight;
                 const sectionHeight = timelineSection.offsetHeight;
 
-                // Cek apakah section linimasa sudah masuk ke area layar
-                if (sectionRect.top <= windowHeight && sectionRect.bottom >= 0) {
-                    // Hitung progres scroll murni dari titik paling atas section hingga akhir section
-                    let scrollProgress = (windowHeight - sectionRect.top) / (windowHeight + sectionHeight * 0.3);
+                // Titik pemicu ada di tengah layar (50% dari atas layar)
+                const triggerLine = windowHeight * 0.5;
+
+                if (sectionRect.top <= triggerLine) {
+                    let distanceInsideSection = triggerLine - sectionRect.top;
+                    let scrollProgress = distanceInsideSection / sectionHeight;
                     scrollProgress = Math.max(0.02, Math.min(1, scrollProgress));
 
-                    // Tinggi sedimentasi mengalir turun dari atas (0% hingga 100% sampai bawah section)
-                    let activeHeight = scrollProgress * 100;
-                    sedimentSvg.style.height = activeHeight + '%';
+                    sedimentSvg.style.height = (scrollProgress * 100) + '%';
+
+                    // MENGUBAH WARNA TEKS SAAT TERTUTUP SEDIMEN
+                    if (timelineTitle) {
+                        // Menghitung batas bawah teks judul dari atas kotak linimasa
+                        const titleBottom = timelineTitle.offsetTop + (timelineTitle.offsetHeight / 2);
+                        const currentSedimentHeight = scrollProgress * sectionHeight;
+
+                        if (currentSedimentHeight > titleBottom) {
+                            timelineTitle.classList.remove('text-gray-900');
+                            timelineTitle.classList.add('text-white');
+                        } else {
+                            timelineTitle.classList.remove('text-white');
+                            timelineTitle.classList.add('text-gray-900');
+                        }
+                    }
+
+                } else {
+                    // Reset ke awal jika di-scroll ke atas melewati section
+                    sedimentSvg.style.height = '2%';
+
+                    // Reset warna teks ke warna gelap
+                    if (timelineTitle) {
+                        timelineTitle.classList.remove('text-white');
+                        timelineTitle.classList.add('text-gray-900');
+                    }
                 }
             }
         });
+        function openModal(id) {
+            const modal = document.getElementById(id);
+            const card = document.getElementById(id + '-card');
+            
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                card.classList.remove('scale-95');
+                card.classList.add('scale-100');
+            }, 10);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(id) {
+            const modal = document.getElementById(id);
+            const card = document.getElementById(id + '-card');
+            
+            modal.classList.add('opacity-0');
+            card.classList.remove('scale-100');
+            card.classList.add('scale-95');
+            
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }, 300);
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modalBelayan = document.getElementById('modal-belayan');
+            const modalKatalog = document.getElementById('modal-katalog');
+            if (event.target === modalBelayan) closeModal('modal-belayan');
+            if (event.target === modalKatalog) closeModal('modal-katalog');
+        }
+
+        function copyCode() {
+            // Get full HTML document string
+            const htmlContent = document.documentElement.outerHTML;
+            
+            // Fallback copy method
+            const textarea = document.createElement('textarea');
+            textarea.value = htmlContent;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+
+            // Toast UI feedback
+            const toast = document.getElementById('toast');
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
     </script>
 
 </body>
