@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kontak Kami | ALBATROSS</title>
+    <title>Profil | ALBATROSS</title>
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -78,8 +78,11 @@
             ---------------------------------------------------- */
         .timeline-section-wrapper {
             position: relative;
-            overflow: hidden;
+            overflow: visible;
+            /* UBAH BAGIAN INI AGAR GELOMBANGNYA MUNCUL */
             background-color: #f8fafc;
+            z-index: 10;
+            /* Tambahkan ini agar gelombang menimpa section di bawahnya */
         }
 
         /* 
@@ -226,6 +229,17 @@
             transform: translateY(-4px);
             box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.3);
         }
+
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+
+        .reveal-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 </head>
 
@@ -295,7 +309,7 @@
     <main>
 
         <!-- BANNER KONTAK KAMI -->
-        <section class="relative overflow-hidden bg-gray-900 px-5 py-16 sm:py-20 md:py-24">
+        <section class="relative overflow-hidden bg-gray-900 px-5 pt-24 pb-32 sm:pt-32 sm:pb-40">
             <div class="absolute inset-0 z-0">
                 <img src="bg hubungi.jpg" alt="Latar belakang banner Kontak Kami"
                     class="w-full h-full object-cover object-[center_60%]">
@@ -309,8 +323,11 @@
             </div>
         </section>
 
-        <!-- Container Utama: Layout Dua Kolom, Membentang Penuh ke Samping -->
-        <div class="flex flex-col lg:flex-row w-full h-auto lg:h-[450px]">
+        <br><br><br><br><br>
+
+        <!-- Container Utama: Dibuat melayang menimpa banner (Overlapping Card) -->
+        <div
+            class="flex flex-col lg:flex-row w-[90%] max-w-7xl mx-auto h-auto lg:h-[450px] relative z-20 -mt-16 lg:-mt-24 rounded-2xl overflow-hidden shadow-2xl bg-[#543c1d]">
             <!-- Kolom Kiri: Teks Fakta (Latar Hitam, Ujung Kotak) -->
             <div class="w-full lg:w-5/12 bg-[#543c1d] flex flex-col justify-center px-8 lg:px-20 py-10 rounded-none">
                 <p class="text-1xl leading-relaxed mb-6" style="color: white; text-align: justify;">
@@ -322,12 +339,12 @@
             </div>
 
             <!-- Kolom Kanan: Gambar Hutan & Teks Sorotan (Ujung Kotak) -->
-            <div class="w-full lg:w-7/12 relative min-h-[300px] lg:min-h-full overflow-hidden rounded-none">
-                <!-- Gambar Latar -->
+            <div class="w-full lg:w-7/12 relative min-h-[300px] lg:min-h-full overflow-hidden">
                 <img src="sedimen.jpeg" alt="Sedimentasi Segara Anakan"
                     class="absolute inset-0 w-full h-full object-cover">
-                <!-- Overlay Gelap agar teks lebih terbaca -->
-                <div class="absolute inset-0 bg-black/35"></div>
+
+                <!-- Overlay transisi halus: pekat di kiri (cokelat), lalu memudar ke kanan -->
+                <div class="absolute inset-0 bg-gradient-to-r from-[#543c1d] via-[#543c1d]/40 to-transparent"></div>
             </div>
         </div>
 
@@ -562,11 +579,6 @@
         </div>
         </div>
 
-        <!-- 
-            ========================================================
-            DIV UTAMA SECTION LINIMASA 
-            ========================================================
-            -->
         <section id="timelineSection" class="timeline-section-wrapper pt-0 pb-16 px-4 sm:px-6 lg:px-8 pb-32">
 
             <!-- 1. DIV LATAR BELAKANG SEDIMENTASI (DENGAN TRANSISI HALUS, PARTIKEL & GELOMBANG) -->
@@ -584,7 +596,6 @@
                     radial-gradient(circle at 25% 90%, #2c1d0b 7px, transparent 8px),
                     linear-gradient(180deg, rgba(84,60,29,0.95) 0%, rgba(84,60,29,0.98) 100%);
                 background-size: 100% 100%, 120px 120px, 180px 180px, 250px 250px, 90px 90px, 200px 200px, 100% 100%;">
-
                     <!-- SVG Gelombang -->
                     <svg style="position: absolute; bottom: -89px; left: 0; width: 100%; height: 90px; pointer-events: none;"
                         viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
@@ -601,7 +612,9 @@
                     <span
                         class="text-xs font-bold uppercase tracking-widest text-[#FFFFFF] bg-[#76C457]/20 px-3 py-1 rounded-full">Linimasa
                         Waktu</span>
-                    <h2 class="font-tech text-3xl sm:text-4xl font-bold text-gray-900 mt-2">Pelaksanaan Kegiatan</h2>
+                    <h2 id="timeline-title"
+                        class="font-tech text-3xl sm:text-4xl font-bold text-gray-900 mt-2 transition-colors duration-300">
+                        Pelaksanaan Kegiatan</h2>
                 </div>
 
                 <div class="roadmap-container">
@@ -683,17 +696,14 @@
                                 pengembangan.</p>
                         </div>
                     </div>
-
                 </div>
             </div>
         </section>
     </main>
 
     <br>
-
     <!-- Container dengan padding horizontal yang longgar -->
-    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mt-10 relative z-0">
         <!-- Header Section -->
         <div class="text-center max-w-3xl mx-auto mb-16">
             <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 tracking-tight mb-4">
@@ -706,12 +716,7 @@
                     solusi</strong> berbasis teknologi yang berkelanjutan.
             </p>
         </div>
-
-
-        <!-- Grid Cards Section (Total 9 Kartu: 3 baris x 3 kolom) -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-            <!-- Card 1 -->
             <div
                 class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
                 <div>
@@ -763,7 +768,7 @@
                     <div class="p-6">
                         <h3
                             class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
-                            Swarm Ship
+                            Buoy
                         </h3>
                         <p class="text-gray-600 text-sm leading-relaxed mb-6">
                             Penjelasan singkat
@@ -774,126 +779,248 @@
 
             <!-- Card 4 -->
             <div
-                class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
-                <div>
-                    <!-- Foto kotak aspek rasio 1:1 -->
-                    <div class="aspect-square w-full overflow-hidden bg-gray-100">
-                        <img src="N1-AUV.png" alt="N1-AUV" class="w-full h-full object-cover">
-                    </div>
-                    <div class="p-6">
-                        <h3
-                            class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
-                            N1-AUV
-                        </h3>
-                        <p class="text-gray-600 text-sm leading-relaxed mb-6">
-                            Penjelasan singkat
-                        </p>
+                class="hidden extra-activity bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
+                <div
+                    class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
+                    <div>
+                        <!-- Foto kotak aspek rasio 1:1 -->
+                        <div class="aspect-square w-full overflow-hidden bg-gray-100">
+                            <img src="N1-AUV.png" alt="N1-AUV" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3
+                                class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
+                                N1-AUV
+                            </h3>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-6">
+                                Robot bawah air tanpa awak <strong>generasi ke-1</strong> dari Nusantara AUV yang dirancang untuk eksplorasi dan observasi bawah air
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- Card 5 -->
             <div
-                class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
-                <div>
-                    <!-- Foto kotak aspek rasio 1:1 -->
-                    <div class="aspect-square w-full overflow-hidden bg-gray-100">
-                        <img src="N2-AUV.png" alt="Riset Biodiversitas" class="w-full h-full object-cover">
-                    </div>
-                    <div class="p-6">
-                        <h3
-                            class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
-                            N2-AUV
-                        </h3>
-                        <p class="text-gray-600 text-sm leading-relaxed mb-6">
-                            Penjelasan singkat
-                        </p>
+                class="hidden extra-activity bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
+                <div
+                    class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
+                    <div>
+                        <!-- Foto kotak aspek rasio 1:1 -->
+                        <div class="aspect-square w-full overflow-hidden bg-gray-100">
+                            <img src="N2-AUV.png" alt="Riset Biodiversitas" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3
+                                class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
+                                N2-AUV 
+                            </h3>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-6">
+                                PRobot bawah air tanpa awak <strong>generasi ke-2</strong> dari Nusantara AUV yang dirancang untuk eksplorasi dan observasi bawah air
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
 
+
             <!-- Card 6 -->
             <div
-                class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
-                <div>
-                    <!-- Foto kotak aspek rasio 1:1 -->
-                    <div class="aspect-square w-full overflow-hidden bg-gray-100">
-                        <img src="N4-AUV.png" alt="N4-AUV" class="w-full h-full object-cover">
-                    </div>
-                    <div class="p-6">
-                        <h3
-                            class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
-                            N4-AUV
-                        </h3>
-                        <p class="text-gray-600 text-sm leading-relaxed mb-6">
-                            Penjelasan singkat
-                        </p>
+                class="hidden extra-activity bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
+                <div
+                    class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
+                    <div>
+                        <!-- Foto kotak aspek rasio 1:1 -->
+                        <div class="aspect-square w-full overflow-hidden bg-gray-100">
+                            <img src="N3.2-AUV.png" alt="N3.2-AUV" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3
+                                class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
+                                N3.2-AUV
+                            </h3>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-6">
+                                Robot bawah air tanpa awak <strong>generasi ke-3.2</strong> dari Nusantara AUV yang dirancang untuk eksplorasi dan observasi bawah air
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- Card 7 -->
             <div
-                class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
-                <div>
-                    <!-- Foto kotak aspek rasio 1:1 -->
-                    <div class="aspect-square w-full overflow-hidden bg-gray-100">
-                        <img src="Pelamis IV.png" alt="Pelamis IV" class="w-full h-full object-cover">
-                    </div>
-                    <div class="p-6">
-                        <h3
-                            class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
-                            Pelamis IV
-                        </h3>
-                        <p class="text-gray-600 text-sm leading-relaxed mb-6">
-                            Penjelasan singkat
-                        </p>
+                class="hidden extra-activity bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
+                <div
+                    class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
+                    <div>
+                        <!-- Foto kotak aspek rasio 1:1 -->
+                        <div class="aspect-square w-full overflow-hidden bg-gray-100">
+                            <img src="N4-AUV.png" alt="N4-AUV" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3
+                                class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
+                                N4-AUV
+                            </h3>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-6">
+                                Robot bawah air tanpa awak <strong>generasi ke-4</strong> dari Nusantara AUV yang dirancang untuk eksplorasi dan observasi bawah air
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- Card 8 -->
             <div
-                class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
-                <div>
-                    <!-- Foto kotak aspek rasio 1:1 -->
-                    <div class="aspect-square w-full overflow-hidden bg-gray-100">
-                        <img src="Pelamis VII.png" alt="Pelamis VII" class="w-full h-full object-cover">
-                    </div>
-                    <div class="p-6">
-                        <h3
-                            class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
-                            Pelamis VII
-                        </h3>
-                        <p class="text-gray-600 text-sm leading-relaxed mb-6">
-                            Penjelasan singkat
-                        </p>
+                class="hidden extra-activity bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
+                <div
+                    class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
+                    <div>
+                        <!-- Foto kotak aspek rasio 1:1 -->
+                        <div class="aspect-square w-full overflow-hidden bg-gray-100">
+                            <img src="N7-AUV.jpg" alt="N7-AUV" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3
+                                class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
+                                N7-AUV
+                            </h3>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-6">
+                                Robot bawah air tanpa awak <strong>generasi ke-7</strong> dari Nusantara AUV yang dirancang untuk eksplorasi dan observasi bawah air
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- Card 9 -->
             <div
-                class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
-                <div>
-                    <!-- Foto kotak aspek rasio 1:1 -->
-                    <div class="aspect-square w-full overflow-hidden bg-gray-100">
-                        <img src="Soil Temperature Humidity Logger.png" alt="Soil Temperature Humidity Logger"
-                            class="w-full h-full object-cover">
+                class="hidden extra-activity bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
+                <div
+                    class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
+                    <div>
+                        <!-- Foto kotak aspek rasio 1:1 -->
+                        <div class="aspect-square w-full overflow-hidden bg-gray-100">
+                            <img src="Pelamis IV.png" alt="Pelamis IV" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3
+                                class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
+                                Pelamis IV
+                            </h3>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-6">
+                                Penjelasan singkat
+                            </p>
+                        </div>
                     </div>
-                    <div class="p-6">
-                        <h3
-                            class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
-                            Soil Temperature Humidity Logger
-                        </h3>
-                        <p class="text-gray-600 text-sm leading-relaxed mb-6">
-                            Penjelasan singkat
-                        </p>
+                </div>
+            </div>
+
+            <!-- Card 10 -->
+            <div
+                class="hidden extra-activity bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
+                <div
+                    class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
+                    <div>
+                        <!-- Foto kotak aspek rasio 1:1 -->
+                        <div class="aspect-square w-full overflow-hidden bg-gray-100">
+                            <img src="Pelamis VII.png" alt="Pelamis VII" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3
+                                class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
+                                Pelamis VII
+                            </h3>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-6">
+                                Penjelasan singkat
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 11 -->
+            <div
+                class="hidden extra-activity bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
+                <div
+                    class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
+                    <div>
+                        <!-- Foto kotak aspek rasio 1:1 -->
+                        <div class="aspect-square w-full overflow-hidden bg-gray-100">
+                            <img src="Soil Temperature Humidity Logger.png" alt="Soil Temperature Humidity Logger"
+                                class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3
+                                class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
+                                Soil Temperature Humidity Logger
+                            </h3>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-6">
+                                Penjelasan singkat
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+            <!-- Card 12 -->
+            <div
+                class="hidden extra-activity bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
+                <div
+                    class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
+                    <div>
+                        <!-- Foto kotak aspek rasio 1:1 -->
+                        <div class="aspect-square w-full overflow-hidden bg-gray-100">
+                            <img src="e-Kan.png" alt="e-Kan"
+                                class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3
+                                class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
+                                e-Kan
+                            </h3>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-6">
+                                Instrumen <strong>pengukur panjang dan berat ikan</strong> berbasis AI dan sensor load-cell. Terintegrasi dengan VTS TREKFISH untuk ketertelusuran data tangkapan dan perikanan berkelanjutan.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+            <!-- Card 13 -->
+            <div
+                class="hidden extra-activity bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
+                <div
+                    class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
+                    <div>
+                        <!-- Foto kotak aspek rasio 1:1 -->
+                        <div class="aspect-square w-full overflow-hidden bg-gray-100">
+                            <img src="e-Kan.png" alt="e-Kan"
+                                class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3
+                                class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
+                                e-Kan
+                            </h3>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-6">
+                                Instrumen <strong>pengukur panjang dan berat ikan</strong> berbasis AI dan sensor load-cell. Terintegrasi dengan VTS TREKFISH untuk ketertelusuran data tangkapan dan perikanan berkelanjutan.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="w-full flex justify-center mt-12 mb-8">
+            <button id="btn-selengkapnya" class="bg-[#2A7C13] hover:bg-[#132E22] text-white font-semibold text-sm tracking-wider uppercase px-8 py-3 rounded-full shadow-md transition-all duration-300 flex items-center gap-2 cursor-pointer">
+                <span>SELENGKAPNYA</span>
+                <i class="fa-solid fa-chevron-down transition-transform duration-300" id="icon-selengkapnya"></i>
+            </button>
+        </div>
     </div>
+
 
     <br> <br>
 
@@ -1028,6 +1155,7 @@
         });
 
         // EFEK SEDIMENTASI DIMULAI DARI GARIS ATAS SECTION DAN MENGALIR KE BAWAH MENGIKUTI SCROLL
+        // EFEK SEDIMENTASI DIMULAI DARI GARIS ATAS SECTION DAN MENGALIR KE BAWAH MENGIKUTI SCROLL
         window.addEventListener('scroll', function () {
             const timelineSection = document.getElementById('timelineSection');
             const sedimentSvg = document.getElementById('sedimentFlowSvg');
@@ -1111,10 +1239,8 @@
         }
 
         function copyCode() {
-            // Get full HTML document string
             const htmlContent = document.documentElement.outerHTML;
 
-            // Fallback copy method
             const textarea = document.createElement('textarea');
             textarea.value = htmlContent;
             document.body.appendChild(textarea);
@@ -1128,6 +1254,53 @@
             setTimeout(() => {
                 toast.classList.add('translate-y-20', 'opacity-0');
             }, 3000);
+        }
+        document.addEventListener("DOMContentLoaded", function () {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+
+            document.querySelectorAll('.reveal-on-scroll').forEach((el) => {
+                observer.observe(el);
+            });
+        });
+        // LOGIKA TOMBOL SELENGKAPNYA (AKTIVITAS TERKINI)
+        const btnSelengkapnya = document.getElementById('btn-selengkapnya');
+        const extraActivities = document.querySelectorAll('.extra-activity');
+        const iconSelengkapnya = document.getElementById('icon-selengkapnya');
+        let isExpanded = false;
+
+        if (btnSelengkapnya) {
+            btnSelengkapnya.addEventListener('click', function () {
+                isExpanded = !isExpanded;
+
+                extraActivities.forEach(card => {
+                    if (isExpanded) {
+                        card.classList.remove('hidden');
+                        // Animasi fade in sederhana dari Tailwind
+                        card.classList.add('animate-fade-in');
+                    } else {
+                        card.classList.add('hidden');
+                        card.classList.remove('animate-fade-in');
+                    }
+                });
+
+                // Ubah teks dan arah panah
+                if (isExpanded) {
+                    btnSelengkapnya.querySelector('span').innerText = 'Lebih Sedikit';
+                    iconSelengkapnya.classList.replace('fa-chevron-down', 'fa-chevron-up');
+                } else {
+                    btnSelengkapnya.querySelector('span').innerText = 'Selengkapnya';
+                    iconSelengkapnya.classList.replace('fa-chevron-up', 'fa-chevron-down');
+
+                    // Scroll kembali ke atas bagian aktivitas agar rapi (Opsional)
+                    document.querySelector('.max-w-7xl.mx-auto.mt-10').scrollIntoView({ behavior: 'smooth' });
+                }
+            });
         }
     </script>
 
