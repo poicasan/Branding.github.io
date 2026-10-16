@@ -283,75 +283,234 @@
             }
         }
 
-        /* RESPONSIVE OVERRIDES: menjaga desain asli, hanya menyesuaikan layar kecil */
-        @media (max-width: 640px) {
-            html,
-            body {
+
+        /* ================= RESPONSIVE HOMEPAGE ALBATROSS ================= */
+
+        /* Tablet dan HP */
+        @media (max-width: 768px) {
+
+            /* Navbar */
+            #navbar {
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+
+            #mobile-menu {
+                max-height: calc(100svh - 90px);
+                overflow-y: auto;
+            }
+
+            /* Hero banner */
+            section:has(.bg-slide) {
+                min-height: 540px;
+                height: 85svh;
+            }
+
+            section:has(.bg-slide)>div:nth-child(2) {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+
+            /* Pembungkus utama: bagian Laguna */
+            body>div[style*="max-width: 1200px"] {
+                padding: 16px 16px 0 !important;
+                gap: 24px !important;
+            }
+
+            body>div[style*="max-width: 1200px"]>h2 {
+                font-size: clamp(24px, 5vw, 32px) !important;
+                line-height: 1.3;
+            }
+
+            /* Foto slider */
+            #lsa-compare {
                 width: 100%;
                 max-width: 100%;
-                overflow-x: hidden;
             }
 
-            /* Hero: biarkan slogan membungkus baris agar tidak melebar keluar layar */
-            section:has(.bg-slide) h1 {
-                font-size: clamp(1.7rem, 7vw, 2.5rem);
+            /* Statistik */
+            #statistik-counter {
+                width: 100%;
+                gap: 20px;
+            }
+
+            #statistik-counter h3 {
+                font-size: clamp(27px, 5vw, 38px);
                 line-height: 1.2;
-                overflow-wrap: anywhere;
+                overflow-wrap: normal;
             }
 
-            section:has(.bg-slide) p {
-                max-width: 100%;
-                white-space: normal !important;
-                overflow-wrap: anywhere;
-                font-size: clamp(0.9rem, 3.8vw, 1rem);
-                padding-left: 0.25rem;
-                padding-right: 0.25rem;
+            #statistik-counter h3 span.text-2xl {
+                font-size: clamp(19px, 3.5vw, 25px);
             }
 
-            /* Judul bagian informasi Laguna */
-            body > div[style*="max-width: 1200px"] h2 {
-                font-size: clamp(1.5rem, 6vw, 2rem) !important;
-                line-height: 1.25;
-                overflow-wrap: anywhere;
+            #statistik-counter p {
+                line-height: 1.45;
+                overflow-wrap: normal;
             }
 
-            /* Kartu visi dan misi: ruang dalam lebih proporsional di HP */
+            /* Kartu permasalahan */
+            #statistik-counter~* {
+                min-width: 0;
+            }
+
+            /* Bagian Program & Solusi */
+            .program-card>div.relative {
+                padding: 24px;
+            }
+
+            .program-card h3 {
+                min-height: auto;
+            }
+
+            /* Kartu visi dan misi */
             .visi-misi-card {
-                padding: 20px !important;
+                padding: 22px !important;
             }
 
             .visi-misi-card p {
-                overflow-wrap: anywhere;
+                font-size: 15px !important;
+                line-height: 1.7 !important;
             }
 
-            /* Cegah teks kontak panjang mendorong lebar footer */
-            footer a,
-            footer span {
+            /* Footer */
+            footer {
+                padding: 32px 20px;
+            }
+
+            footer img {
+                max-width: 100%;
+            }
+        }
+
+        /* HP */
+        @media (max-width: 480px) {
+
+            /* Hero */
+            section:has(.bg-slide) {
+                min-height: 500px;
+                height: 78svh;
+            }
+
+            section:has(.bg-slide) h1 {
+                font-size: clamp(27px, 7vw, 34px);
+                letter-spacing: 0.02em;
+                line-height: 1.25;
+            }
+
+            section:has(.bg-slide) p {
+                font-size: 14px;
+                line-height: 1.6;
+            }
+
+            /* Statistik: jaga agar dua angka tetap sebaris */
+            #statistik-counter>div:first-child {
+                gap: 8px;
+            }
+
+            #statistik-counter>div:first-child h3 {
+                font-size: clamp(23px, 6.5vw, 32px);
+                white-space: nowrap;
+            }
+
+            #statistik-counter>div:first-child h3 span.text-2xl {
+                font-size: 18px;
+            }
+
+            #statistik-counter>div:first-child p {
+                font-size: 11px;
+            }
+
+            #statistik-counter>div:last-child h3 {
+                font-size: clamp(29px, 8vw, 38px);
+            }
+
+            #statistik-counter>div:last-child h3 span.text-2xl {
+                font-size: 21px;
+            }
+
+            #statistik-counter>div:last-child p {
+                font-size: 14px;
+            }
+
+            /* Judul bagian */
+            .max-w-6xl.mx-auto.text-center>h1 {
+                font-size: 28px;
+                line-height: 1.25;
+            }
+
+            .max-w-6xl.mx-auto.text-center>h2 {
+                font-size: 18px;
+                line-height: 1.4;
+            }
+
+            /* Kartu Program & Solusi */
+            .program-card>div.relative {
+                padding: 22px 18px;
+            }
+
+            .program-card h3 {
+                font-size: 18px;
+            }
+
+            /* Visi dan misi */
+            .visi-misi-card {
+                padding: 18px !important;
+                border-radius: 14px !important;
+            }
+
+            .visi-misi-card h3 {
+                font-size: 20px !important;
+            }
+
+            /* Footer: cegah teks kontak keluar layar */
+            footer a {
+                align-items: flex-start;
+                min-width: 0;
+            }
+
+            footer a span {
                 min-width: 0;
                 overflow-wrap: anywhere;
             }
 
-            /* Beri jarak aman di sisi layar untuk konten utama */
-            .program-card h3 {
-                overflow-wrap: anywhere;
+            footer .grid {
+                gap: 28px;
             }
         }
 
-        @media (max-width: 380px) {
-            #navbar {
-                padding-left: 12px;
-                padding-right: 12px;
+        /* HP sangat kecil */
+        @media (max-width: 360px) {
+
+            #navbar img {
+                height: 36px;
             }
 
-            section:has(.bg-slide) h1 {
-                font-size: 1.6rem;
+            #logo-circle {
+                width: 44px;
+                height: 44px;
+            }
+
+            #mobile-toggle-btn {
+                font-size: 20px;
+            }
+
+            #statistik-counter>div:first-child h3 {
+                font-size: 22px;
+            }
+
+            #statistik-counter>div:first-child h3 span.text-2xl {
+                font-size: 16px;
+            }
+
+            #statistik-counter>div:first-child p {
+                font-size: 10px;
             }
 
             .visi-misi-card {
-                padding: 16px !important;
+                padding: 15px !important;
             }
         }
-
     </style>
 
 </head>
@@ -596,101 +755,170 @@
             potensi mangrove yang masih perlu dikembangkan.
         </p>
 
-        <!-- Bagian Isu: Foto Kiri dan Teks Kanan -->
-        <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: stretch;">
+        <!-- Pembungkus Foto Slider dan Statistik -->
+        <div class="flex flex-col md:flex-row items-center md:items-center gap-6 w-full">
 
-            <!-- Kolom Foto -->
-            <div class="transition-transform hover:scale-105 duration-300"
-                style="flex: 1 1 400px; min-width: 0; position: relative; align-self: stretch; overflow: hidden; border-radius: 16px;">
+            <!-- Before-After Slider Laguna Segara Anakan -->
+            <div class="flex justify-center items-center w-full md:w-1/2 min-w-0">
+                <div id="lsa-compare" class="relative w-full max-w-xl overflow-hidden rounded-xl shadow-lg select-none"
+                    style="aspect-ratio: 16 / 9; cursor: ew-resize;">
 
-                <img src="sedimentasii.jpeg" alt="Foto Sedimentasi"
-                    style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center bottom; transform: scale(1.15); border-radius: 16px; display: block;" />
-            </div>
+                    <!-- Foto 2023 sebagai latar -->
+                    <img src="LSA2023.png" alt="LSA di tahun 2023" class="absolute inset-0 w-full h-full object-cover"
+                        draggable="false">
 
-            <!-- Kolom Teks Isu -->
-            <div style="flex: 1 1 400px; min-width: 0; display: flex; flex-direction: column; justify-content: center;">
+                    <!-- Foto 1984 yang terlihat sesuai posisi pembatas -->
+                    <div id="lsa-before" class="absolute inset-0 overflow-hidden" style="width: 50%;">
 
-                <div style="font-size: 16px; line-height: 1.6; color: #454545;">
-                    <ul style="margin: 0; padding-left: 20px; list-style-type: disc;">
+                        <img src="LSA1984.png" alt="LSA di tahun 1984"
+                            class="absolute inset-0 max-w-none h-full object-cover" style="width: 100%; height: 100%;"
+                            id="lsa-before-image" draggable="false">
+                    </div>
 
-                        <li style="margin-bottom: 14px;">
-                            <strong>Penyusutan Luas Perairan</strong>
-                            <p style="margin: 4px 0 0; text-align: justify;">
-                                Sedimentasi yang terus berlangsung menyebabkan Laguna Segara Anakan mengalami
-                                pendangkalan
-                                dan penyusutan luas perairan.
-                            </p>
-                        </li>
+                    <!-- Garis pembatas dan pegangan -->
+                    <div id="lsa-divider" class="absolute top-0 bottom-0 z-10"
+                        style="left: 50%; width: 3px; background: white; transform: translateX(-50%);">
 
-                        <li style="margin-bottom: 14px;">
-                            <strong>Ancaman terhadap Ekosistem Mangrove</strong>
-                            <p style="margin: 4px 0 0; text-align: justify;">
-                                Perubahan kondisi kawasan pesisir dapat memengaruhi kelestarian mangrove, termasuk
-                                perannya
-                                sebagai habitat biota dan pelindung alami wilayah pesisir.
-                            </p>
-                        </li>
+                        <div
+                            class="absolute top-1/2 left-1/2 flex h-10 w-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-2 border-white bg-white shadow-md">
+                            <span class="font-bold text-[#2A7C13]">↔</span>
+                        </div>
+                    </div>
 
-                        <li>
-                            <strong>Potensi Mangrove yang Belum Optimal</strong>
-                            <p style="margin: 4px 0 0; text-align: justify;">
-                                Kampung Laut memiliki kawasan mangrove yang berpotensi menjadi sumber daya alam bernilai
-                                guna. Selain berperan penting dalam menjaga keseimbangan ekosistem pesisir, mangrove
-                                juga dapat diolah menjadi berbagai produk. Namun, pemanfaatan potensi tersebut masih
-                                perlu dikembangkan agar dapat memberikan nilai tambah bagi masyarakat.
-                            </p>
-                        </li>
-
-                    </ul>
+                    <!-- Area interaksi -->
+                    <input id="lsa-range" type="range" min="0" max="100" value="50"
+                        aria-label="Geser untuk membandingkan kondisi Laguna Segara Anakan tahun 1984 dan 2023"
+                        class="absolute inset-0 z-20 h-full w-full opacity-0"
+                        style="cursor: ew-resize; touch-action: pan-y;">
                 </div>
             </div>
 
+
+
+            <!-- ================= Section Animasi Angka ================= -->
+            <div class="w-full md:w-1/2 min-w-0 flex items-center justify-center py-4 md:py-0">
+                <div class="w-full max-w-6xl mx-auto px-4 sm:px-6">
+
+                    <div class="flex flex-col items-center gap-6 text-center" id="statistik-counter">
+
+                        <!-- Baris 1: 2906 ha → <400 ha -->
+                        <div class="flex flex-row items-center justify-center gap-2 sm:gap-4 w-full">
+
+                            <!-- Angka 1: 1984 -->
+                            <div class="flex-1 min-w-0 p-1 transition-transform hover:scale-105 duration-300">
+                                <h3 class="font-tech text-4xl sm:text-5xl font-bold text-[#2A7C13] mb-2 drop-shadow-sm">
+                                    <span class="counter" data-target="2906">0</span>
+                                    <span class="text-2xl sm:text-3xl">ha</span>
+                                </h3>
+                                <p class="text-[#454545] font-semibold text-sm sm:text-base">
+                                    Luas Perairan LSA (1984)
+                                </p>
+                            </div>
+
+                            <!-- Panah -->
+                            <div
+                                class="flex-shrink-0 flex items-center justify-center text-[#76C457] text-2xl sm:text-3xl">
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </div>
+
+                            <!-- Angka 2: 2023 -->
+                            <div class="flex-1 min-w-0 p-1 transition-transform hover:scale-105 duration-300">
+                                <h3 class="font-tech text-4xl sm:text-5xl font-bold text-[#2A7C13] mb-2 drop-shadow-sm">
+                                    &lt; <span class="counter" data-target="400">0</span>
+                                    <span class="text-2xl sm:text-3xl">ha</span>
+                                </h3>
+                                <p class="text-[#454545] font-semibold text-sm sm:text-base">
+                                    Luas Perairan LSA (2023)
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <!-- Garis Pembatas Horizontal -->
+                        <div class="w-full h-[2px] bg-[#76C457]"></div>
+
+                        <!-- Angka 3: Sedimen -->
+                        <div class="w-full p-2 transition-transform hover:scale-105 duration-300">
+                            <h3 class="font-tech text-4xl sm:text-5xl font-bold text-[#2A7C13] mb-2 drop-shadow-sm">
+                                <span class="counter" data-target="4.5">0</span>
+                                <span class="text-2xl sm:text-3xl">Juta Ton</span>
+                            </h3>
+                            <p class="text-[#454545] font-semibold text-base sm:text-lg">
+                                Sedimen Masuk per Tahun
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
         </div>
-        <!-- ================= Section Animasi Angka (Counter dengan Tanda Panah) ================= -->
-        <div class="w-full py-10">
-            <div class="max-w-6xl mx-auto px-4 sm:px-6">
-                <div class="flex flex-col md:flex-row items-center justify-around gap-6 text-center"
-                    id="statistik-counter">
+        <br>
+        <div class="max-w-6xl mx-auto text-center">
+            <!-- Judul Utama -->
+            <h1 class="text-3xl md:text-4xl font-bold text-[#2A7C13]">
+                3 Permasalahan Utama
+            </h1>
+            <h2 class="text-xl md:text-1xl font-medium text-[#454545] mt-1">
+                di Laguna Segara Anakan
+            </h2>
 
-                    <!-- Angka 1: 1984 -->
-                    <div class="flex-1 p-2 transition-transform hover:scale-105 duration-300">
-                        <h3 class="font-tech text-4xl sm:text-5xl font-bold text-[#2A7C13] mb-2 drop-shadow-sm">
-                            <span class="counter" data-target="2906">0</span> <span class="text-2xl">ha</span>
-                        </h3>
-                        <p class="text-[#454545] font-semibold text-sm sm:text-base">Luas Perairan LSA (1984)</p>
+            <!-- Garis Kuning Kecil di Bawah Judul -->
+            <div class="w-16 h-1 bg-[#6E3511] mx-auto mt-3 mb-6"></div>
+
+            <!-- Grid 4 Pilar -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- Pilar 1: Penyusutan -->
+                <div class="flex flex-col items-center text-center group">
+                    <div class="h-40 flex items-center justify-center mb-4">
+                        <!-- Ganti src dengan path gambar ilustrasi Anda -->
+                        <img src="penyusutan.jpeg" alt="Penyusutan"
+                            class="max-h-full object-contain transition-transform duration-300 group-hover:scale-105">
                     </div>
+                    <h3 class="text-lg font-bold text-[#454545]">Penyusutan <span class="text-[#76C457]"> <br>Luas
+                            Perairan</span></h3>
+                    <div class="w-8 h-0.5 bg-[#0B2545] my-2"></div>
+                    <p class="text-xs md:text-sm text-[#454545]" style="text-align: justify;">Sedimentasi terus
+                        menggerus
+                        perairan Segara Anakan, memicu <strong>pendangkalan dan penyusutan</strong> yang
+                        <strong>mengancam keseimbangan</strong> ekosistem pesisir.
+                    </p>
+                </div>
 
-                    <!-- TANDA PANAH (Pengganti garis pembatas 1 & 2) -->
-                    <div
-                        class="flex items-center justify-center text-[#76C457] text-2xl sm:text-3xl my-2 md:my-0 transition-transform hover:scale-125 duration-300">
-                        <i class="fa-solid fa-arrow-right md:rotate-0 rotate-90 transition-transform duration-300"></i>
+                <!-- Pilar 2: Ancaman -->
+                <div class="flex flex-col items-center text-center group">
+                    <div class="h-40 flex items-center justify-center mb-4">
+                        <!-- Ganti src dengan path gambar ilustrasi Anda -->
+                        <img src="ancaman.jpeg" alt="Ancaman"
+                            class="max-h-full object-contain transition-transform duration-300 group-hover:scale-105">
                     </div>
+                    <h3 class="text-lg font-bold text-[#454545]">Ancaman <span class="text-[#76C457]">terhadap
+                            <br>Ekosistem Mangrove</span></h3>
+                    <div class="w-8 h-0.5 bg-[#0B2545] my-2"></div>
+                    <p class="text-xs md:text-sm text-[#454545]" style="text-align: justify;">Di tengah perubahan
+                        pesisir, ekosistem mangrove menghadapi ancaman yang dapat <strong>menghilangkan habitat biota
+                            dan melemahkan benteng alami</strong> pelindung pantai.</p>
+                </div>
 
-                    <!-- Angka 2: 2023 -->
-                    <div class="flex-1 p-2 transition-transform hover:scale-105 duration-300">
-                        <h3 class="font-tech text-4xl sm:text-5xl font-bold text-[#2A7C13] mb-2 drop-shadow-sm">
-                            &lt; <span class="counter" data-target="400">0</span> <span class="text-2xl">ha</span>
-                        </h3>
-                        <p class="text-[#454545] font-semibold text-sm sm:text-base">Luas Perairan LSA (2023)</p>
+                <!-- Pilar 3: Potensi -->
+                <div class="flex flex-col items-center text-center group">
+                    <div class="h-40 flex items-center justify-center mb-4">
+                        <!-- Ganti src dengan path gambar ilustrasi Anda -->
+                        <img src="potensi.jpeg" alt="Potensi"
+                            class="max-h-full object-contain transition-transform duration-300 group-hover:scale-105">
                     </div>
-
-                    <!-- Garis Pembatas sebelum Angka 3 (Vertikal di Laptop / Horizontal di HP) -->
-                    <div
-                        class="w-full md:w-[2px] h-[2px] md:h-24 bg-[#76C457] my-2 md:my-0 transition-transform hover:scale-125 duration-300">
-                    </div>
-
-                    <!-- Angka 3: Sedimen -->
-                    <div class="flex-1 p-2 transition-transform hover:scale-105 duration-300">
-                        <h3 class="font-tech text-4xl sm:text-5xl font-bold text-[#2A7C13] mb-2 drop-shadow-sm">
-                            <span class="counter" data-target="4.5">0</span> <span class="text-2xl">Juta Ton</span>
-                        </h3>
-                        <p class="text-[#454545] font-semibold text-sm sm:text-base">Sedimen Masuk per Tahun</p>
-                    </div>
-
+                    <h3 class="text-lg font-bold text-[#454545]">Potensi Mangrove <span class="text-[#76C457]"><br>yang
+                            Belum Optimal</span></h3>
+                    <div class="w-8 h-0.5 bg-[#0B2545] my-2"></div>
+                    <p class="text-xs md:text-sm text-[#454545]" style="text-align: justify;">Potensi mangrove Kampung
+                        Laut menyimpan <strong> peluang besar</strong> bagi alam dan masyarakat. Saatnya mengubah
+                        kekayaan ekologis menjadi <strong>manfaat berkelanjutan</strong> melalui inovasi dan
+                        pemberdayaan.</p>
                 </div>
             </div>
         </div>
 
+        <br>
         <div class="w-screen relative bg-gray-100 py-16 px-4 sm:px-12 mb-0 border-y border-gray-300/70 shadow-inner"
             style="margin-left: calc(50% - 50vw);">
 
@@ -734,8 +962,10 @@
                             </h3>
                             <!-- Deskripsi -->
                             <p class="text-[#454545] text-sm leading-relaxed">
-                                Proyek ALBATROSS berfokus pada perancangan dan pengembangan alat untuk memantau parameter perairan di kawasan Kampung
-                                Laut. Data yang diperoleh diolah dan divisualisasikan dalam bentuk peta untuk memberikan
+                                Proyek ALBATROSS berfokus pada perancangan dan pengembangan alat untuk memantau
+                                parameter perairan di kawasan Kampung
+                                Laut. Data yang diperoleh diolah dan divisualisasikan dalam bentuk peta untuk
+                                memberikan
                                 gambaran kondisi perairan serta mendukung pemantauan aktivitas fauna di kawasan
                                 mangrove.
                             </p>
@@ -767,7 +997,8 @@
                             <p class="text-[#454545] text-sm leading-relaxed">
                                 Kegiatan penanaman mangrove bersama masyarakat setempat sebagai upaya mendukung
                                 pelestarian ekosistem pesisir di Kampung Laut. Mangrove memiliki peran penting dalam
-                                menjaga keseimbangan lingkungan, menyediakan habitat bagi berbagai biota, serta membantu
+                                menjaga keseimbangan lingkungan, menyediakan habitat bagi berbagai biota, serta
+                                membantu
                                 melindungi kawasan pesisir.
                             </p>
                         </div>
@@ -796,7 +1027,8 @@
                             </h3>
                             <!-- Deskripsi -->
                             <p class="text-[#454545] text-sm leading-relaxed">
-                                Mangrove memiliki potensi untuk diolah menjadi berbagai produk bernilai guna. Pengenalan
+                                Mangrove memiliki potensi untuk diolah menjadi berbagai produk bernilai guna.
+                                Pengenalan
                                 dan penyebaran informasi mengenai hasil olahan tersebut
                                 diharapkan dapat meningkatkan wawasan masyarakat tentang potensi produk lokal serta
                                 mendukung pengembangannya agar lebih dikenal luas.
@@ -888,7 +1120,8 @@
                                 <span style="font-size: 16px; line-height: 1.7; color: #454545;">2.</span>
                                 <p
                                     style="font-size: 16px; line-height: 1.7; color: #454545; text-align: justify; margin: 0;">
-                                    Mengolah data lingkungan menjadi informasi yang terstruktur, informatif, dan mudah
+                                    Mengolah data lingkungan menjadi informasi yang terstruktur, informatif, dan
+                                    mudah
                                     dipahami
                                     melalui visualisasi digital.
                                 </p>
@@ -912,7 +1145,8 @@
                                 <span style="font-size: 16px; line-height: 1.7; color: #454545;">4.</span>
                                 <p
                                     style="font-size: 16px; line-height: 1.7; color: #454545; text-align: justify; margin: 0;">
-                                    Mendorong kolaborasi antara akademisi, masyarakat lokal, dan pemangku kepentingan
+                                    Mendorong kolaborasi antara akademisi, masyarakat lokal, dan pemangku
+                                    kepentingan
                                     untuk
                                     mendukung pemantauan serta pengelolaan lingkungan pesisir yang berkelanjutan.
                                 </p>
@@ -1099,6 +1333,35 @@
 
         </div>
     </div>
+
+
+
+    <script>
+        const lsaRange = document.getElementById('lsa-range');
+        const lsaBefore = document.getElementById('lsa-before');
+        const lsaDivider = document.getElementById('lsa-divider');
+        const lsaBeforeImage = document.getElementById('lsa-before-image');
+        const lsaCompare = document.getElementById('lsa-compare');
+
+
+        function updateLSASlider() {
+            const posisi = Number(lsaRange.value);
+
+            lsaBefore.style.width = posisi + '%';
+            lsaDivider.style.left = posisi + '%';
+
+            // Menjaga ukuran foto sesuai kotak utama
+            lsaBeforeImage.style.width = lsaCompare.clientWidth + 'px';
+
+        }
+
+
+        lsaRange.addEventListener('input', updateLSASlider);
+        window.addEventListener('resize', updateLSASlider);
+
+        updateLSASlider();
+    </script>
+
 </body>
 
 </html>
