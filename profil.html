@@ -244,7 +244,9 @@
         /* RESPONSIVE MOBILE OVERRIDES
            Hanya mengatur tata letak pada layar kecil; konten dan desain utama tetap. */
         @media (max-width: 640px) {
-            html, body {
+
+            html,
+            body {
                 max-width: 100%;
                 overflow-x: clip;
             }
@@ -275,7 +277,7 @@
             }
 
             /* Kartu profil tetap bertumpuk seperti desain aslinya. */
-            main > div.max-w-7xl {
+            main>div.max-w-7xl {
                 min-width: 0;
             }
 
@@ -315,8 +317,8 @@
                 max-height: 90dvh;
             }
 
-            #modal-belayan-card > div:first-child,
-            #modal-katalog-card > div:first-child {
+            #modal-belayan-card>div:first-child,
+            #modal-katalog-card>div:first-child {
                 padding: 1rem;
                 gap: 0.75rem;
             }
@@ -387,13 +389,16 @@
                 font-size: 0.75rem;
             }
         }
-    
+
 
         /* RESPONSIVE TAMBAHAN
            Hanya berlaku pada layar mobile; isi, warna, desain desktop,
            tautan, dan JavaScript asli tetap dipertahankan. */
         @media (max-width: 640px) {
-            *, *::before, *::after {
+
+            *,
+            *::before,
+            *::after {
                 box-sizing: border-box;
             }
 
@@ -409,7 +414,7 @@
                 width: 100%;
             }
 
-            #navbar > div {
+            #navbar>div {
                 min-width: 0;
                 gap: 0.5rem;
             }
@@ -420,11 +425,11 @@
             }
 
             .profile-hero,
-            .profile-hero > div {
+            .profile-hero>div {
                 max-width: 100%;
             }
 
-            main > div.max-w-7xl {
+            main>div.max-w-7xl {
                 width: 100%;
                 min-width: 0;
             }
@@ -479,7 +484,6 @@
                 padding: 0.875rem;
             }
         }
-
     </style>
 </head>
 
@@ -596,8 +600,9 @@
                 <img src="sedimen.jpeg" alt="Sedimentasi Segara Anakan"
                     class="absolute inset-0 w-full h-full object-cover">
 
-                <!-- Overlay transisi halus: pekat di kiri (cokelat), lalu memudar ke kanan -->
-                <div class="absolute inset-0 bg-gradient-to-r from-[#543c1d] via-[#543c1d]/40 to-transparent"></div>
+                <div
+                    class="absolute inset-0 bg-gradient-to-b lg:bg-gradient-to-r from-[#543c1d] via-[#543c1d]/40 to-transparent">
+                </div>
             </div>
         </div>
 
@@ -1021,7 +1026,9 @@
                             Swarm Ship
                         </h3>
                         <p class="text-gray-600 text-sm leading-relaxed mb-6" style="text-align: justify;">
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Porro omnis obcaecati dolorum adipisci dicta, ut magni laboriosam eius fuga iusto? Aspernatur ipsam exercitationem fugiat assumenda odio voluptate expedita repellendus commodi.
+                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Porro omnis obcaecati dolorum
+                            adipisci dicta, ut magni laboriosam eius fuga iusto? Aspernatur ipsam exercitationem fugiat
+                            assumenda odio voluptate expedita repellendus commodi.
                         </p>
                     </div>
                 </div>
@@ -1042,7 +1049,9 @@
                             Early Warning Upwelling
                         </h3>
                         <p class="text-gray-600 text-sm leading-relaxed mb-6" style="text-align: justify;">
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Est ipsam natus voluptatibus repudiandae sit possimus, tempora neque vitae perferendis exercitationem aliquam delectus officiis temporibus eius corrupti? Reiciendis ipsam unde recusandae!
+                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Est ipsam natus voluptatibus
+                            repudiandae sit possimus, tempora neque vitae perferendis exercitationem aliquam delectus
+                            officiis temporibus eius corrupti? Reiciendis ipsam unde recusandae!
                         </p>
                     </div>
                 </div>
@@ -1190,7 +1199,9 @@
                             Pelamis IV
                         </h3>
                         <p class="text-gray-600 text-sm leading-relaxed mb-6" style="text-align: justify;">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos debitis voluptatem veritatis ullam accusamus voluptate, pariatur doloribus iure voluptas facere sint eaque temporibus laudantium odit! Expedita distinctio reiciendis ratione unde.
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos debitis voluptatem
+                            veritatis ullam accusamus voluptate, pariatur doloribus iure voluptas facere sint eaque
+                            temporibus laudantium odit! Expedita distinctio reiciendis ratione unde.
                         </p>
                     </div>
                 </div>
@@ -1232,7 +1243,9 @@
                             Soil Temperature Humidity Logger
                         </h3>
                         <p class="text-gray-600 text-sm leading-relaxed mb-6" style="text-align: justify;">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore deleniti esse, qui velit earum similique corporis aliquam maxime voluptatibus culpa eius dicta iusto, pariatur quae in. Nostrum sed dolorum debitis.
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore deleniti esse, qui velit
+                            earum similique corporis aliquam maxime voluptatibus culpa eius dicta iusto, pariatur quae
+                            in. Nostrum sed dolorum debitis.
                         </p>
                     </div>
                 </div>
