@@ -170,7 +170,7 @@
 
         .roadmap-card {
             background: #ffffff;
-            border: 1px solid #e2e8f0;
+            border: 2px solid #543c1d;
             border-radius: 12px;
             padding: 24px;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
@@ -240,6 +240,153 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* RESPONSIVE MOBILE OVERRIDES
+           Hanya mengatur tata letak pada layar kecil; konten dan desain utama tetap. */
+        @media (max-width: 640px) {
+            html, body {
+                max-width: 100%;
+                overflow-x: clip;
+            }
+
+            #navbar {
+                padding: 0.75rem;
+            }
+
+            #navbar img {
+                max-width: 132px;
+            }
+
+            #mobile-menu {
+                max-height: calc(100dvh - 90px);
+                overflow-y: auto;
+            }
+
+            .profile-hero {
+                padding-left: 1rem;
+                padding-right: 1rem;
+                padding-top: 6rem;
+                padding-bottom: 4.5rem;
+            }
+
+            .profile-hero h1 {
+                font-size: clamp(2rem, 9vw, 2.5rem);
+                line-height: 1.15;
+            }
+
+            /* Kartu profil tetap bertumpuk seperti desain aslinya. */
+            main > div.max-w-7xl {
+                min-width: 0;
+            }
+
+            .roadmap-container {
+                padding-top: 1.5rem;
+                padding-bottom: 1.5rem;
+            }
+
+            .roadmap-item {
+                box-sizing: border-box;
+                padding-top: 0.75rem;
+                padding-bottom: 0.75rem;
+                padding-right: 0.25rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .roadmap-card {
+                padding: 1rem;
+                overflow-wrap: anywhere;
+            }
+
+            .roadmap-card span {
+                line-height: 1.5;
+                white-space: normal;
+            }
+
+            /* Modal tetap menggunakan tampilan, warna, dan perilaku yang sama. */
+            #modal-belayan,
+            #modal-katalog {
+                padding: 0.75rem;
+            }
+
+            #modal-belayan-card,
+            #modal-katalog-card {
+                width: 100%;
+                max-width: 100%;
+                max-height: 90dvh;
+            }
+
+            #modal-belayan-card > div:first-child,
+            #modal-katalog-card > div:first-child {
+                padding: 1rem;
+                gap: 0.75rem;
+            }
+
+            #modal-belayan-card h3,
+            #modal-katalog-card h3 {
+                font-size: 1.25rem;
+                line-height: 1.4;
+                overflow-wrap: anywhere;
+            }
+
+            #modal-belayan-card .p-6,
+            #modal-katalog-card .p-6 {
+                padding: 1rem;
+            }
+
+            #toast {
+                left: 1rem;
+                right: 1rem;
+                bottom: 1rem;
+                max-width: calc(100% - 2rem);
+                box-sizing: border-box;
+            }
+
+            #btn-selengkapnya {
+                max-width: 100%;
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+            }
+
+            footer .grid {
+                min-width: 0;
+            }
+
+            footer a,
+            footer span {
+                overflow-wrap: anywhere;
+            }
+
+            #back-to-top {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .roadmap-item {
+                padding-left: 2.75rem;
+            }
+
+            .roadmap-card {
+                padding: 0.8rem;
+            }
+
+            .roadmap-card h3 {
+                font-size: 1rem;
+                line-height: 1.4;
+            }
+
+            .roadmap-card p {
+                font-size: 0.8rem;
+            }
+
+            .visi-misi-card {
+                padding: 1rem;
+            }
+
+            #btn-selengkapnya {
+                font-size: 0.75rem;
+            }
+        }
     </style>
 </head>
 
@@ -308,30 +455,43 @@
     <!-- KONTEN UTAMA -->
     <main>
 
-        <!-- BANNER KONTAK KAMI -->
-        <section class="relative overflow-hidden bg-gray-900 px-5 pt-24 pb-32 sm:pt-32 sm:pb-40">
+        <section class="profile-hero relative isolate overflow-hidden bg-[#543c1d] px-5 py-16 sm:py-20 md:py-24">
             <div class="absolute inset-0 z-0">
-                <img src="bg hubungi.jpg" alt="Latar belakang banner Kontak Kami"
-                    class="w-full h-full object-cover object-[center_60%]">
-                <div class="absolute inset-0 bg-black/50"></div>
+                <img src="bg hubungi.jpg" alt="Latar belakang banner Profil"
+                    class="h-full w-full object-cover object-[center_60%]">
+                <!-- Lapisan gelap untuk menjaga judul tetap terbaca -->
+                <div class="absolute inset-0 bg-black/40"></div>
+                <!-- Warna cokelat memudar di bagian bawah agar menyatu dengan section berikutnya -->
+                <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent via-55% to-[#543c1d]/95">
+                </div>
             </div>
 
-            <div class="relative z-10 max-w-4xl mx-auto text-center">
-                <h1 class="font-tech text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-4 drop-shadow-lg">
+            <div class="relative z-10 mx-auto max-w-4xl text-center">
+                <h1 class="font-tech text-4xl sm:text-5xl md:text-6xl font-bold text-white drop-shadow-lg">
                     PROFIL
                 </h1>
+                <p
+                    class="mx-auto text-white text-xs sm:text-sm md:text-base lg:text-lg max-w-3xl leading-relaxed drop-shadow-md mb-6 sm:mb-10 font-medium px-2">
+                    Di balik Proyek ALBATROSS
+                </p>
+            </div>
+            <!-- Lengkungan tipis sebagai pemisah visual, bukan garis potong lurus -->
+            <div aria-hidden="true"
+                class="absolute -bottom-9 left-[-5%] z-10 h-16 w-[110%] rounded-[50%_50%_0_0] border-t border-white/20 bg-[#543c1d]/70">
             </div>
         </section>
 
-        <br><br><br><br><br>
+        <!-- Jarak yang lebih terkontrol sebelum panel profil -->
+        <div class="h-5 sm:h-7 bg-[#543c1d]"></div>
 
         <!-- Container Utama: Dibuat melayang menimpa banner (Overlapping Card) -->
         <div
-            class="flex flex-col lg:flex-row w-[90%] max-w-7xl mx-auto h-auto lg:h-[450px] relative z-20 -mt-16 lg:-mt-24 rounded-2xl overflow-hidden shadow-2xl bg-[#543c1d]">
+            class="flex flex-col lg:flex-row w-[100%] max-w-7xl mx-auto h-auto lg:h-[420px] relative z-20 -mt-10 lg:-mt-14 overflow-hidden shadow-2xl bg-[#543c1d]">
             <!-- Kolom Kiri: Teks Fakta (Latar Hitam, Ujung Kotak) -->
             <div class="w-full lg:w-5/12 bg-[#543c1d] flex flex-col justify-center px-8 lg:px-20 py-10 rounded-none">
-                <p class="text-1xl leading-relaxed mb-6" style="color: white; text-align: justify;">
-                    MIT+R IPB menghadirkan inovasi berbasis sains dan teknologi untuk menjawab tantangan lingkungan
+                <p class="text-1xl leading-relaxed mb-6" style="color: white; text-align: justify; font-size: 17px;">
+                    <strong>MIT+R IPB</strong> menghadirkan inovasi berbasis sains dan teknologi untuk menjawab
+                    tantangan lingkungan
                     pesisir melalui pemantauan perairan, rehabilitasi mangrove, dan konservasi keanekaragaman hayati.
                     Kami berkomitmen membangun solusi berkelanjutan melalui kolaborasi strategis demi menciptakan dampak
                     nyata bagi lingkungan dan masyarakat.
@@ -352,7 +512,7 @@
 
         <!-- SECTION FULL WIDTH VISI DAN MISI -->
         <div
-            style="position: relative; isolation: isolate; width: 100%; margin-left: calc(50% - 50vw); margin-top: -20px; margin-bottom: 0; padding: 50px 20px; box-sizing: border-box; background: linear-gradient(to bottom, #ffffff 60%, #543c1d 100%);">
+            style="position: relative; isolation: isolate; width: 100%; margin-top: -20px; margin-bottom: 0; padding: 50px 20px; box-sizing: border-box; background: linear-gradient(to bottom, #ffffff 60%, #543c1d 100%);">
 
             <!-- BACKGROUND FOTO FULL LAYAR (Tetap sama) -->
             <div
@@ -364,219 +524,245 @@
                 style="width: 100%; max-width: 1160px; margin: 0 auto; display: flex; flex-direction: column; gap: 22px;">
 
                 <!-- Header Title -->
-                <header class="mb-8 text-center md:text-left">
-                    <h1 class="text-3xl font-bold text-gray-900 tracking-tight" style="text-align: center;">Berita</h1>
-                    <p class="text-gray-600 mt-2" style="text-align: center;">Lorem.</p>
+                <header class="mb-0 text-center md:text-left">
+                    <h1 class="font-tech text-3xl font-bold text-gray-900 tracking-tight" style="text-align: center;">
+                        Kumpulan
+                        Berita Segara Anakan</h1>
+                    <p class="text-gray-600 mt-2" style="text-align: center;">Beragam pemberitaan mengenai kondisi
+                        lingkungan, sedimentasi, dan kelestarian ekosistem mangrove di Segara Anakan.</p>
                 </header>
 
                 <!-- Cards Container Grid -->
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
 
-                    <!-- CARD 1: Hutan Adat Belayan -->
-                    <div
-                        class="card-transition bg-[#2A7C13] border-[3px] border-white rounded-xl shadow-lg p-3 md:p-4 flex flex-col sm:flex-row gap-4 md:gap-6 items-center">
-                        <!-- Image Container (Left Side) -->
-                        <div
-                            class="w-full sm:w-1/2 lg:w-5/12 aspect-[4/5] bg-white rounded-lg p-2 flex items-center justify-center overflow-hidden flex-shrink-0 shadow-md">
-                            <img src="sedimen.jpeg" alt="Sedimen" class="w-full h-full object-cover rounded"
-                                onerror="this.onerror=null; this.src='https://placehold.co/400x500/ffffff/132E22?text=Koran+Hutan+Adat+Belayan';" />
+                    <!-- KARTU BERITA 1 -->
+                    <a href="https://www.kpa.or.id/2024/01/petani-cilacap-harapkan-pengakuan-atas-sawah-sedimentasi-segara-anakan/"
+                        target="_blank" rel="noopener noreferrer"
+                        class="visi-misi-card bg-white rounded-xl shadow-lg p-6 flex flex-col no-underline cursor-pointer"
+                        style="border: 2px solid rgba(110, 53, 17, 0.25); transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;">
+                        <div class="mb-5">
+                            <img src="berita satu.jpg"
+                                alt="Petani Cilacap Harapkan Pengakuan atas Sawah Sedimentasi Segara Anakan"
+                                class="w-full aspect-[4/3] object-cover rounded-lg">
                         </div>
 
-                        <!-- Text Content (Right Side) -->
-                        <div
-                            class="w-full sm:w-1/2 lg:w-7/12 flex flex-col justify-between h-full py-2 pr-2 text-white">
-                            <div>
-                                <h2 class="text-2xl md:text-3xl font-bold leading-tight tracking-tight mb-3">
-                                    Lorem
-                                </h2>
-                                <p class="text-gray-200 text-sm md:text-base leading-relaxed line-clamp-3 mb-6">
-                                    Ipsum
-                                </p>
-                            </div>
+                        <p class="text-sm text-gray-500 mb-3">
+                            17 Januari 2024
+                        </p>
 
-                            <div>
-                                <button onclick="openModal('modal-belayan')"
-                                    class="bg-[#6E3511] hover:bg-brandOrangeHover text-white font-bold text-sm tracking-wider uppercase px-6 py-3 rounded-lg shadow-md transition-colors duration-200 w-full sm:w-auto inline-block text-center cursor-pointer">
-                                    LIHAT BERITA
-                                </button>
-                            </div>
+                        <h2 class="text-xl font-bold text-[#2A7C13] mb-4">
+                            Petani Cilacap Harapkan Pengakuan atas Sawah Sedimentasi Segara Anakan
+                        </h2>
+
+                        <div class="mt-auto pt-3 flex items-center gap-2 text-[#543c1d] font-semibold text-sm">
+                            Baca selengkapnya
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
                         </div>
-                    </div>
+                    </a>
 
-                    <!-- CARD 2: Katalog Produk -->
-                    <div
-                        class="card-transition bg-[#2A7C13] border-[3px] border-white rounded-xl shadow-lg p-3 md:p-4 flex flex-col sm:flex-row gap-4 md:gap-6 items-center">
-                        <!-- Image Container (Left Side) -->
-                        <div
-                            class="w-full sm:w-1/2 lg:w-5/12 aspect-[4/5] bg-white rounded-lg p-2 flex items-center justify-center overflow-hidden flex-shrink-0 shadow-md">
-                            <img src="https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=600&q=80"
-                                alt="Katalog Produk KKI Warsi" class="w-full h-full object-cover rounded"
-                                onerror="this.onerror=null; this.src='https://placehold.co/400x500/ffffff/132E22?text=Katalog+Produk';">
+
+                    <!-- KARTU BERITA 2 -->
+                    <a href="https://www.antaranews.com/berita/3762855/mencermati-ancaman-hilangnya-segara-anakan-cilacap"
+                        target="_blank" rel="noopener noreferrer"
+                        class="visi-misi-card bg-white rounded-xl shadow-lg p-6 flex flex-col no-underline cursor-pointer"
+                        style="border: 2px solid rgba(110, 53, 17, 0.25); transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;">
+                        <div class="mb-5">
+                            <img src="berita dua.webp" alt="Mencermati ancaman hilangnya Segara Anakan Cilacap"
+                                class="w-full aspect-[4/3] object-cover rounded-lg">
                         </div>
 
-                        <!-- Text Content (Right Side) -->
-                        <div
-                            class="w-full sm:w-1/2 lg:w-7/12 flex flex-col justify-between h-full py-2 pr-2 text-white">
-                            <div>
-                                <h2 class="text-2xl md:text-3xl font-bold leading-tight tracking-tight mb-3">
-                                    lorem
-                                </h2>
-                                <p class="text-gray-200 text-sm md:text-base leading-relaxed line-clamp-3 mb-6">
-                                    lorem
-                                </p>
-                            </div>
+                        <p class="text-sm text-gray-500 mb-3">
+                            8 Oktober 2023
+                        </p>
 
-                            <div>
-                                <button onclick="openModal('modal-katalog')"
-                                    class="bg-[#6E3511] hover:bg-brandOrangeHover text-white font-bold text-sm tracking-wider uppercase px-6 py-3 rounded-lg shadow-md transition-colors duration-200 w-full sm:w-auto inline-block text-center cursor-pointer">
-                                    LIHAT BERITA
-                                </button>
-                            </div>
+                        <h2 class="text-xl font-bold text-[#2A7C13] mb-4">
+                            Mencermati ancaman hilangnya Segara Anakan Cilacap
+                        </h2>
+
+                        <div class="mt-auto pt-3 flex items-center gap-2 text-[#543c1d] font-semibold text-sm">
+                            Baca selengkapnya
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
                         </div>
-                    </div>
+                    </a>
+
+
+                    <!-- KARTU BERITA 3 -->
+                    <a href="https://darilaut.id/berita/kerusakan-hutan-bakau-segara-anakan-merugikan-nelayan"
+                        target="_blank" rel="noopener noreferrer"
+                        class="visi-misi-card bg-white rounded-xl shadow-lg p-6 flex flex-col no-underline cursor-pointer"
+                        style="border: 2px solid rgba(110, 53, 17, 0.25); transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;">
+
+                        <div class="mb-5">
+                            <img src="berita tiga.jpg" alt="Kerusakan Hutan Bakau Segara Anakan Merugikan Nelayan"
+                                class="w-full aspect-[4/3] object-cover rounded-lg">
+                        </div>
+
+                        <p class="text-sm text-gray-500 mb-3">
+                            25 September 2020
+                        </p>
+
+                        <h2 class="text-xl font-bold text-[#2A7C13] mb-4">
+                            Kerusakan Hutan Bakau Segara Anakan Merugikan Nelayan
+                        </h2>
+
+                        <div class="mt-auto pt-3 flex items-center gap-2 text-[#543c1d] font-semibold text-sm">
+                            Baca selengkapnya
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </div>
+                    </a>
 
                 </div>
-            </div>
 
-            <!-- MODAL 1: Detail Hutan Adat Belayan -->
-            <div id="modal-belayan"
-                class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
-                <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] flex flex-col overflow-hidden shadow-2xl transform scale-95 transition-transform duration-300"
-                    id="modal-belayan-card">
-                    <!-- Modal Header -->
-                    <div
-                        class="bg-brandDarkGreen text-white p-6 flex justify-between items-start border-b border-brandGreenBorder">
-                        <div>
-                            <span
-                                class="bg-brandOrange text-xs font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">Berita
-                                Utama</span>
-                            <h3 class="text-2xl font-bold mt-2">Hutan Adat Belayan</h3>
-                        </div>
-                        <button onclick="closeModal('modal-belayan')"
-                            class="text-gray-300 hover:text-white p-2 rounded-lg hover:bg-white/10 transition-colors">
-                            <i class="fa-solid fa-xmark text-xl"></i>
-                        </button>
-                    </div>
-
-                    <!-- Modal Body -->
-                    <div class="p-6 overflow-y-auto space-y-4 text-gray-700 leading-relaxed">
-                        <p class="text-lg font-medium text-gray-900 border-l-4 border-brandOrange pl-4 py-1 italic">
-                            "Menjaga Nafas Kehidupan dan Warisan Leluhur Masyarakat Tenggalan"
-                        </p>
-
-                        <p>
-                            <strong>Desa Belayan</strong> — Bagi masyarakat adat Tenggalan yang hidup di Desa Belayan,
-                            hutan bukan sekadar bentangan pepohonan, melainkan identitas, ruang hidup, dan warisan
-                            leluhur yang harus dijaga keberlangsungannya. Keberadaan hutan adat ini memainkan peran
-                            penting dalam menjaga keseimbangan ekosistem lokal serta mendukung kelangsungan hidup
-                            generasi mendatang.
-                        </p>
-
-                        <h4 class="text-lg font-bold text-gray-900 pt-2">Menjaga Tradisi di Tengah Modernisasi</h4>
-                        <p>
-                            Secara turun-temurun, masyarakat adat Tenggalan menggantungkan kebutuhan hidup mereka dari
-                            hasil alam yang dikelola secara bijaksana. Melalui aturan adat yang ketat, pemanfaatan hasil
-                            hutan dilakukan dengan prinsip keberlanjutan. Setiap pemanfaatan lahan dan hasil bumi harus
-                            melalui proses kesepakatan bersama demi mencegah kerusakan lingkungan.
-                        </p>
-
-                        <div class="bg-gray-50 border border-gray-200 rounded-xl p-4 my-3 text-sm text-gray-600">
-                            <i class="fa-solid fa-quote-left text-brandOrange text-xl block mb-1"></i>
-                            "Hutan adalah ibarat rumah bagi kami. Jika hutan rusak, maka hilang pula bagian dari
-                            kehidupan dan kebudayaan kami," ujar salah satu tokoh adat Desa Belayan.
+                <!-- MODAL 1: Detail Hutan Adat Belayan -->
+                <div id="modal-belayan"
+                    class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
+                    <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] flex flex-col overflow-hidden shadow-2xl transform scale-95 transition-transform duration-300"
+                        id="modal-belayan-card">
+                        <!-- Modal Header -->
+                        <div
+                            class="bg-brandDarkGreen text-white p-6 flex justify-between items-start border-b border-brandGreenBorder">
+                            <div>
+                                <span
+                                    class="bg-brandOrange text-xs font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">Berita
+                                    Utama</span>
+                                <h3 class="text-2xl font-bold mt-2">Hutan Adat Belayan</h3>
+                            </div>
+                            <button onclick="closeModal('modal-belayan')"
+                                class="text-gray-300 hover:text-white p-2 rounded-lg hover:bg-white/10 transition-colors">
+                                <i class="fa-solid fa-xmark text-xl"></i>
+                            </button>
                         </div>
 
-                        <h4 class="text-lg font-bold text-gray-900 pt-2">Upaya Pengakuan dan Perlindungan Hukum</h4>
-                        <p>
-                            Upaya pengakuan status Hutan Adat Belayan menjadi langkah krusial untuk melindungi wilayah
-                            ini dari ancaman alih fungsi lahan dan eksploitasi skala besar. Melalui pendampingan
-                            berkelanjutan dari berbagai pihak, masyarakat adat terus berjuang memastikan hak-hak
-                            pengelolaan wilayah adat mereka terjamin secara hukum.
-                        </p>
-                        <p>
-                            Dengan adanya kepastian hukum dan pengelolaan berbasis kearifan lokal, Hutan Adat Belayan
-                            diharapkan dapat terus menjadi benteng kelestarian alam sekaligus penyokong ekonomi bagi
-                            masyarakat lokal.
-                        </p>
-                    </div>
+                        <!-- Modal Body -->
+                        <div class="p-6 overflow-y-auto space-y-4 text-gray-700 leading-relaxed">
+                            <p class="text-lg font-medium text-gray-900 border-l-4 border-brandOrange pl-4 py-1 italic">
+                                "Menjaga Nafas Kehidupan dan Warisan Leluhur Masyarakat Tenggalan"
+                            </p>
 
-                    <!-- Modal Footer -->
-                    <div class="bg-gray-50 p-4 border-t border-gray-200 flex justify-end">
-                        <button onclick="closeModal('modal-belayan')"
-                            class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold px-5 py-2 rounded-lg transition-colors">
-                            Tutup
-                        </button>
+                            <p>
+                                <strong>Desa Belayan</strong> — Bagi masyarakat adat Tenggalan yang hidup di Desa
+                                Belayan,
+                                hutan bukan sekadar bentangan pepohonan, melainkan identitas, ruang hidup, dan warisan
+                                leluhur yang harus dijaga keberlangsungannya. Keberadaan hutan adat ini memainkan peran
+                                penting dalam menjaga keseimbangan ekosistem lokal serta mendukung kelangsungan hidup
+                                generasi mendatang.
+                            </p>
+
+                            <h4 class="text-lg font-bold text-gray-900 pt-2">Menjaga Tradisi di Tengah Modernisasi</h4>
+                            <p>
+                                Secara turun-temurun, masyarakat adat Tenggalan menggantungkan kebutuhan hidup mereka
+                                dari
+                                hasil alam yang dikelola secara bijaksana. Melalui aturan adat yang ketat, pemanfaatan
+                                hasil
+                                hutan dilakukan dengan prinsip keberlanjutan. Setiap pemanfaatan lahan dan hasil bumi
+                                harus
+                                melalui proses kesepakatan bersama demi mencegah kerusakan lingkungan.
+                            </p>
+
+                            <div class="bg-gray-50 border border-gray-200 rounded-xl p-4 my-3 text-sm text-gray-600">
+                                <i class="fa-solid fa-quote-left text-brandOrange text-xl block mb-1"></i>
+                                "Hutan adalah ibarat rumah bagi kami. Jika hutan rusak, maka hilang pula bagian dari
+                                kehidupan dan kebudayaan kami," ujar salah satu tokoh adat Desa Belayan.
+                            </div>
+
+                            <h4 class="text-lg font-bold text-gray-900 pt-2">Upaya Pengakuan dan Perlindungan Hukum</h4>
+                            <p>
+                                Upaya pengakuan status Hutan Adat Belayan menjadi langkah krusial untuk melindungi
+                                wilayah
+                                ini dari ancaman alih fungsi lahan dan eksploitasi skala besar. Melalui pendampingan
+                                berkelanjutan dari berbagai pihak, masyarakat adat terus berjuang memastikan hak-hak
+                                pengelolaan wilayah adat mereka terjamin secara hukum.
+                            </p>
+                            <p>
+                                Dengan adanya kepastian hukum dan pengelolaan berbasis kearifan lokal, Hutan Adat
+                                Belayan
+                                diharapkan dapat terus menjadi benteng kelestarian alam sekaligus penyokong ekonomi bagi
+                                masyarakat lokal.
+                            </p>
+                        </div>
+
+                        <!-- Modal Footer -->
+                        <div class="bg-gray-50 p-4 border-t border-gray-200 flex justify-end">
+                            <button onclick="closeModal('modal-belayan')"
+                                class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold px-5 py-2 rounded-lg transition-colors">
+                                Tutup
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- MODAL 2: Detail Katalog Produk -->
-            <div id="modal-katalog"
-                class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
-                <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] flex flex-col overflow-hidden shadow-2xl transform scale-95 transition-transform duration-300"
-                    id="modal-katalog-card">
-                    <!-- Modal Header -->
-                    <div
-                        class="bg-brandDarkGreen text-white p-6 flex justify-between items-start border-b border-brandGreenBorder">
-                        <div>
-                            <span
-                                class="bg-brandOrange text-xs font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">Katalog
-                                Produk</span>
-                            <h3 class="text-2xl font-bold mt-2">Katalog Produk Dampingan KKI Warsi Kalimantan Utara</h3>
+                <!-- MODAL 2: Detail Katalog Produk -->
+                <div id="modal-katalog"
+                    class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
+                    <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] flex flex-col overflow-hidden shadow-2xl transform scale-95 transition-transform duration-300"
+                        id="modal-katalog-card">
+                        <!-- Modal Header -->
+                        <div
+                            class="bg-brandDarkGreen text-white p-6 flex justify-between items-start border-b border-brandGreenBorder">
+                            <div>
+                                <span
+                                    class="bg-brandOrange text-xs font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">Katalog
+                                    Produk</span>
+                                <h3 class="text-2xl font-bold mt-2">Katalog Produk Dampingan KKI Warsi Kalimantan Utara
+                                </h3>
+                            </div>
+                            <button onclick="closeModal('modal-katalog')"
+                                class="text-gray-300 hover:text-white p-2 rounded-lg hover:bg-white/10 transition-colors">
+                                <i class="fa-solid fa-xmark text-xl"></i>
+                            </button>
                         </div>
-                        <button onclick="closeModal('modal-katalog')"
-                            class="text-gray-300 hover:text-white p-2 rounded-lg hover:bg-white/10 transition-colors">
-                            <i class="fa-solid fa-xmark text-xl"></i>
-                        </button>
-                    </div>
 
-                    <!-- Modal Body -->
-                    <div class="p-6 overflow-y-auto space-y-4 text-gray-700 leading-relaxed">
-                        <p class="text-lg font-medium text-gray-900 border-l-4 border-brandOrange pl-4 py-1 italic">
-                            "Pemberdayaan Ekonomi Berkelanjutan Berbasis Hasil Hutan Bukan Kayu (HHBK)"
-                        </p>
+                        <!-- Modal Body -->
+                        <div class="p-6 overflow-y-auto space-y-4 text-gray-700 leading-relaxed">
+                            <p class="text-lg font-medium text-gray-900 border-l-4 border-brandOrange pl-4 py-1 italic">
+                                "Pemberdayaan Ekonomi Berkelanjutan Berbasis Hasil Hutan Bukan Kayu (HHBK)"
+                            </p>
 
-                        <p>
-                            Rotan jadi salah satu kekuatan utama, berkembang dari kerajinan tradisional seperti
-                            <strong>Anjat</strong> (tas anyaman khas) hingga aneka produk olahan turunan yang bernilai
-                            jual tinggi. Katalog ini merangkum karya-karya terbaik dari masyarakat adat di Kalimantan
-                            Utara di bawah pendampingan KKI Warsi.
-                        </p>
+                            <p>
+                                Rotan jadi salah satu kekuatan utama, berkembang dari kerajinan tradisional seperti
+                                <strong>Anjat</strong> (tas anyaman khas) hingga aneka produk olahan turunan yang
+                                bernilai
+                                jual tinggi. Katalog ini merangkum karya-karya terbaik dari masyarakat adat di
+                                Kalimantan
+                                Utara di bawah pendampingan KKI Warsi.
+                            </p>
 
-                        <h4 class="text-lg font-bold text-gray-900 pt-2">Produk Unggulan Komunitas:</h4>
-                        <ul class="list-disc list-inside space-y-2 pl-2">
-                            <li><strong>Kerajinan Anyaman Rotan:</strong> Tas Anjat, tempat penyimpanan, mat/tikar ramah
-                                lingkungan.</li>
-                            <li><strong>Minyak & Herbal Alami:</strong> Olahan tanaman obat tradisional hasil budidaya
-                                hutan lokal.</li>
-                            <li><strong>Minuman Khas Adat:</strong> Olahan jahe merah dan rempah-rempah hutan alami.
-                            </li>
-                        </ul>
+                            <h4 class="text-lg font-bold text-gray-900 pt-2">Produk Unggulan Komunitas:</h4>
+                            <ul class="list-disc list-inside space-y-2 pl-2">
+                                <li><strong>Kerajinan Anyaman Rotan:</strong> Tas Anjat, tempat penyimpanan, mat/tikar
+                                    ramah
+                                    lingkungan.</li>
+                                <li><strong>Minyak & Herbal Alami:</strong> Olahan tanaman obat tradisional hasil
+                                    budidaya
+                                    hutan lokal.</li>
+                                <li><strong>Minuman Khas Adat:</strong> Olahan jahe merah dan rempah-rempah hutan alami.
+                                </li>
+                            </ul>
 
-                        <p class="pt-2">
-                            Dengan membeli dan mendukung produk-produk ini, Anda turut mendukung kelestarian hutan
-                            sekaligus kesejahteraan ekonomi komunitas adat local Kalimantan Utara.
-                        </p>
-                    </div>
+                            <p class="pt-2">
+                                Dengan membeli dan mendukung produk-produk ini, Anda turut mendukung kelestarian hutan
+                                sekaligus kesejahteraan ekonomi komunitas adat local Kalimantan Utara.
+                            </p>
+                        </div>
 
-                    <!-- Modal Footer -->
-                    <div class="bg-gray-50 p-4 border-t border-gray-200 flex justify-end">
-                        <button onclick="closeModal('modal-katalog')"
-                            class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold px-5 py-2 rounded-lg transition-colors">
-                            Tutup
-                        </button>
+                        <!-- Modal Footer -->
+                        <div class="bg-gray-50 p-4 border-t border-gray-200 flex justify-end">
+                            <button onclick="closeModal('modal-katalog')"
+                                class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold px-5 py-2 rounded-lg transition-colors">
+                                Tutup
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Notification Toast for Copy -->
-            <div id="toast"
-                class="fixed bottom-5 right-5 bg-gray-900 text-white px-4 py-3 rounded-lg shadow-xl flex items-center gap-2 transform translate-y-20 opacity-0 transition-all duration-300 z-50">
-                <i class="fa-solid fa-circle-check text-green-400"></i>
-                <span>Kode berhasil disalin ke clipboard!</span>
-            </div>
+                <!-- Notification Toast for Copy -->
+                <div id="toast"
+                    class="fixed bottom-5 right-5 bg-gray-900 text-white px-4 py-3 rounded-lg shadow-xl flex items-center gap-2 transform translate-y-20 opacity-0 transition-all duration-300 z-50">
+                    <i class="fa-solid fa-circle-check text-green-400"></i>
+                    <span>Kode berhasil disalin ke clipboard!</span>
+                </div>
 
-        </div>
+            </div>
         </div>
 
         <section id="timelineSection" class="timeline-section-wrapper pt-0 pb-16 px-4 sm:px-6 lg:px-8 pb-32">
@@ -584,24 +770,36 @@
             <!-- 1. DIV LATAR BELAKANG SEDIMENTASI (DENGAN TRANSISI HALUS, PARTIKEL & GELOMBANG) -->
             <div class="sediment-background-layer">
 
-                <!-- Wrapper utama dengan tambahan transisi warna di lapisan paling atas -->
-                <div id="sedimentFlowSvg" class="sediment-svg-flow" style="position: relative; 
-                background-color: #543c1d;
-                background-image: 
-                    linear-gradient(180deg, #543c1d 0%, rgba(176,141,87,0) 8%),
-                    radial-gradient(circle at 15% 25%, #3e2a12 4px, transparent 5px),
-                    radial-gradient(circle at 75% 65%, #2c1d0b 6px, transparent 7px),
-                    radial-gradient(circle at 45% 85%, #473217 8px, transparent 9px),
-                    radial-gradient(circle at 85% 15%, #3e2a12 3px, transparent 4px),
-                    radial-gradient(circle at 25% 90%, #2c1d0b 7px, transparent 8px),
-                    linear-gradient(180deg, rgba(84,60,29,0.95) 0%, rgba(84,60,29,0.98) 100%);
-                background-size: 100% 100%, 120px 120px, 180px 180px, 250px 250px, 90px 90px, 200px 200px, 100% 100%;">
-                    <!-- SVG Gelombang -->
-                    <svg style="position: absolute; bottom: -89px; left: 0; width: 100%; height: 90px; pointer-events: none;"
-                        viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill="rgba(84, 60, 29, 0.98)"
-                            d="M0,0 C240,160 480,-60 720,50 C960,160 1200,-60 1440,50 L1440,0 L0,0 Z"></path>
-                    </svg>
+                <!-- DIV UTAMA SEDIMEN (Animasi scroll JS akan mengatur tinggi div ini) -->
+                <div id="sedimentFlowSvg" class="sediment-svg-flow" style="
+                    position: relative; 
+                    background-color: #543c1d;
+                    /* Motif titik-titik sedimen tetap ada di sini */
+                    background-image: 
+                        radial-gradient(circle at 15% 25%, #3e2a12 4px, transparent 5px),
+                        radial-gradient(circle at 75% 65%, #2c1d0b 6px, transparent 7px),
+                        radial-gradient(circle at 45% 85%, #473217 8px, transparent 9px),
+                        radial-gradient(circle at 85% 15%, #3e2a12 3px, transparent 4px),
+                        radial-gradient(circle at 25% 90%, #2c1d0b 7px, transparent 8px);
+                    background-size: 120px 120px, 180px 180px, 250px 250px, 90px 90px, 200px 200px;
+                ">
+
+                    <!-- EKOR GELOMBANG BAWAH (Menggantung & membawa motif titik-titik) -->
+                    <div style="
+                        position: absolute;
+                        bottom: -99px; /* Posisinya menggantung keluar di bawah kotak utama */
+                        left: 0;
+                        width: 100%;
+                        height: 100px; /* Tingginya dikunci, sehingga gelombang tidak akan pernah tergencet */
+                        background-color: inherit; /* Otomatis mengambil warna #543c1d */
+                        background-image: inherit; /* Otomatis menjiplak motif titik-titik partikel */
+                        background-size: inherit;
+                        /* Topeng CSS memotong bagian bawah div ini menjadi bentuk ombak */
+                        -webkit-mask-image: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 100' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,0 L1440,0 L1440,30 C1200,90 960,-10 720,40 C480,90 240,-10 0,40 L0,0 Z'%3E%3C/path%3E%3C/svg%3E&quot;);
+                        mask-image: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 100' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,0 L1440,0 L1440,30 C1200,90 960,-10 720,40 C480,90 240,-10 0,40 L0,0 Z'%3E%3C/path%3E%3C/svg%3E&quot;);
+                        -webkit-mask-size: 100% 100%;
+                        mask-size: 100% 100%;
+                    "></div>
 
                 </div>
             </div>
@@ -613,7 +811,7 @@
                         class="text-xs font-bold uppercase tracking-widest text-[#FFFFFF] bg-[#76C457]/20 px-3 py-1 rounded-full">Linimasa
                         Waktu</span>
                     <h2 id="timeline-title"
-                        class="font-tech text-3xl sm:text-4xl font-bold text-gray-900 mt-2 transition-colors duration-300">
+                        class="font-tech text-3xl sm:text-4xl font-bold text-[#76C457] mt-2 transition-colors duration-300">
                         Pelaksanaan Kegiatan</h2>
                 </div>
 
@@ -706,7 +904,7 @@
     <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mt-10 relative z-0">
         <!-- Header Section -->
         <div class="text-center max-w-3xl mx-auto mb-16">
-            <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 tracking-tight mb-4">
+            <h2 class="font-tech text-3xl sm:text-4xl font-bold text-gray-900 tracking-tight mb-4">
                 Aktivitas Terkini
             </h2>
             <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
@@ -729,7 +927,7 @@
                             class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
                             Swarm Ship
                         </h3>
-                        <p class="text-gray-600 text-sm leading-relaxed mb-6">
+                        <p class="text-gray-600 text-sm leading-relaxed mb-6" style="text-align: justify;">
                             Penjelasan singkat
                         </p>
                     </div>
@@ -750,7 +948,7 @@
                             class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
                             Early Warning Upwelling
                         </h3>
-                        <p class="text-gray-600 text-sm leading-relaxed mb-6">
+                        <p class="text-gray-600 text-sm leading-relaxed mb-6" style="text-align: justify;">
                             Penjelasan singkat
                         </p>
                     </div>
@@ -770,8 +968,10 @@
                             class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
                             Buoy
                         </h3>
-                        <p class="text-gray-600 text-sm leading-relaxed mb-6">
-                            Penjelasan singkat
+                        <p class="text-gray-600 text-sm leading-relaxed mb-6" style="text-align: justify;">
+                            Alat bantu navigasi di perairan untuk <strong>memandu kapal berlayar</strong> dengan aman,
+                            <strong>menunjukkan arah</strong>,
+                            serta <strong>menghindari bahaya</strong> seperti karang, laut dangkal, atau bangkai kapal
                         </p>
                     </div>
                 </div>
@@ -780,22 +980,20 @@
             <!-- Card 4 -->
             <div
                 class="hidden extra-activity bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
-                <div
-                    class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
-                    <div>
-                        <!-- Foto kotak aspek rasio 1:1 -->
-                        <div class="aspect-square w-full overflow-hidden bg-gray-100">
-                            <img src="N1-AUV.png" alt="N1-AUV" class="w-full h-full object-cover">
-                        </div>
-                        <div class="p-6">
-                            <h3
-                                class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
-                                N1-AUV
-                            </h3>
-                            <p class="text-gray-600 text-sm leading-relaxed mb-6">
-                                Robot bawah air tanpa awak <strong>generasi ke-1</strong> dari Nusantara AUV yang dirancang untuk eksplorasi dan observasi bawah air
-                            </p>
-                        </div>
+                <div>
+                    <!-- Foto kotak aspek rasio 1:1 -->
+                    <div class="aspect-square w-full overflow-hidden bg-gray-100">
+                        <img src="N1-AUV.png" alt="N1-AUV" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3
+                            class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
+                            N1-AUV
+                        </h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-6" style="text-align: justify;">
+                            Robot bawah air tanpa awak <strong>generasi ke-1</strong> dari Nusantara AUV yang
+                            dirancang untuk eksplorasi dan observasi bawah air
+                        </p>
                     </div>
                 </div>
             </div>
@@ -803,22 +1001,20 @@
             <!-- Card 5 -->
             <div
                 class="hidden extra-activity bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
-                <div
-                    class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
-                    <div>
-                        <!-- Foto kotak aspek rasio 1:1 -->
-                        <div class="aspect-square w-full overflow-hidden bg-gray-100">
-                            <img src="N2-AUV.png" alt="Riset Biodiversitas" class="w-full h-full object-cover">
-                        </div>
-                        <div class="p-6">
-                            <h3
-                                class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
-                                N2-AUV 
-                            </h3>
-                            <p class="text-gray-600 text-sm leading-relaxed mb-6">
-                                PRobot bawah air tanpa awak <strong>generasi ke-2</strong> dari Nusantara AUV yang dirancang untuk eksplorasi dan observasi bawah air
-                            </p>
-                        </div>
+                <div>
+                    <!-- Foto kotak aspek rasio 1:1 -->
+                    <div class="aspect-square w-full overflow-hidden bg-gray-100">
+                        <img src="N2-AUV.png" alt="Riset Biodiversitas" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3
+                            class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
+                            N2-AUV
+                        </h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-6" style="text-align: justify;">
+                            PRobot bawah air tanpa awak <strong>generasi ke-2</strong> dari Nusantara AUV yang
+                            dirancang untuk eksplorasi dan observasi bawah air
+                        </p>
                     </div>
                 </div>
             </div>
@@ -827,22 +1023,20 @@
             <!-- Card 6 -->
             <div
                 class="hidden extra-activity bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
-                <div
-                    class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
-                    <div>
-                        <!-- Foto kotak aspek rasio 1:1 -->
-                        <div class="aspect-square w-full overflow-hidden bg-gray-100">
-                            <img src="N3.2-AUV.png" alt="N3.2-AUV" class="w-full h-full object-cover">
-                        </div>
-                        <div class="p-6">
-                            <h3
-                                class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
-                                N3.2-AUV
-                            </h3>
-                            <p class="text-gray-600 text-sm leading-relaxed mb-6">
-                                Robot bawah air tanpa awak <strong>generasi ke-3.2</strong> dari Nusantara AUV yang dirancang untuk eksplorasi dan observasi bawah air
-                            </p>
-                        </div>
+                <div>
+                    <!-- Foto kotak aspek rasio 1:1 -->
+                    <div class="aspect-square w-full overflow-hidden bg-gray-100">
+                        <img src="N3.2-AUV.png" alt="N3.2-AUV" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3
+                            class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
+                            N3.2-AUV
+                        </h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-6" style="text-align: justify;">
+                            Robot bawah air tanpa awak <strong>generasi ke-3.2</strong> dari Nusantara AUV yang
+                            dirancang untuk eksplorasi dan observasi bawah air
+                        </p>
                     </div>
                 </div>
             </div>
@@ -850,22 +1044,20 @@
             <!-- Card 7 -->
             <div
                 class="hidden extra-activity bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
-                <div
-                    class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
-                    <div>
-                        <!-- Foto kotak aspek rasio 1:1 -->
-                        <div class="aspect-square w-full overflow-hidden bg-gray-100">
-                            <img src="N4-AUV.png" alt="N4-AUV" class="w-full h-full object-cover">
-                        </div>
-                        <div class="p-6">
-                            <h3
-                                class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
-                                N4-AUV
-                            </h3>
-                            <p class="text-gray-600 text-sm leading-relaxed mb-6">
-                                Robot bawah air tanpa awak <strong>generasi ke-4</strong> dari Nusantara AUV yang dirancang untuk eksplorasi dan observasi bawah air
-                            </p>
-                        </div>
+                <div>
+                    <!-- Foto kotak aspek rasio 1:1 -->
+                    <div class="aspect-square w-full overflow-hidden bg-gray-100">
+                        <img src="N4-AUV.png" alt="N4-AUV" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3
+                            class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
+                            N4-AUV
+                        </h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-6" style="text-align: justify;">
+                            Robot bawah air tanpa awak <strong>generasi ke-4</strong> dari Nusantara AUV yang
+                            dirancang untuk eksplorasi dan observasi bawah air
+                        </p>
                     </div>
                 </div>
             </div>
@@ -873,22 +1065,20 @@
             <!-- Card 8 -->
             <div
                 class="hidden extra-activity bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
-                <div
-                    class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
-                    <div>
-                        <!-- Foto kotak aspek rasio 1:1 -->
-                        <div class="aspect-square w-full overflow-hidden bg-gray-100">
-                            <img src="N7-AUV.jpg" alt="N7-AUV" class="w-full h-full object-cover">
-                        </div>
-                        <div class="p-6">
-                            <h3
-                                class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
-                                N7-AUV
-                            </h3>
-                            <p class="text-gray-600 text-sm leading-relaxed mb-6">
-                                Robot bawah air tanpa awak <strong>generasi ke-7</strong> dari Nusantara AUV yang dirancang untuk eksplorasi dan observasi bawah air
-                            </p>
-                        </div>
+                <div>
+                    <!-- Foto kotak aspek rasio 1:1 -->
+                    <div class="aspect-square w-full overflow-hidden bg-gray-100">
+                        <img src="N7-AUV.jpg" alt="N7-AUV" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3
+                            class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
+                            N7-AUV
+                        </h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-6" style="text-align: justify;">
+                            Robot bawah air tanpa awak <strong>generasi ke-7</strong> dari Nusantara AUV yang
+                            dirancang untuk eksplorasi dan observasi bawah air
+                        </p>
                     </div>
                 </div>
             </div>
@@ -896,22 +1086,19 @@
             <!-- Card 9 -->
             <div
                 class="hidden extra-activity bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
-                <div
-                    class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
-                    <div>
-                        <!-- Foto kotak aspek rasio 1:1 -->
-                        <div class="aspect-square w-full overflow-hidden bg-gray-100">
-                            <img src="Pelamis IV.png" alt="Pelamis IV" class="w-full h-full object-cover">
-                        </div>
-                        <div class="p-6">
-                            <h3
-                                class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
-                                Pelamis IV
-                            </h3>
-                            <p class="text-gray-600 text-sm leading-relaxed mb-6">
-                                Penjelasan singkat
-                            </p>
-                        </div>
+                <div>
+                    <!-- Foto kotak aspek rasio 1:1 -->
+                    <div class="aspect-square w-full overflow-hidden bg-gray-100">
+                        <img src="Pelamis IV.png" alt="Pelamis IV" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3
+                            class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
+                            Pelamis IV
+                        </h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-6" style="text-align: justify;">
+                            Penjelasan singkat
+                        </p>
                     </div>
                 </div>
             </div>
@@ -919,22 +1106,20 @@
             <!-- Card 10 -->
             <div
                 class="hidden extra-activity bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
-                <div
-                    class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
-                    <div>
-                        <!-- Foto kotak aspek rasio 1:1 -->
-                        <div class="aspect-square w-full overflow-hidden bg-gray-100">
-                            <img src="Pelamis VII.png" alt="Pelamis VII" class="w-full h-full object-cover">
-                        </div>
-                        <div class="p-6">
-                            <h3
-                                class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
-                                Pelamis VII
-                            </h3>
-                            <p class="text-gray-600 text-sm leading-relaxed mb-6">
-                                Penjelasan singkat
-                            </p>
-                        </div>
+                <div>
+                    <!-- Foto kotak aspek rasio 1:1 -->
+                    <div class="aspect-square w-full overflow-hidden bg-gray-100">
+                        <img src="Pelamis VII.png" alt="Pelamis VII" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3
+                            class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
+                            Pelamis VII
+                        </h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-6" style="text-align: justify;">
+                            Kapal kendali jarak jauh dengan sistem monitoring untuk <strong>pemantauan sumberdaya
+                                kelautan.</strong>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -942,85 +1127,97 @@
             <!-- Card 11 -->
             <div
                 class="hidden extra-activity bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
-                <div
-                    class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
-                    <div>
-                        <!-- Foto kotak aspek rasio 1:1 -->
-                        <div class="aspect-square w-full overflow-hidden bg-gray-100">
-                            <img src="Soil Temperature Humidity Logger.png" alt="Soil Temperature Humidity Logger"
-                                class="w-full h-full object-cover">
-                        </div>
-                        <div class="p-6">
-                            <h3
-                                class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
-                                Soil Temperature Humidity Logger
-                            </h3>
-                            <p class="text-gray-600 text-sm leading-relaxed mb-6">
-                                Penjelasan singkat
-                            </p>
-                        </div>
+                <div>
+                    <!-- Foto kotak aspek rasio 1:1 -->
+                    <div class="aspect-square w-full overflow-hidden bg-gray-100">
+                        <img src="Soil Temperature Humidity Logger.png" alt="Soil Temperature Humidity Logger"
+                            class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3
+                            class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
+                            Soil Temperature Humidity Logger
+                        </h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-6" style="text-align: justify;">
+                            Penjelasan singkat
+                        </p>
                     </div>
                 </div>
             </div>
 
-            
+
             <!-- Card 12 -->
             <div
                 class="hidden extra-activity bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
-                <div
-                    class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
-                    <div>
-                        <!-- Foto kotak aspek rasio 1:1 -->
-                        <div class="aspect-square w-full overflow-hidden bg-gray-100">
-                            <img src="e-Kan.png" alt="e-Kan"
-                                class="w-full h-full object-cover">
-                        </div>
-                        <div class="p-6">
-                            <h3
-                                class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
-                                e-Kan
-                            </h3>
-                            <p class="text-gray-600 text-sm leading-relaxed mb-6">
-                                Instrumen <strong>pengukur panjang dan berat ikan</strong> berbasis AI dan sensor load-cell. Terintegrasi dengan VTS TREKFISH untuk ketertelusuran data tangkapan dan perikanan berkelanjutan.
-                            </p>
-                        </div>
+                <div>
+                    <!-- Foto kotak aspek rasio 1:1 -->
+                    <div class="aspect-square w-full overflow-hidden bg-gray-100">
+                        <img src="e-Kan.png" alt="e-Kan" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3
+                            class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
+                            e-Kan
+                        </h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-6" style="text-align: justify;">
+                            Instrumen <strong>pengukur panjang dan berat ikan</strong> berbasis AI dan sensor
+                            load-cell. Terintegrasi dengan VTS TREKFISH untuk ketertelusuran data tangkapan dan
+                            perikanan berkelanjutan.
+                        </p>
                     </div>
                 </div>
             </div>
 
-            
+
             <!-- Card 13 -->
             <div
                 class="hidden extra-activity bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
-                <div
-                    class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
-                    <div>
-                        <!-- Foto kotak aspek rasio 1:1 -->
-                        <div class="aspect-square w-full overflow-hidden bg-gray-100">
-                            <img src="e-Kan.png" alt="e-Kan"
-                                class="w-full h-full object-cover">
-                        </div>
-                        <div class="p-6">
-                            <h3
-                                class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
-                                e-Kan
-                            </h3>
-                            <p class="text-gray-600 text-sm leading-relaxed mb-6">
-                                Instrumen <strong>pengukur panjang dan berat ikan</strong> berbasis AI dan sensor load-cell. Terintegrasi dengan VTS TREKFISH untuk ketertelusuran data tangkapan dan perikanan berkelanjutan.
-                            </p>
-                        </div>
+                <div>
+                    <!-- Foto kotak aspek rasio 1:1 -->
+                    <div class="aspect-square w-full overflow-hidden bg-gray-100">
+                        <img src="hydrophone.png" alt="Hydrophone" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3
+                            class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
+                            Hydrophone
+                        </h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-6" style="text-align: justify;">
+                            Sensor akustik untuk <strong>perekaman suara</strong> di bawah air.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 14 -->
+            <div
+                class="hidden extra-activity bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
+                <div>
+                    <!-- Foto kotak aspek rasio 1:1 -->
+                    <div class="aspect-square w-full overflow-hidden bg-gray-100">
+                        <img src="slk.png" alt="Stasiun Lapang Kelautan" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3
+                            class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
+                            Stasiun Lapang Kelautan
+                        </h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-6" style="text-align: justify;">
+                            Memberikan informasi mengenai <strong>kondisi angin, suhu dan kelembaban udara, suhu air
+                                dan pasang surut</strong> terkini untuk membantu keputusan berlayar.
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
         <div class="w-full flex justify-center mt-12 mb-8">
-            <button id="btn-selengkapnya" class="bg-[#2A7C13] hover:bg-[#132E22] text-white font-semibold text-sm tracking-wider uppercase px-8 py-3 rounded-full shadow-md transition-all duration-300 flex items-center gap-2 cursor-pointer">
+            <button id="btn-selengkapnya"
+                class="bg-[#2A7C13] hover:bg-[#132E22] text-white font-semibold text-sm tracking-wider uppercase px-8 py-3 rounded-full shadow-md transition-all duration-300 flex items-center gap-2 cursor-pointer">
                 <span>SELENGKAPNYA</span>
                 <i class="fa-solid fa-chevron-down transition-transform duration-300" id="icon-selengkapnya"></i>
             </button>
         </div>
     </div>
-
 
     <br> <br>
 
@@ -1085,10 +1282,13 @@
         <div class="absolute inset-0 opacity-15 pointer-events-none"
             style="background-image: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpath d='M30 0l15 15-15 15-15-15zm0 30l15 15-15 15-15-15z' fill='%232A7C13' fill-opacity='0.8' fill-rule='evenodd' /%3E%3C/svg%3E&quot;); background-size: 30px 30px;">
         </div>
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 relative z-10">
-            <div class="text-[#403100] font-semibold text-sm text-center md:text-right">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-center gap-4 relative z-10">
+
+            <!-- Teks/Hak Cipta di tengah -->
+            <div class="text-[#403100] font-semibold text-sm text-center">
                 © 2026 Diklat MIT+R 16. All Rights Reserved.
             </div>
+
         </div>
     </div>
 
@@ -1155,7 +1355,6 @@
         });
 
         // EFEK SEDIMENTASI DIMULAI DARI GARIS ATAS SECTION DAN MENGALIR KE BAWAH MENGIKUTI SCROLL
-        // EFEK SEDIMENTASI DIMULAI DARI GARIS ATAS SECTION DAN MENGALIR KE BAWAH MENGIKUTI SCROLL
         window.addEventListener('scroll', function () {
             const timelineSection = document.getElementById('timelineSection');
             const sedimentSvg = document.getElementById('sedimentFlowSvg');
@@ -1183,11 +1382,11 @@
                         const currentSedimentHeight = scrollProgress * sectionHeight;
 
                         if (currentSedimentHeight > titleBottom) {
-                            timelineTitle.classList.remove('text-gray-900');
+                            timelineTitle.classList.remove('text-[#76C457]');
                             timelineTitle.classList.add('text-white');
                         } else {
                             timelineTitle.classList.remove('text-white');
-                            timelineTitle.classList.add('text-gray-900');
+                            timelineTitle.classList.add('text-[#76C457]');
                         }
                     }
 
@@ -1198,7 +1397,7 @@
                     // Reset warna teks ke warna gelap
                     if (timelineTitle) {
                         timelineTitle.classList.remove('text-white');
-                        timelineTitle.classList.add('text-gray-900');
+                        timelineTitle.classList.add('text-[#76C457]');
                     }
                 }
             }
@@ -1278,27 +1477,29 @@
             btnSelengkapnya.addEventListener('click', function () {
                 isExpanded = !isExpanded;
 
-                extraActivities.forEach(card => {
-                    if (isExpanded) {
-                        card.classList.remove('hidden');
-                        // Animasi fade in sederhana dari Tailwind
-                        card.classList.add('animate-fade-in');
-                    } else {
-                        card.classList.add('hidden');
-                        card.classList.remove('animate-fade-in');
-                    }
-                });
-
-                // Ubah teks dan arah panah
                 if (isExpanded) {
+                    // Saat dibuka: langsung tampilkan elemen, lalu ubah teks/ikon
+                    extraActivities.forEach(card => {
+                        card.classList.remove('hidden');
+                        card.classList.add('animate-fade-in');
+                    });
                     btnSelengkapnya.querySelector('span').innerText = 'Lebih Sedikit';
                     iconSelengkapnya.classList.replace('fa-chevron-down', 'fa-chevron-up');
                 } else {
+                    // Saat ditutup: ubah teks/ikon, scroll dulu, baru sembunyikan elemen
                     btnSelengkapnya.querySelector('span').innerText = 'Selengkapnya';
                     iconSelengkapnya.classList.replace('fa-chevron-up', 'fa-chevron-down');
 
-                    // Scroll kembali ke atas bagian aktivitas agar rapi (Opsional)
+                    // Scroll perlahan ke atas
                     document.querySelector('.max-w-7xl.mx-auto.mt-10').scrollIntoView({ behavior: 'smooth' });
+
+                    // Beri jeda 600ms (waktu yang cukup untuk smooth scroll) sebelum menghilangkan kartu
+                    setTimeout(() => {
+                        extraActivities.forEach(card => {
+                            card.classList.add('hidden');
+                            card.classList.remove('animate-fade-in');
+                        });
+                    }, 800);
                 }
             });
         }
