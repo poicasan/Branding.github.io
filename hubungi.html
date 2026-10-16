@@ -229,6 +229,125 @@
                 padding: 8px;
             }
         }
+
+
+        /* Tambahan responsivitas mobile; konten dan fungsi yang ada tetap dipertahankan */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        img,
+        iframe {
+            max-width: 100%;
+        }
+
+        @media (max-width: 640px) {
+            #navbar {
+                width: 100%;
+                left: 0;
+                right: 0;
+            }
+
+            #mobile-menu {
+                max-width: 100%;
+                overflow-wrap: anywhere;
+            }
+
+            main,
+            section,
+            footer {
+                min-width: 0;
+            }
+
+            .contact-card {
+                grid-template-columns: 8px minmax(0, 1fr);
+                border-radius: 1.25rem;
+            }
+
+            .contact-form-panel {
+                min-width: 0;
+                padding: 1.25rem 1rem;
+            }
+
+            .contact-form-panel h2,
+            main h1,
+            main h2 {
+                overflow-wrap: break-word;
+            }
+
+            .contact-input {
+                min-width: 0;
+                font-size: 16px;
+                padding-left: 42px;
+            }
+
+            textarea.contact-input {
+                padding-top: 1rem;
+            }
+
+            .form-decoration-top {
+                width: 180px;
+                height: 180px;
+                top: -135px;
+                right: -105px;
+            }
+
+            .form-decoration-bottom {
+                width: 150px;
+                height: 150px;
+                bottom: -120px;
+                left: 10%;
+            }
+
+            main section {
+                scroll-margin-top: 80px;
+            }
+
+            main section iframe {
+                height: 280px;
+            }
+
+            footer a {
+                min-width: 0;
+                overflow-wrap: anywhere;
+            }
+
+            footer img {
+                max-width: 100%;
+                height: auto;
+                max-height: 10rem;
+            }
+
+            footer .group {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .contact-card {
+                grid-template-columns: 6px minmax(0, 1fr);
+            }
+
+            .contact-form-panel {
+                padding: 1rem 0.875rem;
+            }
+
+            .contact-input {
+                padding-right: 0.75rem;
+            }
+
+            main section iframe {
+                height: 240px;
+            }
+        }
     </style>
 </head>
 
