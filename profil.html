@@ -577,7 +577,7 @@
         #timelineSection {
             position: relative;
             isolation: isolate;
-            overflow: hidden;
+            overflow: visible;
             background-color: #f8fafc;
         }
 
@@ -802,44 +802,66 @@
 
             <!-- Logo ALBATROSS -->
             <div class="relative flex items-center justify-center">
-                <div id="logo-circle"
-                    class="absolute bg-[#2A7C13] rounded-full w-14 h-14 -z-0 opacity-0 scale-75 transition-all duration-300 ease-in-out pointer-events-none">
-                </div>
 
-                <a href="index.html" id="logo-btn"
+                <!-- Tombol Logo -->
+                <a href="#" id="logo-btn"
                     class="relative z-10 flex items-center justify-center transition-transform hover:scale-105">
-                    <img src="logo ALBATROSS.png" alt="Logo ALBATROSS" class="h-12 w-auto object-contain">
+                    <img src="logo-mitr-yang-sesungguhnya.png" alt="LOGO MITR"
+                        class="h-[51px] w-auto object-contain mx-[10px]">
                 </a>
+                <a href="#" id="logo-btn"
+                    class="relative flex items-center justify-center transition-transform hover:scale-105">
+                    <div id="logo-circle"
+                        class="absolute bg-[#2A7C13] rounded-full w-14 h-14 -z-0 opacity-0 scale-75 transition-all duration-300 ease-in-out pointer-events-none">
+                    </div>
+                    <img src="logo ALBATROSS.png" alt="LOGO ALBATROSS" class="relative z-10 h-12 w-auto object-contain">
+                </a>
+
+
+
             </div>
 
-            <!-- Menu Navigasi -->
+            <!-- Container Kanan -->
             <div class="flex items-center space-x-3">
+
                 <ul id="nav-links"
                     class="hidden md:flex items-center space-x-2 sm:space-x-3 text-xs sm:text-sm font-semibold tracking-wider sm:tracking-widest uppercase transition-all duration-300 py-1 font-inter">
+
                     <li>
                         <a href="index.html"
-                            class="nav-item whitespace-nowrap px-3 sm:px-4 py-2 rounded-full transition-all duration-200 text-white hover:bg-[#76C457]/40 hover:text-white">
-                            <span class="nav-text-wrap">BERANDA<span class="nav-line"></span></span>
+                            class="nav-item whitespace-nowrap px-3 sm:px-4 py-2 rounded-full transition-all duration-200 text-white hover:bg-[#76C457]/40 hover:text-white nav-underline">
+                            <span class="nav-text-wrap">
+                                BERANDA
+                                <span class="nav-line"></span>
+                            </span>
                         </a>
                     </li>
+
                     <li>
                         <a href="profil.html"
-                            class="nav-item whitespace-nowrap px-3 sm:px-4 py-2 rounded-full transition-all duration-200 text-white hover:bg-[#76C457]/40 hover:text-white">
-                            <span class="nav-text-wrap">PROFIL<span class="nav-line"></span></span>
+                            class="nav-item whitespace-nowrap px-3 sm:px-4 py-2 rounded-full transition-all duration-200 text-white hover:bg-[#76C457]/40 hover:text-white nav-underline">
+                            <span class="nav-text-wrap">
+                                PROFIL
+                                <span class="nav-line"></span>
+                            </span>
                         </a>
                     </li>
+
                     <li>
-                        <a href="hubungi.html" aria-current="page"
-                            class="nav-item whitespace-nowrap px-3 sm:px-4 py-2 rounded-full transition-all duration-200 text-white hover:bg-[#76C457]/40 hover:text-white">
-                            <span class="nav-text-wrap">HUBUNGI<span class="nav-line"></span></span>
+                        <a href="hubungi.html"
+                            class="nav-item whitespace-nowrap px-3 sm:px-4 py-2 rounded-full transition-all duration-200 text-white hover:bg-[#76C457]/40 hover:text-white nav-underline">
+                            <span class="nav-text-wrap">
+                                HUBUNGI
+                                <span class="nav-line"></span>
+                            </span>
                         </a>
                     </li>
                 </ul>
 
-                <!-- Tombol Menu Mobile -->
+                <!-- Tombol Mobile -->
                 <button id="mobile-toggle-btn" class="md:hidden text-2xl p-2 transition-colors focus:outline-none"
-                    aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="mobile-menu">
-                    <i id="toggle-icon" class="fa-solid fa-bars"></i>
+                    aria-label="Buka menu navigasi">
+                    <i id="toggle-icon" class="fas fa-bars"></i>
                 </button>
             </div>
         </div>
@@ -849,7 +871,7 @@
             <div class="flex flex-col space-y-2 text-sm font-semibold text-[#76C457]">
                 <a href="index.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">BERANDA</a>
                 <a href="profil.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">PROFIL</a>
-                <a href="hubungi.html" class="px-4 py-3 rounded-lg bg-[#76C457]/20">HUBUNGI</a>
+                <a href="hubungi.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">HUBUNGI</a>
             </div>
         </div>
     </nav>
@@ -1458,49 +1480,71 @@
     <!-- FOOTER -->
     <footer class="bg-[#2A7C13] px-4 sm:px-6 py-10 border-t-[2px] border-[#2A7C13]">
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+
+            <!-- Kolom 1 (Dibuat lebih lebar/span 2): Lokasi, Email, dan WhatsApp -->
             <div class="md:col-span-2 flex flex-col gap-4 text-white">
                 <h3 class="font-bold text-xl mb-2">Kontak Kami</h3>
-                <a href="https://maps.app.goo.gl/mirmGEEjNxX9zrjp9" target="_blank" rel="noopener noreferrer"
-                    class="flex items-start gap-3 hover:text-[#b9e6a4] transition">
+
+                <a href="https://maps.app.goo.gl/mirmGEEjNxX9zrjp9"
+                    class="flex items-start gap-3 hover:text-[#76C457] transition">
                     <i class="fa-solid fa-location-dot text-xl mt-1"></i>
                     <span class="leading-relaxed break-words">
-                        Workshop Instrumentasi dan Robotika Kelautan (Bengkel)
-                        ITK, Babakan, Dramaga, Bogor, Indonesia 16680
+                        Workshop Instrumentasi dan Robotika Kelautan (Bengkel) ITK, Babakan,
+                        Dramaga, Bogor, Indonesia 16680
                     </span>
                 </a>
-                <a href="mailto:diklatmitrxvi@gmail.com"
-                    class="flex items-center gap-3 hover:text-[#b9e6a4] transition">
+
+                <a href="mailto:mitr.ipb@gmail.com" class="flex items-center gap-3 hover:text-[#76C457] transition">
                     <i class="fa-regular fa-envelope text-xl"></i>
-                    <span class="break-all">diklatmitrxvi@gmail.com</span>
+                    <span>diklatmitrxvi@gmail.com</span>
                 </a>
-                <a href="https://wa.me/6283898339620" target="_blank" rel="noopener noreferrer"
-                    class="flex items-start gap-3 hover:text-[#b9e6a4] transition">
-                    <i class="fa-brands fa-whatsapp text-xl mt-1"></i>
+
+                <a href="https://wa.me/6283898339620" class="flex items-center gap-3 hover:text-[#76C457] transition">
+                    <i class="fa-brands fa-whatsapp text-xl"></i>
                     <span class="break-words">+6283898339620 (Deni Rizkiana Anwar Hidayat)</span>
                 </a>
             </div>
 
+            <!-- Kolom 2: Sosial Media -->
             <div class="flex flex-col gap-4 text-white">
                 <h3 class="font-bold text-xl mb-2">Media Sosial</h3>
-                <a href="https://www.instagram.com/dmitr6teen/" target="_blank" rel="noopener noreferrer"
-                    class="flex items-center gap-3 hover:text-[#b9e6a4] transition">
+
+                <a href="https://www.instagram.com/mitr_ipb/"
+                    class="flex items-center gap-3 hover:text-[#76C457] transition">
+                    <i class="fa-brands fa-instagram text-xl"></i>
+                    <span>@mitr_ipb</span>
+                </a>
+                <a href="https://www.instagram.com/dmitr6teen/"
+                    class="flex items-center gap-3 hover:text-[#76C457] transition">
                     <i class="fa-brands fa-instagram text-xl"></i>
                     <span>@dmitr6teen</span>
                 </a>
+                <!-- Kamu bisa tambahkan link LinkedIn atau YouTube di sini jika ada -->
             </div>
 
+            <!-- Kolom 3: Logo dan Tombol Back to Top -->
             <div class="flex flex-col items-start gap-7 text-white">
-                <div class="w-full flex items-center justify-start">
-                    <img src="logo ALBATROSS.png" alt="Logo Albatross" class="h-40 sm:h-56 object-contain">
+                <!-- Tambahkan gap-4 atau gap-6 di sini -->
+                <div class="w-full flex flex-wrap items-center justify-start pb-12">
+                    <div class="flex items-center justify-center w-16 h-16 sm:w-28 sm:h-28 bg-white rounded-full shadow-md shrink-0 p-2 trasnform -translate-x-4 translate-y-8">
+                        <img src="logo-mitr-yang-sesungguhnya.png" alt="Logo MITR" class="h-16 sm:h-[120px] w-auto object-contain">
+                    </div>
+                    <!-- Logo Tambahan -->
+                    <img src="logo ALBATROSS.png" alt="Logo Kedua" class="h-16 sm:h-[150px] w-auto object-contain trasnform -translate-x-4 translate-y-8">
                 </div>
 
+                <!-- Tombol Back to Top -->
                 <div class="w-full flex justify-end mt-auto">
-                    <button id="back-to-top"
+                    <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
                         class="group flex items-center p-3 bg-white text-white rounded-full shadow-md hover:bg-[#FFFFFF] hover:shadow-xl hover:-translate-y-1 transition-all duration-500 ease-in-out cursor-pointer">
+
+                        <!-- Teks yang Muncul Saat Hover (Sekarang di urutan pertama / sebelah kiri) -->
                         <span
                             class="whitespace-nowrap overflow-hidden transition-all duration-500 ease-in-out max-w-0 opacity-0 group-hover:max-w-[160px] group-hover:opacity-100 group-hover:mr-3 group-hover:pl-2 font-semibold text-[#2A7C13]">
                             Kembali ke Atas
                         </span>
+
+                        <!-- Lingkaran Icon Panah (Sekarang di urutan kedua / sebelah kanan) -->
                         <span
                             class="flex items-center justify-center w-7 h-7 bg-white text-[#2A7C13] rounded-full transition-transform duration-500 group-hover:scale-110 shrink-0">
                             <i class="fa-solid fa-arrow-up text-sm"></i>
@@ -1511,11 +1555,14 @@
         </div>
     </footer>
 
-    <!-- BAR HAK CIPTA -->
-    <div class="w-full relative bg-white py-4 px-6 border-t border-[#2A7C13] overflow-hidden">
+    <!-- Tambahan kotak/bar kuning diletakkan di LUAR tag footer aslimu -->
+    <div class="w-full relative bg-[#FFFFFF] py-4 px-6 border-t-[1px] border-[#2A7C13] overflow-hidden">
+
+        <!-- Pola Pattern di Background -->
         <div class="absolute inset-0 opacity-15 pointer-events-none"
             style="background-image: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpath d='M30 0l15 15-15 15-15-15zm0 30l15 15-15 15-15-15z' fill='%232A7C13' fill-opacity='0.8' fill-rule='evenodd' /%3E%3C/svg%3E&quot;); background-size: 30px 30px;">
         </div>
+
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-center gap-4 relative z-10">
 
             <!-- Teks/Hak Cipta di tengah -->
