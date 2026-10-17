@@ -607,47 +607,111 @@
                     style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center bottom; transform: scale(1.15); border-radius: 16px; display: block;" />
             </div>
         </div>
-        <!-- ================= Section Animasi Angka (Counter dengan Tanda Panah) ================= -->
-        <div class="w-full py-10">
-            <div class="max-w-6xl mx-auto px-4 sm:px-6">
-                <div class="flex flex-col md:flex-row items-center justify-around gap-6 text-center"
-                    id="statistik-counter">
 
-                    <!-- Angka 1: 1984 -->
-                    <div class="flex-1 p-2 transition-transform hover:scale-105 duration-300">
-                        <h3 class="font-tech text-4xl sm:text-5xl font-bold text-[#2A7C13] mb-2 drop-shadow-sm">
-                            <span class="counter" data-target="2906">0</span> <span class="text-2xl">ha</span>
-                        </h3>
-                        <p class="text-[#454545] font-semibold text-sm sm:text-base">Luas Perairan LSA (1984)</p>
+        <!-- Pembungkus Foto Slider dan Statistik -->
+        <div class="flex flex-col md:flex-row items-center md:items-center gap-6 w-full">
+
+            <!-- Before-After Slider Laguna Segara Anakan -->
+            <div class="flex justify-center items-center w-full md:w-1/2 min-w-0">
+                <div class="w-full max-w-xl">
+
+                    <!-- Slider foto -->
+                    <div id="lsa-compare" class="relative w-full overflow-hidden rounded-xl shadow-lg select-none"
+                        style="aspect-ratio: 16 / 9; cursor: ew-resize;">
+
+                        <!-- Foto 2023 sebagai latar -->
+                        <img src="LSA2023.png" alt="LSA di tahun 2023"
+                            class="absolute inset-0 w-full h-full object-cover" draggable="false">
+
+                        <!-- Foto 1984 -->
+                        <div id="lsa-before" class="absolute inset-0 overflow-hidden" style="width: 50%;">
+
+                            <img src="LSA1984.png" alt="LSA di tahun 1984"
+                                class="absolute inset-0 max-w-none h-full object-cover"
+                                style="width: 100%; height: 100%;" id="lsa-before-image" draggable="false">
+                        </div>
+
+                        <!-- Garis pembatas dan pegangan -->
+                        <div id="lsa-divider" class="absolute top-0 bottom-0 z-10"
+                            style="left: 50%; width: 3px; background: white; transform: translateX(-50%);">
+
+                            <div class="absolute top-1/2 left-1/2 flex h-10 w-10
+                    -translate-x-1/2 -translate-y-1/2 items-center justify-center
+                    rounded-full border-2 border-white bg-white shadow-md">
+                                <span class="font-bold text-[#2A7C13]">↔</span>
+                            </div>
+                        </div>
+
+                        <!-- Area interaksi -->
+                        <input id="lsa-range" type="range" min="0" max="100" value="50"
+                            aria-label="Geser untuk membandingkan kondisi Laguna Segara Anakan tahun 1984 dan 2023"
+                            class="absolute inset-0 z-20 h-full w-full opacity-0"
+                            style="cursor: ew-resize; touch-action: pan-y;">
                     </div>
 
-                    <!-- TANDA PANAH (Pengganti garis pembatas 1 & 2) -->
-                    <div
-                        class="flex items-center justify-center text-[#76C457] text-2xl sm:text-3xl my-2 md:my-0 transition-transform hover:scale-125 duration-300">
-                        <i class="fa-solid fa-arrow-right md:rotate-0 rotate-90 transition-transform duration-300"></i>
-                    </div>
+                    <!-- Sumber citra -->
+                    <p class="mt-2 text-center text-xs text-gray-500">
+                        Sumber citra: Google Earth
+                    </p>
 
-                    <!-- Angka 2: 2023 -->
-                    <div class="flex-1 p-2 transition-transform hover:scale-105 duration-300">
-                        <h3 class="font-tech text-4xl sm:text-5xl font-bold text-[#2A7C13] mb-2 drop-shadow-sm">
-                            &lt; <span class="counter" data-target="400">0</span> <span class="text-2xl">ha</span>
-                        </h3>
-                        <p class="text-[#454545] font-semibold text-sm sm:text-base">Luas Perairan LSA (2023)</p>
-                    </div>
+                </div>
+            </div>
 
-                    <!-- Garis Pembatas sebelum Angka 3 (Vertikal di Laptop / Horizontal di HP) -->
-                    <div
-                        class="w-full md:w-[2px] h-[2px] md:h-24 bg-[#76C457] my-2 md:my-0 transition-transform hover:scale-125 duration-300">
-                    </div>
 
-                    <!-- Angka 3: Sedimen -->
-                    <div class="flex-1 p-2 transition-transform hover:scale-105 duration-300">
-                        <h3 class="font-tech text-4xl sm:text-5xl font-bold text-[#2A7C13] mb-2 drop-shadow-sm">
-                            <span class="counter" data-target="4.5">0</span> <span class="text-2xl">Juta Ton</span>
-                        </h3>
-                        <p class="text-[#454545] font-semibold text-sm sm:text-base">Sedimen Masuk per Tahun</p>
-                    </div>
+            <!-- ================= Section Animasi Angka ================= -->
+            <div class="w-full md:w-1/2 min-w-0 flex items-center justify-center py-4 md:py-0">
+                <div class="w-full max-w-6xl mx-auto px-4 sm:px-6">
 
+                    <div class="flex flex-col items-center gap-6 text-center" id="statistik-counter">
+
+                        <!-- Baris 1: 2906 ha → <400 ha -->
+                        <div class="flex flex-row items-center justify-center gap-2 sm:gap-4 w-full">
+
+                            <!-- Angka 1: 1984 -->
+                            <div class="flex-1 min-w-0 p-1 transition-transform hover:scale-105 duration-300">
+                                <h3 class="font-tech text-4xl sm:text-5xl font-bold text-[#2A7C13] mb-2 drop-shadow-sm">
+                                    <span class="counter" data-target="2906">0</span>
+                                    <span class="text-2xl sm:text-3xl">ha</span>
+                                </h3>
+                                <p class="text-[#454545] font-semibold text-sm sm:text-base">
+                                    Luas Perairan LSA (1984)
+                                </p>
+                            </div>
+
+                            <!-- Panah -->
+                            <div
+                                class="flex-shrink-0 flex items-center justify-center text-[#76C457] text-2xl sm:text-3xl">
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </div>
+
+                            <!-- Angka 2: 2023 -->
+                            <div class="flex-1 min-w-0 p-1 transition-transform hover:scale-105 duration-300">
+                                <h3 class="font-tech text-4xl sm:text-5xl font-bold text-[#2A7C13] mb-2 drop-shadow-sm">
+                                    &lt; <span class="counter" data-target="400">0</span>
+                                    <span class="text-2xl sm:text-3xl">ha</span>
+                                </h3>
+                                <p class="text-[#454545] font-semibold text-sm sm:text-base">
+                                    Luas Perairan LSA (2023)
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <!-- Garis Pembatas Horizontal -->
+                        <div class="w-full h-[2px] bg-[#76C457]"></div>
+
+                        <!-- Angka 3: Sedimen -->
+                        <div class="w-full p-2 transition-transform hover:scale-105 duration-300">
+                            <h3 class="font-tech text-4xl sm:text-5xl font-bold text-[#2A7C13] mb-2 drop-shadow-sm">
+                                <span class="counter" data-target="4.5">0</span>
+                                <span class="text-2xl sm:text-3xl">Juta Ton</span>
+                            </h3>
+                            <p class="text-[#454545] font-semibold text-base sm:text-lg">
+                                Sedimen Masuk per Tahun
+                            </p>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
@@ -681,7 +745,8 @@
                     <div class="w-8 h-0.5 bg-[#0B2545] my-2"></div>
                     <p class="text-xs md:text-sm text-gray-500" style="text-align: justify;">Sedimentasi terus menggerus
                         perairan Segara Anakan, memicu <strong>pendangkalan dan penyusutan</strong> yang
-                        <strong>mengancam keseimbangan</strong> ekosistem pesisir.</p>
+                        <strong>mengancam keseimbangan</strong> ekosistem pesisir.
+                    </p>
                 </div>
 
                 <!-- Pilar 2: Ancaman -->
@@ -1125,6 +1190,30 @@
                 }
             }
         });
+
+        const lsaRange = document.getElementById('lsa-range');
+        const lsaBefore = document.getElementById('lsa-before');
+        const lsaDivider = document.getElementById('lsa-divider');
+        const lsaBeforeImage = document.getElementById('lsa-before-image');
+        const lsaCompare = document.getElementById('lsa-compare');
+
+
+        function updateLSASlider() {
+            const posisi = Number(lsaRange.value);
+
+            lsaBefore.style.width = posisi + '%';
+            lsaDivider.style.left = posisi + '%';
+
+            // Menjaga ukuran foto sesuai kotak utama
+            lsaBeforeImage.style.width = lsaCompare.clientWidth + 'px';
+
+        }
+
+
+        lsaRange.addEventListener('input', updateLSASlider);
+        window.addEventListener('resize', updateLSASlider);
+
+        updateLSASlider();
     </script>
 
     <footer class="bg-[#2A7C13] px-4 sm:px-6 py-10 border-t-[2px] border-[#2A7C13]">
