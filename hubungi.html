@@ -362,19 +362,25 @@
             <!-- Logo ALBATROSS -->
             <div class="relative flex items-center justify-center">
 
-                <!-- Shape hijau di belakang logo -->
-                <div id="logo-circle"
-                    class="absolute bg-[#2A7C13] rounded-full w-14 h-14 -z-0 opacity-0 scale-75 transition-all duration-300 ease-in-out pointer-events-none">
-                </div>
-
-                <a href="index.html" id="logo-btn"
+                <!-- Tombol Logo -->
+                <a href="#" id="logo-btn"
                     class="relative z-10 flex items-center justify-center transition-transform hover:scale-105">
-                    <img src="logo ALBATROSS.png" alt="Logo ALBATROSS" class="h-12 w-auto object-contain">
+                    <img src="logo-mitr-yang-sesungguhnya.png" alt="LOGO ALBATROSS"
+                        class="h-[51px] w-auto object-contain mx-[10px]">
                 </a>
+                <a href="#" id="logo-btn"
+                    class="relative flex items-center justify-center transition-transform hover:scale-105">
+                    <div id="logo-circle"
+                        class="absolute bg-[#2A7C13] rounded-full w-14 h-14 -z-0 opacity-0 scale-75 transition-all duration-300 ease-in-out pointer-events-none">
+                    </div>
+                    <img src="logo ALBATROSS.png" alt="LOGO ALBATROSS" class="relative z-10 h-12 w-auto object-contain">
+                </a>
+
+
 
             </div>
 
-            <!-- Menu Navigasi -->
+            <!-- Container Kanan -->
             <div class="flex items-center space-x-3">
 
                 <ul id="nav-links"
@@ -382,7 +388,7 @@
 
                     <li>
                         <a href="index.html"
-                            class="nav-item whitespace-nowrap px-3 sm:px-4 py-2 rounded-full transition-all duration-200 text-white hover:bg-[#76C457]/40 hover:text-white">
+                            class="nav-item whitespace-nowrap px-3 sm:px-4 py-2 rounded-full transition-all duration-200 text-white hover:bg-[#76C457]/40 hover:text-white nav-underline">
                             <span class="nav-text-wrap">
                                 BERANDA
                                 <span class="nav-line"></span>
@@ -392,7 +398,7 @@
 
                     <li>
                         <a href="profil.html"
-                            class="nav-item whitespace-nowrap px-3 sm:px-4 py-2 rounded-full transition-all duration-200 text-white hover:bg-[#76C457]/40 hover:text-white">
+                            class="nav-item whitespace-nowrap px-3 sm:px-4 py-2 rounded-full transition-all duration-200 text-white hover:bg-[#76C457]/40 hover:text-white nav-underline">
                             <span class="nav-text-wrap">
                                 PROFIL
                                 <span class="nav-line"></span>
@@ -401,43 +407,30 @@
                     </li>
 
                     <li>
-                        <a href="hubungi.html" aria-current="page"
-                            class="nav-item whitespace-nowrap px-3 sm:px-4 py-2 rounded-full transition-all duration-200 text-white hover:bg-[#76C457]/40 hover:text-white">
+                        <a href="hubungi.html"
+                            class="nav-item whitespace-nowrap px-3 sm:px-4 py-2 rounded-full transition-all duration-200 text-white hover:bg-[#76C457]/40 hover:text-white nav-underline">
                             <span class="nav-text-wrap">
                                 HUBUNGI
                                 <span class="nav-line"></span>
                             </span>
                         </a>
                     </li>
-
                 </ul>
 
-                <!-- Tombol Menu Mobile -->
+                <!-- Tombol Mobile -->
                 <button id="mobile-toggle-btn" class="md:hidden text-2xl p-2 transition-colors focus:outline-none"
-                    aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="mobile-menu">
-                    <i id="toggle-icon" class="fa-solid fa-bars"></i>
+                    aria-label="Buka menu navigasi">
+                    <i id="toggle-icon" class="fas fa-bars"></i>
                 </button>
-
             </div>
         </div>
 
         <!-- Menu Mobile -->
         <div id="mobile-menu" class="hidden md:hidden bg-white mt-4 rounded-xl shadow-lg p-4">
-
             <div class="flex flex-col space-y-2 text-sm font-semibold text-[#76C457]">
-
-                <a href="index.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">
-                    BERANDA
-                </a>
-
-                <a href="profil.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">
-                    PROFIL
-                </a>
-
-                <a href="hubungi.html" class="px-4 py-3 rounded-lg bg-[#76C457]/20">
-                    HUBUNGI
-                </a>
-
+                <a href="index.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">BERANDA</a>
+                <a href="profil.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">PROFIL</a>
+                <a href="hubungi.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">HUBUNGI</a>
             </div>
         </div>
     </nav>
@@ -603,8 +596,7 @@
                     </span>
                 </a>
 
-                <a href="mailto:diklatmitrxvi@gmail.com"
-                    class="flex items-center gap-3 hover:text-[#76C457] transition">
+                <a href="mailto:mitr.ipb@gmail.com" class="flex items-center gap-3 hover:text-[#76C457] transition">
                     <i class="fa-regular fa-envelope text-xl"></i>
                     <span>diklatmitrxvi@gmail.com</span>
                 </a>
@@ -619,6 +611,11 @@
             <div class="flex flex-col gap-4 text-white">
                 <h3 class="font-bold text-xl mb-2">Media Sosial</h3>
 
+                <a href="https://www.instagram.com/mitr_ipb/"
+                    class="flex items-center gap-3 hover:text-[#76C457] transition">
+                    <i class="fa-brands fa-instagram text-xl"></i>
+                    <span>@mitr_ipb</span>
+                </a>
                 <a href="https://www.instagram.com/dmitr6teen/"
                     class="flex items-center gap-3 hover:text-[#76C457] transition">
                     <i class="fa-brands fa-instagram text-xl"></i>
@@ -629,10 +626,13 @@
 
             <!-- Kolom 3: Logo dan Tombol Back to Top -->
             <div class="flex flex-col items-start gap-7 text-white">
-                <!-- Tempat untuk Logo MIT+R -->
-                <div class="w-full flex items-center justify-start">
-                    <!-- Ganti "URL_LOGO_KAMU.png" dengan path/link logo yang sebenarnya -->
-                    <img src="logo ALBATROSS.png" alt="Logo Albatross" class="h-40 sm:h-56 object-contain">
+                <!-- Tambahkan gap-4 atau gap-6 di sini -->
+                <div class="w-full flex flex-wrap items-center justify-start pb-12">
+                    <div class="flex items-center justify-center w-16 h-16 sm:w-28 sm:h-28 bg-white rounded-full shadow-md shrink-0 p-2 trasnform -translate-x-4 translate-y-8">
+                        <img src="logo-mitr-yang-sesungguhnya.png" alt="Logo Albatross" class="h-16 sm:h-[120px] w-auto object-contain">
+                    </div>
+                    <!-- Logo Tambahan -->
+                    <img src="logo ALBATROSS.png" alt="Logo Kedua" class="h-16 sm:h-[150px] w-auto object-contain trasnform -translate-x-4 translate-y-8">
                 </div>
 
                 <!-- Tombol Back to Top -->
@@ -671,6 +671,7 @@
             <div class="text-[#403100] font-semibold text-sm text-center">
                 © 2026 Diklat MIT+R 16. All Rights Reserved.
             </div>
+
         </div>
     </div>
 
