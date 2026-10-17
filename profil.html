@@ -496,38 +496,20 @@
             position: relative;
             isolation: isolate;
             overflow: hidden;
-            background-color: #f4f4f0;
 
-            /* Lingkaran kecil dan besar yang terpisah */
+            /* Ubah bagian background-image dengan menambahkan linear-gradient di bagian akhir */
             background-image:
                 /* Kecil: kiri atas */
-                radial-gradient(circle at 9% 16%,
-                    transparent 0 17px,
-                    rgba(91, 125, 65, 0.16) 18px 22px,
-                    transparent 23px),
-
+                radial-gradient(circle at 9% 16%, transparent 0 17px, rgba(91, 125, 65, 0.16) 18px 22px, transparent 23px),
                 /* Kecil: kanan tengah */
-                radial-gradient(circle at 93% 43%,
-                    transparent 0 23px,
-                    rgba(91, 125, 65, 0.15) 24px 29px,
-                    transparent 30px),
-
+                radial-gradient(circle at 93% 43%, transparent 0 23px, rgba(91, 125, 65, 0.15) 24px 29px, transparent 30px),
                 /* Kecil: kiri tengah bawah */
-                radial-gradient(circle at 25% 77%,
-                    transparent 0 10px,
-                    rgba(91, 125, 65, 0.14) 11px 15px,
-                    transparent 16px),
-
+                radial-gradient(circle at 25% 77%, transparent 0 10px, rgba(91, 125, 65, 0.14) 11px 15px, transparent 16px),
                 /* Besar: kanan bawah */
-                radial-gradient(circle at 72% 82%,
-                    transparent 0 48px,
-                    rgba(91, 125, 65, 0.13) 49px 59px,
-                    transparent 60px),
-
+                radial-gradient(circle at 72% 82%, transparent 0 48px, rgba(255, 255, 255, 0.13) 49px 59px, transparent 60px),
                 /* Titik kecil: kanan atas */
-                radial-gradient(circle at 78% 17%,
-                    rgba(91, 125, 65, 0.12) 0 8px,
-                    transparent 9px);
+                radial-gradient(circle at 78% 17%, rgba(91, 125, 65, 0.12) 0 8px, transparent 9px),
+                linear-gradient(to bottom, #f4f4f0 45%, #543c1d 100%);
         }
 
         /* Lingkaran besar kanan atas */
@@ -539,21 +521,6 @@
             width: 190px;
             height: 190px;
             border: 22px solid rgba(91, 125, 65, 0.12);
-            border-radius: 50%;
-            box-sizing: border-box;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        /* Lingkaran besar kiri bawah */
-        .story-section::after {
-            content: "";
-            position: absolute;
-            bottom: -105px;
-            left: -90px;
-            width: 230px;
-            height: 230px;
-            border: 24px solid rgba(91, 125, 65, 0.10);
             border-radius: 50%;
             box-sizing: border-box;
             pointer-events: none;
@@ -577,25 +544,12 @@
         @media (max-width: 640px) {
             .story-section {
                 background-image:
-                    radial-gradient(circle at 9% 16%,
-                        transparent 0 12px,
-                        rgba(91, 125, 65, 0.16) 13px 16px,
-                        transparent 17px),
-                    radial-gradient(circle at 93% 43%,
-                        transparent 0 16px,
-                        rgba(91, 125, 65, 0.15) 17px 21px,
-                        transparent 22px),
-                    radial-gradient(circle at 25% 77%,
-                        transparent 0 7px,
-                        rgba(91, 125, 65, 0.14) 8px 11px,
-                        transparent 12px),
-                    radial-gradient(circle at 72% 82%,
-                        transparent 0 34px,
-                        rgba(91, 125, 65, 0.13) 35px 42px,
-                        transparent 43px),
-                    radial-gradient(circle at 78% 17%,
-                        rgba(91, 125, 65, 0.12) 0 6px,
-                        transparent 7px);
+                    radial-gradient(circle at 9% 16%, transparent 0 12px, rgba(91, 125, 65, 0.16) 13px 16px, transparent 17px),
+                    radial-gradient(circle at 93% 43%, transparent 0 16px, rgba(91, 125, 65, 0.15) 17px 21px, transparent 22px),
+                    radial-gradient(circle at 25% 77%, transparent 0 7px, rgba(91, 125, 65, 0.14) 8px 11px, transparent 12px),
+                    radial-gradient(circle at 72% 82%, transparent 0 34px, rgba(255, 255, 255, 0.13) 35px 42px, transparent 43px),
+                    radial-gradient(circle at 78% 17%, rgba(91, 125, 65, 0.12) 0 6px, transparent 7px),
+                    linear-gradient(to bottom, #f4f4f0 45%, #543c1d 100%);
             }
 
             .story-section::before {
@@ -843,7 +797,7 @@
         </div>
 
         <!-- SEGMEN CERITA KAMI (TAMBAHAN) -->
-        <section class="story-section py-16 px-6 relative z-10">
+        <section class="story-section pt-16 pb-32 px-6 relative z-10">
             <div class="story-content max-w-[900px] mx-auto" style="text-align: justify;">
 
                 <p class="text-base sm:text-lg leading-relaxed text-gray-700 mb-5">
@@ -871,8 +825,7 @@
                     tujuan: <strong>menghadirkan masa depan pesisir yang lebih lestari.</strong>
                 </p>
 
-
-                <hr class="border-0 h-px bg-[#d1d1cd] my-10">
+                <br>
 
 
                 <div class="story-features flex flex-col sm:flex-row justify-center items-center gap-8 sm:gap-16">
@@ -882,7 +835,7 @@
                         <div class="story-feature-icon">
                             <i class="fa-solid fa-microchip" aria-hidden="true"></i>
                         </div>
-                        <h3 class="text-lg font-semibold text-[#2b4c30] m-0">
+                        <h3 class="text-lg font-semibold text-white m-0">
                             Teknologi
                         </h3>
                     </div>
@@ -892,7 +845,7 @@
                         <div class="story-feature-icon">
                             <i class="fa-solid fa-flask-vial" aria-hidden="true"></i>
                         </div>
-                        <h3 class="text-lg font-semibold text-[#2b4c30] m-0">
+                        <h3 class="text-lg font-semibold text-white m-0">
                             Inovasi
                         </h3>
                     </div>
@@ -902,7 +855,7 @@
                         <div class="story-feature-icon">
                             <i class="fa-solid fa-leaf" aria-hidden="true"></i>
                         </div>
-                        <h3 class="text-lg font-semibold text-[#2b4c30] m-0">
+                        <h3 class="text-lg font-semibold text-white m-0">
                             Keberlanjutan
                         </h3>
                     </div>
