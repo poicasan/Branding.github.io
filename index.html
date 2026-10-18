@@ -370,8 +370,8 @@
                 <!-- Tombol Logo -->
                 <a href="#" id="logo-btn"
                     class="relative z-10 flex items-center justify-center transition-transform hover:scale-105">
-                    <img src="logo-mitr-yang-sesungguhnya.png" alt="LOGO MITR"
-                        class="h-[51px] w-auto object-contain mx-[10px]">
+                    <img src="logo mitr.png" alt="LOGO "
+                        class="h-12 w-auto object-contain mx-[10px]">
                 </a>
                 <a href="#" id="logo-btn"
                     class="relative flex items-center justify-center transition-transform hover:scale-105">
@@ -1266,28 +1266,28 @@
             </div>
 
             <!-- Kolom 3: Logo dan Tombol Back to Top -->
-            <div class="flex flex-col items-start gap-7 text-white">
-                <!-- Tambahkan gap-4 atau gap-6 di sini -->
-                <div class="w-full flex flex-wrap items-center justify-start pb-12">
-                    <div class="flex items-center justify-center w-16 h-16 sm:w-28 sm:h-28 bg-white rounded-full shadow-md shrink-0 p-2 trasnform -translate-x-4 translate-y-8">
-                        <img src="logo-mitr-yang-sesungguhnya.png" alt="Logo MITR" class="h-16 sm:h-[120px] w-auto object-contain">
+            <div class="flex flex-col items-start gap-7 text-white h-full">
+                <!-- Bagian Logo Baru Anda -->
+                <div class="w-full flex flex-wrap items-center justify-start pb-12 gap-4">
+                    <!-- Perbaikan typo: trasnform menjadi transform -->
+                    <div
+                        class="flex items-center justify-center w-16 h-16 sm:w-28 sm:h-28 bg-white rounded-full shadow-md shrink-0 p-2 transform -translate-x-4 translate-y-8">
+                        <img src="logo mitr.png" alt="Logo MIT+R"
+                            class="h-16 sm:h-[120px] w-auto object-contain transform -translate-y-1">
                     </div>
                     <!-- Logo Tambahan -->
-                    <img src="logo ALBATROSS.png" alt="Logo Kedua" class="h-16 sm:h-[150px] w-auto object-contain trasnform -translate-x-4 translate-y-8">
+                    <img src="logo ALBATROSS.png" alt="Logo Kedua"
+                        class="h-16 sm:h-[150px] w-auto object-contain transform -translate-x-4 translate-y-8">
                 </div>
 
-                <!-- Tombol Back to Top -->
+                <!-- Tombol Back to Top yang HILANG dikembalikan di sini -->
                 <div class="w-full flex justify-end mt-auto">
-                    <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
+                    <button id="back-to-top"
                         class="group flex items-center p-3 bg-white text-white rounded-full shadow-md hover:bg-[#FFFFFF] hover:shadow-xl hover:-translate-y-1 transition-all duration-500 ease-in-out cursor-pointer">
-
-                        <!-- Teks yang Muncul Saat Hover (Sekarang di urutan pertama / sebelah kiri) -->
                         <span
                             class="whitespace-nowrap overflow-hidden transition-all duration-500 ease-in-out max-w-0 opacity-0 group-hover:max-w-[160px] group-hover:opacity-100 group-hover:mr-3 group-hover:pl-2 font-semibold text-[#2A7C13]">
                             Kembali ke Atas
                         </span>
-
-                        <!-- Lingkaran Icon Panah (Sekarang di urutan kedua / sebelah kanan) -->
                         <span
                             class="flex items-center justify-center w-7 h-7 bg-white text-[#2A7C13] rounded-full transition-transform duration-500 group-hover:scale-110 shrink-0">
                             <i class="fa-solid fa-arrow-up text-sm"></i>
@@ -1295,6 +1295,7 @@
                     </button>
                 </div>
             </div>
+        </div>
         </div>
     </footer>
 
