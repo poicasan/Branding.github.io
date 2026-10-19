@@ -950,6 +950,44 @@
                 transition: none;
             }
         }
+
+
+        /* RESPONSIVE PENJELASAN MIT+R DAN TIM ALBATROSS */
+        @media (max-width: 640px) {
+
+            /* Penjelasan MIT+R */
+            .story-section>div.max-w-6xl:not(.story-content) p {
+                font-size: 1.05rem;
+                line-height: 1.8;
+                text-align: justify;
+                overflow-wrap: break-word;
+            }
+
+            /* Penjelasan Tim ALBATROSS */
+            .team-story-text p {
+                font-size: 1.05rem !important;
+                line-height: 1.8;
+                text-align: justify;
+                overflow-wrap: break-word;
+            }
+
+            /* Mengurangi padding berlapis */
+            .story-section>div.max-w-6xl,
+            .story-section>.team-story-layout {
+                padding-left: 0;
+                padding-right: 0;
+            }
+
+            /* Jarak antarbagian */
+            .story-section>div.max-w-6xl:not(.story-content) {
+                padding-bottom: 1.5rem;
+            }
+
+            .team-story-layout {
+                gap: 1.25rem;
+            }
+
+        }
     </style>
 </head>
 
@@ -1073,7 +1111,7 @@
 
             <!-- Penjelasan MIT+R -->
             <div class="max-w-6xl mx-auto px-6 sm:px-8 lg:px-10 pb-8 relative z-10">
-                <p class="leading-relaxed text-justify" style="color: #454545; font-size: 17px;">
+                <p class="text-base sm:text-lg leading-relaxed text-justify text-gray-700">
                     <strong>MIT+R IPB University</strong> menjadi ruang bagi berkembangnya gagasan dan inovasi berbasis
                     sains dan teknologi untuk menjawab berbagai tantangan nyata. Bagi kami, inovasi bukan sekadar
                     menciptakan sesuatu yang baru, tetapi juga menemukan cara agar ilmu pengetahuan dapat memberikan
@@ -1135,16 +1173,11 @@
                 <!-- Penjelasan di Sebelah Kanan -->
                 <div class="team-story-text">
                     <p class="text-base sm:text-lg leading-relaxed text-gray-700 mb-5">
-                        Berangkat dari semangat tersebut, <strong>Tim ALBATROSS</strong> hadir sebagai bagian dari MIT+R
-                        IPB
-                        University dengan fokus pada pemantauan perairan dan ekosistem pesisir. Melalui pengembangan
-                        teknologi
-                        pemantauan, kami berupaya memperoleh informasi mengenai kondisi perairan dan sedimentasi sebagai
-                        dasar untuk memahami perubahan lingkungan. Namun, bagi kami, teknologi hanyalah salah satu
-                        bagian
-                        dari upaya yang lebih besar. Data perlu diolah menjadi pemahaman, pemahaman perlu mendorong
-                        inovasi,
-                        dan setiap inovasi perlu diarahkan untuk menjaga keberlanjutan lingkungan.
+                        Berangkat dari semangat tersebut, <strong>Tim ALBATROSS</strong> hadir sebagai bagian dari <strong>MIT+R
+                        IPB University</strong>
+                        untuk mengembangkan teknologi pemantauan perairan dan ekosistem pesisir. Melalui pemantauan
+                        kondisi perairan dan sedimentasi, kami berupaya mendukung pemahaman lingkungan serta mendorong
+                        inovasi yang berkelanjutan.
                     </p>
                 </div>
 
