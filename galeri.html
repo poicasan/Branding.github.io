@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeri Progress | ALBATROSS</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anta&family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Konfigurasi Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        anta: ['Anta', 'sans-serif'],
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#2A7C13',
+                        secondary: '#76C457',
+                        dark: '#1a1a1a',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .font-tech {
+            font-family: 'Anta', sans-serif;
+        }
+
+        .nav-text-wrap {
+            position: relative;
+            display: inline-block;
+        }
+
+        .nav-line {
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: currentColor;
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.3s ease-out;
+        }
+
+        .nav-item:hover .nav-line {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        /* Stack Container Perspective - Responsif Mobile */
+        .stack-perspective {
+            perspective: 1200px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .card-stack {
+            position: relative;
+            width: 260px;
+            height: 360px;
+        }
+
+        @media (min-width: 640px) {
+            .card-stack {
+                width: 300px;
+                height: 400px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .card-stack {
+                width: 320px;
+                height: 440px;
+            }
+        }
+
+        /* Base Card Style */
+        .stack-card {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 1.25rem;
+            background: #161e2e;
+            border: 1px solid rgba(118, 196, 87, 1);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            cursor: pointer;
+            user-select: none;
+            transform-origin: center bottom;
+            transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+                box-shadow 0.3s ease,
+                border-color 0.3s ease,
+                z-index 0s linear 0.1s;
+            overflow: hidden;
+        }
+
+        /* Dynamic Shadow Glow */
+        .stack-card:hover {
+            border-color: rgba(118, 196, 87, 1);
+            box-shadow: 0 20px 45px rgba(110, 53, 17, 0.25), 0 0 20px rgba(110, 53, 17, 0.25);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #111827;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #374151;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
+    <!-- STICKY NAVIGATION BAR -->
+    <nav id="navbar"
+        class="fixed top-0 left-0 w-full z-50 p-4 lg:px-12 transition-all duration-300 text-white bg-transparent">
+
+        <div class="max-w-7xl mx-auto flex justify-between items-center relative">
+
+            <!-- Logo ALBATROSS -->
+            <div class="relative flex items-center justify-center">
+                <a href="#" id="logo-btn"
+                    class="relative z-10 flex items-center justify-center transition-transform hover:scale-105 mx-[5px]">
+                    <img src="logo mitr.png" alt="LOGO" class="h-12 w-auto object-contain mx-[10px]">
+                </a>
+                <a href="#" id="logo-btn-2"
+                    class="relative flex items-center justify-center transition-transform hover:scale-105">
+                    <div id="logo-circle"
+                        class="absolute bg-[#2A7C13] rounded-full w-14 h-14 -z-0 opacity-0 scale-75 transition-all duration-300 ease-in-out pointer-events-none">
+                    </div>
+                    <img src="logo ALBATROSS.png" alt="LOGO ALBATROSS" class="relative z-10 h-12 w-auto object-contain">
+                </a>
+            </div>
+
+            <!-- Container Kanan Navigasi -->
+            <div class="flex items-center space-x-3">
+                <ul id="nav-links"
+                    class="hidden md:flex items-center space-x-2 sm:space-x-3 text-xs sm:text-sm font-semibold tracking-wider sm:tracking-widest uppercase transition-all duration-300 py-1 font-inter">
+                    <li>
+                        <a href="index.html"
+                            class="nav-item whitespace-nowrap px-3 sm:px-4 py-2 rounded-full transition-all duration-200 text-white hover:bg-[#76C457]/40 hover:text-white nav-underline">
+                            <span class="nav-text-wrap">BERANDA<span class="nav-line"></span></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="profil.html"
+                            class="nav-item whitespace-nowrap px-3 sm:px-4 py-2 rounded-full transition-all duration-200 text-white hover:bg-[#76C457]/40 hover:text-white nav-underline">
+                            <span class="nav-text-wrap">PROFIL<span class="nav-line"></span></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="hubungi.html"
+                            class="nav-item whitespace-nowrap px-3 sm:px-4 py-2 rounded-full transition-all duration-200 text-white hover:bg-[#76C457]/40 hover:text-white nav-underline">
+                            <span class="nav-text-wrap">HUBUNGI<span class="nav-line"></span></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="galeri.html"
+                            class="nav-item whitespace-nowrap px-3 sm:px-4 py-2 rounded-full transition-all duration-200 text-white hover:bg-[#76C457]/40 hover:text-white nav-underline">
+                            <span class="nav-text-wrap">GALERI<span class="nav-line"></span></span>
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- Tombol Mobile -->
+                <button id="mobile-toggle-btn" class="md:hidden text-2xl p-2 transition-colors focus:outline-none"
+                    aria-label="Buka menu navigasi">
+                    <i id="toggle-icon" class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Menu Mobile -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white mt-4 rounded-xl shadow-lg p-4">
+            <div class="flex flex-col space-y-2 text-sm font-semibold text-[#76C457]">
+                <a href="index.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">BERANDA</a>
+                <a href="profil.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">PROFIL</a>
+                <a href="hubungi.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">HUBUNGI</a>
+                <a href="galeri.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">GALERI</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow">
+        <!-- BANNER GALERI -->
+        <section class="relative overflow-hidden bg-gray-900 px-5 py-16 sm:py-20 md:py-24">
+            <div class="absolute inset-0 z-0">
+                <img src="banner galeri.png" alt="Latar belakang banner Galeri"
+                    class="w-full h-full object-cover object-[center_60%]">
+                <div class="absolute inset-0 bg-black/50"></div>
+            </div>
+
+            <div class="relative z-10 max-w-4xl mx-auto text-center">
+                <h1
+                    class="font-tech text-4xl sm:text-5xl md:text-6xl font-bold text-white drop-shadow-lg translate-y-4">
+                    GALERI
+                </h1>
+                <p
+                    class="mx-auto text-white text-xs sm:text-sm md:text-base lg:text-lg max-w-3xl leading-relaxed drop-shadow-md mb-6 sm:mb-10 font-medium px-2 translate-y-4">
+                    Dokumentasi & Progress Alat - Tim ALBATROSS
+                </p>
+            </div>
+        </section>
+
+        <!-- SECTION GALERI PROGRESS INTERAKTIF -->
+        <section class="py-12 px-4 sm:px-6 lg:px-8 bg-[#FFFFFF] text-gray-100 relative overflow-hidden">
+            <div class="max-w-7xl mx-auto">
+
+                <!-- Device Switcher Tabs -->
+                <div class="flex justify-center mb-8 md:mb-10 overflow-x-auto py-2 px-1 w-full">
+                    <div id="deviceTabs"
+                        class="flex flex-nowrap md:flex-wrap justify-start md:justify-center gap-2 bg-[#2A7C13]/20 p-2 rounded-full border border-[#76C457] backdrop-blur-md shadow-xl shrink-0">
+                        <!-- Generated dynamically by JS -->
+                    </div>
+                </div>
+
+                <!-- MAIN 2-COLUMN GRID (Kartu Kiri & Panel Kanan) -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+
+                    <!-- LEFT SIDE (6 COLS): 3D Stacked Cards Gallery -->
+                    <div class="lg:col-span-6 flex flex-col items-center justify-center min-h-[380px] sm:min-h-[440px] lg:min-h-[480px] w-full px-2">
+                        <div class="stack-perspective py-4 w-full">
+                            <div id="cardStack" class="card-stack mx-auto">
+                                <!-- Cards rendered by JS -->
+                            </div>
+                        </div>
+
+                        <div class="h-6"></div>
+
+                        <!-- Instruction Tip -->
+                        <div
+                            class="mt-2 flex items-center gap-2 text-xs text-[#454545] bg-[#2A7C13]/20 px-4 py-2 rounded-full border border-[#76C457] text-center">
+                            <i class="fa-solid fa-hand-pointer text-[#6E3511] animate-bounce shrink-0"></i>
+                            <span>Klik kartu untuk menampilkannya ke depan</span>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT SIDE (6 COLS): Percentage & Milestone Info Panel -->
+                    <div class="lg:col-span-6 flex flex-col justify-center w-full">
+                        <div
+                            class="bg-[#76C457]/30 border border-[#76C457] rounded-3xl p-5 sm:p-6 md:p-8 backdrop-blur-xl relative overflow-hidden shadow-2xl">
+
+                            <div
+                                class="absolute -right-20 -top-20 w-60 h-60 bg-[#2A7C13]/30 rounded-full blur-3xl pointer-events-none">
+                            </div>
+
+                            <!-- Header Info -->
+                            <div class="flex items-center justify-between mb-4">
+                                <span id="displayBadge"
+                                    class="px-3 py-1 text-xs font-bold uppercase tracking-wider text-[#6E3511] bg-[white]/50 border border-[#76C457] rounded-full">
+                                    Perancangan
+                                </span>
+                                <span id="displayDate" class="text-xs text-[#6E3511] font-medium">
+                                    <i class="fa-regular fa-calendar mr-1"></i>
+                                </span>
+                            </div>
+
+                            <h2 id="displayTitle"
+                                class="text-xl sm:text-2xl md:text-3xl font-bold text-[#236510] mb-2 leading-tight min-h-[3rem] flex items-center">
+                                Desain Sistem & Skematik
+                            </h2>
+
+                            <p id="displayDesc" class="text-[#454545] text-xs sm:text-sm mb-6 line-clamp-3 min-h-[2.5rem]">
+                                Deskripsi singkat progress pembuatan alat akan ditampilkan di sini.
+                            </p>
+
+                            <!-- Overall Progress Bar & Percentage Counter -->
+                            <div class="bg-[white]/50 rounded-2xl p-4 sm:p-5 border border-[#76C457] mb-6">
+                                <div class="flex justify-between items-baseline mb-2">
+                                    <span class="text-[11px] sm:text-xs font-semibold text-[#454545] uppercase tracking-wider">Total
+                                        Penyelesaian Alat Keseluruhan</span>
+                                    <div class="flex items-baseline gap-0.5">
+                                        <span id="percentageText"
+                                            class="text-3xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#76C457] to-emerald-400">0</span>
+                                        <span class="text-xl sm:text-2xl font-bold text-[#76C457]">%</span>
+                                    </div>
+                                </div>
+
+                                <!-- Progress Bar Container -->
+                                <div
+                                    class="w-full h-3 sm:h-3.5 bg-gray-800 rounded-full overflow-hidden p-0.5 border border-gray-700/50">
+                                    <div id="progressBar"
+                                        class="h-full bg-gradient-to-r from-[#2A7C13] via-[#76C457] to-emerald-400 rounded-full transition-all duration-500 ease-out"
+                                        style="width: 0%"></div>
+                                </div>
+                            </div>
+
+                            <!-- Status & Stats Highlights -->
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                                <div
+                                    class="bg-[white]/50 border border-[#76C457] rounded-xl p-3 sm:p-3.5 flex items-center gap-3">
+                                    <div
+                                        class="w-10 h-10 rounded-lg bg-[#2A7C13]/35 border border-[#76C457] flex items-center justify-center text-[#6E3511] shrink-0">
+                                        <i class="fa-solid fa-spinner animate-spin text-[#6E3511]" id="statusIcon"></i>
+                                    </div>
+                                    <div>
+                                        <div class="text-[11px] font-semibold text-[#6E3511] uppercase tracking-wider">
+                                            Status Alat</div>
+                                        <div id="displayStatus" class="text-xs sm:text-sm font-bold text-[#454545]">Dalam Proses
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="bg-[white]/50 border border-[#76C457] rounded-xl p-3 sm:p-3.5 flex items-center gap-3">
+                                    <div
+                                        class="w-10 h-10 rounded-lg bg-[#2A7C13]/35 border border-[#76C457] flex items-center justify-center text-[#6E3511] shrink-0">
+                                        <i class="fa-solid fa-images"></i>
+                                    </div>
+                                    <div>
+                                        <div class="text-[11px] font-semibold text-[#6E3511] uppercase tracking-wider">
+                                            Total Dokumentasi</div>
+                                        <div id="totalMilestones" class="text-xs sm:text-sm font-bold text-[#454545]">0 Foto</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#2A7C13] px-4 sm:px-6 py-10 border-t-[2px] border-[#2A7C13]">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+
+            <div class="md:col-span-2 flex flex-col gap-4 text-white">
+                <h3 class="font-bold text-xl mb-2">Kontak Kami</h3>
+                <a href="https://maps.app.goo.gl/mirmGEEjNxX9zrjp9"
+                    class="flex items-start gap-3 hover:text-[#76C457] transition">
+                    <i class="fa-solid fa-location-dot text-xl mt-1"></i>
+                    <span class="leading-relaxed break-words">
+                        Workshop Instrumentasi dan Robotika Kelautan (Bengkel) ITK, Babakan,
+                        Dramaga, Bogor, Indonesia 16680
+                    </span>
+                </a>
+                <a href="mailto:mitr.ipb@gmail.com" class="flex items-center gap-3 hover:text-[#76C457] transition">
+                    <i class="fa-regular fa-envelope text-xl"></i>
+                    <span>diklatmitrxvi@gmail.com</span>
+                </a>
+                <a href="https://wa.me/6283898339620" class="flex items-center gap-3 hover:text-[#76C457] transition">
+                    <i class="fa-brands fa-whatsapp text-xl"></i>
+                    <span class="break-words">+6283898339620 (Deni Rizkiana Anwar Hidayat)</span>
+                </a>
+            </div>
+
+            <div class="flex flex-col gap-4 text-white">
+                <h3 class="font-bold text-xl mb-2">Media Sosial</h3>
+                <a href="https://www.instagram.com/mitr_ipb/"
+                    class="flex items-center gap-3 hover:text-[#76C457] transition">
+                    <i class="fa-brands fa-instagram text-xl"></i>
+                    <span>@mitr_ipb</span>
+                </a>
+                <a href="https://www.instagram.com/dmitr6teen/"
+                    class="flex items-center gap-3 hover:text-[#76C457] transition">
+                    <i class="fa-brands fa-instagram text-xl"></i>
+                    <span>@dmitr6teen</span>
+                </a>
+            </div>
+
+            <div class="flex flex-col items-start gap-7 text-white h-full">
+                <div class="w-full flex flex-wrap items-center justify-start pb-12 gap-4">
+                    <div
+                        class="flex items-center justify-center w-16 h-16 sm:w-28 sm:h-28 bg-white rounded-full shadow-md shrink-0 p-2 transform -translate-x-4 translate-y-8">
+                        <img src="logo mitr.png" alt="Logo MIT+R"
+                            class="h-16 sm:h-[120px] w-auto object-contain transform -translate-y-1">
+                    </div>
+                    <img src="logo ALBATROSS.png" alt="Logo Kedua"
+                        class="h-16 sm:h-[150px] w-auto object-contain transform -translate-x-4 translate-y-8">
+                </div>
+
+                <div class="w-full flex justify-end mt-auto">
+                    <button id="back-to-top"
+                        class="group flex items-center p-3 bg-white text-white rounded-full shadow-md hover:bg-[#FFFFFF] hover:shadow-xl hover:-translate-y-1 transition-all duration-500 ease-in-out cursor-pointer">
+                        <span
+                            class="whitespace-nowrap overflow-hidden transition-all duration-500 ease-in-out max-w-0 opacity-0 group-hover:max-w-[160px] group-hover:opacity-100 group-hover:mr-3 group-hover:pl-2 font-semibold text-[#2A7C13]">
+                            Kembali ke Atas
+                        </span>
+                        <span
+                            class="flex items-center justify-center w-7 h-7 bg-white text-[#2A7C13] rounded-full transition-transform duration-500 group-hover:scale-110 shrink-0">
+                            <i class="fa-solid fa-arrow-up text-sm"></i>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Copyright Bar -->
+    <div class="w-full relative bg-[#FFFFFF] py-4 px-6 border-t-[1px] border-[#2A7C13] overflow-hidden">
+        <div class="absolute inset-0 opacity-15 pointer-events-none"
+            style="background-image: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpath d='M30 0l15 15-15 15-15-15zm0 30l15 15-15 15-15-15z' fill='%232A7C13' fill-opacity='0.8' fill-rule='evenodd' /%3E%3C/svg%3E&quot;); background-size: 30px 30px;">
+        </div>
+
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-center gap-4 relative z-10">
+            <div class="text-[#403100] font-semibold text-sm text-center">
+                © 2026 Diklat MIT+R 16. All Rights Reserved.
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT MAIN & GALLERY LOGIC -->
+    <script>
+        let devicesData = [
+            {
+                id: "alat-1",
+                name: "ALBA: Autonomous Littoral Bathimetry and Aquatic",
+                icon: "fa-seedling",
+                overallPercentage: 75,
+                milestones: [
+                    {
+                        title: "Desain Sistem & Skematik",
+                        tag: "Perancangan",
+                        date: "10 Jan 2026",
+                        desc: "Penyusunan diagram jalur sensor pH, EC, dan modul pompa otomatis.",
+                        img: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80"
+                    },
+                    {
+                        title: "Perakitan Sasis & Pipa PVC",
+                        tag: "Mekanikal",
+                        date: "24 Feb 2026",
+                        desc: "Pemasangan rangka penopang utama dan pengujian aliran air bertingkat.",
+                        img: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80"
+                    },
+                    {
+                        title: "Integrasi Mikrokontroler & IoT",
+                        tag: "Elektronika",
+                        date: "15 Mar 2026",
+                        desc: "Menghubungkan sensor ke ESP32 dan pengiriman telemetry data ke cloud server.",
+                        img: "https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?auto=format&fit=crop&w=600&q=80"
+                    }
+                ]
+            },
+            {
+                id: "alat-2",
+                name: "BAT: Buoy-based Aquatic Tracking",
+                icon: "fa-robot",
+                overallPercentage: 50,
+                milestones: [
+                    {
+                        title: "Riset Model Kamera AI",
+                        tag: "Software AI",
+                        date: "05 Feb 2026",
+                        desc: "Pelatihan dataset deteksi jenis sampah (plastik, logam, organik).",
+                        img: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=600&q=80"
+                    },
+                    {
+                        title: "Fabrikasi Lengan Servo & Grip",
+                        tag: "Mekanikal",
+                        date: "18 Mar 2026",
+                        desc: "Pencetakan komponen lengan robot 3D print & kalibrasi sudut motor servo.",
+                        img: "https://images.unsplash.com/photo-1563770660941-20978e770fa3?auto=format&fit=crop&w=600&q=80"
+                    }
+                ]
+            },
+            {
+                id: "alat-3",
+                name: "TROSS: Trap-based Recognition and Observation Surveillance System",
+                icon: "fa-solar-panel",
+                overallPercentage: 30,
+                milestones: [
+                    {
+                        title: "Desain Casing Weatherproof",
+                        tag: "Perancangan",
+                        date: "01 Mar 2026",
+                        desc: "Pembuatan kotak pelindung berbahan akrilik tahan cuaca ekstrem.",
+                        img: "https://images.unsplash.com/photo-1509391365360-2e959784a276?auto=format&fit=crop&w=600&q=80"
+                    },
+                    {
+                        title: "Pemasangan Panel Surya & Baterai",
+                        tag: "Power System",
+                        date: "28 Mar 2026",
+                        desc: "Pengujian pengisian daya solar cell dan BMS baterai Lithium LiFePO4.",
+                        img: "https://images.unsplash.com/photo-1508873696983-2df515122519?auto=format&fit=crop&w=600&q=80"
+                    }
+                ]
+            }
+        ];
+
+        let activeDeviceId = "alat-1";
+        let activeMilestoneIndex = 0;
+        let hoveredMilestoneIndex = null;
+        let countAnimationTimer = null;
+
+        document.addEventListener("DOMContentLoaded", () => {
+            renderDeviceTabs();
+            renderStackCards();
+            updateOverallPanel();
+        });
+
+        function getCurrentDevice() {
+            return devicesData.find(d => d.id === activeDeviceId);
+        }
+
+        function renderDeviceTabs() {
+            const tabsContainer = document.getElementById("deviceTabs");
+            tabsContainer.innerHTML = devicesData.map(dev => `
+                <button onclick="switchDevice('${dev.id}')" 
+                  class="px-4 py-2 rounded-full text-xs font-bold transition flex items-center gap-2 shrink-0 ${dev.id === activeDeviceId ? 'bg-[#6E3511] text-white shadow-lg shadow-[#2A7C13]/40' : 'text-[#6E3511] hover:text-white hover:bg-[#2A7C13]'}">
+                  <i class="fa-solid ${dev.icon}"></i>
+                  ${dev.name}
+                </button>
+            `).join('');
+        }
+
+        function switchDevice(devId) {
+            activeDeviceId = devId;
+            activeMilestoneIndex = 0;
+            hoveredMilestoneIndex = null;
+            renderDeviceTabs();
+            renderStackCards();
+            updateOverallPanel();
+        }
+
+        function renderStackCards() {
+            const cardStack = document.getElementById("cardStack");
+            const device = getCurrentDevice();
+            const milestones = device ? device.milestones : [];
+
+            if (milestones.length === 0) {
+                cardStack.innerHTML = `<div class="text-center text-gray-500 py-20">Belum ada foto dokumentasi.</div>`;
+                return;
+            }
+
+            cardStack.innerHTML = milestones.map((m, index) => {
+                return `
+                    <div id="card-${index}" 
+                         class="stack-card" 
+                         onclick="handleCardClick(${index})" 
+                         onmouseenter="handleCardHover(${index})" 
+                         onmouseleave="handleCardLeave()">
+                      
+                      <img src="${m.img}" alt="${m.title}" class="w-full h-full object-cover pointer-events-none">
+                      
+                      <div class="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/30 to-transparent pointer-events-none"></div>
+
+                      <div class="absolute bottom-0 left-0 right-0 p-4 sm:p-5 pointer-events-none">
+                        <span class="inline-block px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white bg-[#2A7C13]/35 border border-[#76C457] rounded-full mb-2">
+                            ${m.tag || 'Dokumentasi'}
+                        </span>
+                        <h3 class="text-sm sm:text-base font-bold text-white line-clamp-1">${m.title}</h3>
+                        <div class="flex justify-between items-center mt-2 text-xs text-gray-300">
+                          <span><i class="fa-regular fa-clock mr-1 text-[#76C457]"></i> ${m.date}</span>
+                        </div>
+                      </div>
+
+                    </div>
+                `;
+            }).join('');
+
+            applyCardTransforms();
+        }
+
+        function applyCardTransforms() {
+            const device = getCurrentDevice();
+            const milestones = device ? device.milestones : [];
+            const total = milestones.length;
+
+            milestones.forEach((_, index) => {
+                const cardElem = document.getElementById(`card-${index}`);
+                if (!cardElem) return;
+
+                let relPos = (index - activeMilestoneIndex + total) % total;
+
+                let transformStr = "";
+                let zIndex = total - relPos;
+                let opacity = 1;
+
+                if (relPos === 0) {
+                    transformStr = `translate3d(0, 0, 0) rotate(0deg) scale(1)`;
+                    zIndex = 50;
+                } else {
+                    const isOdd = relPos % 2 !== 0;
+                    const direction = isOdd ? 1 : -1;
+                    const stepMultiplier = Math.ceil(relPos / 2);
+
+                    let translateX = direction * (stepMultiplier * 28);
+                    let translateY = stepMultiplier * 10;
+                    let rotateDeg = direction * (stepMultiplier * 5);
+                    let scale = 1 - (relPos * 0.05);
+
+                    if (hoveredMilestoneIndex === index) {
+                        translateX += direction * 35;
+                        translateY -= 20;
+                        rotateDeg += direction * 4;
+                        scale += 0.08;
+                        zIndex = 45;
+                    }
+
+                    transformStr = `translate3d(${translateX}px, ${translateY}px, -${relPos * 50}px) rotate(${rotateDeg}deg) scale(${scale})`;
+                    opacity = relPos > 3 ? 0 : 1 - (relPos * 0.15);
+                }
+
+                cardElem.style.zIndex = zIndex;
+                cardElem.style.transform = transformStr;
+                cardElem.style.opacity = opacity;
+            });
+        }
+
+        function handleCardHover(index) {
+            hoveredMilestoneIndex = index;
+            applyCardTransforms();
+
+            const device = getCurrentDevice();
+            if (device && device.milestones[index]) {
+                updateCardInfo(device.milestones[index]);
+            }
+        }
+
+        function handleCardLeave() {
+            hoveredMilestoneIndex = null;
+            applyCardTransforms();
+
+            const device = getCurrentDevice();
+            if (device && device.milestones[activeMilestoneIndex]) {
+                updateCardInfo(device.milestones[activeMilestoneIndex]);
+            }
+        }
+
+        function handleCardClick(index) {
+            activeMilestoneIndex = index;
+            hoveredMilestoneIndex = null;
+            applyCardTransforms();
+
+            const device = getCurrentDevice();
+            if (device && device.milestones[index]) {
+                updateCardInfo(device.milestones[index]);
+            }
+        }
+
+        function updateOverallPanel() {
+            const device = getCurrentDevice();
+            if (!device) return;
+
+            if (device.milestones.length > 0) {
+                updateCardInfo(device.milestones[activeMilestoneIndex]);
+            }
+
+            document.getElementById("totalMilestones").innerText = `${device.milestones.length} Foto`;
+
+            const statusText = document.getElementById("displayStatus");
+            const statusIcon = document.getElementById("statusIcon");
+            if (device.overallPercentage >= 100) {
+                statusText.innerText = "Selesai (100%)";
+                statusText.className = "text-xs sm:text-sm font-bold text-emerald-400";
+                statusIcon.className = "fa-solid fa-circle-check text-emerald-400";
+            } else {
+                statusText.innerText = "Dalam Pengerjaan";
+                statusText.className = "text-xs sm:text-sm font-bold text-[#454545]";
+                statusIcon.className = "fa-solid fa-spinner animate-spin text-[#6E3511]";
+            }
+
+            animatePercentage(device.overallPercentage);
+        }
+
+        function updateCardInfo(milestone) {
+            document.getElementById("displayTitle").innerText = milestone.title;
+            document.getElementById("displayBadge").innerText = milestone.tag || "Dokumentasi";
+            document.getElementById("displayDate").innerHTML = `<i class="fa-regular fa-calendar mr-1"></i> ${milestone.date}`;
+            document.getElementById("displayDesc").innerText = milestone.desc || "Dokumentasi progress pengerjaan alat.";
+        }
+
+        function animatePercentage(targetValue) {
+            const textElem = document.getElementById("percentageText");
+            const barElem = document.getElementById("progressBar");
+
+            let currentValue = parseInt(textElem.innerText) || 0;
+
+            if (countAnimationTimer) clearInterval(countAnimationTimer);
+
+            barElem.style.width = targetValue + "%";
+
+            if (currentValue === targetValue) return;
+
+            const duration = 400;
+            const steps = 25;
+            const stepTime = duration / steps;
+            const increment = (targetValue - currentValue) / steps;
+
+            let stepCount = 0;
+            countAnimationTimer = setInterval(() => {
+                stepCount++;
+                currentValue += increment;
+
+                if (stepCount >= steps) {
+                    textElem.innerText = targetValue;
+                    clearInterval(countAnimationTimer);
+                } else {
+                    textElem.innerText = Math.round(currentValue);
+                }
+            }, stepTime);
+        }
+    </script>
+
+    <!-- JAVASCRIPT NAVBAR & BACK TO TOP -->
+    <script>
+        const mobileToggleBtn = document.getElementById('mobile-toggle-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const toggleIcon = document.getElementById('toggle-icon');
+
+        mobileToggleBtn.addEventListener('click', function () {
+            mobileMenu.classList.toggle('hidden');
+
+            if (mobileMenu.classList.contains('hidden')) {
+                toggleIcon.classList.remove('fa-times');
+                toggleIcon.classList.add('fa-bars');
+            } else {
+                toggleIcon.classList.remove('fa-bars');
+                toggleIcon.classList.add('fa-times');
+            }
+        });
+
+        window.addEventListener('scroll', function () {
+            const navbar = document.getElementById('navbar');
+            const navItems = document.querySelectorAll('.nav-item');
+            const mobileBtn = document.getElementById('mobile-toggle-btn');
+            const logoCircle = document.getElementById('logo-circle');
+
+            if (window.scrollY > 50) {
+                navbar.classList.remove('bg-transparent', 'text-white');
+                navbar.classList.add('bg-white', 'shadow-md');
+
+                navItems.forEach(link => {
+                    link.classList.remove('text-white');
+                    link.classList.add(
+                        'text-[#2A7C13]',
+                        'hover:bg-[#76C457]/25',
+                        'hover:text-[#2A7C13]'
+                    );
+                });
+
+                if (mobileBtn) {
+                    mobileBtn.classList.add('text-[#2A7C13]');
+                }
+
+                if (logoCircle) {
+                    logoCircle.classList.remove('opacity-0', 'scale-75');
+                    logoCircle.classList.add('opacity-100', 'scale-100');
+                }
+
+            } else {
+                navbar.classList.add('bg-transparent', 'text-white');
+                navbar.classList.remove('bg-white', 'shadow-md');
+
+                navItems.forEach(link => {
+                    link.classList.remove(
+                        'text-[#2A7C13]',
+                        'hover:bg-[#76C457]/20',
+                        'hover:text-[#2A7C13]'
+                    );
+                    link.classList.add('text-white');
+                });
+
+                if (mobileBtn) {
+                    mobileBtn.classList.remove('text-[#2A7C13]');
+                }
+
+                if (logoCircle) {
+                    logoCircle.classList.remove('opacity-100', 'scale-100');
+                    logoCircle.classList.add('opacity-0', 'scale-75');
+                }
+            }
+        });
+
+        const backToTopBtn = document.getElementById('back-to-top');
+        if (backToTopBtn) {
+            backToTopBtn.addEventListener('click', function () {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+    </script>
+</body>
+
+</html>
