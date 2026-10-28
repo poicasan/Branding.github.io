@@ -236,10 +236,10 @@
         <section class="py-12 px-4 sm:px-6 lg:px-8 bg-[#FFFFFF] text-gray-100 relative overflow-hidden">
             <div class="max-w-7xl mx-auto">
 
-                <!-- Device Switcher Tabs -->
+                <!-- Device Switcher Tabs (Tanpa shadow-xl) -->
                 <div class="flex justify-center mb-8 md:mb-10 overflow-x-auto py-2 px-1 w-full">
                     <div id="deviceTabs"
-                        class="flex flex-nowrap md:flex-wrap justify-start md:justify-center gap-2 bg-[#2A7C13]/20 p-2 rounded-full border border-[#76C457] backdrop-blur-md shadow-xl shrink-0">
+                        class="flex flex-nowrap md:flex-wrap justify-start md:justify-center gap-2 bg-[#2A7C13]/20 p-2 rounded-full border border-[#76C457] backdrop-blur-md shrink-0">
                         <!-- Generated dynamically by JS -->
                     </div>
                 </div>
@@ -530,7 +530,7 @@
             const tabsContainer = document.getElementById("deviceTabs");
             tabsContainer.innerHTML = devicesData.map(dev => `
                 <button onclick="switchDevice('${dev.id}')" 
-                  class="px-4 py-2 rounded-full text-xs font-bold transition flex items-center gap-2 shrink-0 ${dev.id === activeDeviceId ? 'bg-[#6E3511] text-white shadow-lg shadow-[#2A7C13]/40' : 'text-[#6E3511] hover:text-white hover:bg-[#2A7C13]'}">
+                  class="px-4 py-2 rounded-full text-xs font-bold transition flex items-center gap-2 shrink-0 ${dev.id === activeDeviceId ? 'bg-[#6E3511] text-white' : 'text-[#6E3511] hover:text-white hover:bg-[#6E3511]'}" style="box-shadow: none !important;">
                   <i class="fa-solid ${dev.icon}"></i>
                   ${dev.name}
                 </button>
