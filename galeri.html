@@ -165,7 +165,7 @@
     </style>
 </head>
 
-<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
+<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen overflow-x-hidden">
     <!-- STICKY NAVIGATION BAR -->
     <nav id="navbar"
         class="fixed top-0 left-0 w-full z-50 p-4 lg:px-12 transition-all duration-300 text-white bg-transparent">
@@ -274,7 +274,7 @@
 
                     <!-- LEFT SIDE (6 COLS): 3D Stacked Cards Gallery -->
                     <div
-                        class="lg:col-span-6 flex flex-col items-center justify-center min-h-[380px] sm:min-h-[440px] lg:min-h-[480px] w-full px-2 -ml-6 transform -translate-y-8">
+                        class="lg:col-span-6 flex flex-col items-center justify-center min-h-[380px] sm:min-h-[440px] lg:min-h-[480px] w-full px-2 lg:-ml-6 transform lg:-translate-y-8">
                         <div class="stack-perspective py-4 w-full">
                             <div id="cardStack" class="card-stack mx-auto">
                                 <!-- Cards rendered by JS -->
@@ -292,7 +292,7 @@
                     </div>
 
                     <!-- RIGHT SIDE (6 COLS): Percentage & Milestone Info Panel -->
-                    <div class="lg:col-span-6 flex flex-col justify-center w-full -mt-8 lg:-mt-20 -ml-8 lg:-ml-14">
+                    <div class="lg:col-span-6 flex flex-col justify-center w-full mt-4 lg:-mt-20 lg:-ml-14">
                         <div
                             class="bg-[#76C457]/30 border border-[#76C457] rounded-3xl p-5 sm:p-6 md:p-8 backdrop-blur-xl relative overflow-hidden shadow-2xl">
 
@@ -300,11 +300,8 @@
                                 class="absolute -right-20 -top-20 w-60 h-60 bg-[#2A7C13]/30 rounded-full blur-3xl pointer-events-none">
                             </div>
 
-                            <!-- Header Info -->
-
-
                             <!-- Kumpulan Progress Bar -->
-                            <div class="flex flex-col gap-4 mb-6">
+                            <div class="flex flex-col gap-4 mb-6 relative z-10">
 
                                 <!-- 1. Overall Progress Bar -->
                                 <div class="bg-[white]/50 rounded-2xl p-4 sm:p-5 border border-[#76C457]">
@@ -442,7 +439,7 @@
 
 
             <!-- Status & Stats Highlights -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 ml-12 mr-12">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mx-4 lg:mx-12 mt-6 lg:mt-0">
                 <div class="bg-[white]/50 border border-[#76C457] rounded-xl p-3 sm:p-3.5 flex items-center gap-3">
                     <div
                         class="w-10 h-10 rounded-lg bg-[#2A7C13]/35 border border-[#76C457] flex items-center justify-center text-[#6E3511] shrink-0">
@@ -470,6 +467,7 @@
                     </div>
                 </div>
             </div>
+
             <!-- KOTAK MEMANJANG KE SAMPING (DROPDOWN DETAIL PROGRESS SLIDER) -->
             <div class="mt-12 max-w-6xl mx-auto w-full px-4 sm:px-5">
                 <div class="border border-[#76C457] rounded-2xl shadow-xl overflow-hidden transition-all duration-300">
@@ -479,7 +477,8 @@
                         class="w-full px-6 py-4 bg-[#2A7C13]/30 hover:bg-[#236510]/30 text-[#236510] flex items-center justify-between transition-colors duration-200 cursor-pointer focus:outline-none">
                         <div class="flex items-center gap-3">
                             <i class="fa-solid fa-circle-info text-lg"></i>
-                            <span class="font-bold text-sm sm:text-base tracking-wide">Lihat progress kami dengan
+                            <span class="font-bold text-sm sm:text-base tracking-wide text-left">Lihat progress kami
+                                dengan
                                 lebih rinci</span>
                         </div>
                         <i id="dropdownArrow" class="fa-solid fa-chevron-down transition-transform duration-300"></i>
@@ -524,11 +523,11 @@
                 </a>
                 <a href="mailto:mitr.ipb@gmail.com" class="flex items-center gap-3 hover:text-[#76C457] transition">
                     <i class="fa-regular fa-envelope text-xl"></i>
-                    <span>diklatmitrxvi@gmail.com</span>
+                    <span>mitr.ipb@gmail.com</span>
                 </a>
-                <a href="https://wa.me/6283898339620" class="flex items-center gap-3 hover:text-[#76C457] transition">
+                <a href="https://wa.me/6281283435353" class="flex items-center gap-3 hover:text-[#76C457] transition">
                     <i class="fa-brands fa-whatsapp text-xl"></i>
-                    <span class="break-words">+6283898339620 (Deni Rizkiana Anwar Hidayat)</span>
+                    <span class="break-words">+6281283435353 (Hanifa Rahmaliya)</span>
                 </a>
             </div>
 
@@ -544,17 +543,22 @@
                     <i class="fa-brands fa-instagram text-xl"></i>
                     <span>@dmitr6teen</span>
                 </a>
+                <a href="https://www.tiktok.com/@albatross.project?_r=1&_t=ZS-9Axq4vlIaHd"
+                    class="flex items-center gap-3 hover:text-[#76C457] transition">
+                    <i class="fa-brands fa-tiktok text-xl"></i>
+                    <span>@albatross.project</span>
+                </a>
             </div>
 
             <div class="flex flex-col items-start gap-7 text-white h-full">
                 <div class="w-full flex flex-wrap items-center justify-start pb-12 gap-4">
                     <div
-                        class="flex items-center justify-center w-16 h-16 sm:w-28 sm:h-28 bg-white rounded-full shadow-md shrink-0 p-2 transform -translate-x-4 translate-y-8">
+                        class="flex items-center justify-center w-16 h-16 sm:w-28 sm:h-28 bg-white rounded-full shadow-md shrink-0 p-2 transform sm:-translate-x-4 translate-y-4 sm:translate-y-8">
                         <img src="logo mitr.png" alt="Logo MIT+R"
-                            class="h-16 sm:h-[120px] w-auto object-contain transform -translate-y-1">
+                            class="h-16 sm:h-[120px] w-auto object-contain transform sm:-translate-y-1">
                     </div>
                     <img src="logo ALBATROSS.png" alt="Logo Kedua"
-                        class="h-16 sm:h-[150px] w-auto object-contain transform -translate-x-4 translate-y-8">
+                        class="h-16 sm:h-[150px] w-auto object-contain transform sm:-translate-x-4 translate-y-4 sm:translate-y-8">
                 </div>
 
                 <div class="w-full flex justify-end mt-auto">
@@ -596,8 +600,8 @@
                 icon: "fa-seedling",
                 overallPercentage: 35,
                 mekanikPercentage: 70,
-                elektroDataPercentage: 5,     // <- Tambahan baru
-                elektroNavigasiPercentage: 35, // <- Tambahan baru
+                elektroDataPercentage: 5,
+                elektroNavigasiPercentage: 35,
                 programPercentage: 15,
                 milestones: [
                     {
@@ -612,7 +616,7 @@
                         tag: "Mekanik",
                         date: "6 September 2026",
                         desc: "Proses fabrikasi lambung kapal menggunakan material resin dan fiberglass berdasarkan cetak biru.",
-                        img: "pecetakan-lambung.jpg"
+                        img: "Memasang pencetak.jpg"
                     },
                     {
                         title: "Perakitan Struktur Tulang Lambung",
@@ -678,10 +682,10 @@
                         img: "Pengecetan-kapal.jpeg"
                     },
                     {
-                        title: "Pembuatan Penyambung Box Navigasi",
+                        title: "Fabrikasi Konektor Box Navigasi",
                         tag: "Mekanik",
-                        date: "29 Oktober 2026",
-                        desc: "Proses pelapisan cat pelindung pada lambung, tatakan, dan struktur besi untuk mencegah korosi serta memperindah tampilan alat.",
+                        date: "29 Okt 2026",
+                        desc: "Proses pembuatan dan perakitan struktur penyambung untuk memastikan dudukan box navigasi terpasang kokoh pada rangka utama.",
                         img: "penyambung box.jpeg"
                     },
                     {
@@ -727,7 +731,7 @@
                 icon: "fa-robot",
                 overallPercentage: 45,
                 mekanikPercentage: 10,
-                elektroPercentage: 85, // <- Menjadi single elektro
+                elektroPercentage: 85,
                 programPercentage: 50,
                 milestones: [
                     {
@@ -801,7 +805,7 @@
                 icon: "fa-solar-panel",
                 overallPercentage: 6,
                 mekanikPercentage: 5,
-                elektroPercentage: 10, // <- Menjadi single elektro
+                elektroPercentage: 10,
                 programPercentage: 3,
                 milestones: [
                     {
@@ -841,7 +845,6 @@
         let hoveredMilestoneIndex = null;
         let countAnimationTimers = {};
 
-        // Variabel baru: Untuk menyimpan hanya 1 foto terakhir dari tiap divisi
         let currentStackMilestones = [];
 
         document.addEventListener("DOMContentLoaded", () => {
@@ -861,7 +864,7 @@
             const map = {};
             if (device && device.milestones) {
                 device.milestones.forEach(m => {
-                    map[m.tag] = m; // Selalu menimpa yang lama, jadi sisa yang terakhir
+                    map[m.tag] = m;
                 });
             }
             currentStackMilestones = Object.values(map);
@@ -883,7 +886,7 @@
             activeMilestoneIndex = 0;
             hoveredMilestoneIndex = null;
 
-            initStackMilestones(); // Update kartu 3D
+            initStackMilestones();
 
             renderDeviceTabs();
             renderStackCards();
@@ -999,12 +1002,10 @@
             const device = getCurrentDevice();
             if (!device) return;
 
-            // Update teks info dengan milestone yang aktif dari tumpukan
             if (currentStackMilestones.length > 0) {
                 updateCardInfo(currentStackMilestones[activeMilestoneIndex]);
             }
 
-            // Total dokumen tetap menghitung dari seluruh data asli
             document.getElementById("totalMilestones").innerText = `${device.milestones.length} Foto`;
 
             const statusText = document.getElementById("displayStatus");
@@ -1019,23 +1020,19 @@
                 statusIcon.className = "fa-solid fa-spinner animate-spin text-[#6E3511]";
             }
 
-            // --- LOGIKA MENAMPILKAN BAR ELEKTRO ---
             const dualContainer = document.getElementById("elektroDualContainer");
             const singleContainer = document.getElementById("elektroSingleContainer");
 
-            // Panggil Animasi Total, Mekanik, & Program (Berlaku untuk semua)
             animatePercentage("percentageText", "progressBar", device.overallPercentage || 0);
             animatePercentage("mekanikText", "mekanikBar", device.mekanikPercentage || 0);
             animatePercentage("programText", "programBar", device.programPercentage || 0);
 
             if (device.id === "alat-1") {
-                // Tampilkan ALBA (Dual Bar)
                 if (dualContainer) dualContainer.classList.remove("hidden");
                 if (singleContainer) singleContainer.classList.add("hidden");
                 animatePercentage("elektroDataText", "elektroDataBar", device.elektroDataPercentage || 0);
                 animatePercentage("elektroNavText", "elektroNavBar", device.elektroNavigasiPercentage || 0);
             } else {
-                // Tampilkan BAT & TROSS (Single Bar)
                 if (dualContainer) dualContainer.classList.add("hidden");
                 if (singleContainer) singleContainer.classList.remove("hidden");
                 animatePercentage("elektroText", "elektroBar", device.elektroPercentage || 0);
@@ -1055,7 +1052,6 @@
         }
 
         function animatePercentage(textId, barId, targetValue) {
-            // Pastikan timer window tersedia
             if (typeof window.countAnimationTimers === 'undefined' || window.countAnimationTimers === null) {
                 window.countAnimationTimers = {};
             }
@@ -1063,7 +1059,6 @@
             const textElem = document.getElementById(textId);
             const barElem = document.getElementById(barId);
 
-            // Cegah error jika id html tidak ditemukan
             if (!textElem || !barElem) return;
 
             const finalTarget = parseInt(targetValue) || 0;
@@ -1099,7 +1094,6 @@
             }, stepTime);
         }
 
-        // Toggle Buka/Tutup Dropdown Detail
         function toggleDetailedDropdown() {
             const content = document.getElementById("detailedDropdownContent");
             const arrow = document.getElementById("dropdownArrow");
@@ -1108,7 +1102,6 @@
             arrow.classList.toggle("rotate-180");
         }
 
-        // Render isi dropdown secara terkelompok & BISA DIGESER HORIZONTAL SLIDER per Kategori
         function renderDropdownMilestones() {
             const container = document.getElementById("dropdownMilestonesGrouped");
             const device = getCurrentDevice();
@@ -1119,7 +1112,6 @@
                 return;
             }
 
-            // Kelompokkan data berdasarkan 'tag' (kategori)
             const grouped = {};
             milestones.forEach(m => {
                 const category = m.tag || 'Lainnya';
@@ -1129,14 +1121,12 @@
                 grouped[category].push(m);
             });
 
-            // Ikon pendukung tiap kategori
             const categoryIcons = {
                 'Mekanik': 'fa-gears',
                 'Elektronika': 'fa-microchip',
                 'Program': 'fa-code',
             };
 
-            // Render setiap kelompok menjadi SLIDER HORIZONTAL
             container.innerHTML = Object.keys(grouped).map(category => {
                 const items = grouped[category];
                 const iconClass = categoryIcons[category] || 'fa-folder-open';
@@ -1157,7 +1147,6 @@
                             </span>
                         </div>
 
-                        <!-- SLIDER CONTAINER HORIZONTAL (Bisa Geser Kanan-Kiri) -->
                         <div class="flex gap-4 overflow-x-auto pb-4 custom-slider-scroll scroll-smooth snap-x">
                             ${items.map(m => `
                                 <div class="snap-start shrink-0 w-[260px] sm:w-[280px] md:w-[300px] bg-gray-50 border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow flex flex-col">
