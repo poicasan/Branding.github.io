@@ -248,7 +248,7 @@
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
 
                     <!-- LEFT SIDE (6 COLS): 3D Stacked Cards Gallery -->
-                    <div class="lg:col-span-6 flex flex-col items-center justify-center min-h-[380px] sm:min-h-[440px] lg:min-h-[480px] w-full px-2">
+                    <div class="lg:col-span-6 flex flex-col items-center justify-center min-h-[380px] sm:min-h-[440px] lg:min-h-[480px] w-full px-2 -ml-6">
                         <div class="stack-perspective py-4 w-full">
                             <div id="cardStack" class="card-stack mx-auto">
                                 <!-- Cards rendered by JS -->
@@ -266,7 +266,7 @@
                     </div>
 
                     <!-- RIGHT SIDE (6 COLS): Percentage & Milestone Info Panel -->
-                    <div class="lg:col-span-6 flex flex-col justify-center w-full">
+                    <div class="lg:col-span-6 flex flex-col justify-center w-full -mt-8 lg:-mt-20 -ml-4 lg:-ml-14">
                         <div
                             class="bg-[#76C457]/30 border border-[#76C457] rounded-3xl p-5 sm:p-6 md:p-8 backdrop-blur-xl relative overflow-hidden shadow-2xl">
 
@@ -444,17 +444,10 @@
                 milestones: [
                     {
                         title: "Pencetakan Lambung Kapal",
-                        tag: "Mekanikal",
+                        tag: "Mekanik",
                         date: "6 Sept 2026",
                         desc: "Proses fabrikasi lambung kapal menggunakan material resin dan fiberglass berdasarkan cetak biru.",
                         img: "pecetakan-lambung.jpg"
-                    },
-                    {
-                        title: "Uji Daya Apung",
-                        tag: "Mekanikal",
-                        date: "1 Okt 2026",
-                        desc: "Pengujian stabilitas dan kapasitas gaya apung lambung kapal secara langsung di atas air.",
-                        img: "tes-apung.jpg"
                     },
                     {
                         title: "Desain Skematik Navigasi",
@@ -464,26 +457,12 @@
                         img: "skema-elektronika-navigasi.jpeg"
                     },
                     {
-                        title: "Pengecatan Lambung ALBA",
-                        tag: "Mekanikal",
-                        date: "25 Okt 2026",
-                        desc: "Proses pelapisan warna (finishing) pada bagian lambung utama dan tatakan penyambung.",
-                        img: "pengecetan-kapal.jpeg"
+                        title: "Desain Skematik Navigasi",
+                        tag: "Program",
+                        date: "24 Okt 2026",
+                        desc: "Perancangan jalur skema sistem elektronika untuk kebutuhan navigasi utama ALBA.",
+                        img: "skema-elektronika-navigasi.jpeg"
                     },
-                    {
-                        title: "Pengecatan Komponen Besi",
-                        tag: "Mekanikal",
-                        date: "27 Okt 2026",
-                        desc: "Pelapisan cat warna merah pada komponen penyambung besi untuk identifikasi dan pencegahan korosi.",
-                        img: "pengecetan-penyambung.jpeg"
-                    },
-                    {
-                        title: "Perakitan Sistem Navigasi",
-                        tag: "Elektronika",
-                        date: "28 Okt 2026",
-                        desc: "Proses integrasi dan penyolderan komponen pada papan sirkuit untuk sistem navigasi ALBA.",
-                        img: "elektro-navigasi.jpeg"
-                    }
                 ]
             },
             {
@@ -537,7 +516,7 @@
             const tabsContainer = document.getElementById("deviceTabs");
             tabsContainer.innerHTML = devicesData.map(dev => `
                 <button onclick="switchDevice('${dev.id}')" 
-                  class="px-4 py-2 rounded-full text-xs font-bold transition flex items-center gap-2 shrink-0 ${dev.id === activeDeviceId ? 'bg-[#6E3511] text-white' : 'text-[#6E3511] hover:text-white hover:bg-[#6E3511]'}" style="box-shadow: none !important;">
+                  class="px-4 py-2 rounded-full text-xs font-bold transition flex items-center gap-2 shrink-0 ${dev.id === activeDeviceId ? 'bg-[#6E3511] text-white' : 'text-[#6E3511] hover:text-white hover:bg-[#2A7C13]'}" style="box-shadow: none !important;">
                   <i class="fa-solid ${dev.icon}"></i>
                   ${dev.name}
                 </button>
