@@ -258,9 +258,23 @@
         </section>
 
         <!-- SECTION GALERI PROGRESS INTERAKTIF -->
-        <section class="py-12 px-4 sm:px-6 lg:px-8 bg-[#FFFFFF] text-gray-100 relative overflow-hidden">
-            <div class="max-w-7xl mx-auto">
+        <section class="py-12 px-4 sm:px-6 lg:px-8 bg-[#FFFFFF] text-gray-100 relative overflow-visible">
 
+            <!-- FADE HIJAU DI BELAKANG KOTAK PROGRESS -->
+            <div aria-hidden="true" class="absolute left-0 right-0 bottom-[-180px] h-[450px] pointer-events-none z-0"
+                style="background: linear-gradient(
+            to top,
+            #2A7C13 0%,
+            rgba(42,124,19,0.90) 12%,
+            rgba(118,196,87,0.65) 32%,
+            rgba(118,196,87,0.35) 52%,
+            rgba(118,196,87,0.14) 72%,
+            rgba(118,196,87,0.05) 88%,
+            rgba(255,255,255,0) 100%
+        );">
+            </div>
+
+            <div class="max-w-7xl mx-auto relative z-10">
                 <!-- Device Switcher Tabs (Tanpa shadow-xl) -->
                 <div class="flex justify-center mb-8 md:mb-20 overflow-x-auto py-2 px-1 w-full">
                     <div id="deviceTabs"
@@ -508,9 +522,11 @@
         </section>
     </main>
 
+    <br> <br>
+
     <!-- FOOTER -->
-    <footer class="bg-[#2A7C13] px-4 sm:px-6 py-10 border-t-[2px] border-[#2A7C13]">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+    <footer class="relative z-10 bg-[#2A7C13] px-4 sm:px-6 py-10 border-t-0">
+        <div class="relative z-10 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
 
             <div class="md:col-span-2 flex flex-col gap-4 text-white">
                 <h3 class="font-bold text-xl mb-2">Kontak Kami</h3>
