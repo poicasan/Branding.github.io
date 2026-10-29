@@ -258,23 +258,9 @@
         </section>
 
         <!-- SECTION GALERI PROGRESS INTERAKTIF -->
-        <section class="py-12 px-4 sm:px-6 lg:px-8 bg-[#FFFFFF] text-gray-100 relative overflow-visible">
+        <section class="py-12 px-4 sm:px-6 lg:px-8 bg-[#FFFFFF] text-gray-100 relative overflow-hidden">
+            <div class="max-w-7xl mx-auto">
 
-            <!-- FADE HIJAU DI BELAKANG KOTAK PROGRESS -->
-            <div aria-hidden="true" class="absolute left-0 right-0 bottom-[-180px] h-[450px] pointer-events-none z-0"
-                style="background: linear-gradient(
-            to top,
-            #2A7C13 0%,
-            rgba(42,124,19,0.90) 12%,
-            rgba(118,196,87,0.65) 32%,
-            rgba(118,196,87,0.35) 52%,
-            rgba(118,196,87,0.14) 72%,
-            rgba(118,196,87,0.05) 88%,
-            rgba(255,255,255,0) 100%
-        );">
-            </div>
-
-            <div class="max-w-7xl mx-auto relative z-10">
                 <!-- Device Switcher Tabs (Tanpa shadow-xl) -->
                 <div class="flex justify-center mb-8 md:mb-20 overflow-x-auto py-2 px-1 w-full">
                     <div id="deviceTabs"
@@ -434,14 +420,14 @@
                                                 Program</span>
                                             <div class="flex items-baseline gap-0.5">
                                                 <span id="programText"
-                                                    class="text-3xl sm:text-4xl font-extrabold text-[#6E3511]">0</span>
-                                                <span class="text-xl sm:text-2xl font-bold text-[#6E3511]">%</span>
+                                                    class="text-3xl sm:text-4xl font-extrabold text-[#2A7C13]">0</span>
+                                                <span class="text-xl sm:text-2xl font-bold text-[#2A7C13]">%</span>
                                             </div>
                                         </div>
                                         <div
                                             class="w-full h-3 sm:h-3.5 bg-gray-800 rounded-full overflow-hidden p-0.5 border border-gray-700/50">
                                             <div id="programBar"
-                                                class="h-full bg-[#6E3511] rounded-full transition-all duration-500 ease-out"
+                                                class="h-full bg-gradient-to-r from-[#2A7C13] via-[#76C457] to-emerald-400 rounded-full transition-all duration-500 ease-out"
                                                 style="width: 0%"></div>
                                         </div>
                                     </div>
@@ -522,11 +508,9 @@
         </section>
     </main>
 
-    <br> <br>
-
     <!-- FOOTER -->
-    <footer class="relative z-10 bg-[#2A7C13] px-4 sm:px-6 py-10 border-t-0">
-        <div class="relative z-10 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+    <footer class="bg-[#2A7C13] px-4 sm:px-6 py-10 border-t-[2px] border-[#2A7C13]">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
 
             <div class="md:col-span-2 flex flex-col gap-4 text-white">
                 <h3 class="font-bold text-xl mb-2">Kontak Kami</h3>
@@ -619,112 +603,119 @@
                     {
                         title: "Perancangan Desain Mekanikal",
                         tag: "Mekanik",
-                        date: "6 Sept 2026",
+                        date: "26 Agustus 2026",
                         desc: "Pembuatan model rancang bangun 3D dan cetak biru (blueprint) struktur fisik alat menggunakan perangkat lunak SketchUp.",
                         img: "Perancangan desain mekanik ALBA.jpg"
                     },
                     {
                         title: "Pencetakan Lambung Kapal",
                         tag: "Mekanik",
-                        date: "6 Sept 2026",
+                        date: "6 September 2026",
                         desc: "Proses fabrikasi lambung kapal menggunakan material resin dan fiberglass berdasarkan cetak biru.",
                         img: "pecetakan-lambung.jpg"
                     },
                     {
                         title: "Perakitan Struktur Tulang Lambung",
                         tag: "Mekanik",
-                        date: "6 Sept 2026",
+                        date: "20 September 2026",
                         desc: "Pemasangan dan penyatuan rangka dalam (tulang) dengan lambung untuk memperkuat konstruksi dasar kapal.",
                         img: "tulang.jpg"
                     },
                     {
                         title: "Instalasi Sistem Drainase",
                         tag: "Mekanik",
-                        date: "6 Sept 2026",
+                        date: "23 September 2026",
                         desc: "Pembuatan jalur pembuangan air pada kedua sisi lambung untuk mencegah genangan dan menjaga keseimbangan alat.",
-                        img: "Pembuatan sistem drainase pada kedua lambung.jpg"
+                        img: "pembuatan sistem drainase pada kedua lambung.jpg"
                     },
                     {
                         title: "Pemasangan Tutup Lambung",
                         tag: "Mekanik",
-                        date: "6 Sept 2026",
+                        date: "25 September 2026",
                         desc: "Pemasangan penutup atas lambung guna melindungi bagian dalam kapal dari masuknya air (waterproofing) dan kotoran.",
                         img: "Tutup lambung.jpg"
                     },
                     {
-                        title: "Fabrikasi Dudukan Trolling Motor",
-                        tag: "Mekanik",
-                        date: "6 Sept 2026",
-                        desc: "Pembuatan rangka dudukan khusus untuk menyangga motor penggerak (trolling motor) agar stabil saat beroperasi.",
-                        img: "pembuatan dudukan.jpg"
-                    },
-                    {
                         title: "Pemasangan Penguat Besi Dudukan Motor",
                         tag: "Mekanik",
-                        date: "6 Sept 2026",
+                        date: "30 September 2026",
                         desc: "Penambahan komponen besi struktural pada dudukan motor guna meredam getaran dan menahan beban dorong secara optimal.",
-                        img: "Pembuatan komponen besi sebagai penguat dudukan trolling motor.jpg"
+                        img: "pembuatan komponen besi sebagai penguat dudukan trolling motor.jpg"
                     },
                     {
                         title: "Perakitan Penghubung Antarlambung",
                         tag: "Mekanik",
-                        date: "6 Sept 2026",
+                        date: "30 September 2026",
                         desc: "Penyambungan kedua lambung menggunakan struktur besi (crossbeam) untuk membentuk konfigurasi katamaran yang kokoh dan presisi.",
-                        img: "Pembuatan struktur besi penghubung antarlambung.jpg"
+                        img: "pembuatan struktur besi penghubung antarlambung.jpg"
+                    },
+                    {
+                        title: "Fabrikasi Dudukan Trolling Motor",
+                        tag: "Mekanik",
+                        date: "1 Oktober 2026",
+                        desc: "Pembuatan rangka dudukan khusus untuk menyangga motor penggerak (trolling motor) agar stabil saat beroperasi.",
+                        img: "pembuatan dudukan.jpg"
                     },
                     {
                         title: "Pembuatan Kompartemen Elektronika",
                         tag: "Mekanik",
-                        date: "6 Sept 2026",
+                        date: "2 Oktober 2026",
                         desc: "Pembuatan tatakan berbahan kayu/triplek yang dirancang khusus sebagai tempat meletakkan kotak komponen elektronika agar aman dan rapi.",
                         img: "Pembuatan tatakan komponen elektronika menggunakan triplek.jpeg"
                     },
                     {
                         title: "Uji Daya Apung & Kekedapan",
                         tag: "Mekanik",
-                        date: "6 Sept 2026",
+                        date: "13 Oktober 2026",
                         desc: "Pengujian langsung di air (water-tight test) untuk memastikan lambung tidak mengalami kebocoran dan memiliki daya apung yang sesuai standar.",
                         img: "tes-apung.jpg"
                     },
                     {
                         title: "Pengecatan & Finishing Komponen",
                         tag: "Mekanik",
-                        date: "6 Sept 2026",
+                        date: "25 Oktober 2026",
                         desc: "Proses pelapisan cat pelindung pada lambung, tatakan, dan struktur besi untuk mencegah korosi serta memperindah tampilan alat.",
                         img: "Pengecetan-kapal.jpeg"
                     },
                     {
+                        title: "Pembuatan Penyambung Box Navigasi",
+                        tag: "Mekanik",
+                        date: "29 Oktober 2026",
+                        desc: "Proses pelapisan cat pelindung pada lambung, tatakan, dan struktur besi untuk mencegah korosi serta memperindah tampilan alat.",
+                        img: "penyambung box.jpeg"
+                    },
+                    {
                         title: "Desain Skematik Sistem Data (Sensor)",
                         tag: "Elektronika",
-                        date: "24 Okt 2026",
+                        date: "23 Agustus 2026",
                         desc: "Perancangan diagram kelistrikan dan jalur komunikasi mikroprosesor untuk sensor-sensor yang bertugas mengambil data parameter air.",
                         img: "Penyusunan skematik elektronika untuk sistem pengambilan data (1).jpeg"
                     },
                     {
                         title: "Desain Skematik Sistem Navigasi",
                         tag: "Elektronika",
-                        date: "24 Okt 2026",
+                        date: "22 Oktober 2026",
                         desc: "Pembuatan rancangan sirkuit elektronika yang menghubungkan mikrokontroler utama dengan modul GPS dan kompas.",
                         img: "skema-elektronika-navigasi.jpeg"
                     },
                     {
                         title: "Uji Coba Rangkaian Navigasi",
                         tag: "Elektronika",
-                        date: "24 Okt 2026",
+                        date: "24 Oktober 2026",
                         desc: "Pengujian kelistrikan dan fungsionalitas pada prototipe awal untuk memastikan setiap komponen dapat menyala dan merespon instruksi.",
                         img: "elektro-navigasi.jpeg"
                     },
                     {
                         title: "Pemrograman Modul Sensor",
                         tag: "Program",
-                        date: "28 Okt 2026",
+                        date: "29 September 2026",
                         desc: "Penulisan kode algoritma untuk membaca, memproses, dan menyimpan data mentah yang ditangkap oleh sensor lingkungan kelautan.",
                         img: "IMG_0105.png"
                     },
                     {
                         title: "Pengujian Sistem Telemetri (Komunikasi)",
                         tag: "Program",
-                        date: "28 Okt 2026",
+                        date: "28 Oktober 2026",
                         desc: "Uji coba pengiriman data secara real-time dari kapal ke stasiun darat (Ground Control Station) melalui sinyal nirkabel.",
                         img: "IMG_0103.png"
                     }
@@ -737,70 +728,70 @@
                 overallPercentage: 45,
                 mekanikPercentage: 10,
                 elektroPercentage: 85, // <- Menjadi single elektro
-                programPercentage: 40,
+                programPercentage: 50,
                 milestones: [
                     {
                         title: "Perancangan Desain Mekanikal BAT",
                         tag: "Mekanik",
-                        date: "21 Okt 2026",
+                        date: "27 Oktober 2026",
                         desc: "Proses perancangan wujud fisik dan penempatan komponen buoy menggunakan software desain 3D.",
                         img: "Perancangan desain mekanik BAT.png"
                     },
                     {
                         title: "Pemotongan Buoy & Penyesuaian Dimensi",
                         tag: "Mekanik",
-                        date: "21 Okt 2026",
+                        date: "28 Oktober 2026",
                         desc: "Modifikasi ukuran fisik pelampung (buoy) agar sejajar dan seimbang dengan kotak junction box.",
                         img: "Pemotongan buoy dan penyesuaian dimensinya dengan junction box.jpg"
                     },
                     {
                         title: "Penyusunan Skematik Elektronika BAT",
                         tag: "Elektronika",
-                        date: "05 Feb 2026",
+                        date: "26 Agustus 2026",
                         desc: "Desain jalur listrik untuk menghubungkan mikrokontroler dengan sensor, baterai, dan modul komunikasi pada buoy.",
                         img: "Penyusunan skematik elektronika BAT.jpeg"
                     },
                     {
                         title: "Perakitan Komponen Internal BAT",
                         tag: "Elektronika",
-                        date: "05 Feb 2026",
+                        date: "20 September 2026",
                         desc: "Penyolderan dan perangkaian fisik komponen-komponen listrik utama untuk sistem tracking.",
                         img: "Penyelesaian perakitan rangkaian komponen internal.jpg"
                     },
                     {
                         title: "Penataan Junction Box",
                         tag: "Elektronika",
-                        date: "05 Feb 2026",
+                        date: "17 Oktober 2026",
                         desc: "Penyusunan komponen elektronik secara rapi ke dalam kotak kedap air (junction box) agar aman dari cipratan air.",
                         img: "Penataan komponen di dalam junction box.jpeg"
                     },
                     {
                         title: "Pengujian Pengambilan Data Sensor",
                         tag: "Elektronika",
-                        date: "05 Feb 2026",
+                        date: "13 Oktober 2026",
                         desc: "Kalibrasi awal untuk memastikan sensor pada buoy dapat membaca data suhu dan pergerakan air dengan akurat.",
                         img: "Pengujian sistem pengambilan data.jpg"
                     },
                     {
                         title: "Integrasi Program & Hardware",
                         tag: "Program",
-                        date: "28 Okt 2026",
+                        date: "11 Oktober 2026",
                         desc: "Penyatuan kode pemrograman mikrokontroler dengan perangkat keras fisik untuk memastikan respon sistem yang sesuai.",
                         img: "uji coba bat.PNG"
                     },
                     {
-                        title: "Pengujian Pengambilan Data GPS",
-                        tag: "Program",
-                        date: "28 Okt 2026",
-                        desc: "Pengetesan modul GPS untuk memastikan titik koordinat (latitude dan longitude) buoy terlacak secara langsung.",
-                        img: "Pengujian pembacaan dan pengambilan data GPS.png"
-                    },
-                    {
                         title: "Pengembangan Sistem Database",
                         tag: "Program",
-                        date: "28 Okt 2026",
+                        date: "10 Oktober 2026",
                         desc: "Pembuatan skema penyimpanan awan (cloud database) agar seluruh data yang ditangkap BAT tersimpan aman.",
                         img: "Pengembangan sistem penyimpanan data ke database.png"
+                    },
+                    {
+                        title: "Pengujian Pengambilan Data GPS",
+                        tag: "Program",
+                        date: "13 Oktober 2026",
+                        desc: "Pengetesan modul GPS untuk memastikan titik koordinat (latitude dan longitude) buoy terlacak secara langsung.",
+                        img: "Pengujian pembacaan dan pengambilan data GPS.png"
                     }
                 ]
             },
@@ -816,28 +807,28 @@
                     {
                         title: "Perancangan Desain TROSS",
                         tag: "Mekanik",
-                        date: "21 Okt 2026",
+                        date: "25 Oktober 2026",
                         desc: "Pembuatan cetak biru rangka dan mekanisme trap berbasis desain observation system.",
                         img: "Perancangan desain mekanik TROSS.jpg"
                     },
                     {
                         title: "Persiapan Komponen Elektronik",
                         tag: "Elektronika",
-                        date: "05 Feb 2026",
+                        date: "26 September 2026",
                         desc: "Pengumpulan dan pengetesan alat-alat kamera dan sensor yang akan digunakan untuk proses recognition.",
                         img: "Penyusunan skematik elektronika TROSS.png"
                     },
                     {
                         title: "Pengujian sensor PIR HC-SR501",
                         tag: "Elektronika",
-                        date: "05 Feb 2026",
+                        date: "20 Oktober 2026",
                         desc: "Tes lapangan awal untuk mengetahui jangkauan daya tangkap perangkat observasi TROSS.",
                         img: "Pengujian sensor PIR HC-SR501.jpg"
                     },
                     {
                         title: "Kalibrasi dan Uji Sensitivitas Sensor PIR",
                         tag: "Program",
-                        date: "28 Okt 2026",
+                        date: "20 Oktober 2026",
                         desc: "Pengetesan dan penyesuaian parameter program pada sensor Passive Infrared (PIR) untuk memastikan akurasi deteksi pergerakan objek atau suhu di sekitarnya.",
                         img: "Uji sensitivitas sensor PIR (Passive Infrared).jpg"
                     },
@@ -849,7 +840,7 @@
         let activeMilestoneIndex = 0;
         let hoveredMilestoneIndex = null;
         let countAnimationTimers = {};
-        
+
         // Variabel baru: Untuk menyimpan hanya 1 foto terakhir dari tiap divisi
         let currentStackMilestones = [];
 
@@ -891,9 +882,9 @@
             activeDeviceId = devId;
             activeMilestoneIndex = 0;
             hoveredMilestoneIndex = null;
-            
+
             initStackMilestones(); // Update kartu 3D
-            
+
             renderDeviceTabs();
             renderStackCards();
             updateOverallPanel();
@@ -1039,15 +1030,15 @@
 
             if (device.id === "alat-1") {
                 // Tampilkan ALBA (Dual Bar)
-                if(dualContainer) dualContainer.classList.remove("hidden");
-                if(singleContainer) singleContainer.classList.add("hidden");
-                animatePercentage("elektroDataText", "elektroDataBar", device.elektroDataPercentage || 0); 
-                animatePercentage("elektroNavText", "elektroNavBar", device.elektroNavigasiPercentage || 0); 
+                if (dualContainer) dualContainer.classList.remove("hidden");
+                if (singleContainer) singleContainer.classList.add("hidden");
+                animatePercentage("elektroDataText", "elektroDataBar", device.elektroDataPercentage || 0);
+                animatePercentage("elektroNavText", "elektroNavBar", device.elektroNavigasiPercentage || 0);
             } else {
                 // Tampilkan BAT & TROSS (Single Bar)
-                if(dualContainer) dualContainer.classList.add("hidden");
-                if(singleContainer) singleContainer.classList.remove("hidden");
-                animatePercentage("elektroText", "elektroBar", device.elektroPercentage || 0); 
+                if (dualContainer) dualContainer.classList.add("hidden");
+                if (singleContainer) singleContainer.classList.remove("hidden");
+                animatePercentage("elektroText", "elektroBar", device.elektroPercentage || 0);
             }
         }
 
