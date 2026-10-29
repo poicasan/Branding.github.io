@@ -148,14 +148,17 @@
         .custom-slider-scroll::-webkit-scrollbar {
             height: 6px;
         }
+
         .custom-slider-scroll::-webkit-scrollbar-track {
             background: #E5E7EB;
             border-radius: 9999px;
         }
+
         .custom-slider-scroll::-webkit-scrollbar-thumb {
             background: #76C457;
             border-radius: 9999px;
         }
+
         .custom-slider-scroll::-webkit-scrollbar-thumb:hover {
             background: #2A7C13;
         }
@@ -259,7 +262,7 @@
             <div class="max-w-7xl mx-auto">
 
                 <!-- Device Switcher Tabs (Tanpa shadow-xl) -->
-                <div class="flex justify-center mb-8 md:mb-10 overflow-x-auto py-2 px-1 w-full">
+                <div class="flex justify-center mb-8 md:mb-20 overflow-x-auto py-2 px-1 w-full">
                     <div id="deviceTabs"
                         class="flex flex-nowrap md:flex-wrap justify-start md:justify-center gap-2 bg-[#2A7C13]/20 p-2 rounded-full border border-[#76C457] backdrop-blur-md shrink-0">
                         <!-- Generated dynamically by JS -->
@@ -270,7 +273,8 @@
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
 
                     <!-- LEFT SIDE (6 COLS): 3D Stacked Cards Gallery -->
-                    <div class="lg:col-span-6 flex flex-col items-center justify-center min-h-[380px] sm:min-h-[440px] lg:min-h-[480px] w-full px-2 -ml-6">
+                    <div
+                        class="lg:col-span-6 flex flex-col items-center justify-center min-h-[380px] sm:min-h-[440px] lg:min-h-[480px] w-full px-2 -ml-6 transform -translate-y-8">
                         <div class="stack-perspective py-4 w-full">
                             <div id="cardStack" class="card-stack mx-auto">
                                 <!-- Cards rendered by JS -->
@@ -288,7 +292,7 @@
                     </div>
 
                     <!-- RIGHT SIDE (6 COLS): Percentage & Milestone Info Panel -->
-                    <div class="lg:col-span-6 flex flex-col justify-center w-full -mt-8 lg:-mt-20 -ml-4 lg:-ml-14">
+                    <div class="lg:col-span-6 flex flex-col justify-center w-full -mt-8 lg:-mt-20 -ml-8 lg:-ml-14">
                         <div
                             class="bg-[#76C457]/30 border border-[#76C457] rounded-3xl p-5 sm:p-6 md:p-8 backdrop-blur-xl relative overflow-hidden shadow-2xl">
 
@@ -297,110 +301,208 @@
                             </div>
 
                             <!-- Header Info -->
-                            <div class="flex items-center justify-between mb-4">
-                                <span id="displayBadge"
-                                    class="px-3 py-1 text-xs font-bold uppercase tracking-wider text-[#6E3511] bg-[white]/50 border border-[#76C457] rounded-full">
-                                    Perancangan
-                                </span>
-                                <span id="displayDate" class="text-xs text-[#6E3511] font-medium">
-                                    <i class="fa-regular fa-calendar mr-1"></i>
-                                </span>
-                            </div>
 
-                            <h2 id="displayTitle"
-                                class="text-xl sm:text-2xl md:text-3xl font-bold text-[#236510] mb-2 leading-tight min-h-[3rem] flex items-center">
-                                Desain Sistem & Skematik
-                            </h2>
 
-                            <p id="displayDesc" class="text-[#454545] text-xs sm:text-sm mb-6 line-clamp-3 min-h-[2.5rem]">
-                                Deskripsi singkat progress pembuatan alat akan ditampilkan di sini.
-                            </p>
+                            <!-- Kumpulan Progress Bar -->
+                            <div class="flex flex-col gap-4 mb-6">
 
-                            <!-- Overall Progress Bar & Percentage Counter -->
-                            <div class="bg-[white]/50 rounded-2xl p-4 sm:p-5 border border-[#76C457] mb-6">
-                                <div class="flex justify-between items-baseline mb-2">
-                                    <span class="text-[11px] sm:text-xs font-semibold text-[#454545] uppercase tracking-wider">Total
-                                        Penyelesaian Alat Keseluruhan</span>
-                                    <div class="flex items-baseline gap-0.5">
-                                        <span id="percentageText"
-                                            class="text-3xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#76C457] to-emerald-400">0</span>
-                                        <span class="text-xl sm:text-2xl font-bold text-[#76C457]">%</span>
-                                    </div>
-                                </div>
-
-                                <!-- Progress Bar Container -->
-                                <div
-                                    class="w-full h-3 sm:h-3.5 bg-gray-800 rounded-full overflow-hidden p-0.5 border border-gray-700/50">
-                                    <div id="progressBar"
-                                        class="h-full bg-gradient-to-r from-[#2A7C13] via-[#76C457] to-emerald-400 rounded-full transition-all duration-500 ease-out"
-                                        style="width: 0%"></div>
-                                </div>
-                            </div>
-
-                            <!-- Status & Stats Highlights -->
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                                <div
-                                    class="bg-[white]/50 border border-[#76C457] rounded-xl p-3 sm:p-3.5 flex items-center gap-3">
-                                    <div
-                                        class="w-10 h-10 rounded-lg bg-[#2A7C13]/35 border border-[#76C457] flex items-center justify-center text-[#6E3511] shrink-0">
-                                        <i class="fa-solid fa-spinner animate-spin text-[#6E3511]" id="statusIcon"></i>
-                                    </div>
-                                    <div>
-                                        <div class="text-[11px] font-semibold text-[#6E3511] uppercase tracking-wider">
-                                            Status Alat</div>
-                                        <div id="displayStatus" class="text-xs sm:text-sm font-bold text-[#454545]">Dalam Proses
+                                <!-- 1. Overall Progress Bar -->
+                                <div class="bg-[white]/50 rounded-2xl p-4 sm:p-5 border border-[#76C457]">
+                                    <div class="flex justify-between items-baseline mb-2">
+                                        <span
+                                            class="text-[11px] sm:text-xs font-semibold text-[#454545] uppercase tracking-wider">Total
+                                            Penyelesaian Alat</span>
+                                        <div class="flex items-baseline gap-0.5">
+                                            <span id="percentageText"
+                                                class="text-3xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#76C457] to-emerald-400">0</span>
+                                            <span class="text-xl sm:text-2xl font-bold text-[#76C457]">%</span>
                                         </div>
                                     </div>
-                                </div>
-
-                                <div
-                                    class="bg-[white]/50 border border-[#76C457] rounded-xl p-3 sm:p-3.5 flex items-center gap-3">
                                     <div
-                                        class="w-10 h-10 rounded-lg bg-[#2A7C13]/35 border border-[#76C457] flex items-center justify-center text-[#6E3511] shrink-0">
-                                        <i class="fa-solid fa-images"></i>
-                                    </div>
-                                    <div>
-                                        <div class="text-[11px] font-semibold text-[#6E3511] uppercase tracking-wider">
-                                            Total Dokumentasi</div>
-                                        <div id="totalMilestones" class="text-xs sm:text-sm font-bold text-[#454545]">0 Foto</div>
+                                        class="w-full h-3 sm:h-3.5 bg-gray-800 rounded-full overflow-hidden p-0.5 border border-gray-700/50">
+                                        <div id="progressBar"
+                                            class="h-full bg-gradient-to-r from-[#2A7C13] via-[#76C457] to-emerald-400 rounded-full transition-all duration-500 ease-out"
+                                            style="width: 0%"></div>
                                     </div>
                                 </div>
-                            </div>
 
+                                <!-- 2. Divisi Progress Bars -->
+                                <div class="flex flex-col gap-4">
+
+                                    <!-- Mekanik (Lebar Penuh) -->
+                                    <div class="bg-[white]/50 rounded-2xl p-4 sm:p-5 border border-[#76C457]">
+                                        <div class="flex justify-between items-baseline mb-2">
+                                            <span
+                                                class="text-[11px] sm:text-xs font-semibold text-[#454545] uppercase tracking-wider">Progress
+                                                Mekanik</span>
+                                            <div class="flex items-baseline gap-0.5">
+                                                <span id="mekanikText"
+                                                    class="text-3xl sm:text-4xl font-extrabold text-[#2A7C13]">0</span>
+                                                <span class="text-xl sm:text-2xl font-bold text-[#2A7C13]">%</span>
+                                            </div>
+                                        </div>
+                                        <div
+                                            class="w-full h-3 sm:h-3.5 bg-gray-800 rounded-full overflow-hidden p-0.5 border border-gray-700/50">
+                                            <div id="mekanikBar"
+                                                class="h-full bg-[#2A7C13] rounded-full transition-all duration-500 ease-out"
+                                                style="width: 0%"></div>
+                                        </div>
+                                    </div>
+
+                                    <!-- CONTAINER ALAT ALBA: Elektronika Data & Navigasi (Grid 2 Kolom) -->
+                                    <div id="elektroDualContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                        <!-- Elektronika (Data) -->
+                                        <div class="bg-[white]/50 rounded-2xl p-4 sm:p-5 border border-[#76C457]">
+                                            <div class="flex justify-between items-baseline mb-2">
+                                                <span
+                                                    class="text-[11px] sm:text-xs font-semibold text-[#454545] uppercase tracking-wider">Elektronika
+                                                    (Data)</span>
+                                                <div class="flex items-baseline gap-0.5">
+                                                    <span id="elektroDataText"
+                                                        class="text-3xl sm:text-4xl font-extrabold text-[#76C457]">0</span>
+                                                    <span class="text-xl sm:text-2xl font-bold text-[#76C457]">%</span>
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="w-full h-3 sm:h-3.5 bg-gray-800 rounded-full overflow-hidden p-0.5 border border-gray-700/50">
+                                                <div id="elektroDataBar"
+                                                    class="h-full bg-[#76C457] rounded-full transition-all duration-500 ease-out"
+                                                    style="width: 0%"></div>
+                                            </div>
+                                        </div>
+                                        <!-- Elektronika (Navigasi) -->
+                                        <div class="bg-[white]/50 rounded-2xl p-4 sm:p-5 border border-[#76C457]">
+                                            <div class="flex justify-between items-baseline mb-2">
+                                                <span
+                                                    class="text-[11px] sm:text-xs font-semibold text-[#454545] uppercase tracking-wider">Elektronika
+                                                    (Navigasi)</span>
+                                                <div class="flex items-baseline gap-0.5">
+                                                    <span id="elektroNavText"
+                                                        class="text-3xl sm:text-4xl font-extrabold text-[#2A7C13]">0</span>
+                                                    <span class="text-xl sm:text-2xl font-bold text-[#2A7C13]">%</span>
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="w-full h-3 sm:h-3.5 bg-gray-800 rounded-full overflow-hidden p-0.5 border border-gray-700/50">
+                                                <div id="elektroNavBar"
+                                                    class="h-full bg-[#2A7C13] rounded-full transition-all duration-500 ease-out"
+                                                    style="width: 0%"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- CONTAINER ALAT BAT & TROSS: Elektronika Single (Lebar Penuh) -->
+                                    <div id="elektroSingleContainer"
+                                        class="hidden bg-[white]/50 rounded-2xl p-4 sm:p-5 border border-[#76C457]">
+                                        <div class="flex justify-between items-baseline mb-2">
+                                            <span
+                                                class="text-[11px] sm:text-xs font-semibold text-[#454545] uppercase tracking-wider">Progress
+                                                Elektronika</span>
+                                            <div class="flex items-baseline gap-0.5">
+                                                <span id="elektroText"
+                                                    class="text-3xl sm:text-4xl font-extrabold text-[#76C457]">0</span>
+                                                <span class="text-xl sm:text-2xl font-bold text-[#76C457]">%</span>
+                                            </div>
+                                        </div>
+                                        <div
+                                            class="w-full h-3 sm:h-3.5 bg-gray-800 rounded-full overflow-hidden p-0.5 border border-gray-700/50">
+                                            <div id="elektroBar"
+                                                class="h-full bg-[#76C457] rounded-full transition-all duration-500 ease-out"
+                                                style="width: 0%"></div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Program (Lebar Penuh di Bawah Elektronika) -->
+                                    <div class="bg-[white]/50 rounded-2xl p-4 sm:p-5 border border-[#76C457]">
+                                        <div class="flex justify-between items-baseline mb-2">
+                                            <span
+                                                class="text-[11px] sm:text-xs font-semibold text-[#454545] uppercase tracking-wider">Progress
+                                                Program</span>
+                                            <div class="flex items-baseline gap-0.5">
+                                                <span id="programText"
+                                                    class="text-3xl sm:text-4xl font-extrabold text-[#6E3511]">0</span>
+                                                <span class="text-xl sm:text-2xl font-bold text-[#6E3511]">%</span>
+                                            </div>
+                                        </div>
+                                        <div
+                                            class="w-full h-3 sm:h-3.5 bg-gray-800 rounded-full overflow-hidden p-0.5 border border-gray-700/50">
+                                            <div id="programBar"
+                                                class="h-full bg-[#6E3511] rounded-full transition-all duration-500 ease-out"
+                                                style="width: 0%"></div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                 </div>
+            </div>
 
-                <!-- KOTAK MEMANJANG KE SAMPING (DROPDOWN DETAIL PROGRESS SLIDER) -->
-                <div class="mt-12 max-w-6xl mx-auto w-full px-4 sm:px-5">
-                    <div class="border border-[#76C457] rounded-2xl shadow-xl overflow-hidden transition-all duration-300">
-                        
-                        <!-- Tombol Kotak Utama (Bisa Dipencet) -->
-                        <button onclick="toggleDetailedDropdown()" 
-                            class="w-full px-6 py-4 bg-[#2A7C13]/30 hover:bg-[#236510]/30 text-[#236510] flex items-center justify-between transition-colors duration-200 cursor-pointer focus:outline-none">
-                            <div class="flex items-center gap-3">
-                                <i class="fa-solid fa-circle-info text-lg"></i>
-                                <span class="font-bold text-sm sm:text-base tracking-wide">Lihat progress kami dengan lebih rinci</span>
-                            </div>
-                            <i id="dropdownArrow" class="fa-solid fa-chevron-down transition-transform duration-300"></i>
-                        </button>
 
-                        <!-- Area Isi Dropdown (Slider Horizontal per Bidang) -->
-                        <div id="detailedDropdownContent" class="hidden bg-white p-6 sm:p-8 border-t border-[#76C457] transition-all duration-300">
-                            <div class="mb-6">
-                                <h3 class="text-lg sm:text-xl font-bold text-[#6E3511] mb-1">Rincian Progress Berdasarkan Divisi</h3>
-                                <p class="text-xs sm:text-sm text-[#454545]">Geser ke samping untuk melihat seluruh dokumentasi dan penjelasan progress pada masing-masing divisi.</p>
-                            </div>
-
-                            <!-- Container Pengelompokan Kategori Horizontal Slider -->
-                            <div id="dropdownMilestonesGrouped" class="space-y-8">
-                                <!-- Data dikelompokkan dan dapat digeser oleh JavaScript -->
-                            </div>
+            <!-- Status & Stats Highlights -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 ml-12 mr-12">
+                <div class="bg-[white]/50 border border-[#76C457] rounded-xl p-3 sm:p-3.5 flex items-center gap-3">
+                    <div
+                        class="w-10 h-10 rounded-lg bg-[#2A7C13]/35 border border-[#76C457] flex items-center justify-center text-[#6E3511] shrink-0">
+                        <i class="fa-solid fa-spinner animate-spin text-[#6E3511]" id="statusIcon"></i>
+                    </div>
+                    <div>
+                        <div class="text-[11px] font-semibold text-[#6E3511] uppercase tracking-wider">
+                            Status Alat</div>
+                        <div id="displayStatus" class="text-xs sm:text-sm font-bold text-[#454545]">
+                            Dalam Proses
                         </div>
-
                     </div>
                 </div>
+
+                <div class="bg-[white]/50 border border-[#76C457] rounded-xl p-3 sm:p-3.5 flex items-center gap-3">
+                    <div
+                        class="w-10 h-10 rounded-lg bg-[#2A7C13]/35 border border-[#76C457] flex items-center justify-center text-[#6E3511] shrink-0">
+                        <i class="fa-solid fa-images"></i>
+                    </div>
+                    <div>
+                        <div class="text-[11px] font-semibold text-[#6E3511] uppercase tracking-wider">
+                            Total Dokumentasi</div>
+                        <div id="totalMilestones" class="text-xs sm:text-sm font-bold text-[#454545]">0
+                            Foto</div>
+                    </div>
+                </div>
+            </div>
+            <!-- KOTAK MEMANJANG KE SAMPING (DROPDOWN DETAIL PROGRESS SLIDER) -->
+            <div class="mt-12 max-w-6xl mx-auto w-full px-4 sm:px-5">
+                <div class="border border-[#76C457] rounded-2xl shadow-xl overflow-hidden transition-all duration-300">
+
+                    <!-- Tombol Kotak Utama (Bisa Dipencet) -->
+                    <button onclick="toggleDetailedDropdown()"
+                        class="w-full px-6 py-4 bg-[#2A7C13]/30 hover:bg-[#236510]/30 text-[#236510] flex items-center justify-between transition-colors duration-200 cursor-pointer focus:outline-none">
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-circle-info text-lg"></i>
+                            <span class="font-bold text-sm sm:text-base tracking-wide">Lihat progress kami dengan
+                                lebih rinci</span>
+                        </div>
+                        <i id="dropdownArrow" class="fa-solid fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+
+                    <!-- Area Isi Dropdown (Slider Horizontal per Bidang) -->
+                    <div id="detailedDropdownContent"
+                        class="hidden bg-white p-6 sm:p-8 border-t border-[#76C457] transition-all duration-300">
+                        <div class="mb-6">
+                            <h3 class="text-lg sm:text-xl font-bold text-[#6E3511] mb-1">Rincian Progress
+                                Berdasarkan Divisi</h3>
+                            <p class="text-xs sm:text-sm text-[#454545]">Geser ke samping untuk melihat seluruh
+                                dokumentasi dan penjelasan progress pada masing-masing divisi.</p>
+                        </div>
+
+                        <!-- Container Pengelompokan Kategori Horizontal Slider -->
+                        <div id="dropdownMilestonesGrouped" class="space-y-8">
+                            <!-- Data dikelompokkan dan dapat digeser oleh JavaScript -->
+                        </div>
+                    </div>
+
+                </div>
+            </div>
 
             </div>
         </section>
@@ -492,8 +594,19 @@
                 id: "alat-1",
                 name: "ALBA: Autonomous Littoral Bathimetry and Aquatic",
                 icon: "fa-seedling",
-                overallPercentage: 49,
+                overallPercentage: 35,
+                mekanikPercentage: 70,
+                elektroDataPercentage: 5,     // <- Tambahan baru
+                elektroNavigasiPercentage: 35, // <- Tambahan baru
+                programPercentage: 15,
                 milestones: [
+                    {
+                        title: "Perancangan Desain Mekanikal",
+                        tag: "Mekanik",
+                        date: "6 Sept 2026",
+                        desc: "Pembuatan model rancang bangun 3D dan cetak biru (blueprint) struktur fisik alat menggunakan perangkat lunak SketchUp.",
+                        img: "Perancangan desain mekanik ALBA.jpg"
+                    },
                     {
                         title: "Pencetakan Lambung Kapal",
                         tag: "Mekanik",
@@ -502,40 +615,176 @@
                         img: "pecetakan-lambung.jpg"
                     },
                     {
-                        title: "Desain Skematik Navigasi",
+                        title: "Perakitan Struktur Tulang Lambung",
+                        tag: "Mekanik",
+                        date: "6 Sept 2026",
+                        desc: "Pemasangan dan penyatuan rangka dalam (tulang) dengan lambung untuk memperkuat konstruksi dasar kapal.",
+                        img: "tulang.jpg"
+                    },
+                    {
+                        title: "Instalasi Sistem Drainase",
+                        tag: "Mekanik",
+                        date: "6 Sept 2026",
+                        desc: "Pembuatan jalur pembuangan air pada kedua sisi lambung untuk mencegah genangan dan menjaga keseimbangan alat.",
+                        img: "pembuatan sistem drainase pada kedua lambung.jpg"
+                    },
+                    {
+                        title: "Pemasangan Tutup Lambung",
+                        tag: "Mekanik",
+                        date: "6 Sept 2026",
+                        desc: "Pemasangan penutup atas lambung guna melindungi bagian dalam kapal dari masuknya air (waterproofing) dan kotoran.",
+                        img: "Tutup lambung.jpg"
+                    },
+                    {
+                        title: "Fabrikasi Dudukan Trolling Motor",
+                        tag: "Mekanik",
+                        date: "6 Sept 2026",
+                        desc: "Pembuatan rangka dudukan khusus untuk menyangga motor penggerak (trolling motor) agar stabil saat beroperasi.",
+                        img: "pembuatan dudukan.jpg"
+                    },
+                    {
+                        title: "Pemasangan Penguat Besi Dudukan Motor",
+                        tag: "Mekanik",
+                        date: "6 Sept 2026",
+                        desc: "Penambahan komponen besi struktural pada dudukan motor guna meredam getaran dan menahan beban dorong secara optimal.",
+                        img: "pembuatan komponen besi sebagai penguat dudukan trolling motor.jpg"
+                    },
+                    {
+                        title: "Perakitan Penghubung Antarlambung",
+                        tag: "Mekanik",
+                        date: "6 Sept 2026",
+                        desc: "Penyambungan kedua lambung menggunakan struktur besi (crossbeam) untuk membentuk konfigurasi katamaran yang kokoh dan presisi.",
+                        img: "pembuatan struktur besi penghubung antarlambung.jpg"
+                    },
+                    {
+                        title: "Pembuatan Kompartemen Elektronika",
+                        tag: "Mekanik",
+                        date: "6 Sept 2026",
+                        desc: "Pembuatan tatakan berbahan kayu/triplek yang dirancang khusus sebagai tempat meletakkan kotak komponen elektronika agar aman dan rapi.",
+                        img: "Pembuatan tatakan komponen elektronika menggunakan triplek.jpeg"
+                    },
+                    {
+                        title: "Uji Daya Apung & Kekedapan",
+                        tag: "Mekanik",
+                        date: "6 Sept 2026",
+                        desc: "Pengujian langsung di air (water-tight test) untuk memastikan lambung tidak mengalami kebocoran dan memiliki daya apung yang sesuai standar.",
+                        img: "tes-apung.jpg"
+                    },
+                    {
+                        title: "Pengecatan & Finishing Komponen",
+                        tag: "Mekanik",
+                        date: "6 Sept 2026",
+                        desc: "Proses pelapisan cat pelindung pada lambung, tatakan, dan struktur besi untuk mencegah korosi serta memperindah tampilan alat.",
+                        img: "Pengecetan-kapal.jpeg"
+                    },
+                    {
+                        title: "Desain Skematik Sistem Data (Sensor)",
                         tag: "Elektronika",
                         date: "24 Okt 2026",
-                        desc: "Perancangan jalur skema sistem elektronika untuk kebutuhan navigasi utama ALBA.",
+                        desc: "Perancangan diagram kelistrikan dan jalur komunikasi mikroprosesor untuk sensor-sensor yang bertugas mengambil data parameter air.",
+                        img: "Penyusunan skematik elektronika untuk sistem pengambilan data (1).jpeg"
+                    },
+                    {
+                        title: "Desain Skematik Sistem Navigasi",
+                        tag: "Elektronika",
+                        date: "24 Okt 2026",
+                        desc: "Pembuatan rancangan sirkuit elektronika yang menghubungkan mikrokontroler utama dengan modul GPS dan kompas.",
                         img: "skema-elektronika-navigasi.jpeg"
                     },
                     {
-                        title: "Pengembangan Algoritma Autopilot",
+                        title: "Uji Coba Rangkaian Navigasi",
+                        tag: "Elektronika",
+                        date: "24 Okt 2026",
+                        desc: "Pengujian kelistrikan dan fungsionalitas pada prototipe awal untuk memastikan setiap komponen dapat menyala dan merespon instruksi.",
+                        img: "elektro-navigasi.jpeg"
+                    },
+                    {
+                        title: "Pemrograman Modul Sensor",
                         tag: "Program",
                         date: "28 Okt 2026",
-                        desc: "Pembuatan baris kode dan logika pemrograman untuk pengemudian otomatis kapal di perairan.",
-                        img: "skema-elektronika-navigasi.jpeg"
+                        desc: "Penulisan kode algoritma untuk membaca, memproses, dan menyimpan data mentah yang ditangkap oleh sensor lingkungan kelautan.",
+                        img: "IMG_0105.png"
                     },
+                    {
+                        title: "Pengujian Sistem Telemetri (Komunikasi)",
+                        tag: "Program",
+                        date: "28 Okt 2026",
+                        desc: "Uji coba pengiriman data secara real-time dari kapal ke stasiun darat (Ground Control Station) melalui sinyal nirkabel.",
+                        img: "IMG_0103.png"
+                    }
                 ]
             },
             {
                 id: "alat-2",
                 name: "BAT: Buoy-based Aquatic Tracking",
                 icon: "fa-robot",
-                overallPercentage: 30,
+                overallPercentage: 45,
+                mekanikPercentage: 10,
+                elektroPercentage: 85, // <- Menjadi single elektro
+                programPercentage: 40,
                 milestones: [
                     {
-                        title: "Perakitan Elektronika BAT",
-                        tag: "Elektronika",
-                        date: "05 Feb 2026",
-                        desc: "Pembuatan dan integrasi komponen elektronika yang akan menjadi sistem kontrol utama BAT.",
-                        img: "elektronika-bat.jpeg"
-                    },
-                    {
-                        title: "Perancangan Desain Mekanikal",
+                        title: "Perancangan Desain Mekanikal BAT",
                         tag: "Mekanik",
                         date: "21 Okt 2026",
-                        desc: "Pembuatan desain model 3D untuk bentuk dan struktur luar dari perangkat BAT.",
-                        img: "Bat baru.jpg"
+                        desc: "Proses perancangan wujud fisik dan penempatan komponen buoy menggunakan software desain 3D.",
+                        img: "Perancangan desain mekanik BAT.png"
+                    },
+                    {
+                        title: "Pemotongan Buoy & Penyesuaian Dimensi",
+                        tag: "Mekanik",
+                        date: "21 Okt 2026",
+                        desc: "Modifikasi ukuran fisik pelampung (buoy) agar sejajar dan seimbang dengan kotak junction box.",
+                        img: "Pemotongan buoy dan penyesuaian dimensinya dengan junction box.jpg"
+                    },
+                    {
+                        title: "Penyusunan Skematik Elektronika BAT",
+                        tag: "Elektronika",
+                        date: "05 Feb 2026",
+                        desc: "Desain jalur listrik untuk menghubungkan mikrokontroler dengan sensor, baterai, dan modul komunikasi pada buoy.",
+                        img: "Penyusunan skematik elektronika BAT.jpeg"
+                    },
+                    {
+                        title: "Perakitan Komponen Internal BAT",
+                        tag: "Elektronika",
+                        date: "05 Feb 2026",
+                        desc: "Penyolderan dan perangkaian fisik komponen-komponen listrik utama untuk sistem tracking.",
+                        img: "Penyelesaian perakitan rangkaian komponen internal.jpg"
+                    },
+                    {
+                        title: "Penataan Junction Box",
+                        tag: "Elektronika",
+                        date: "05 Feb 2026",
+                        desc: "Penyusunan komponen elektronik secara rapi ke dalam kotak kedap air (junction box) agar aman dari cipratan air.",
+                        img: "Penataan komponen di dalam junction box.jpeg"
+                    },
+                    {
+                        title: "Pengujian Pengambilan Data Sensor",
+                        tag: "Elektronika",
+                        date: "05 Feb 2026",
+                        desc: "Kalibrasi awal untuk memastikan sensor pada buoy dapat membaca data suhu dan pergerakan air dengan akurat.",
+                        img: "Pengujian sistem pengambilan data.jpg"
+                    },
+                    {
+                        title: "Integrasi Program & Hardware",
+                        tag: "Program",
+                        date: "28 Okt 2026",
+                        desc: "Penyatuan kode pemrograman mikrokontroler dengan perangkat keras fisik untuk memastikan respon sistem yang sesuai.",
+                        img: "uji coba bat.PNG"
+                    },
+                    {
+                        title: "Pengujian Pengambilan Data GPS",
+                        tag: "Program",
+                        date: "28 Okt 2026",
+                        desc: "Pengetesan modul GPS untuk memastikan titik koordinat (latitude dan longitude) buoy terlacak secara langsung.",
+                        img: "Pengujian pembacaan dan pengambilan data GPS.png"
+                    },
+                    {
+                        title: "Pengembangan Sistem Database",
+                        tag: "Program",
+                        date: "28 Okt 2026",
+                        desc: "Pembuatan skema penyimpanan awan (cloud database) agar seluruh data yang ditangkap BAT tersimpan aman.",
+                        img: "Pengembangan sistem penyimpanan data ke database.png"
                     }
                 ]
             },
@@ -543,8 +792,39 @@
                 id: "alat-3",
                 name: "TROSS: Trap-based Recognition and Observation Surveillance System",
                 icon: "fa-solar-panel",
-                overallPercentage: 0,
+                overallPercentage: 6,
+                mekanikPercentage: 5,
+                elektroPercentage: 10, // <- Menjadi single elektro
+                programPercentage: 3,
                 milestones: [
+                    {
+                        title: "Perancangan Desain TROSS",
+                        tag: "Mekanik",
+                        date: "21 Okt 2026",
+                        desc: "Pembuatan cetak biru rangka dan mekanisme trap berbasis desain observation system.",
+                        img: "Perancangan desain mekanik TROSS.jpg"
+                    },
+                    {
+                        title: "Persiapan Komponen Elektronik",
+                        tag: "Elektronika",
+                        date: "05 Feb 2026",
+                        desc: "Pengumpulan dan pengetesan alat-alat kamera dan sensor yang akan digunakan untuk proses recognition.",
+                        img: "Penyusunan skematik elektronika TROSS.png"
+                    },
+                    {
+                        title: "Pengujian sensor PIR HC-SR501",
+                        tag: "Elektronika",
+                        date: "05 Feb 2026",
+                        desc: "Tes lapangan awal untuk mengetahui jangkauan daya tangkap perangkat observasi TROSS.",
+                        img: "Pengujian sensor PIR HC-SR501.jpg"
+                    },
+                    {
+                        title: "Kalibrasi dan Uji Sensitivitas Sensor PIR",
+                        tag: "Program",
+                        date: "28 Okt 2026",
+                        desc: "Pengetesan dan penyesuaian parameter program pada sensor Passive Infrared (PIR) untuk memastikan akurasi deteksi pergerakan objek atau suhu di sekitarnya.",
+                        img: "Uji sensitivitas sensor PIR (Passive Infrared).jpg"
+                    },
                 ]
             }
         ];
@@ -552,9 +832,13 @@
         let activeDeviceId = "alat-1";
         let activeMilestoneIndex = 0;
         let hoveredMilestoneIndex = null;
-        let countAnimationTimer = null;
+        let countAnimationTimers = {};
+        
+        // Variabel baru: Untuk menyimpan hanya 1 foto terakhir dari tiap divisi
+        let currentStackMilestones = [];
 
         document.addEventListener("DOMContentLoaded", () => {
+            initStackMilestones();
             renderDeviceTabs();
             renderStackCards();
             updateOverallPanel();
@@ -563,6 +847,17 @@
 
         function getCurrentDevice() {
             return devicesData.find(d => d.id === activeDeviceId);
+        }
+
+        function initStackMilestones() {
+            const device = getCurrentDevice();
+            const map = {};
+            if (device && device.milestones) {
+                device.milestones.forEach(m => {
+                    map[m.tag] = m; // Selalu menimpa yang lama, jadi sisa yang terakhir
+                });
+            }
+            currentStackMilestones = Object.values(map);
         }
 
         function renderDeviceTabs() {
@@ -580,6 +875,9 @@
             activeDeviceId = devId;
             activeMilestoneIndex = 0;
             hoveredMilestoneIndex = null;
+            
+            initStackMilestones(); // Update kartu 3D
+            
             renderDeviceTabs();
             renderStackCards();
             updateOverallPanel();
@@ -588,15 +886,13 @@
 
         function renderStackCards() {
             const cardStack = document.getElementById("cardStack");
-            const device = getCurrentDevice();
-            const milestones = device ? device.milestones : [];
 
-            if (milestones.length === 0) {
+            if (currentStackMilestones.length === 0) {
                 cardStack.innerHTML = `<div class="text-center text-gray-500 py-20">Belum ada foto dokumentasi.</div>`;
                 return;
             }
 
-            cardStack.innerHTML = milestones.map((m, index) => {
+            cardStack.innerHTML = currentStackMilestones.map((m, index) => {
                 return `
                     <div id="card-${index}" 
                          class="stack-card" 
@@ -617,7 +913,6 @@
                           <span><i class="fa-regular fa-clock mr-1 text-[#76C457]"></i> ${m.date}</span>
                         </div>
                       </div>
-
                     </div>
                 `;
             }).join('');
@@ -626,16 +921,13 @@
         }
 
         function applyCardTransforms() {
-            const device = getCurrentDevice();
-            const milestones = device ? device.milestones : [];
-            const total = milestones.length;
+            const total = currentStackMilestones.length;
 
-            milestones.forEach((_, index) => {
+            currentStackMilestones.forEach((_, index) => {
                 const cardElem = document.getElementById(`card-${index}`);
                 if (!cardElem) return;
 
                 let relPos = (index - activeMilestoneIndex + total) % total;
-
                 let transformStr = "";
                 let zIndex = total - relPos;
                 let opacity = 1;
@@ -674,20 +966,16 @@
         function handleCardHover(index) {
             hoveredMilestoneIndex = index;
             applyCardTransforms();
-
-            const device = getCurrentDevice();
-            if (device && device.milestones[index]) {
-                updateCardInfo(device.milestones[index]);
+            if (currentStackMilestones[index]) {
+                updateCardInfo(currentStackMilestones[index]);
             }
         }
 
         function handleCardLeave() {
             hoveredMilestoneIndex = null;
             applyCardTransforms();
-
-            const device = getCurrentDevice();
-            if (device && device.milestones[activeMilestoneIndex]) {
-                updateCardInfo(device.milestones[activeMilestoneIndex]);
+            if (currentStackMilestones[activeMilestoneIndex]) {
+                updateCardInfo(currentStackMilestones[activeMilestoneIndex]);
             }
         }
 
@@ -695,10 +983,8 @@
             activeMilestoneIndex = index;
             hoveredMilestoneIndex = null;
             applyCardTransforms();
-
-            const device = getCurrentDevice();
-            if (device && device.milestones[index]) {
-                updateCardInfo(device.milestones[index]);
+            if (currentStackMilestones[index]) {
+                updateCardInfo(currentStackMilestones[index]);
             }
         }
 
@@ -706,10 +992,12 @@
             const device = getCurrentDevice();
             if (!device) return;
 
-            if (device.milestones.length > 0) {
-                updateCardInfo(device.milestones[activeMilestoneIndex]);
+            // Update teks info dengan milestone yang aktif dari tumpukan
+            if (currentStackMilestones.length > 0) {
+                updateCardInfo(currentStackMilestones[activeMilestoneIndex]);
             }
 
+            // Total dokumen tetap menghitung dari seluruh data asli
             document.getElementById("totalMilestones").innerText = `${device.milestones.length} Foto`;
 
             const statusText = document.getElementById("displayStatus");
@@ -724,41 +1012,80 @@
                 statusIcon.className = "fa-solid fa-spinner animate-spin text-[#6E3511]";
             }
 
-            animatePercentage(device.overallPercentage);
+            // --- LOGIKA MENAMPILKAN BAR ELEKTRO ---
+            const dualContainer = document.getElementById("elektroDualContainer");
+            const singleContainer = document.getElementById("elektroSingleContainer");
+
+            // Panggil Animasi Total, Mekanik, & Program (Berlaku untuk semua)
+            animatePercentage("percentageText", "progressBar", device.overallPercentage || 0);
+            animatePercentage("mekanikText", "mekanikBar", device.mekanikPercentage || 0);
+            animatePercentage("programText", "programBar", device.programPercentage || 0);
+
+            if (device.id === "alat-1") {
+                // Tampilkan ALBA (Dual Bar)
+                if(dualContainer) dualContainer.classList.remove("hidden");
+                if(singleContainer) singleContainer.classList.add("hidden");
+                animatePercentage("elektroDataText", "elektroDataBar", device.elektroDataPercentage || 0); 
+                animatePercentage("elektroNavText", "elektroNavBar", device.elektroNavigasiPercentage || 0); 
+            } else {
+                // Tampilkan BAT & TROSS (Single Bar)
+                if(dualContainer) dualContainer.classList.add("hidden");
+                if(singleContainer) singleContainer.classList.remove("hidden");
+                animatePercentage("elektroText", "elektroBar", device.elektroPercentage || 0); 
+            }
         }
 
         function updateCardInfo(milestone) {
-            document.getElementById("displayTitle").innerText = milestone.title;
-            document.getElementById("displayBadge").innerText = milestone.tag || "Dokumentasi";
-            document.getElementById("displayDate").innerHTML = `<i class="fa-regular fa-calendar mr-1"></i> ${milestone.date}`;
-            document.getElementById("displayDesc").innerText = milestone.desc || "Dokumentasi progress pengerjaan alat.";
+            const titleEl = document.getElementById("displayTitle");
+            const badgeEl = document.getElementById("displayBadge");
+            const dateEl = document.getElementById("displayDate");
+            const descEl = document.getElementById("displayDesc");
+
+            if (titleEl) titleEl.innerText = milestone.title;
+            if (badgeEl) badgeEl.innerText = milestone.tag || "Dokumentasi";
+            if (dateEl) dateEl.innerHTML = `<i class="fa-regular fa-calendar mr-1"></i> ${milestone.date}`;
+            if (descEl) descEl.innerText = milestone.desc || "Dokumentasi progress pengerjaan alat.";
         }
 
-        function animatePercentage(targetValue) {
-            const textElem = document.getElementById("percentageText");
-            const barElem = document.getElementById("progressBar");
+        function animatePercentage(textId, barId, targetValue) {
+            // Pastikan timer window tersedia
+            if (typeof window.countAnimationTimers === 'undefined' || window.countAnimationTimers === null) {
+                window.countAnimationTimers = {};
+            }
 
+            const textElem = document.getElementById(textId);
+            const barElem = document.getElementById(barId);
+
+            // Cegah error jika id html tidak ditemukan
+            if (!textElem || !barElem) return;
+
+            const finalTarget = parseInt(targetValue) || 0;
             let currentValue = parseInt(textElem.innerText) || 0;
 
-            if (countAnimationTimer) clearInterval(countAnimationTimer);
+            if (window.countAnimationTimers[textId]) {
+                clearInterval(window.countAnimationTimers[textId]);
+            }
 
-            barElem.style.width = targetValue + "%";
+            barElem.style.width = finalTarget + "%";
 
-            if (currentValue === targetValue) return;
+            if (currentValue === finalTarget) {
+                textElem.innerText = finalTarget;
+                return;
+            }
 
             const duration = 400;
             const steps = 25;
             const stepTime = duration / steps;
-            const increment = (targetValue - currentValue) / steps;
+            const increment = (finalTarget - currentValue) / steps;
 
             let stepCount = 0;
-            countAnimationTimer = setInterval(() => {
+            window.countAnimationTimers[textId] = setInterval(() => {
                 stepCount++;
                 currentValue += increment;
 
                 if (stepCount >= steps) {
-                    textElem.innerText = targetValue;
-                    clearInterval(countAnimationTimer);
+                    textElem.innerText = finalTarget;
+                    clearInterval(window.countAnimationTimers[textId]);
                 } else {
                     textElem.innerText = Math.round(currentValue);
                 }
@@ -769,7 +1096,7 @@
         function toggleDetailedDropdown() {
             const content = document.getElementById("detailedDropdownContent");
             const arrow = document.getElementById("dropdownArrow");
-            
+
             content.classList.toggle("hidden");
             arrow.classList.toggle("rotate-180");
         }
@@ -837,7 +1164,7 @@
                                         <div class="flex items-center text-xs text-[#2A7C13] font-semibold mb-1">
                                             <i class="fa-regular fa-calendar mr-1.5"></i> ${m.date}
                                         </div>
-                                        <h5 class="text-sm font-bold text-gray-900 mb-2 leading-snug line-clamp-1">${m.title}</h5>
+                                        <h5 class="text-sm font-bold text-gray-900 mb-2 leading-snug">${m.title}</h5>
                                         <p class="text-xs text-gray-600 leading-relaxed mt-auto line-clamp-3">${m.desc}</p>
                                     </div>
                                 </div>
