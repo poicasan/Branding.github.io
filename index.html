@@ -4,21 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Albatross - Sistem Pemantauan Perairan</title>
+    <title>Galeri Progress | ALBATROSS</title>
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- 1. PERUBAHAN DI SINI: Link Google Fonts mengganti Exo 2 dengan Anta -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anta&family=Inter:ital,wght@0,100..900;1,100..900&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Anta&family=Inter:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
 
-    <!-- FontAwesome for Icons -->
+    <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Config Tailwind CSS untuk mendukung Utility Class font-anta & font-inter -->
+    <!-- Konfigurasi Tailwind -->
     <script>
         tailwind.config = {
             theme: {
@@ -28,12 +28,9 @@
                         inter: ['Inter', 'sans-serif'],
                     },
                     colors: {
-                        brand: {
-                            blue: '#1b85b8',
-                            dark: '#2d3748',
-                            slate: '#4d566c',
-                            bg: '#eef5f9'
-                        }
+                        primary: '#2A7C13',
+                        secondary: '#76C457',
+                        dark: '#1a1a1a',
                     }
                 }
             }
@@ -41,187 +38,23 @@
     </script>
 
     <style>
-        html {
-            overflow-y: scroll;
-        }
-
         body {
             font-family: 'Inter', sans-serif;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
+            scroll-behavior: smooth;
         }
 
-        /* 2. PERUBAHAN DI SINI: Mengubah font-family Exo 2 menjadi Anta */
         .font-tech {
             font-family: 'Anta', sans-serif;
         }
 
-        /* Glassmorphism effect for buttons */
-        .glass-btn {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .glass-btn:hover {
-            background: rgba(255, 255, 255, 0.25);
-            border: 1px solid rgba(255, 255, 255, 0.6);
-        }
-
-        .card-tab {
-            clip-path: polygon(5% 0%, 95% 0%, 100% 100%, 0% 100%);
-        }
-
-        /* Sembunyikan scrollbar horizontal jika item overflow di layar sangat kecil */
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-
-        .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-
-        textarea::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        textarea::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 4px;
-        }
-
-        textarea::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 4px;
-        }
-
-        /* Kontainer utama untuk menyembunyikan elemen yang keluar layar */
-        .slider {
-            width: 100%;
-            overflow: hidden;
-            position: relative;
-            padding: 20px 0;
-            cursor: grab;
-            touch-action: pan-x;
-        }
-
-        .slider:active {
-            cursor: grabbing;
-        }
-
-        /* PALING PENTING */
-        .slide-track {
-            display: flex;
-            flex-direction: row;
-            flex-wrap: nowrap;
-
-            width: max-content;
-
-            gap: 24px;
-
-            align-items: center;
-
-            will-change: transform;
-        }
-
-        .slide {
-            flex: 0 0 450px;
-
-            width: 450px;
-
-            display: block;
-        }
-
-        .slide-card {
-            width: 100%;
-
-            background: white;
-
-            padding: 12px;
-
-            border: 2px solid #bae6fd;
-
-            border-radius: 24px;
-
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
-
-            box-sizing: border-box;
-        }
-
-        .slide img {
-            display: block;
-
-            width: 100%;
-
-            height: 260px;
-
-            object-fit: cover;
-
-            border-radius: 16px;
-        }
-
-        /* Tablet */
-        @media (max-width: 768px) {
-
-            .slide {
-                flex: 0 0 350px;
-                width: 350px;
-            }
-
-            .slide img {
-                height: 220px;
-            }
-        }
-
-        /* HP */
-        @media (max-width: 480px) {
-
-            .slide {
-                flex: 0 0 280px;
-                width: 280px;
-            }
-
-            .slide img {
-                height: 180px;
-            }
-        }
-
-        /* RESPONSIVE NAVBAR */
-        @media (max-width: 768px) {
-            #navbar {
-                padding: 12px 16px;
-            }
-
-            #navbar img {
-                height: 42px;
-            }
-
-            #logo-circle {
-                width: 50px;
-                height: 50px;
-            }
-
-            #mobile-toggle-btn {
-                font-size: 22px;
-                padding: 8px;
-            }
-        }
-
-        /* Pembungkus teks agar garisnya pas selebar tulisan */
         .nav-text-wrap {
             position: relative;
             display: inline-block;
         }
 
-        /* Garis bawah animasi fill-in */
         .nav-line {
             position: absolute;
             bottom: -2px;
-            /* Jarak pas di bawah huruf */
             left: 0;
             width: 100%;
             height: 2px;
@@ -231,133 +64,108 @@
             transition: transform 0.3s ease-out;
         }
 
-        /* Saat kursor diarahkan ke menu, garis bergerak dari kiri ke kanan */
         .nav-item:hover .nav-line {
             transform: scaleX(1);
             transform-origin: bottom left;
         }
 
-        .bg-slide {
-            opacity: 0;
-            transform: scale(1);
-            transition: opacity 1.5s ease-in-out, transform 5s ease-out;
-            will-change: opacity, transform;
+        /* Stack Container Perspective - Responsif Mobile */
+        .stack-perspective {
+            perspective: 1200px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
         }
 
-        .bg-slide.active {
-            opacity: 1;
-            transform: scale(1.08);
-            /* Efek zoom in pelan saat aktif */
+        .card-stack {
+            position: relative;
+            width: 260px;
+            height: 360px;
         }
 
-        /* Menjaga gambar hero tetap memenuhi area tanpa mengubah layout */
-        .bg-slide {
-            display: block;
-            backface-visibility: hidden;
+        @media (min-width: 640px) {
+            .card-stack {
+                width: 300px;
+                height: 400px;
+            }
         }
 
-        .bg-slide.active {
-            transform: scale(1.08);
+        @media (min-width: 1024px) {
+            .card-stack {
+                width: 320px;
+                height: 440px;
+            }
         }
 
-        /* Efek hover kartu Program & Solusi */
-        .program-card {
-            transition: transform 0.3s ease,
+        /* Base Card Style */
+        .stack-card {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 1.25rem;
+            background: #161e2e;
+            border: 1px solid rgba(118, 196, 87, 1);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            cursor: pointer;
+            user-select: none;
+            transform-origin: center bottom;
+            transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
                 box-shadow 0.3s ease,
-                border-color 0.3s ease;
+                border-color 0.3s ease,
+                z-index 0s linear 0.1s;
+            overflow: hidden;
         }
 
-        .program-card:hover {
-            transform: translateY(-4px);
-            border-color: #2A7C13 !important;
-            box-shadow: 0 12px 28px rgba(45, 55, 72, 0.15);
+        /* Dynamic Shadow Glow */
+        .stack-card:hover {
+            border-color: rgba(118, 196, 87, 1);
+            box-shadow: 0 20px 45px rgba(110, 53, 17, 0.25), 0 0 20px rgba(110, 53, 17, 0.25);
         }
 
-        @media (prefers-reduced-motion: reduce) {
-            .program-card {
-                transition: none;
-            }
-
-            .program-card:hover {
-                transform: none;
-            }
+        /* Custom Scrollbar Umum */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
         }
 
-        /* RESPONSIVE OVERRIDES: menjaga desain asli, hanya menyesuaikan layar kecil */
-        @media (max-width: 640px) {
-
-            html,
-            body {
-                width: 100%;
-                max-width: 100%;
-                overflow-x: hidden;
-            }
-
-            /* Hero: biarkan slogan membungkus baris agar tidak melebar keluar layar */
-            section:has(.bg-slide) h1 {
-                font-size: clamp(1.7rem, 7vw, 2.5rem);
-                line-height: 1.2;
-                overflow-wrap: anywhere;
-            }
-
-            section:has(.bg-slide) p {
-                max-width: 100%;
-                white-space: normal !important;
-                overflow-wrap: anywhere;
-                font-size: clamp(0.9rem, 3.8vw, 1rem);
-                padding-left: 0.25rem;
-                padding-right: 0.25rem;
-            }
-
-            /* Judul bagian informasi Laguna */
-            body>div[style*="max-width: 1200px"] h2 {
-                font-size: clamp(1.5rem, 6vw, 2rem) !important;
-                line-height: 1.25;
-                overflow-wrap: anywhere;
-            }
-
-            /* Kartu visi dan misi: ruang dalam lebih proporsional di HP */
-            .visi-misi-card {
-                padding: 20px !important;
-            }
-
-            .visi-misi-card p {
-                overflow-wrap: anywhere;
-            }
-
-            /* Cegah teks kontak panjang mendorong lebar footer */
-            footer a,
-            footer span {
-                min-width: 0;
-                overflow-wrap: anywhere;
-            }
-
-            /* Beri jarak aman di sisi layar untuk konten utama */
-            .program-card h3 {
-                overflow-wrap: anywhere;
-            }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
         }
 
-        @media (max-width: 380px) {
-            #navbar {
-                padding-left: 12px;
-                padding-right: 12px;
-            }
+        ::-webkit-scrollbar-thumb {
+            background: #76C457;
+            border-radius: 4px;
+        }
 
-            section:has(.bg-slide) h1 {
-                font-size: 1.6rem;
-            }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #2A7C13;
+        }
 
-            .visi-misi-card {
-                padding: 16px !important;
-            }
+        /* Custom Scrollbar khusus Slider Horizontal Dropdown */
+        .custom-slider-scroll::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .custom-slider-scroll::-webkit-scrollbar-track {
+            background: #E5E7EB;
+            border-radius: 9999px;
+        }
+
+        .custom-slider-scroll::-webkit-scrollbar-thumb {
+            background: #76C457;
+            border-radius: 9999px;
+        }
+
+        .custom-slider-scroll::-webkit-scrollbar-thumb:hover {
+            background: #2A7C13;
         }
     </style>
-
 </head>
 
-<body class="bg-white text-gray-800 font-inter">
-
+<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen overflow-x-hidden">
     <!-- STICKY NAVIGATION BAR -->
     <nav id="navbar"
         class="fixed top-0 left-0 w-full z-50 p-4 lg:px-12 transition-all duration-300 text-white bg-transparent">
@@ -428,787 +236,279 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="relative w-full min-h-[600px] h-[100svh] flex flex-col bg-gray-900 overflow-hidden pt-20">
-        <!-- Background Carousel Container -->
-        <div class="absolute inset-0 z-0 overflow-hidden bg-gray-900">
-            <!-- Gambar 1 (Tambahkan kelas 'active' untuk slide pertama yang muncul) -->
-            <img src="mangrove banner.jpeg" alt="Mangrove Background 1"
-                class="bg-slide active absolute inset-0 w-full h-full object-cover">
-
-            <!-- Gambar 2 -->
-            <img src="mangrove banner 2.png" alt="Mangrove Background 2"
-                class="bg-slide absolute inset-0 w-full h-full object-cover">
-
-            <!-- Gambar 3 -->
-            <img src="mangrove banner 3.jpeg" alt="Mangrove Background 3"
-                class="bg-slide absolute inset-0 w-full h-full object-cover">
-
-            <!-- Gambar 4 -->
-            <img src="mangrove banner 4.jpeg" alt="Mangrove Background 4"
-                class="bg-slide absolute inset-0 w-full h-full object-cover">
-
-            <!-- Gradient Overlay (Vignette / Fokus di Tengah) -->
-            <div class="absolute inset-0 z-10 pointer-events-none"
-                style="background: radial-gradient(ellipse 80% 80% at 50% 50%, rgba(0,0,0,0.90) 0%, rgba(0,0,0,0.6) 30%, rgba(0,0,0,0.45) 60%, rgba(0,0,0,0.25) 85%, transparent 100%);">
-            </div>
-        </div>
-
-        <!-- Konten Teks -->
-        <div
-            class="relative z-20 flex-grow flex flex-col justify-center items-center text-center px-4 sm:px-6 mt-[-20px] sm:mt-[-40px]">
-
-            <h1
-                class="font-tech text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-white tracking-[0.05em] sm:tracking-[0.08em] drop-shadow-lg mb-4 sm:mb-6 leading-tight">
-                Langkah Baru untuk <br> Masa Depan Pesisir
-            </h1>
-
-            <p
-                class="text-white text-base sm:text-lg md:text-xl lg:text-2xl max-w-none whitespace-nowrap leading-relaxed drop-shadow-md mb-6 sm:mb-10 font-medium px-2">
-                Memantau, melestarikan, dan mengedukasi demi keberlanjutan lingkungan.
-            </p>
-        </div>
-    </section>
-
-    <!-- Script JavaScript untuk mengatur pergantian gambar setiap 3 detik -->
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const slides = document.querySelectorAll(".bg-slide");
-            let currentIndex = 0;
-            const totalSlides = slides.length;
-
-            function changeSlide() {
-                // Hapus kelas 'active' dari slide saat ini (otomatis fade out & reset zoom)
-                slides[currentIndex].classList.remove("active");
-
-                // Pindah ke index gambar berikutnya
-                currentIndex = (currentIndex + 1) % totalSlides;
-
-                // Tambahkan kelas 'active' ke slide baru (otomatis fade in & mulai zoom pelan)
-                slides[currentIndex].classList.add("active");
-            }
-
-            // Jalankan fungsi pergantian gambar setiap 5 detik (bisa diubah sesuai selera)
-            setInterval(changeSlide, 5000);
-        });
-
-        document.addEventListener("DOMContentLoaded", function () {
-            const counters = document.querySelectorAll('.counter');
-            const section = document.getElementById('statistik-counter');
-            let started = false; // Mencegah animasi berulang
-
-            const animateCounters = () => {
-                counters.forEach(counter => {
-                    const target = parseFloat(counter.getAttribute('data-target'));
-                    const isDecimal = target % 1 !== 0; // Cek apakah target mengandung desimal
-
-                    const updateCount = () => {
-                        const count = parseFloat(counter.innerText);
-                        // Kecepatan animasi (semakin besar pembagi, semakin lambat)
-                        const increment = target / 80;
-
-                        if (count < target) {
-                            if (isDecimal) {
-                                counter.innerText = (count + increment).toFixed(1);
-                            } else {
-                                counter.innerText = Math.ceil(count + increment);
-                            }
-                            setTimeout(updateCount, 30);
-                        } else {
-                            counter.innerText = target; // Setel ke angka akhir agar presisi
-                        }
-                    };
-                    updateCount();
-                });
-            };
-
-            // Menggunakan Intersection Observer agar animasi berjalan saat elemen terlihat di layar
-            const observer = new IntersectionObserver((entries) => {
-                if (entries[0].isIntersecting && !started) {
-                    animateCounters();
-                    started = true; // Tandai agar animasi tidak ngulang lagi saat di-scroll bolak-balik
-                }
-            }, { threshold: 0.5 }); // threshold 0.5 artinya animasi mulai saat 50% elemen masuk layar
-
-            if (section) {
-                observer.observe(section);
-            }
-        });
-
-        document.addEventListener("DOMContentLoaded", function () {
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.15 // Animasi aktif saat card masuk 15% ke layar
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    const direction = entry.target.getAttribute('data-direction');
-
-                    if (entry.isIntersecting) {
-                        // Ketika card masuk ke layar (muncul & kembali ke posisi normal)
-                        entry.target.classList.remove('opacity-0', '-translate-x-12', 'translate-y-12', 'translate-x-12');
-                        entry.target.classList.add('opacity-100', 'translate-x-0', 'translate-y-0');
-                    } else {
-                        // Ketika card keluar dari layar (direset posisinya agar bisa dianimasikan ulang saat scroll lagi)
-                        entry.target.classList.remove('opacity-100', 'translate-x-0', 'translate-y-0');
-
-                        if (direction === 'left') {
-                            entry.target.classList.add('opacity-0', '-translate-x-12');
-                        } else if (direction === 'bottom') {
-                            entry.target.classList.add('opacity-0', 'translate-y-12');
-                        } else if (direction === 'right') {
-                            entry.target.classList.add('opacity-0', 'translate-x-12');
-                        }
-                    }
-                });
-            }, observerOptions);
-
-            // Daftarkan semua card ke observer
-            const animatedCards = document.querySelectorAll('.program-card-animate');
-            animatedCards.forEach(card => observer.observe(card));
-        });
-    </script>
-
-    <br>
-    <!-- WRAPPER UTAMA -->
-
-    <div
-        style="width: 100%; max-width: 1200px; margin: 0 auto; padding: 20px 20px 0; box-sizing: border-box; font-family: Arial, sans-serif; display: flex; flex-direction: column; gap: 20px;">
-        <h2 style="font-size: 35px; font-weight: bold; color: #2A7C13; margin-top: 0; text-align: center;">
-            Apa yang terjadi di Laguna Segara Anakan?
-        </h2>
-
-        <!-- Paragraf Pembuka -->
-        <p style="font-size: 16px; line-height: 1.6; color: #454545; text-align: justify; margin: 0;">
-            Laguna Segara Anakan di Kabupaten Cilacap menghadapi <strong>tekanan lingkungan</strong> yang memengaruhi
-            keberlangsungan
-            ekosistem pesisir. Mulai dari penyusutan luas perairan akibat sedimentasi, kondisi ekosistem mangrove,
-            hingga pemanfaatan
-            potensi mangrove yang masih perlu dikembangkan.
-        </p>
-
-        <!-- Bagian Isu: Foto Kiri dan Teks Kanan -->
-        <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: stretch;">
-
-            <!-- Kolom Foto -->
-            <div class="transition-transform hover:scale-105 duration-300"
-                style="flex: 1 1 400px; min-width: 0; position: relative; align-self: stretch; overflow: hidden; border-radius: 16px;">
-
-                <img src="sedimentasii.jpeg" alt="Foto Sedimentasi"
-                    style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center bottom; transform: scale(1.15); border-radius: 16px; display: block;" />
-            </div>
-        </div>
-
-        <!-- Pembungkus Foto Slider dan Statistik -->
-        <div class="flex flex-col md:flex-row items-center md:items-center gap-6 w-full">
-
-            <!-- Before-After Slider Laguna Segara Anakan -->
-            <div class="flex justify-center items-center w-full md:w-1/2 min-w-0">
-                <div class="w-full max-w-xl">
-
-                    <!-- Slider foto -->
-                    <div id="lsa-compare" class="relative w-full overflow-hidden rounded-xl shadow-lg select-none"
-                        style="aspect-ratio: 16 / 9; cursor: ew-resize;">
-
-                        <!-- Foto 2023 sebagai latar -->
-                        <img src="LSA2023.png" alt="LSA di tahun 2023"
-                            class="absolute inset-0 w-full h-full object-cover" draggable="false">
-
-                        <!-- Foto 1984 -->
-                        <div id="lsa-before" class="absolute inset-0 overflow-hidden" style="width: 50%;">
-
-                            <img src="LSA1984.png" alt="LSA di tahun 1984"
-                                class="absolute inset-0 max-w-none h-full object-cover"
-                                style="width: 100%; height: 100%;" id="lsa-before-image" draggable="false">
-                        </div>
-
-                        <!-- Garis pembatas dan pegangan -->
-                        <div id="lsa-divider" class="absolute top-0 bottom-0 z-10"
-                            style="left: 50%; width: 3px; background: white; transform: translateX(-50%);">
-
-                            <div class="absolute top-1/2 left-1/2 flex h-10 w-10
-                    -translate-x-1/2 -translate-y-1/2 items-center justify-center
-                    rounded-full border-2 border-white bg-white shadow-md">
-                                <span class="font-bold text-[#2A7C13]">↔</span>
-                            </div>
-                        </div>
-
-                        <!-- Area interaksi -->
-                        <input id="lsa-range" type="range" min="0" max="100" value="50"
-                            aria-label="Geser untuk membandingkan kondisi Laguna Segara Anakan tahun 1984 dan 2023"
-                            class="absolute inset-0 z-20 h-full w-full opacity-0"
-                            style="cursor: ew-resize; touch-action: pan-y;">
-                    </div>
-
-                    <!-- Sumber citra -->
-                    <p class="mt-2 text-center text-xs text-gray-500">
-                        Sumber citra: Google Earth
-                    </p>
-
-                </div>
+    <main class="flex-grow">
+        <!-- BANNER GALERI -->
+        <section class="relative overflow-hidden bg-gray-900 px-5 py-16 sm:py-20 md:py-24">
+            <div class="absolute inset-0 z-0">
+                <img src="banner galeri.png" alt="Latar belakang banner Galeri"
+                    class="w-full h-full object-cover object-[center_60%]">
+                <div class="absolute inset-0 bg-black/50"></div>
             </div>
 
+            <div class="relative z-10 max-w-4xl mx-auto text-center">
+                <h1
+                    class="font-tech text-4xl sm:text-5xl md:text-6xl font-bold text-white drop-shadow-lg translate-y-4">
+                    GALERI
+                </h1>
+                <p
+                    class="mx-auto text-white text-xs sm:text-sm md:text-base lg:text-lg max-w-3xl leading-relaxed drop-shadow-md mb-6 sm:mb-10 font-medium px-2 translate-y-4">
+                    Dokumentasi & Progress Alat - Tim ALBATROSS
+                </p>
+            </div>
+        </section>
 
-            <!-- ================= Section Animasi Angka ================= -->
-            <div class="w-full md:w-1/2 min-w-0 flex items-center justify-center py-4 md:py-0">
-                <div class="w-full max-w-6xl mx-auto px-4 sm:px-6">
+        <!-- SECTION GALERI PROGRESS INTERAKTIF -->
+        <section class="py-12 px-4 sm:px-6 lg:px-8 bg-[#FFFFFF] text-gray-100 relative overflow-hidden">
+            <div class="max-w-7xl mx-auto">
 
-                    <div class="flex flex-col items-center gap-6 text-center" id="statistik-counter">
-
-                        <!-- Baris 1: 2906 ha → <400 ha -->
-                        <div class="flex flex-row items-center justify-center gap-2 sm:gap-4 w-full">
-
-                            <!-- Angka 1: 1984 -->
-                            <div class="flex-1 min-w-0 p-1 transition-transform hover:scale-105 duration-300">
-                                <h3 class="font-tech text-4xl sm:text-5xl font-bold text-[#2A7C13] mb-2 drop-shadow-sm">
-                                    <span class="counter" data-target="2906">0</span>
-                                    <span class="text-2xl sm:text-3xl">ha</span>
-                                </h3>
-                                <p class="text-[#454545] font-semibold text-sm sm:text-base">
-                                    Luas Perairan LSA (1984)
-                                </p>
-                            </div>
-
-                            <!-- Panah -->
-                            <div
-                                class="flex-shrink-0 flex items-center justify-center text-[#76C457] text-2xl sm:text-3xl">
-                                <i class="fa-solid fa-arrow-right"></i>
-                            </div>
-
-                            <!-- Angka 2: 2023 -->
-                            <div class="flex-1 min-w-0 p-1 transition-transform hover:scale-105 duration-300">
-                                <h3 class="font-tech text-4xl sm:text-5xl font-bold text-[#2A7C13] mb-2 drop-shadow-sm">
-                                    &lt; <span class="counter" data-target="400">0</span>
-                                    <span class="text-2xl sm:text-3xl">ha</span>
-                                </h3>
-                                <p class="text-[#454545] font-semibold text-sm sm:text-base">
-                                    Luas Perairan LSA (2023)
-                                </p>
-                            </div>
-
-                        </div>
-
-                        <!-- Garis Pembatas Horizontal -->
-                        <div class="w-full h-[2px] bg-[#76C457]"></div>
-
-                        <!-- Angka 3: Sedimen -->
-                        <div class="w-full p-2 transition-transform hover:scale-105 duration-300">
-                            <h3 class="font-tech text-4xl sm:text-5xl font-bold text-[#2A7C13] mb-2 drop-shadow-sm">
-                                <span class="counter" data-target="4.5">0</span>
-                                <span class="text-2xl sm:text-3xl">Juta Ton</span>
-                            </h3>
-                            <p class="text-[#454545] font-semibold text-base sm:text-lg">
-                                Sedimen Masuk per Tahun
-                            </p>
-                        </div>
-
+                <!-- Device Switcher Tabs (Tanpa shadow-xl) -->
+                <div class="flex justify-center mb-8 md:mb-20 overflow-x-auto py-2 px-1 w-full">
+                    <div id="deviceTabs"
+                        class="flex flex-nowrap md:flex-wrap justify-start md:justify-center gap-2 bg-[#2A7C13]/20 p-2 rounded-full border border-[#76C457] backdrop-blur-md shrink-0">
+                        <!-- Generated dynamically by JS -->
                     </div>
                 </div>
-            </div>
-        </div>
 
-        <br>
+                <!-- MAIN 2-COLUMN GRID (Kartu Kiri & Panel Kanan) -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
 
-        <div class="max-w-6xl mx-auto text-center">
-            <!-- Judul Utama -->
-            <h1 class="text-3xl md:text-4xl font-bold text-[#2A7C13]">
-                3 Permasalahan Utama
-            </h1>
-            <h2 class="text-xl md:text-1xl font-medium text-[#454545] mt-1">
-                di Laguna Segara Anakan
-            </h2>
-
-            <!-- Garis Kuning Kecil di Bawah Judul -->
-            <div class="w-16 h-1 bg-[#6E3511] mx-auto mt-3 mb-6"></div>
-
-            <!-- Grid 4 Pilar -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-
-                <!-- Pilar 1: Penyusutan -->
-                <div class="flex flex-col items-center text-center group">
-                    <div class="h-40 flex items-center justify-center mb-4">
-                        <!-- Ganti src dengan path gambar ilustrasi Anda -->
-                        <img src="penyusutan.jpeg" alt="Penyusutan"
-                            class="max-h-full object-contain transition-transform duration-300 group-hover:scale-105">
-                    </div>
-                    <h3 class="text-lg font-bold text-[#454545]">Penyusutan <span class="text-[#76C457]"> <br>Luas
-                            Perairan</span></h3>
-                    <div class="w-8 h-0.5 bg-[#0B2545] my-2"></div>
-                    <p class="text-xs md:text-sm text-gray-500" style="text-align: justify;">Sedimentasi terus menggerus
-                        perairan Segara Anakan, memicu <strong>pendangkalan dan penyusutan</strong> yang
-                        <strong>mengancam keseimbangan</strong> ekosistem pesisir.
-                    </p>
-                </div>
-
-                <!-- Pilar 2: Ancaman -->
-                <div class="flex flex-col items-center text-center group">
-                    <div class="h-40 flex items-center justify-center mb-4">
-                        <!-- Ganti src dengan path gambar ilustrasi Anda -->
-                        <img src="ancaman.jpeg" alt="Ancaman"
-                            class="max-h-full object-contain transition-transform duration-300 group-hover:scale-105">
-                    </div>
-                    <h3 class="text-lg font-bold text-[#454545]">Ancaman <span class="text-[#76C457]">terhadap
-                            <br>Ekosistem Mangrove</span></h3>
-                    <div class="w-8 h-0.5 bg-[#0B2545] my-2"></div>
-                    <p class="text-xs md:text-sm text-gray-500" style="text-align: justify;">Di tengah perubahan
-                        pesisir, ekosistem mangrove menghadapi ancaman yang dapat <strong>menghilangkan habitat biota
-                            dan melemahkan benteng alami</strong> pelindung pantai.</p>
-                </div>
-
-                <!-- Pilar 3: Potensi -->
-                <div class="flex flex-col items-center text-center group">
-                    <div class="h-40 flex items-center justify-center mb-4">
-                        <!-- Ganti src dengan path gambar ilustrasi Anda -->
-                        <img src="potensi.jpeg" alt="Potensi"
-                            class="max-h-full object-contain transition-transform duration-300 group-hover:scale-105">
-                    </div>
-                    <h3 class="text-lg font-bold text-[#454545]">Potensi Mangrove <span class="text-[#76C457]"><br>yang
-                            Belum Optimal</span></h3>
-                    <div class="w-8 h-0.5 bg-[#0B2545] my-2"></div>
-                    <p class="text-xs md:text-sm text-gray-500" style="text-align: justify;">Potensi mangrove Kampung
-                        Laut menyimpan <strong> peluang besar</strong> bagi alam dan masyarakat. Saatnya mengubah
-                        kekayaan ekologis menjadi <strong>manfaat berkelanjutan</strong> melalui inovasi dan
-                        pemberdayaan.</p>
-                </div>
-            </div>
-        </div>
-
-        <br>
-
-        <!-- SECTION FULL WIDTH VISI DAN MISI -->
-        <div
-            style="position: relative; isolation: isolate; width: 100vw; margin-left: calc(-50vw + 50%); margin-right: calc(-50vw + 50%); margin-top: -20px; margin-bottom: -50px !important; padding: 50px 20px; box-sizing: border-box; background: linear-gradient(to bottom, #ffffff 60%, #543c1d 100%); display: block;">
-
-            <!-- BACKGROUND FOTO FULL LAYAR -->
-            <div
-                style="position: absolute; inset: 0; background-image: url('bg visi misi.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; opacity: 0.15; z-index: -1; pointer-events: none;">
-            </div>
-
-            <!-- PEMBUNGKUS KONTEN VISI DAN MISI -->
-            <div
-                style="width: 100%; max-width: 1160px; margin: 0 auto; display: flex; flex-direction: column; gap: 22px;">
-
-                <!-- Header Title -->
-                <header class="mb-0 text-center md:text-left">
-                    <h1 class="font-tech text-3xl font-bold text-gray-900 tracking-tight" style="text-align: center;">
-                        Kumpulan Berita Segara Anakan
-                    </h1>
-                    <p class="text-gray-600 mt-2" style="text-align: center;">
-                        Beragam pemberitaan mengenai kondisi lingkungan, sedimentasi, dan kelestarian ekosistem mangrove
-                        di Segara Anakan.
-                    </p>
-                </header>
-
-                <!-- Cards Container Grid -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
-
-                    <!-- KARTU BERITA 1 -->
-                    <a href="https://www.kpa.or.id/2024/01/petani-cilacap-harapkan-pengakuan-atas-sawah-sedimentasi-segara-anakan/"
-                        target="_blank" rel="noopener noreferrer"
-                        class="visi-misi-card bg-white rounded-xl shadow-lg p-6 flex flex-col no-underline cursor-pointer"
-                        style="border: 2px solid rgba(110, 53, 17, 0.25); transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;">
-                        <div class="mb-5">
-                            <img src="berita satu.jpg"
-                                alt="Petani Cilacap Harapkan Pengakuan atas Sawah Sedimentasi Segara Anakan"
-                                class="w-full aspect-[4/3] object-cover rounded-lg">
-                        </div>
-                        <p class="text-sm text-gray-500 mb-3">17 Januari 2024</p>
-                        <h2 class="text-xl font-bold text-[#2A7C13] mb-4">
-                            Petani Cilacap Harapkan Pengakuan atas Sawah Sedimentasi Segara Anakan
-                        </h2>
-                        <div class="mt-auto pt-3 flex items-center gap-2 text-[#543c1d] font-semibold text-sm">
-                            Baca selengkapnya <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                        </div>
-                    </a>
-
-                    <!-- KARTU BERITA 2 -->
-                    <a href="https://www.antaranews.com/berita/3762855/mencermati-ancaman-hilangnya-segara-anakan-cilacap"
-                        target="_blank" rel="noopener noreferrer"
-                        class="visi-misi-card bg-white rounded-xl shadow-lg p-6 flex flex-col no-underline cursor-pointer"
-                        style="border: 2px solid rgba(110, 53, 17, 0.25); transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;">
-                        <div class="mb-5">
-                            <img src="berita dua.webp" alt="Mencermati ancaman hilangnya Segara Anakan Cilacap"
-                                class="w-full aspect-[4/3] object-cover rounded-lg">
-                        </div>
-                        <p class="text-sm text-gray-500 mb-3">8 Oktober 2023</p>
-                        <h2 class="text-xl font-bold text-[#2A7C13] mb-4">
-                            Mencermati ancaman hilangnya Segara Anakan Cilacap
-                        </h2>
-                        <div class="mt-auto pt-3 flex items-center gap-2 text-[#543c1d] font-semibold text-sm">
-                            Baca selengkapnya <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                        </div>
-                    </a>
-
-                    <!-- KARTU BERITA 3 -->
-                    <a href="https://darilaut.id/berita/kerusakan-hutan-bakau-segara-anakan-merugikan-nelayan"
-                        target="_blank" rel="noopener noreferrer"
-                        class="visi-misi-card bg-white rounded-xl shadow-lg p-6 flex flex-col no-underline cursor-pointer"
-                        style="border: 2px solid rgba(110, 53, 17, 0.25); transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;">
-                        <div class="mb-5">
-                            <img src="berita tiga.jpg" alt="Kerusakan Hutan Bakau Segara Anakan Merugikan Nelayan"
-                                class="w-full aspect-[4/3] object-cover rounded-lg">
-                        </div>
-                        <p class="text-sm text-gray-500 mb-3">25 September 2020</p>
-                        <h2 class="text-xl font-bold text-[#2A7C13] mb-4">
-                            Kerusakan Hutan Bakau Segara Anakan Merugikan Nelayan
-                        </h2>
-                        <div class="mt-auto pt-3 flex items-center gap-2 text-[#543c1d] font-semibold text-sm">
-                            Baca selengkapnya <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <div class="w-screen relative bg-gray-100 py-16 px-4 sm:px-12 mb-0 border-y border-gray-300/70 shadow-inner"
-            style="margin-left: calc(50% - 50vw);">
-
-            <div class="max-w-7xl mx-auto px-3">
-
-                <!-- Judul Section -->
-                <div class="text-center mb-12">
-                    <h2 class="font-tech text-3xl sm:text-4xl font-bold text-gray-800 tracking-wide mb-3">
-                        PROGRAM & SOLUSI KAMI
-                    </h2>
-                    <p class="text-[#454545] text-sm sm:text-base max-w-2xl mx-auto">
-                        Pendekatan terpadu berbasis teknologi dan partisipasi aktif untuk menjawab tantangan pesisir
-                        Laguna
-                        Segara Anakan.
-                    </p>
-                </div>
-
-                <!-- Grid 3 Kotak -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-
-                    <!-- Card 1: Alat Pemantauan Perairan (Geser dari Kiri + Fade In) -->
-                    <div class="program-card program-card-animate relative bg-white rounded-2xl flex flex-col justify-between overflow-hidden transition-all duration-1000 ease-out opacity-0 -translate-x-12"
-                        data-direction="left"
-                        style="background-color: rgba(110, 53, 17, 0.04); border: 2px solid rgba(110, 53, 17, 0.25); box-shadow: 0 5px 18px rgba(45, 55, 72, 0.08);">
-
-                        <!-- FOTO BACKGROUND (alat.jpg) -->
-                        <img src="alat.jpeg" alt="Background Alat Pemantauan"
-                            class="absolute inset-0 w-full h-full object-cover opacity-15 pointer-events-none z-0">
-
-                        <!-- KONTEN KOTAK -->
-                        <div class="relative z-10 p-8 flex flex-col items-center text-center flex-grow">
-                            <!-- Lingkaran Ikon -->
-                            <div
-                                class="w-16 h-16 rounded-full bg-white flex items-center justify-center text-[#2A7C13] text-2xl mb-6 shadow-sm border border-[#76c457]">
-                                <i class="fa-solid fa-microchip"></i>
-                            </div>
-                            <!-- Judul Card -->
-                            <h3
-                                class="font-bold text-xl text-gray-800 mb-3 min-h-[56px] flex items-center justify-center">
-                                Monitoring Kawasan Pesisir
-                            </h3>
-                            <!-- Deskripsi -->
-                            <p class="text-[#454545] text-sm leading-relaxed">
-                                Proyek ALBATROSS berfokus pada perancangan dan pengembangan alat untuk memantau
-                                parameter perairan di kawasan Kampung
-                                Laut. Data yang diperoleh diolah dan divisualisasikan dalam bentuk peta untuk memberikan
-                                gambaran kondisi perairan serta mendukung pemantauan aktivitas fauna di kawasan
-                                mangrove.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Card 2: Penanaman Mangrove (Geser dari Bawah + Fade In) -->
-                    <div class="program-card program-card-animate relative bg-white rounded-2xl flex flex-col justify-between overflow-hidden transition-all duration-1000 ease-out opacity-0 translate-y-12"
-                        data-direction="bottom"
-                        style="background-color: rgba(110, 53, 17, 0.04); border: 2px solid rgba(110, 53, 17, 0.25); box-shadow: 0 5px 18px rgba(45, 55, 72, 0.08);">
-
-                        <!-- FOTO BACKGROUND (tanam.jpg) -->
-                        <img src="tanam.jpg" alt="Background Penanaman Mangrove"
-                            class="absolute inset-0 w-full h-full object-cover opacity-15 pointer-events-none z-0">
-
-                        <!-- KONTEN KOTAK -->
-                        <div class="relative z-10 p-8 flex flex-col items-center text-center flex-grow">
-                            <!-- Lingkaran Ikon -->
-                            <div
-                                class="w-16 h-16 rounded-full bg-white flex items-center justify-center text-[#2A7C13] text-2xl mb-6 shadow-sm border border-[#76c457]">
-                                <i class="fa-solid fa-seedling"></i>
-                            </div>
-                            <!-- Judul Card -->
-                            <h3
-                                class="font-bold text-xl text-gray-800 mb-3 min-h-[56px] flex items-center justify-center">
-                                Penanaman Mangrove
-                            </h3>
-                            <!-- Deskripsi -->
-                            <p class="text-[#454545] text-sm leading-relaxed">
-                                Kegiatan penanaman mangrove bersama masyarakat Kampung Laut untuk menjaga kelestarian
-                                ekosistem pesisir dan habitat biota mangrove. Upaya ini turut mendukung pemulihan
-                                mangrove sebagai ekosistem karbon biru yang berperan dalam mitigasi perubahan iklim.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Card 3: Edukasi Olahan Pangan (Geser dari Kanan + Fade In) -->
-                    <div class="program-card program-card-animate relative bg-white rounded-2xl flex flex-col justify-between overflow-hidden transition-all duration-1000 ease-out opacity-0 translate-x-12"
-                        data-direction="right"
-                        style="background-color: rgba(110, 53, 17, 0.04); border: 2px solid rgba(110, 53, 17, 0.25); box-shadow: 0 5px 18px rgba(45, 55, 72, 0.08);">
-
-                        <!-- FOTO BACKGROUND (produk.jpg) -->
-                        <img src="produk.jpg" alt="Background Produk Mangrove"
-                            class="absolute inset-0 w-full h-full object-cover opacity-15 pointer-events-none z-0">
-
-                        <!-- KONTEN KOTAK -->
-                        <div class="relative z-10 p-8 flex flex-col items-center text-center flex-grow">
-                            <!-- Lingkaran Ikon -->
-                            <div
-                                class="w-16 h-16 rounded-full bg-white flex items-center justify-center text-[#2A7C13] text-2xl mb-6 shadow-sm border border-[#76c457]">
-                                <i class="fa-solid fa-handshake"></i>
-                            </div>
-                            <!-- Judul Card -->
-                            <h3
-                                class="font-bold text-xl text-gray-800 mb-3 min-h-[56px] flex items-center justify-center">
-                                Mendukung Pemasaran <br> Hasil Olahan Mangrove
-                            </h3>
-                            <!-- Deskripsi -->
-                            <p class="text-[#454545] text-sm leading-relaxed">
-                                Mangrove memiliki potensi untuk diolah menjadi berbagai produk bernilai guna. Pengenalan
-                                dan penyebaran informasi mengenai hasil olahan tersebut
-                                diharapkan dapat meningkatkan wawasan masyarakat tentang potensi produk lokal serta
-                                mendukung pengembangannya agar lebih dikenal luas.
-                            </p>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-        <!-- SECTION FULL WIDTH VISI DAN MISI -->
-        <div
-            style="position: relative; isolation: isolate; width: 100vw; margin-left: calc(50% - 50vw); margin-top: -20px; margin-bottom: 0; padding: 50px 20px; box-sizing: border-box;">
-            <!-- BACKGROUND FOTO FULL LAYAR -->
-            <div
-                style="position: absolute; inset: 0; background-image: url('bg visi misi.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; opacity: 0.15; z-index: -1; pointer-events: none;">
-            </div>
-
-            <!-- PEMBUNGKUS KONTEN VISI DAN MISI -->
-            <div
-                style="width: 100%; max-width: 1160px; margin: 0 auto; display: flex; flex-direction: column; gap: 22px;">
-
-
-                <!-- BAGIAN VISI -->
-                <div class="visi-misi-card"
-                    style="position: relative; overflow: hidden; background-color: #FFFFFF; border: 2px solid rgba(110, 53, 17, 0.25); border-radius: 16px; padding: 30px; box-sizing: border-box; box-shadow: 0 5px 18px rgba(45, 55, 72, 0.12); transition: transform 0.3s ease, box-shadow 0.3s ease;">
-
-                    <!-- Dekorasi lingkaran -->
+                    <!-- LEFT SIDE (6 COLS): 3D Stacked Cards Gallery -->
                     <div
-                        style="position: absolute; top: -70px; right: -15px; width: 150px; height: 150px; border: 22px solid rgba(42, 124, 19, 0.07); border-radius: 50%; box-sizing: border-box; pointer-events: none;">
-                    </div>
-
-                    <div style="position: relative; z-index: 1;">
-                        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px;">
-                            <div
-                                style="width: 38px; height: 38px; border-radius: 11px; background-color: #2A7C13; display: flex; justify-content: center; align-items: center; color: white; font-size: 20px; flex-shrink: 0;">
-                                <i class="fa-solid fa-eye"></i>
+                        class="lg:col-span-6 flex flex-col items-center justify-center min-h-[380px] sm:min-h-[440px] lg:min-h-[480px] w-full px-2 lg:-ml-6 transform lg:-translate-y-8">
+                        <div class="stack-perspective py-4 w-full">
+                            <div id="cardStack" class="card-stack mx-auto">
+                                <!-- Cards rendered by JS -->
                             </div>
-                            <h3 style="font-size: 22px; font-weight: bold; color: #2d3748; margin: 0;">VISI</h3>
                         </div>
 
-                        <p
-                            style="font-size: 16px; line-height: 1.8; color: #35475a; margin: 0; width: 100%; max-width: 100%; text-align: justify; text-align-last: left;">
-                            Mewujudkan pemantauan pesisir terintegrasi berbasis teknologi dan data untuk mendukung
-                            kelestarian ekosistem perairan dan mangrove serta masa depan Kampung Laut yang
-                            berkelanjutan.
-                        </p>
+                        <div class="h-6"></div>
+
+                        <!-- Instruction Tip -->
+                        <div
+                            class="mt-2 flex items-center gap-2 text-xs text-[#454545] bg-[#2A7C13]/20 px-4 py-2 rounded-full border border-[#76C457] text-center">
+                            <i class="fa-solid fa-hand-pointer text-[#6E3511] animate-bounce shrink-0"></i>
+                            <span>Klik kartu untuk menampilkannya ke depan</span>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT SIDE (6 COLS): Percentage & Milestone Info Panel -->
+                    <div class="lg:col-span-6 flex flex-col justify-center w-full mt-4 lg:-mt-20 lg:-ml-14">
+                        <div
+                            class="bg-[#76C457]/30 border border-[#76C457] rounded-3xl p-5 sm:p-6 md:p-8 backdrop-blur-xl relative overflow-hidden shadow-2xl">
+
+                            <div
+                                class="absolute -right-20 -top-20 w-60 h-60 bg-[#2A7C13]/30 rounded-full blur-3xl pointer-events-none">
+                            </div>
+
+                            <!-- Kumpulan Progress Bar -->
+                            <div class="flex flex-col gap-4 mb-6 relative z-10">
+
+                                <!-- 1. Overall Progress Bar -->
+                                <div class="bg-[white]/50 rounded-2xl p-4 sm:p-5 border border-[#76C457]">
+                                    <div class="flex justify-between items-baseline mb-2">
+                                        <span
+                                            class="text-[11px] sm:text-xs font-semibold text-[#454545] uppercase tracking-wider">Total
+                                            Penyelesaian Alat</span>
+                                        <div class="flex items-baseline gap-0.5">
+                                            <span id="percentageText"
+                                                class="text-3xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#76C457] to-emerald-400">0</span>
+                                            <span class="text-xl sm:text-2xl font-bold text-[#76C457]">%</span>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="w-full h-3 sm:h-3.5 bg-gray-800 rounded-full overflow-hidden p-0.5 border border-gray-700/50">
+                                        <div id="progressBar"
+                                            class="h-full bg-gradient-to-r from-[#2A7C13] via-[#76C457] to-emerald-400 rounded-full transition-all duration-500 ease-out"
+                                            style="width: 0%"></div>
+                                    </div>
+                                </div>
+
+                                <!-- 2. Divisi Progress Bars -->
+                                <div class="flex flex-col gap-4">
+
+                                    <!-- Mekanik (Lebar Penuh) -->
+                                    <div class="bg-[white]/50 rounded-2xl p-4 sm:p-5 border border-[#76C457]">
+                                        <div class="flex justify-between items-baseline mb-2">
+                                            <span
+                                                class="text-[11px] sm:text-xs font-semibold text-[#454545] uppercase tracking-wider">Progress
+                                                Mekanik</span>
+                                            <div class="flex items-baseline gap-0.5">
+                                                <span id="mekanikText"
+                                                    class="text-3xl sm:text-4xl font-extrabold text-[#2A7C13]">0</span>
+                                                <span class="text-xl sm:text-2xl font-bold text-[#2A7C13]">%</span>
+                                            </div>
+                                        </div>
+                                        <div
+                                            class="w-full h-3 sm:h-3.5 bg-gray-800 rounded-full overflow-hidden p-0.5 border border-gray-700/50">
+                                            <div id="mekanikBar"
+                                                class="h-full bg-[#2A7C13] rounded-full transition-all duration-500 ease-out"
+                                                style="width: 0%"></div>
+                                        </div>
+                                    </div>
+
+                                    <!-- CONTAINER ALAT ALBA: Elektronika Data & Navigasi (Grid 2 Kolom) -->
+                                    <div id="elektroDualContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                        <!-- Elektronika (Data) -->
+                                        <div class="bg-[white]/50 rounded-2xl p-4 sm:p-5 border border-[#76C457]">
+                                            <div class="flex justify-between items-baseline mb-2">
+                                                <span
+                                                    class="text-[11px] sm:text-xs font-semibold text-[#454545] uppercase tracking-wider">Elektronika
+                                                    (Data)</span>
+                                                <div class="flex items-baseline gap-0.5">
+                                                    <span id="elektroDataText"
+                                                        class="text-3xl sm:text-4xl font-extrabold text-[#76C457]">0</span>
+                                                    <span class="text-xl sm:text-2xl font-bold text-[#76C457]">%</span>
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="w-full h-3 sm:h-3.5 bg-gray-800 rounded-full overflow-hidden p-0.5 border border-gray-700/50">
+                                                <div id="elektroDataBar"
+                                                    class="h-full bg-[#76C457] rounded-full transition-all duration-500 ease-out"
+                                                    style="width: 0%"></div>
+                                            </div>
+                                        </div>
+                                        <!-- Elektronika (Navigasi) -->
+                                        <div class="bg-[white]/50 rounded-2xl p-4 sm:p-5 border border-[#76C457]">
+                                            <div class="flex justify-between items-baseline mb-2">
+                                                <span
+                                                    class="text-[11px] sm:text-xs font-semibold text-[#454545] uppercase tracking-wider">Elektronika
+                                                    (Navigasi)</span>
+                                                <div class="flex items-baseline gap-0.5">
+                                                    <span id="elektroNavText"
+                                                        class="text-3xl sm:text-4xl font-extrabold text-[#2A7C13]">0</span>
+                                                    <span class="text-xl sm:text-2xl font-bold text-[#2A7C13]">%</span>
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="w-full h-3 sm:h-3.5 bg-gray-800 rounded-full overflow-hidden p-0.5 border border-gray-700/50">
+                                                <div id="elektroNavBar"
+                                                    class="h-full bg-[#2A7C13] rounded-full transition-all duration-500 ease-out"
+                                                    style="width: 0%"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- CONTAINER ALAT BAT & TROSS: Elektronika Single (Lebar Penuh) -->
+                                    <div id="elektroSingleContainer"
+                                        class="hidden bg-[white]/50 rounded-2xl p-4 sm:p-5 border border-[#76C457]">
+                                        <div class="flex justify-between items-baseline mb-2">
+                                            <span
+                                                class="text-[11px] sm:text-xs font-semibold text-[#454545] uppercase tracking-wider">Progress
+                                                Elektronika</span>
+                                            <div class="flex items-baseline gap-0.5">
+                                                <span id="elektroText"
+                                                    class="text-3xl sm:text-4xl font-extrabold text-[#76C457]">0</span>
+                                                <span class="text-xl sm:text-2xl font-bold text-[#76C457]">%</span>
+                                            </div>
+                                        </div>
+                                        <div
+                                            class="w-full h-3 sm:h-3.5 bg-gray-800 rounded-full overflow-hidden p-0.5 border border-gray-700/50">
+                                            <div id="elektroBar"
+                                                class="h-full bg-[#76C457] rounded-full transition-all duration-500 ease-out"
+                                                style="width: 0%"></div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Program (Lebar Penuh di Bawah Elektronika) -->
+                                    <div class="bg-[white]/50 rounded-2xl p-4 sm:p-5 border border-[#76C457]">
+                                        <div class="flex justify-between items-baseline mb-2">
+                                            <span
+                                                class="text-[11px] sm:text-xs font-semibold text-[#454545] uppercase tracking-wider">Progress
+                                                Program</span>
+                                            <div class="flex items-baseline gap-0.5">
+                                                <span id="programText"
+                                                    class="text-3xl sm:text-4xl font-extrabold text-[#2A7C13]">0</span>
+                                                <span class="text-xl sm:text-2xl font-bold text-[#2A7C13]">%</span>
+                                            </div>
+                                        </div>
+                                        <div
+                                            class="w-full h-3 sm:h-3.5 bg-gray-800 rounded-full overflow-hidden p-0.5 border border-gray-700/50">
+                                            <div id="programBar"
+                                                class="h-full bg-gradient-to-r from-[#2A7C13] via-[#76C457] to-emerald-400 rounded-full transition-all duration-500 ease-out"
+                                                style="width: 0%"></div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <!-- Status & Stats Highlights -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mx-4 lg:mx-12 mt-6 lg:mt-0">
+                <div class="bg-[white]/50 border border-[#76C457] rounded-xl p-3 sm:p-3.5 flex items-center gap-3">
+                    <div
+                        class="w-10 h-10 rounded-lg bg-[#2A7C13]/35 border border-[#76C457] flex items-center justify-center text-[#6E3511] shrink-0">
+                        <i class="fa-solid fa-spinner animate-spin text-[#6E3511]" id="statusIcon"></i>
+                    </div>
+                    <div>
+                        <div class="text-[11px] font-semibold text-[#6E3511] uppercase tracking-wider">
+                            Status Alat</div>
+                        <div id="displayStatus" class="text-xs sm:text-sm font-bold text-[#454545]">
+                            Dalam Proses
+                        </div>
                     </div>
                 </div>
 
-                <!-- BAGIAN MISI -->
-                <div class="visi-misi-card"
-                    style="position: relative; overflow: hidden; background-color: #FFFFFF; border: 2px solid rgba(110, 53, 17, 0.25); border-radius: 16px; padding: 30px 30px 20px; box-sizing: border-box; box-shadow: 0 5px 18px rgba(45, 55, 72, 0.12); transition: transform 0.3s ease, box-shadow 0.3s ease;">
-
-                    <!-- Dekorasi lingkaran -->
+                <div class="bg-[white]/50 border border-[#76C457] rounded-xl p-3 sm:p-3.5 flex items-center gap-3">
                     <div
-                        style="position: absolute; top: -90px; right: -35px; width: 170px; height: 170px; border: 24px solid rgba(42, 124, 19, 0.05); border-radius: 50%; box-sizing: border-box; pointer-events: none;">
+                        class="w-10 h-10 rounded-lg bg-[#2A7C13]/35 border border-[#76C457] flex items-center justify-center text-[#6E3511] shrink-0">
+                        <i class="fa-solid fa-images"></i>
                     </div>
-
-                    <div style="position: relative; z-index: 1;">
-
-                        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 24px;">
-                            <div
-                                style="width: 38px; height: 38px; border-radius: 11px; background-color: #2A7C13; display: flex; justify-content: center; align-items: center; color: white; font-size: 20px; flex-shrink: 0;">
-                                <i class="fa-solid fa-edit"></i>
-                            </div>
-                            <h3 style="font-size: 22px; font-weight: bold; color: #2d3748; margin: 0;">MISI</h3>
-                        </div>
-
-                        <!-- Daftar Misi -->
-                        <div style="display: flex; flex-direction: column; gap: 0;">
-
-                            <!-- Misi 1 -->
-                            <div
-                                style="display: grid; grid-template-columns: 22px minmax(0, 1fr); column-gap: 4px; padding-bottom: 8px;">
-                                <span style="font-size: 16px; line-height: 1.7; color: #454545;">1.</span>
-                                <p
-                                    style="font-size: 16px; line-height: 1.7; color: #454545; text-align: justify; margin: 0;">
-                                    Mengintegrasikan pemantauan kondisi perairan, dinamika arus, dan aktivitas fauna
-                                    mangrove
-                                    melalui inovasi ALBA, BAT, dan TROSS.
-                                </p>
-                            </div>
-
-                            <!-- Misi 2 -->
-                            <div
-                                style="display: grid; grid-template-columns: 22px minmax(0, 1fr); column-gap: 4px; padding-bottom: 8px;">
-                                <span style="font-size: 16px; line-height: 1.7; color: #454545;">2.</span>
-                                <p
-                                    style="font-size: 16px; line-height: 1.7; color: #454545; text-align: justify; margin: 0;">
-                                    Mengolah data lingkungan menjadi informasi yang terstruktur, informatif, dan mudah
-                                    dipahami
-                                    melalui visualisasi digital.
-                                </p>
-                            </div>
-
-                            <!-- Misi 3 -->
-                            <div
-                                style="display: grid; grid-template-columns: 22px minmax(0, 1fr); column-gap: 4px; padding-bottom: 8px;">
-                                <span style="font-size: 16px; line-height: 1.7; color: #454545;">3.</span>
-                                <p
-                                    style="font-size: 16px; line-height: 1.7; color: #454545; text-align: justify; margin: 0;">
-                                    Mendukung pemahaman terhadap sedimentasi dan perubahan ekosistem sebagai dasar
-                                    penentuan
-                                    langkah konservasi, termasuk penanaman mangrove berbasis data.
-                                </p>
-                            </div>
-
-                            <!-- Misi 4 -->
-                            <div
-                                style="display: grid; grid-template-columns: 22px minmax(0, 1fr); column-gap: 4px; padding-bottom: 8px;">
-                                <span style="font-size: 16px; line-height: 1.7; color: #454545;">4.</span>
-                                <p
-                                    style="font-size: 16px; line-height: 1.7; color: #454545; text-align: justify; margin: 0;">
-                                    Mendorong kolaborasi antara akademisi, masyarakat lokal, dan pemangku kepentingan
-                                    untuk
-                                    mendukung pemantauan serta pengelolaan lingkungan pesisir yang berkelanjutan.
-                                </p>
-                            </div>
-
-                        </div>
+                    <div>
+                        <div class="text-[11px] font-semibold text-[#6E3511] uppercase tracking-wider">
+                            Total Dokumentasi</div>
+                        <div id="totalMilestones" class="text-xs sm:text-sm font-bold text-[#454545]">0
+                            Foto</div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Efek hover kartu -->
-        <style>
-            .visi-misi-card:hover {
-                transform: translateY(-4px);
-                box-shadow: 0 12px 28px rgba(45, 55, 72, 0.13) !important;
-                border-color: #2A7C13 !important;
-            }
+            <!-- KOTAK MEMANJANG KE SAMPING (DROPDOWN DETAIL PROGRESS SLIDER) -->
+            <div class="mt-12 max-w-6xl mx-auto w-full px-4 sm:px-5">
+                <div class="border border-[#76C457] rounded-2xl shadow-xl overflow-hidden transition-all duration-300">
 
-            @media (prefers-reduced-motion: reduce) {
-                .visi-misi-card {
-                    transition: none !important;
-                }
+                    <!-- Tombol Kotak Utama (Bisa Dipencet) -->
+                    <button onclick="toggleDetailedDropdown()"
+                        class="w-full px-6 py-4 bg-[#2A7C13]/30 hover:bg-[#236510]/30 text-[#236510] flex items-center justify-between transition-colors duration-200 cursor-pointer focus:outline-none">
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-circle-info text-lg"></i>
+                            <span class="font-bold text-sm sm:text-base tracking-wide text-left">Lihat progress kami
+                                dengan
+                                lebih rinci</span>
+                        </div>
+                        <i id="dropdownArrow" class="fa-solid fa-chevron-down transition-transform duration-300"></i>
+                    </button>
 
-                .visi-misi-card:hover {
-                    transform: none;
-                }
-            }
-        </style>
+                    <!-- Area Isi Dropdown (Slider Horizontal per Bidang) -->
+                    <div id="detailedDropdownContent"
+                        class="hidden bg-white p-6 sm:p-8 border-t border-[#76C457] transition-all duration-300">
+                        <div class="mb-6">
+                            <h3 class="text-lg sm:text-xl font-bold text-[#6E3511] mb-1">Rincian Progress
+                                Berdasarkan Divisi</h3>
+                            <p class="text-xs sm:text-sm text-[#454545]">Geser ke samping untuk melihat seluruh
+                                dokumentasi dan penjelasan progress pada masing-masing divisi.</p>
+                        </div>
 
+                        <!-- Container Pengelompokan Kategori Horizontal Slider -->
+                        <div id="dropdownMilestonesGrouped" class="space-y-8">
+                            <!-- Data dikelompokkan dan dapat digeser oleh JavaScript -->
+                        </div>
+                    </div>
 
+                </div>
+            </div>
 
-    </div>
+            </div>
+        </section>
+    </main>
 
-    <!-- JavaScript Toggle & Scroll Navbar -->
-    <script>
-        const mobileToggleBtn = document.getElementById('mobile-toggle-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const toggleIcon = document.getElementById('toggle-icon');
-
-        mobileToggleBtn.addEventListener('click', function () {
-            mobileMenu.classList.toggle('hidden');
-            if (mobileMenu.classList.contains('hidden')) {
-                toggleIcon.classList.remove('fa-times');
-                toggleIcon.classList.add('fa-bars');
-            } else {
-                toggleIcon.classList.remove('fa-bars');
-                toggleIcon.classList.add('fa-times');
-            }
-        });
-
-        window.addEventListener('scroll', function () {
-            const navbar = document.getElementById('navbar');
-            const navItems = document.querySelectorAll('.nav-item');
-            const mobileBtn = document.getElementById('mobile-toggle-btn');
-            const logoCircle = document.getElementById('logo-circle');
-
-            if (window.scrollY > 50) {
-                // === SAAT DISCROLL ===
-                // Navbar jadi putih solid
-                navbar.classList.remove('bg-transparent', 'text-white');
-                navbar.classList.add('bg-white', 'shadow-md');
-
-                // Teks menu jadi hijau tua, dan saat di-hover background hijau muda + teks TETAP hijau tua
-                navItems.forEach(link => {
-                    link.classList.remove('text-white');
-                    link.classList.add('text-[#2A7C13]', 'hover:bg-[#76C457]/25', 'hover:text-[#2A7C13]');
-                });
-
-                if (mobileBtn) mobileBtn.classList.add('text-[#2A7C13]');
-
-                // Lingkaran hijau di belakang logo muncul
-                if (logoCircle) {
-                    logoCircle.classList.remove('opacity-0', 'scale-75');
-                    logoCircle.classList.add('opacity-100', 'scale-100');
-                }
-
-            } else {
-                // === SAAT DI ATAS (BELUM DISCROLL) ===
-                // Navbar kembali transparan
-                navbar.classList.add('bg-transparent', 'text-white');
-                navbar.classList.remove('bg-white', 'shadow-md');
-
-                // Teks menu kembali putih bersih dan reset efek hover-nya
-                navItems.forEach(link => {
-                    link.classList.remove('text-[#2A7C13]', 'hover:bg-[#76C457]/20', 'hover:text-[#2A7C13]');
-                    link.classList.add('text-white');
-                });
-
-                if (mobileBtn) mobileBtn.classList.remove('text-[#2A7C13]');
-
-                // Lingkaran hijau di belakang logo hilang
-                if (logoCircle) {
-                    logoCircle.classList.remove('opacity-100', 'scale-100');
-                    logoCircle.classList.add('opacity-0', 'scale-75');
-                }
-            }
-        });
-
-        const lsaRange = document.getElementById('lsa-range');
-        const lsaBefore = document.getElementById('lsa-before');
-        const lsaDivider = document.getElementById('lsa-divider');
-        const lsaBeforeImage = document.getElementById('lsa-before-image');
-        const lsaCompare = document.getElementById('lsa-compare');
-
-
-        function updateLSASlider() {
-            const posisi = Number(lsaRange.value);
-
-            lsaBefore.style.width = posisi + '%';
-            lsaDivider.style.left = posisi + '%';
-
-            // Menjaga ukuran foto sesuai kotak utama
-            lsaBeforeImage.style.width = lsaCompare.clientWidth + 'px';
-
-        }
-
-
-        lsaRange.addEventListener('input', updateLSASlider);
-        window.addEventListener('resize', updateLSASlider);
-
-        updateLSASlider();
-    </script>
-
-   <footer class="bg-[#2A7C13] px-4 sm:px-6 py-10 border-t-[2px] border-[#2A7C13]">
+    <!-- FOOTER -->
+    <footer class="bg-[#2A7C13] px-4 sm:px-6 py-10 border-t-[2px] border-[#2A7C13]">
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
 
             <div class="md:col-span-2 flex flex-col gap-4 text-white">
@@ -1291,14 +591,673 @@
         </div>
     </div>
 
+    <!-- JAVASCRIPT MAIN & GALLERY LOGIC -->
     <script>
-        const backToTop = document.getElementById('back-to-top');
-        backToTop.addEventListener('click', function () {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
+        let devicesData = [
+            {
+                id: "alat-1",
+                name: "ALBA: Autonomous Littoral Bathimetry and Aquatic",
+                icon: "fa-seedling",
+                overallPercentage: 35,
+                mekanikPercentage: 71,
+                elektroDataPercentage: 5,
+                elektroNavigasiPercentage: 55,
+                programPercentage: 15,
+                milestones: [
+                    {
+                        title: "Perancangan Desain Mekanikal",
+                        tag: "Mekanik",
+                        date: "26 Agustus 2026",
+                        desc: "Pembuatan model rancang bangun 3D dan cetak biru (blueprint) struktur fisik alat menggunakan perangkat lunak SketchUp.",
+                        img: "Perancangan desain mekanik ALBA.jpg"
+                    },
+                    {
+                        title: "Pencetakan Lambung Kapal",
+                        tag: "Mekanik",
+                        date: "6 September 2026",
+                        desc: "Proses fabrikasi lambung kapal menggunakan material resin dan fiberglass berdasarkan cetak biru.",
+                        img: "Memasang pencetak.jpg"
+                    },
+                    {
+                        title: "Perakitan Struktur Tulang Lambung",
+                        tag: "Mekanik",
+                        date: "20 September 2026",
+                        desc: "Pemasangan dan penyatuan rangka dalam (tulang) dengan lambung untuk memperkuat konstruksi dasar kapal.",
+                        img: "tulang.jpeg"
+                    },
+                    {
+                        title: "Instalasi Sistem Drainase",
+                        tag: "Mekanik",
+                        date: "23 September 2026",
+                        desc: "Pembuatan jalur pembuangan air pada kedua sisi lambung untuk mencegah genangan dan menjaga keseimbangan alat.",
+                        img: "Pembuatan sistem drainase pada kedua lambung.jpg"
+                    },
+                    {
+                        title: "Pemasangan Tutup Lambung",
+                        tag: "Mekanik",
+                        date: "25 September 2026",
+                        desc: "Pemasangan penutup atas lambung guna melindungi bagian dalam kapal dari masuknya air (waterproofing) dan kotoran.",
+                        img: "Tutup lambung.jpg"
+                    },
+                    {
+                        title: "Pemasangan Penguat Besi Dudukan Motor",
+                        tag: "Mekanik",
+                        date: "30 September 2026",
+                        desc: "Penambahan komponen besi struktural pada dudukan motor guna meredam getaran dan menahan beban dorong secara optimal.",
+                        img: "Pembuatan komponen besi sebagai penguat dudukan trolling motor.jpg"
+                    },
+                    {
+                        title: "Perakitan Penghubung Antarlambung",
+                        tag: "Mekanik",
+                        date: "30 September 2026",
+                        desc: "Penyambungan kedua lambung menggunakan struktur besi (crossbeam) untuk membentuk konfigurasi katamaran yang kokoh dan presisi.",
+                        img: "Pembuatan struktur besi penghubung antarlambung.jpg"
+                    },
+                    {
+                        title: "Fabrikasi Dudukan Trolling Motor",
+                        tag: "Mekanik",
+                        date: "1 Oktober 2026",
+                        desc: "Pembuatan rangka dudukan khusus untuk menyangga motor penggerak (trolling motor) agar stabil saat beroperasi.",
+                        img: "pembuatan dudukan.jpg"
+                    },
+                    {
+                        title: "Pembuatan Kompartemen Elektronika",
+                        tag: "Mekanik",
+                        date: "2 Oktober 2026",
+                        desc: "Pembuatan tatakan berbahan kayu/triplek yang dirancang khusus sebagai tempat meletakkan kotak komponen elektronika agar aman dan rapi.",
+                        img: "Pembuatan tatakan komponen elektronika menggunakan triplek.jpeg"
+                    },
+                    {
+                        title: "Uji Daya Apung & Kekedapan",
+                        tag: "Mekanik",
+                        date: "13 Oktober 2026",
+                        desc: "Pengujian langsung di air (water-tight test) untuk memastikan lambung tidak mengalami kebocoran dan memiliki daya apung yang sesuai standar.",
+                        img: "tes-apung.jpg"
+                    },
+                    {
+                        title: "Pengecatan & Finishing Komponen",
+                        tag: "Mekanik",
+                        date: "25 Oktober 2026",
+                        desc: "Proses pelapisan cat pelindung pada lambung, tatakan, dan struktur besi untuk mencegah korosi serta memperindah tampilan alat.",
+                        img: "Pengecetan-kapal.jpeg"
+                    },
+                    {
+                        title: "Fabrikasi Konektor Box Navigasi",
+                        tag: "Mekanik",
+                        date: "29 Okt 2026",
+                        desc: "Proses pembuatan dan perakitan struktur penyambung untuk memastikan dudukan box navigasi terpasang kokoh pada rangka utama.",
+                        img: "penyambung box.jpeg"
+                    },
+                    {
+                        title: "Pemasangan Kotak Navigasi dan Aki",
+                        tag: "Mekanik",
+                        date: "31 Okt 2026",
+                        desc: "Proses pembuatan dan perakitan struktur penyambung untuk memastikan dudukan kotak navigasi dan aki terpasang kokoh pada rangka utama.",
+                        img: "box aki.jpeg"
+                    },
+                    {
+                        title: "Desain Skematik Sistem Data (Sensor)",
+                        tag: "Elektronika",
+                        date: "23 Agustus 2026",
+                        desc: "Perancangan diagram kelistrikan dan jalur komunikasi mikroprosesor untuk sensor-sensor yang bertugas mengambil data parameter air.",
+                        img: "Penyusunan skematik elektronika untuk sistem pengambilan data (1).jpeg"
+                    },
+                    {
+                        title: "Desain Skematik Sistem Navigasi",
+                        tag: "Elektronika",
+                        date: "22 Oktober 2026",
+                        desc: "Pembuatan rancangan sirkuit elektronika yang menghubungkan mikrokontroler utama dengan modul GPS dan kompas.",
+                        img: "skema-elektronika-navigasi.jpeg"
+                    },
+                    {
+                        title: "Uji Coba Rangkaian Navigasi",
+                        tag: "Elektronika",
+                        date: "24 Oktober 2026",
+                        desc: "Pengujian kelistrikan dan fungsionalitas pada prototipe awal untuk memastikan setiap komponen dapat menyala dan merespon instruksi.",
+                        img: "elektro-navigasi.jpeg"
+                    },
+                    {
+                        title: "Pemrograman Modul Sensor",
+                        tag: "Program",
+                        date: "29 September 2026",
+                        desc: "Penulisan kode algoritma untuk membaca, memproses, dan menyimpan data mentah yang ditangkap oleh sensor lingkungan kelautan.",
+                        img: "IMG_0105.png"
+                    },
+                    {
+                        title: "Pengujian Sistem Telemetri (Komunikasi)",
+                        tag: "Program",
+                        date: "28 Oktober 2026",
+                        desc: "Uji coba pengiriman data secara real-time dari kapal ke stasiun darat (Ground Control Station) melalui sinyal nirkabel.",
+                        img: "IMG_0103.png"
+                    }
+                ]
+            },
+            {
+                id: "alat-2",
+                name: "BAT: Buoy-based Aquatic Tracking",
+                icon: "fa-robot",
+                overallPercentage: 45,
+                mekanikPercentage: 10,
+                elektroPercentage: 85,
+                programPercentage: 50,
+                milestones: [
+                    {
+                        title: "Perancangan Desain Mekanikal BAT",
+                        tag: "Mekanik",
+                        date: "27 Oktober 2026",
+                        desc: "Proses perancangan wujud fisik dan penempatan komponen buoy menggunakan software desain 3D.",
+                        img: "Perancangan desain mekanik BAT.png"
+                    },
+                    {
+                        title: "Pemotongan Buoy & Penyesuaian Dimensi",
+                        tag: "Mekanik",
+                        date: "28 Oktober 2026",
+                        desc: "Modifikasi ukuran fisik pelampung (buoy) agar sejajar dan seimbang dengan kotak junction box.",
+                        img: "Pemotongan buoy dan penyesuaian dimensinya dengan junction box.jpg"
+                    },
+                    {
+                        title: "Penyusunan Skematik Elektronika BAT",
+                        tag: "Elektronika",
+                        date: "26 Agustus 2026",
+                        desc: "Desain jalur listrik untuk menghubungkan mikrokontroler dengan sensor, baterai, dan modul komunikasi pada buoy.",
+                        img: "Penyusunan skematik elektronika BAT.jpeg"
+                    },
+                    {
+                        title: "Perakitan Komponen Internal BAT",
+                        tag: "Elektronika",
+                        date: "20 September 2026",
+                        desc: "Penyolderan dan perangkaian fisik komponen-komponen listrik utama untuk sistem tracking.",
+                        img: "Penyelesaian perakitan rangkaian komponen internal.jpg"
+                    },
+                    {
+                        title: "Penataan Junction Box",
+                        tag: "Elektronika",
+                        date: "17 Oktober 2026",
+                        desc: "Penyusunan komponen elektronik secara rapi ke dalam kotak kedap air (junction box) agar aman dari cipratan air.",
+                        img: "Penataan komponen di dalam junction box.jpeg"
+                    },
+                    {
+                        title: "Pengujian Pengambilan Data Sensor",
+                        tag: "Elektronika",
+                        date: "13 Oktober 2026",
+                        desc: "Kalibrasi awal untuk memastikan sensor pada buoy dapat membaca data suhu dan pergerakan air dengan akurat.",
+                        img: "Pengujian sistem pengambilan data.jpg"
+                    },
+                    {
+                        title: "Integrasi Program & Hardware",
+                        tag: "Program",
+                        date: "11 Oktober 2026",
+                        desc: "Penyatuan kode pemrograman mikrokontroler dengan perangkat keras fisik untuk memastikan respon sistem yang sesuai.",
+                        img: "uji coba bat.PNG"
+                    },
+                    {
+                        title: "Pengembangan Sistem Database",
+                        tag: "Program",
+                        date: "10 Oktober 2026",
+                        desc: "Pembuatan skema penyimpanan awan (cloud database) agar seluruh data yang ditangkap BAT tersimpan aman.",
+                        img: "Pengembangan sistem penyimpanan data ke database.png"
+                    },
+                    {
+                        title: "Pengujian Pengambilan Data GPS",
+                        tag: "Program",
+                        date: "13 Oktober 2026",
+                        desc: "Pengetesan modul GPS untuk memastikan titik koordinat (latitude dan longitude) buoy terlacak secara langsung.",
+                        img: "Pengujian pembacaan dan pengambilan data GPS.png"
+                    }
+                ]
+            },
+            {
+                id: "alat-3",
+                name: "TROSS: Trap-based Recognition and Observation Surveillance System",
+                icon: "fa-solar-panel",
+                overallPercentage: 6,
+                mekanikPercentage: 5,
+                elektroPercentage: 10,
+                programPercentage: 3,
+                milestones: [
+                    {
+                        title: "Perancangan Desain TROSS",
+                        tag: "Mekanik",
+                        date: "25 Oktober 2026",
+                        desc: "Pembuatan cetak biru rangka dan mekanisme trap berbasis desain observation system.",
+                        img: "Perancangan desain mekanik TROSS.jpg"
+                    },
+                    {
+                        title: "Persiapan Komponen Elektronik",
+                        tag: "Elektronika",
+                        date: "26 September 2026",
+                        desc: "Pengumpulan dan pengetesan alat-alat kamera dan sensor yang akan digunakan untuk proses recognition.",
+                        img: "Penyusunan skematik elektronika TROSS.png"
+                    },
+                    {
+                        title: "Pengujian sensor PIR HC-SR501",
+                        tag: "Elektronika",
+                        date: "20 Oktober 2026",
+                        desc: "Tes lapangan awal untuk mengetahui jangkauan daya tangkap perangkat observasi TROSS.",
+                        img: "Pengujian sensor PIR HC-SR501.jpg"
+                    },
+                    {
+                        title: "Kalibrasi dan Uji Sensitivitas Sensor PIR",
+                        tag: "Program",
+                        date: "20 Oktober 2026",
+                        desc: "Pengetesan dan penyesuaian parameter program pada sensor Passive Infrared (PIR) untuk memastikan akurasi deteksi pergerakan objek atau suhu di sekitarnya.",
+                        img: "Uji sensitivitas sensor PIR (Passive Infrared).jpg"
+                    },
+                ]
+            }
+        ];
+
+        let activeDeviceId = "alat-1";
+        let activeMilestoneIndex = 0;
+        let hoveredMilestoneIndex = null;
+        let countAnimationTimers = {};
+
+        let currentStackMilestones = [];
+
+        document.addEventListener("DOMContentLoaded", () => {
+            initStackMilestones();
+            renderDeviceTabs();
+            renderStackCards();
+            updateOverallPanel();
+            renderDropdownMilestones();
         });
+
+        function getCurrentDevice() {
+            return devicesData.find(d => d.id === activeDeviceId);
+        }
+
+        function initStackMilestones() {
+            const device = getCurrentDevice();
+            const map = {};
+            if (device && device.milestones) {
+                device.milestones.forEach(m => {
+                    map[m.tag] = m;
+                });
+            }
+            currentStackMilestones = Object.values(map);
+        }
+
+        function renderDeviceTabs() {
+            const tabsContainer = document.getElementById("deviceTabs");
+            tabsContainer.innerHTML = devicesData.map(dev => `
+                <button onclick="switchDevice('${dev.id}')" 
+                  class="px-4 py-2 rounded-full text-xs font-bold transition flex items-center gap-2 shrink-0 ${dev.id === activeDeviceId ? 'bg-[#6E3511] text-white' : 'text-[#6E3511] hover:text-white hover:bg-[#2A7C13]'}" style="box-shadow: none !important;">
+                  <i class="fa-solid ${dev.icon}"></i>
+                  ${dev.name}
+                </button>
+            `).join('');
+        }
+
+        function switchDevice(devId) {
+            activeDeviceId = devId;
+            activeMilestoneIndex = 0;
+            hoveredMilestoneIndex = null;
+
+            initStackMilestones();
+
+            renderDeviceTabs();
+            renderStackCards();
+            updateOverallPanel();
+            renderDropdownMilestones();
+        }
+
+        function renderStackCards() {
+            const cardStack = document.getElementById("cardStack");
+
+            if (currentStackMilestones.length === 0) {
+                cardStack.innerHTML = `<div class="text-center text-gray-500 py-20">Belum ada foto dokumentasi.</div>`;
+                return;
+            }
+
+            cardStack.innerHTML = currentStackMilestones.map((m, index) => {
+                return `
+                    <div id="card-${index}" 
+                         class="stack-card" 
+                         onclick="handleCardClick(${index})" 
+                         onmouseenter="handleCardHover(${index})" 
+                         onmouseleave="handleCardLeave()">
+                      
+                      <img src="${m.img}" alt="${m.title}" class="w-full h-full object-cover pointer-events-none">
+                      
+                      <div class="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/30 to-transparent pointer-events-none"></div>
+
+                      <div class="absolute bottom-0 left-0 right-0 p-4 sm:p-5 pointer-events-none">
+                        <span class="inline-block px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white bg-[#2A7C13]/35 border border-[#76C457] rounded-full mb-2">
+                            ${m.tag || 'Dokumentasi'}
+                        </span>
+                        <h3 class="text-sm sm:text-base font-bold text-white line-clamp-1">${m.title}</h3>
+                        <div class="flex justify-between items-center mt-2 text-xs text-gray-300">
+                          <span><i class="fa-regular fa-clock mr-1 text-[#76C457]"></i> ${m.date}</span>
+                        </div>
+                      </div>
+                    </div>
+                `;
+            }).join('');
+
+            applyCardTransforms();
+        }
+
+        function applyCardTransforms() {
+            const total = currentStackMilestones.length;
+
+            currentStackMilestones.forEach((_, index) => {
+                const cardElem = document.getElementById(`card-${index}`);
+                if (!cardElem) return;
+
+                let relPos = (index - activeMilestoneIndex + total) % total;
+                let transformStr = "";
+                let zIndex = total - relPos;
+                let opacity = 1;
+
+                if (relPos === 0) {
+                    transformStr = `translate3d(0, 0, 0) rotate(0deg) scale(1)`;
+                    zIndex = 50;
+                } else {
+                    const isOdd = relPos % 2 !== 0;
+                    const direction = isOdd ? 1 : -1;
+                    const stepMultiplier = Math.ceil(relPos / 2);
+
+                    let translateX = direction * (stepMultiplier * 28);
+                    let translateY = stepMultiplier * 10;
+                    let rotateDeg = direction * (stepMultiplier * 5);
+                    let scale = 1 - (relPos * 0.05);
+
+                    if (hoveredMilestoneIndex === index) {
+                        translateX += direction * 35;
+                        translateY -= 20;
+                        rotateDeg += direction * 4;
+                        scale += 0.08;
+                        zIndex = 45;
+                    }
+
+                    transformStr = `translate3d(${translateX}px, ${translateY}px, -${relPos * 50}px) rotate(${rotateDeg}deg) scale(${scale})`;
+                    opacity = relPos > 3 ? 0 : 1 - (relPos * 0.15);
+                }
+
+                cardElem.style.zIndex = zIndex;
+                cardElem.style.transform = transformStr;
+                cardElem.style.opacity = opacity;
+            });
+        }
+
+        function handleCardHover(index) {
+            hoveredMilestoneIndex = index;
+            applyCardTransforms();
+            if (currentStackMilestones[index]) {
+                updateCardInfo(currentStackMilestones[index]);
+            }
+        }
+
+        function handleCardLeave() {
+            hoveredMilestoneIndex = null;
+            applyCardTransforms();
+            if (currentStackMilestones[activeMilestoneIndex]) {
+                updateCardInfo(currentStackMilestones[activeMilestoneIndex]);
+            }
+        }
+
+        function handleCardClick(index) {
+            activeMilestoneIndex = index;
+            hoveredMilestoneIndex = null;
+            applyCardTransforms();
+            if (currentStackMilestones[index]) {
+                updateCardInfo(currentStackMilestones[index]);
+            }
+        }
+
+        function updateOverallPanel() {
+            const device = getCurrentDevice();
+            if (!device) return;
+
+            if (currentStackMilestones.length > 0) {
+                updateCardInfo(currentStackMilestones[activeMilestoneIndex]);
+            }
+
+            document.getElementById("totalMilestones").innerText = `${device.milestones.length} Foto`;
+
+            const statusText = document.getElementById("displayStatus");
+            const statusIcon = document.getElementById("statusIcon");
+            if (device.overallPercentage >= 100) {
+                statusText.innerText = "Selesai (100%)";
+                statusText.className = "text-xs sm:text-sm font-bold text-emerald-400";
+                statusIcon.className = "fa-solid fa-circle-check text-emerald-400";
+            } else {
+                statusText.innerText = "Dalam Pengerjaan";
+                statusText.className = "text-xs sm:text-sm font-bold text-[#454545]";
+                statusIcon.className = "fa-solid fa-spinner animate-spin text-[#6E3511]";
+            }
+
+            const dualContainer = document.getElementById("elektroDualContainer");
+            const singleContainer = document.getElementById("elektroSingleContainer");
+
+            animatePercentage("percentageText", "progressBar", device.overallPercentage || 0);
+            animatePercentage("mekanikText", "mekanikBar", device.mekanikPercentage || 0);
+            animatePercentage("programText", "programBar", device.programPercentage || 0);
+
+            if (device.id === "alat-1") {
+                if (dualContainer) dualContainer.classList.remove("hidden");
+                if (singleContainer) singleContainer.classList.add("hidden");
+                animatePercentage("elektroDataText", "elektroDataBar", device.elektroDataPercentage || 0);
+                animatePercentage("elektroNavText", "elektroNavBar", device.elektroNavigasiPercentage || 0);
+            } else {
+                if (dualContainer) dualContainer.classList.add("hidden");
+                if (singleContainer) singleContainer.classList.remove("hidden");
+                animatePercentage("elektroText", "elektroBar", device.elektroPercentage || 0);
+            }
+        }
+
+        function updateCardInfo(milestone) {
+            const titleEl = document.getElementById("displayTitle");
+            const badgeEl = document.getElementById("displayBadge");
+            const dateEl = document.getElementById("displayDate");
+            const descEl = document.getElementById("displayDesc");
+
+            if (titleEl) titleEl.innerText = milestone.title;
+            if (badgeEl) badgeEl.innerText = milestone.tag || "Dokumentasi";
+            if (dateEl) dateEl.innerHTML = `<i class="fa-regular fa-calendar mr-1"></i> ${milestone.date}`;
+            if (descEl) descEl.innerText = milestone.desc || "Dokumentasi progress pengerjaan alat.";
+        }
+
+        function animatePercentage(textId, barId, targetValue) {
+            if (typeof window.countAnimationTimers === 'undefined' || window.countAnimationTimers === null) {
+                window.countAnimationTimers = {};
+            }
+
+            const textElem = document.getElementById(textId);
+            const barElem = document.getElementById(barId);
+
+            if (!textElem || !barElem) return;
+
+            const finalTarget = parseInt(targetValue) || 0;
+            let currentValue = parseInt(textElem.innerText) || 0;
+
+            if (window.countAnimationTimers[textId]) {
+                clearInterval(window.countAnimationTimers[textId]);
+            }
+
+            barElem.style.width = finalTarget + "%";
+
+            if (currentValue === finalTarget) {
+                textElem.innerText = finalTarget;
+                return;
+            }
+
+            const duration = 400;
+            const steps = 25;
+            const stepTime = duration / steps;
+            const increment = (finalTarget - currentValue) / steps;
+
+            let stepCount = 0;
+            window.countAnimationTimers[textId] = setInterval(() => {
+                stepCount++;
+                currentValue += increment;
+
+                if (stepCount >= steps) {
+                    textElem.innerText = finalTarget;
+                    clearInterval(window.countAnimationTimers[textId]);
+                } else {
+                    textElem.innerText = Math.round(currentValue);
+                }
+            }, stepTime);
+        }
+
+        function toggleDetailedDropdown() {
+            const content = document.getElementById("detailedDropdownContent");
+            const arrow = document.getElementById("dropdownArrow");
+
+            content.classList.toggle("hidden");
+            arrow.classList.toggle("rotate-180");
+        }
+
+        function renderDropdownMilestones() {
+            const container = document.getElementById("dropdownMilestonesGrouped");
+            const device = getCurrentDevice();
+            const milestones = device ? device.milestones : [];
+
+            if (milestones.length === 0) {
+                container.innerHTML = `<div class="text-center text-gray-500 py-8">Belum ada data dokumentasi untuk alat ini.</div>`;
+                return;
+            }
+
+            const grouped = {};
+            milestones.forEach(m => {
+                const category = m.tag || 'Lainnya';
+                if (!grouped[category]) {
+                    grouped[category] = [];
+                }
+                grouped[category].push(m);
+            });
+
+            const categoryIcons = {
+                'Mekanik': 'fa-gears',
+                'Elektronika': 'fa-microchip',
+                'Program': 'fa-code',
+            };
+
+            container.innerHTML = Object.keys(grouped).map(category => {
+                const items = grouped[category];
+                const iconClass = categoryIcons[category] || 'fa-folder-open';
+
+                return `
+                    <div class="border-b border-gray-200 pb-6 last:border-0 last:pb-0">
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="flex items-center gap-2">
+                                <span class="w-8 h-8 rounded-lg bg-[#76C457]/10 text-[#6E3511] border border-[#76C457] flex items-center justify-center font-bold text-sm">
+                                    <i class="fa-solid ${iconClass}"></i>
+                                </span>
+                                <h4 class="text-base sm:text-lg font-bold text-[#6E3511]">
+                                    Bidang ${category} <span class="text-xs font-semibold text-[#454545]">(${items.length} Dokumentasi)</span>
+                                </h4>
+                            </div>
+                            <span class="text-xs text-[#6E3511] flex items-center gap-1 font-medium">
+                                <i class="fa-solid fa-arrows-left-right text-[10px]"></i> Geser
+                            </span>
+                        </div>
+
+                        <div class="flex gap-4 overflow-x-auto pb-4 custom-slider-scroll scroll-smooth snap-x">
+                            ${items.map(m => `
+                                <div class="snap-start shrink-0 w-[260px] sm:w-[280px] md:w-[300px] bg-gray-50 border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow flex flex-col">
+                                    <div class="h-40 w-full overflow-hidden relative">
+                                        <img src="${m.img}" alt="${m.title}" class="w-full h-full object-cover">
+                                        <span class="absolute top-2.5 left-2.5 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white bg-[#2A7C13] rounded-full shadow">
+                                            ${m.tag || 'Dokumentasi'}
+                                        </span>
+                                    </div>
+                                    <div class="p-4 flex flex-col flex-grow">
+                                        <div class="flex items-center text-xs text-[#2A7C13] font-semibold mb-1">
+                                            <i class="fa-regular fa-calendar mr-1.5"></i> ${m.date}
+                                        </div>
+                                        <h5 class="text-sm font-bold text-gray-900 mb-2 leading-snug">${m.title}</h5>
+                                        <p class="text-xs text-gray-600 leading-relaxed mt-auto line-clamp-3">${m.desc}</p>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+    </script>
+
+    <!-- JAVASCRIPT NAVBAR & BACK TO TOP -->
+    <script>
+        const mobileToggleBtn = document.getElementById('mobile-toggle-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const toggleIcon = document.getElementById('toggle-icon');
+
+        mobileToggleBtn.addEventListener('click', function () {
+            mobileMenu.classList.toggle('hidden');
+
+            if (mobileMenu.classList.contains('hidden')) {
+                toggleIcon.classList.remove('fa-times');
+                toggleIcon.classList.add('fa-bars');
+            } else {
+                toggleIcon.classList.remove('fa-bars');
+                toggleIcon.classList.add('fa-times');
+            }
+        });
+
+        window.addEventListener('scroll', function () {
+            const navbar = document.getElementById('navbar');
+            const navItems = document.querySelectorAll('.nav-item');
+            const mobileBtn = document.getElementById('mobile-toggle-btn');
+            const logoCircle = document.getElementById('logo-circle');
+
+            if (window.scrollY > 50) {
+                navbar.classList.remove('bg-transparent', 'text-white');
+                navbar.classList.add('bg-white', 'shadow-md');
+
+                navItems.forEach(link => {
+                    link.classList.remove('text-white');
+                    link.classList.add(
+                        'text-[#2A7C13]',
+                        'hover:bg-[#76C457]/25',
+                        'hover:text-[#2A7C13]'
+                    );
+                });
+
+                if (mobileBtn) {
+                    mobileBtn.classList.add('text-[#2A7C13]');
+                }
+
+                if (logoCircle) {
+                    logoCircle.classList.remove('opacity-0', 'scale-75');
+                    logoCircle.classList.add('opacity-100', 'scale-100');
+                }
+
+            } else {
+                navbar.classList.add('bg-transparent', 'text-white');
+                navbar.classList.remove('bg-white', 'shadow-md');
+
+                navItems.forEach(link => {
+                    link.classList.remove(
+                        'text-[#2A7C13]',
+                        'hover:bg-[#76C457]/20',
+                        'hover:text-[#2A7C13]'
+                    );
+                    link.classList.add('text-white');
+                });
+
+                if (mobileBtn) {
+                    mobileBtn.classList.remove('text-[#2A7C13]');
+                }
+
+                if (logoCircle) {
+                    logoCircle.classList.remove('opacity-100', 'scale-100');
+                    logoCircle.classList.add('opacity-0', 'scale-75');
+                }
+            }
+        });
+
+        const backToTopBtn = document.getElementById('back-to-top');
+        if (backToTopBtn) {
+            backToTopBtn.addEventListener('click', function () {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
     </script>
 </body>
 
