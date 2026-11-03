@@ -634,8 +634,8 @@
                             style="left: 50%; width: 3px; background: white; transform: translateX(-50%);">
 
                             <div class="absolute top-1/2 left-1/2 flex h-10 w-10
-                    -translate-x-1/2 -translate-y-1/2 items-center justify-center
-                    rounded-full border-2 border-white bg-white shadow-md">
+                        -translate-x-1/2 -translate-y-1/2 items-center justify-center
+                        rounded-full border-2 border-white bg-white shadow-md">
                                 <span class="font-bold text-[#2A7C13]">↔</span>
                             </div>
                         </div>
@@ -806,66 +806,143 @@
                     </p>
                 </header>
 
-                <!-- Cards Container Grid -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
+                <!-- Cards Container Grid (Desain Bawah Setengah Lingkaran) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch pt-6">
 
                     <!-- KARTU BERITA 1 -->
                     <a href="https://www.kpa.or.id/2024/01/petani-cilacap-harapkan-pengakuan-atas-sawah-sedimentasi-segara-anakan/"
                         target="_blank" rel="noopener noreferrer"
-                        class="visi-misi-card bg-white rounded-xl shadow-lg p-6 flex flex-col no-underline cursor-pointer"
-                        style="border: 2px solid rgba(110, 53, 17, 0.25); transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;">
-                        <div class="mb-5">
+                        class="bg-white shadow-md flex flex-col no-underline cursor-pointer rounded-t-none rounded-b-[150px] border border-gray-100 group transition-all duration-300 hover:-translate-y-3 hover:shadow-2xl overflow-hidden pb-14">
+                        
+                        <!-- Gambar menempel di sudut atas (kotak) -->
+                        <div class="mb-5 w-full">
                             <img src="berita satu.jpg"
                                 alt="Petani Cilacap Harapkan Pengakuan atas Sawah Sedimentasi Segara Anakan"
-                                class="w-full aspect-[4/3] object-cover rounded-lg">
+                                class="w-full aspect-[4/3] object-cover rounded-t-none">
                         </div>
-                        <p class="text-sm text-gray-500 mb-3">17 Januari 2024</p>
-                        <h2 class="text-xl font-bold text-[#2A7C13] mb-4">
-                            Petani Cilacap Harapkan Pengakuan atas Sawah Sedimentasi Segara Anakan
-                        </h2>
-                        <div class="mt-auto pt-3 flex items-center gap-2 text-[#543c1d] font-semibold text-sm">
-                            Baca selengkapnya <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        
+                        <!-- Konten teks di tengah agar mengikuti alur lengkungan bawah -->
+                        <div class="flex flex-col items-center text-center flex-grow px-6">
+                            <p class="text-sm text-gray-500 mb-3">17 Januari 2024</p>
+                            <h2 class="text-lg font-bold text-[#2A7C13] mb-4 line-clamp-3">
+                                Petani Cilacap Harapkan Pengakuan atas Sawah Sedimentasi Segara Anakan
+                            </h2>
+                            <div class="mt-auto pt-2 flex items-center gap-2 text-[#543c1d] font-semibold text-sm group-hover:text-[#76C457] transition-colors">
+                                Baca selengkapnya <i class="fa-solid fa-arrow-up-right-from-square transition-transform group-hover:-translate-y-1 group-hover:translate-x-1"></i>
+                            </div>
                         </div>
                     </a>
 
                     <!-- KARTU BERITA 2 -->
                     <a href="https://www.antaranews.com/berita/3762855/mencermati-ancaman-hilangnya-segara-anakan-cilacap"
                         target="_blank" rel="noopener noreferrer"
-                        class="visi-misi-card bg-white rounded-xl shadow-lg p-6 flex flex-col no-underline cursor-pointer"
-                        style="border: 2px solid rgba(110, 53, 17, 0.25); transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;">
-                        <div class="mb-5">
+                        class="bg-white shadow-md flex flex-col no-underline cursor-pointer rounded-t-none rounded-b-[150px] border border-gray-100 group transition-all duration-300 hover:-translate-y-3 hover:shadow-2xl overflow-hidden pb-14">
+                        
+                        <div class="mb-5 w-full">
                             <img src="berita dua.webp" alt="Mencermati ancaman hilangnya Segara Anakan Cilacap"
-                                class="w-full aspect-[4/3] object-cover rounded-lg">
+                                class="w-full aspect-[4/3] object-cover rounded-t-none">
                         </div>
-                        <p class="text-sm text-gray-500 mb-3">8 Oktober 2023</p>
-                        <h2 class="text-xl font-bold text-[#2A7C13] mb-4">
-                            Mencermati ancaman hilangnya Segara Anakan Cilacap
-                        </h2>
-                        <div class="mt-auto pt-3 flex items-center gap-2 text-[#543c1d] font-semibold text-sm">
-                            Baca selengkapnya <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        
+                        <div class="flex flex-col items-center text-center flex-grow px-6">
+                            <p class="text-sm text-gray-500 mb-3">8 Oktober 2023</p>
+                            <h2 class="text-lg font-bold text-[#2A7C13] mb-4 line-clamp-3">
+                                Mencermati ancaman hilangnya Segara Anakan Cilacap
+                            </h2>
+                            <div class="mt-auto pt-2 flex items-center gap-2 text-[#543c1d] font-semibold text-sm group-hover:text-[#76C457] transition-colors">
+                                Baca selengkapnya <i class="fa-solid fa-arrow-up-right-from-square transition-transform group-hover:-translate-y-1 group-hover:translate-x-1"></i>
+                            </div>
                         </div>
                     </a>
 
                     <!-- KARTU BERITA 3 -->
                     <a href="https://darilaut.id/berita/kerusakan-hutan-bakau-segara-anakan-merugikan-nelayan"
                         target="_blank" rel="noopener noreferrer"
-                        class="visi-misi-card bg-white rounded-xl shadow-lg p-6 flex flex-col no-underline cursor-pointer"
-                        style="border: 2px solid rgba(110, 53, 17, 0.25); transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;">
-                        <div class="mb-5">
+                        class="bg-white shadow-md flex flex-col no-underline cursor-pointer rounded-t-none rounded-b-[150px] border border-gray-100 group transition-all duration-300 hover:-translate-y-3 hover:shadow-2xl overflow-hidden pb-14">
+                        
+                        <div class="mb-5 w-full">
                             <img src="berita tiga.jpg" alt="Kerusakan Hutan Bakau Segara Anakan Merugikan Nelayan"
-                                class="w-full aspect-[4/3] object-cover rounded-lg">
+                                class="w-full aspect-[4/3] object-cover rounded-t-none">
                         </div>
-                        <p class="text-sm text-gray-500 mb-3">25 September 2020</p>
-                        <h2 class="text-xl font-bold text-[#2A7C13] mb-4">
-                            Kerusakan Hutan Bakau Segara Anakan Merugikan Nelayan
-                        </h2>
-                        <div class="mt-auto pt-3 flex items-center gap-2 text-[#543c1d] font-semibold text-sm">
-                            Baca selengkapnya <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        
+                        <div class="flex flex-col items-center text-center flex-grow px-6">
+                            <p class="text-sm text-gray-500 mb-3">25 September 2020</p>
+                            <h2 class="text-lg font-bold text-[#2A7C13] mb-4 line-clamp-3">
+                                Kerusakan Hutan Bakau Segara Anakan Merugikan Nelayan
+                            </h2>
+                            <div class="mt-auto pt-2 flex items-center gap-2 text-[#543c1d] font-semibold text-sm group-hover:text-[#76C457] transition-colors">
+                                Baca selengkapnya <i class="fa-solid fa-arrow-up-right-from-square transition-transform group-hover:-translate-y-1 group-hover:translate-x-1"></i>
+                            </div>
                         </div>
                     </a>
                 </div>
             </div>
         </div>
+
+        <!-- SECTION IPB UNIVERSITY -->
+        <section class="w-screen relative py-14 sm:py-20 bg-[#F3F7F0]" style="margin-left: calc(50% - 50vw);">
+
+            <!-- Padding disamakan dengan section lain -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-12">
+
+                <div class="grid grid-cols-1 lg:grid-cols-[0.65fr_1.35fr] gap-6 lg:gap-8 items-center">
+
+                    <!-- PANEL VISUAL IPB -->
+                    <div class="relative">
+                        <div class="relative overflow-hidden rounded-3xl bg-white border border-[#2A7C13]/15
+            shadow-lg min-h-[220px] sm:min-h-[260px] flex items-center justify-center p-4 sm:p-5">
+
+                            <!-- Aksen dekoratif -->
+                            <div class="absolute -top-16 -right-12 w-48 h-48 rounded-full
+                    border-[24px] border-[#76C457]/10"></div>
+                            <div class="absolute -bottom-20 -left-12 w-56 h-56 rounded-full
+                    bg-[#76C457]/10"></div>
+
+                            <!-- Logo IPB saja -->
+                            <div class="relative z-10 flex items-center justify-center">
+                                <img src="Logo_IPB.png" alt="Logo IPB University"
+                                    class="w-36 sm:w-44 h-auto object-contain">
+                            </div>
+                        </div>
+
+                        <!-- Slogan di luar panel -->
+                        <div class="absolute -bottom-4 left-1/2 -translate-x-1/2
+                bg-[#2A7C13] text-white text-xs sm:text-sm font-semibold
+                tracking-wide px-5 py-2 rounded-full shadow-md
+                text-center whitespace-nowrap">
+                            <i>Inspiring Innovation with Integrity</i>
+                        </div>
+                    </div>
+
+                    <!-- KONTEN TEKS -->
+                    <div class="pt-6 lg:pt-0 lg:pr-2">
+
+                        <p class="text-xs sm:text-sm font-semibold tracking-[0.18em]
+                          text-[#6E3511] uppercase mb-3">
+                            Inovasi dari IPB University
+                        </p>
+
+                        <h2 class="font-tech text-2xl sm:text-3xl md:text-4xl
+                           font-bold text-[#2A7C13] leading-tight mb-5">
+                            Mengembangkan Inovasi untuk Menjawab Tantangan
+                        </h2>
+
+                        <p class="text-[#454545] text-sm sm:text-base leading-relaxed text-justify mb-4">
+                            IPB University merupakan perguruan tinggi yang berperan dalam pengembangan ilmu pengetahuan,
+                            penelitian, dan inovasi, khususnya dalam bidang pertanian, kelautan, dan biosains. Melalui
+                            pemanfaatan sains dan teknologi, berbagai gagasan dikembangkan untuk menjawab tantangan
+                            serta memberikan manfaat bagi masyarakat dan lingkungan.
+                        </p>
+
+                        <p class="text-[#454545] text-sm sm:text-base leading-relaxed text-justify">
+                            Sejalan dengan semangat tersebut, Tim ALBATROSS menghadirkan program pemantauan perairan,
+                            rehabilitasi mangrove, dan pengembangan potensi produk lokal di Laguna Segara Anakan untuk
+                            mendukung keberlanjutan ekosistem pesisir dan masyarakat sekitarnya.
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <div class="w-screen relative bg-gray-100 py-16 px-4 sm:px-12 mb-0 border-y border-gray-300/70 shadow-inner"
             style="margin-left: calc(50% - 50vw);">
@@ -887,41 +964,9 @@
                 <!-- Grid 3 Kotak -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
 
-                    <!-- Card 1: Alat Pemantauan Perairan (Geser dari Kiri + Fade In) -->
+                    <!-- Card 1: Penanaman Mangrove (Geser dari Kiri + Fade In) -->
                     <div class="program-card program-card-animate relative bg-white rounded-2xl flex flex-col justify-between overflow-hidden transition-all duration-1000 ease-out opacity-0 -translate-x-12"
                         data-direction="left"
-                        style="background-color: rgba(110, 53, 17, 0.04); border: 2px solid rgba(110, 53, 17, 0.25); box-shadow: 0 5px 18px rgba(45, 55, 72, 0.08);">
-
-                        <!-- FOTO BACKGROUND (alat.jpg) -->
-                        <img src="alat.jpeg" alt="Background Alat Pemantauan"
-                            class="absolute inset-0 w-full h-full object-cover opacity-15 pointer-events-none z-0">
-
-                        <!-- KONTEN KOTAK -->
-                        <div class="relative z-10 p-8 flex flex-col items-center text-center flex-grow">
-                            <!-- Lingkaran Ikon -->
-                            <div
-                                class="w-16 h-16 rounded-full bg-white flex items-center justify-center text-[#2A7C13] text-2xl mb-6 shadow-sm border border-[#76c457]">
-                                <i class="fa-solid fa-microchip"></i>
-                            </div>
-                            <!-- Judul Card -->
-                            <h3
-                                class="font-bold text-xl text-gray-800 mb-3 min-h-[56px] flex items-center justify-center">
-                                Monitoring Kawasan Pesisir
-                            </h3>
-                            <!-- Deskripsi -->
-                            <p class="text-[#454545] text-sm leading-relaxed">
-                                Proyek ALBATROSS berfokus pada perancangan dan pengembangan alat untuk memantau
-                                parameter perairan di kawasan Kampung
-                                Laut. Data yang diperoleh diolah dan divisualisasikan dalam bentuk peta untuk memberikan
-                                gambaran kondisi perairan serta mendukung pemantauan aktivitas fauna di kawasan
-                                mangrove.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Card 2: Penanaman Mangrove (Geser dari Bawah + Fade In) -->
-                    <div class="program-card program-card-animate relative bg-white rounded-2xl flex flex-col justify-between overflow-hidden transition-all duration-1000 ease-out opacity-0 translate-y-12"
-                        data-direction="bottom"
                         style="background-color: rgba(110, 53, 17, 0.04); border: 2px solid rgba(110, 53, 17, 0.25); box-shadow: 0 5px 18px rgba(45, 55, 72, 0.08);">
 
                         <!-- FOTO BACKGROUND (tanam.jpg) -->
@@ -947,6 +992,38 @@
                                 mangrove sebagai ekosistem karbon biru yang berperan dalam mitigasi perubahan iklim.
                             </p>
                         </div>
+                    </div>
+
+                    <!-- Card 2: Alat Pemantauan Perairan (Geser dari Bawah + Fade In) -->
+                    <div class="program-card program-card-animate relative bg-white rounded-2xl flex flex-col justify-between overflow-hidden transition-all duration-1000 ease-out opacity-0 translate-y-12"
+                        data-direction="bottom"
+                        style="background-color: rgba(110, 53, 17, 0.04); border: 2px solid rgba(110, 53, 17, 0.25); box-shadow: 0 5px 18px rgba(45, 55, 72, 0.08);">
+
+                        <img src="alat.jpeg" alt="Background Alat Pemantauan"
+                            class="absolute inset-0 w-full h-full object-cover opacity-15 pointer-events-none z-0">
+
+                        <!-- KONTEN KOTAK -->
+                        <div class="relative z-10 p-8 flex flex-col items-center text-center flex-grow">
+                            <!-- Lingkaran Ikon -->
+                            <div
+                                class="w-16 h-16 rounded-full bg-white flex items-center justify-center text-[#2A7C13] text-2xl mb-6 shadow-sm border border-[#76c457]">
+                                <i class="fa-solid fa-microchip"></i>
+                            </div>
+                            <!-- Judul Card -->
+                            <h3
+                                class="font-bold text-xl text-gray-800 mb-3 min-h-[56px] flex items-center justify-center">
+                                Monitoring Kawasan Pesisir
+                            </h3>
+                            <!-- Deskripsi -->
+                            <p class="text-[#454545] text-sm leading-relaxed">
+                                Proyek ALBATROSS berfokus pada pengembangan 3 alat utama (<strong>ALBA, BAT, dan TROSS</strong>) untuk memantau parameter perairan di kawasan Kampung Laut. Data yang diperoleh akan divisualisasikan dalam bentuk peta untuk mendukung pemantauan ekosistem.
+                            </p>
+                            <!-- Tautan ke Halaman Progres -->
+                            <a href="progres.html" class="mt-4 font-bold text-[#2A7C13] hover:text-[#76C457] text-sm transition-colors flex items-center justify-center gap-2 group z-20 relative">
+                                Lihat progres pembuatannya <i class="fa-solid fa-arrow-right-long transition-transform group-hover:translate-x-1"></i>
+                            </a>
+                        </div>
+                        
                     </div>
 
                     <!-- Card 3: Edukasi Olahan Pangan (Geser dari Kanan + Fade In) -->
