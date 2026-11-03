@@ -988,6 +988,28 @@
             }
 
         }
+
+        /* Custom Scrollbar Umum */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #76C457;
+            /* Warna hijau terang untuk pegangan scrollbar */
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #2A7C13;
+            /* Warna hijau tua saat kursor diarahkan ke scrollbar */
+        }
     </style>
 </head>
 
@@ -1007,7 +1029,8 @@
                 </a>
                 <a href="#" id="logo-btn-2"
                     class="relative z-10 flex items-center justify-center transition-transform hover:scale-105 mx-[5px]">
-                    <img src="logo mitr.png" alt="LOGO MIT+R" class="h-12 w-auto object-contain mx-[10px]">
+                    <img src="logo mitr.png" alt="LOGO MIT+R" class="h-12 w-auto object-contain mx-[10px]"
+                        style="margin-left: -5px;">
                 </a>
                 <a href="#" id="logo-btn-3"
                     class="relative flex items-center justify-center transition-transform hover:scale-105">
@@ -1062,7 +1085,7 @@
                 <a href="index.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">BERANDA</a>
                 <a href="profil.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">PROFIL</a>
                 <a href="hubungi.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">HUBUNGI</a>
-                <a href="progres.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">PROGRESS</a>
+                <a href="progres.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">PROGRES</a>
             </div>
         </div>
     </nav>
@@ -1166,8 +1189,9 @@
                 <!-- Penjelasan di Sebelah Kanan -->
                 <div class="team-story-text">
                     <p class="text-base sm:text-lg leading-relaxed text-gray-700 mb-5">
-                        Berangkat dari semangat tersebut, <strong>Tim ALBATROSS</strong> hadir sebagai bagian dari <strong>MIT+R
-                        IPB University</strong>
+                        Berangkat dari semangat tersebut, <strong>Tim ALBATROSS</strong> hadir sebagai bagian dari
+                        <strong>MIT+R
+                            IPB University</strong>
                         untuk mengembangkan teknologi pemantauan perairan dan ekosistem pesisir. Melalui pemantauan
                         kondisi perairan dan sedimentasi, kami berupaya mendukung pemahaman lingkungan serta mendorong
                         inovasi yang berkelanjutan.
@@ -1769,7 +1793,7 @@
             </div>
         </div>
     </div>
-    
+
     <!-- JAVASCRIPT NAVBAR & RESPONSIVE SEDIMENT SCROLL DARI ATAS SECTION -->
     <script>
         const navbar = document.getElementById('navbar');
@@ -1984,8 +2008,45 @@
     </script>
 
     <script>
+        window.addEventListener('scroll', function () {
+            const navbar = document.getElementById('navbar');
+            const navItems = document.querySelectorAll('.nav-item');
+            const mobileBtn = document.getElementById('mobile-toggle-btn');
+            const logoCircle = document.getElementById('logo-circle');
 
+            if (window.scrollY > 50) {
+                // KODE INI YANG MENGUBAH TAMPILAN SAAT DI-SCROLL KE BAWAH:
+                navbar.classList.remove('bg-transparent', 'text-white');
+                navbar.classList.add('bg-white', 'shadow-md'); // Navbar jadi putih
 
+                navItems.forEach(link => {
+                    link.classList.remove('text-white');
+                    link.classList.add(
+                        'text-[#2A7C13]', // Teks menu jadi warna hijau (#2A7C13)
+                        'hover:bg-[#76C457]/25',
+                        'hover:text-[#2A7C13]'
+                    );
+                });
+
+                if (mobileBtn) {
+                    mobileBtn.classList.add('text-[#2A7C13]'); // Tombol menu mobile jadi hijau
+                }
+
+                if (logoCircle) {
+                    logoCircle.classList.remove('opacity-0', 'scale-75');
+                    logoCircle.classList.add('opacity-100', 'scale-100');
+                }
+
+            } else {
+                // Kondisi awal saat berada di paling atas (mengembalikan ke warna transparan/putih)
+                navbar.classList.add('bg-transparent', 'text-white');
+                navbar.classList.remove('bg-white', 'shadow-md');
+                // ... (kode selanjutnya)
+            }
+        });
+    </script>
+
+    <script>
         document.querySelectorAll(".team-carousel").forEach((carousel) => {
             const cards = Array.from(
                 carousel.querySelectorAll(".team-photo-card")
