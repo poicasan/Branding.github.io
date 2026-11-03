@@ -352,6 +352,28 @@
                 padding: 16px !important;
             }
         }
+
+        /* Custom Scrollbar Umum */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #76C457;
+            /* Warna hijau terang untuk pegangan scrollbar */
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #2A7C13;
+            /* Warna hijau tua saat kursor diarahkan ke scrollbar */
+        }
     </style>
 
 </head>
@@ -372,7 +394,8 @@
                 </a>
                 <a href="#" id="logo-btn-2"
                     class="relative z-10 flex items-center justify-center transition-transform hover:scale-105 mx-[5px]">
-                    <img src="logo mitr.png" alt="LOGO MIT+R" class="h-12 w-auto object-contain mx-[10px]">
+                    <img src="logo mitr.png" alt="LOGO MIT+R" class="h-12 w-auto object-contain mx-[10px]"
+                        style="margin-left: -5px;">
                 </a>
                 <a href="#" id="logo-btn-3"
                     class="relative flex items-center justify-center transition-transform hover:scale-105">
@@ -427,7 +450,7 @@
                 <a href="index.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">BERANDA</a>
                 <a href="profil.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">PROFIL</a>
                 <a href="hubungi.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">HUBUNGI</a>
-                <a href="progres.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">PROGRESS</a>
+                <a href="progres.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">PROGRES</a>
             </div>
         </div>
     </nav>
@@ -784,7 +807,7 @@
 
         <!-- SECTION FULL WIDTH VISI DAN MISI -->
         <div
-            style="position: relative; isolation: isolate; width: 100vw; margin-left: calc(-50vw + 50%); margin-right: calc(-50vw + 50%); margin-top: -20px; margin-bottom: -50px !important; padding: 50px 20px; box-sizing: border-box; background: linear-gradient(to bottom, #ffffff 60%, #543c1d 100%); display: block;">
+            style="position: relative; isolation: isolate; width: 100vw; margin-left: calc(-50vw + 50%); margin-right: calc(-50vw + 50%); margin-top: -20px; margin-bottom: -50px !important; padding: 50px 20px; box-sizing: border-box; background: linear-gradient(to bottom, #ffffff 60%, #543c1d 100%); display: block; margin-bottom: -5px;">
 
             <!-- BACKGROUND FOTO FULL LAYAR -->
             <div
@@ -945,7 +968,7 @@
         </section>
 
         <div class="w-screen relative bg-gray-100 py-16 px-4 sm:px-12 mb-0 border-y border-gray-300/70 shadow-inner"
-            style="margin-left: calc(50% - 50vw);">
+            style="margin-left: calc(50% - 50vw); margin-top: -20px;">
 
             <div class="max-w-7xl mx-auto px-3">
 
@@ -1372,6 +1395,45 @@
                 top: 0,
                 behavior: 'smooth'
             });
+        });
+    </script>
+
+    <script>
+        window.addEventListener('scroll', function () {
+            const navbar = document.getElementById('navbar');
+            const navItems = document.querySelectorAll('.nav-item');
+            const mobileBtn = document.getElementById('mobile-toggle-btn');
+            const logoCircle = document.getElementById('logo-circle');
+
+            if (window.scrollY > 50) {
+                // KODE INI YANG MENGUBAH TAMPILAN SAAT DI-SCROLL KE BAWAH:
+                navbar.classList.remove('bg-transparent', 'text-white');
+                navbar.classList.add('bg-white', 'shadow-md'); // Navbar jadi putih
+
+                navItems.forEach(link => {
+                    link.classList.remove('text-white');
+                    link.classList.add(
+                        'text-[#2A7C13]', // Teks menu jadi warna hijau (#2A7C13)
+                        'hover:bg-[#76C457]/25',
+                        'hover:text-[#2A7C13]'
+                    );
+                });
+
+                if (mobileBtn) {
+                    mobileBtn.classList.add('text-[#2A7C13]'); // Tombol menu mobile jadi hijau
+                }
+
+                if (logoCircle) {
+                    logoCircle.classList.remove('opacity-0', 'scale-75');
+                    logoCircle.classList.add('opacity-100', 'scale-100');
+                }
+
+            } else {
+                // Kondisi awal saat berada di paling atas (mengembalikan ke warna transparan/putih)
+                navbar.classList.add('bg-transparent', 'text-white');
+                navbar.classList.remove('bg-white', 'shadow-md');
+                // ... (kode selanjutnya)
+            }
         });
     </script>
 </body>
