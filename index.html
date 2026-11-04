@@ -180,9 +180,8 @@
             transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Diperbesar agar muat 3 foto alat */
         .interactive-card.card-expanded .dropdown-content {
-            max-height: 1500px;
+            max-height: 2200px;
             opacity: 1;
             margin-top: 1.5rem;
         }
@@ -195,10 +194,7 @@
             transform: rotate(180deg);
         }
 
-        /* ------------------------------------------------------------- */
-
         @media (max-width: 640px) {
-
             html,
             body {
                 width: 100%;
@@ -219,11 +215,6 @@
                 font-size: clamp(0.9rem, 3.8vw, 1rem);
                 padding-left: 0.25rem;
                 padding-right: 0.25rem;
-            }
-
-            body>div[style*="max-width: 1200px"] h2 {
-                font-size: clamp(1.5rem, 6vw, 2rem) !important;
-                line-height: 1.25;
             }
 
             .visi-misi-card {
@@ -279,22 +270,18 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-
-            /* Foto memudar ke transparan di bagian bawah */
             -webkit-mask-image: linear-gradient(to bottom,
                     black 0%,
                     black 35%,
                     rgba(0, 0, 0, 0.75) 55%,
                     rgba(0, 0, 0, 0.25) 78%,
                     transparent 100%);
-
             mask-image: linear-gradient(to bottom,
                     black 0%,
                     black 35%,
                     rgba(0, 0, 0, 0.75) 55%,
                     rgba(0, 0, 0, 0.25) 78%,
                     transparent 100%);
-
             transition: transform 0.5s ease;
         }
 
@@ -639,77 +626,108 @@
 
                             <!-- DROPDOWN CONTENT (KARTU 1) -->
                             <div class="dropdown-content w-full">
-                                <div class="border-t border-[#76c457] pt-4 mt-2">
-                                    <p class="text-[#454545] text-sm leading-relaxed mb-6 text-justify">
+                                <div class="border-t border-[#76c457] pt-6 mt-2 text-left">
+                                    <p class="text-[#454545] text-sm leading-relaxed mb-8 text-justify">
                                         Proyek ALBATROSS berfokus pada pengembangan 3 alat utama (<strong>ALBA, BAT, dan
                                             TROSS</strong>) untuk memantau parameter perairan di kawasan Kampung Laut.
                                         Data yang diperoleh akan divisualisasikan dalam bentuk peta untuk mendukung
                                         pemantauan dan konservasi ekosistem secara real-time.
                                     </p>
 
-                                    <!-- GRID 3 ALAT (ALBA, BAT, TROSS) -->
-                                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+                                    <!-- DAFTAR ALAT (TEKS TERBATAS DI GARIS MERAH + RATA KANAN-KIRI + FOTO ALAT LEBIH BESAR) -->
+                                    <div class="flex flex-col gap-6 mb-4">
 
-                                        <!-- ALAT 1: ALBA -->
-                                        <div
-                                            class="bg-gray-50 rounded-xl p-4 border border-gray-200 shadow-sm text-left flex flex-col hover:border-[#76C457] transition-colors">
-                                            <!-- Ganti foto-alba.jpg sesuai file aslimu -->
-                                            <img src="ALBA.jpeg" alt="Alat ALBA"
-                                                class="w-full h-28 object-cover rounded-lg mb-3 bg-gray-200">
-                                            <h4 class="font-bold text-[#2A7C13] text-[15px] mb-1">ALBA</h4>
-                                            <p class="text-xs text-[#454545] mb-3 leading-relaxed flex-grow">
-                                                <strong>Keunggulan:</strong> Dilengkapi dengan sensor presisi untuk
-                                                mengukur kualitas air dan terintegrasi sistem transmisi data jarak jauh.
-                                            </p>
-                                            <div class="w-full bg-gray-200 rounded-full h-2 mt-auto">
-                                                <div class="bg-[#76c457] h-2 rounded-full" style="width: 85%"></div>
+                                        <!-- 1. ALAT: ALBA -->
+                                        <div class="bg-gray-50 rounded-xl p-5 border border-gray-200 shadow-sm hover:border-[#76C457] transition-all flex flex-col md:flex-row items-center gap-6">
+                                            <!-- Kolom 1: Nama & Keunggulan (Terbatas Lebarnya & Justify) -->
+                                            <div class="flex flex-col text-left w-full md:w-1/4 max-w-[220px] shrink-0">
+                                                <h4 class="font-bold text-[#2A7C13] text-lg mb-1">ALBA</h4>
+                                                <p class="text-xs sm:text-sm text-[#454545] leading-relaxed text-justify">
+                                                    <strong>Keunggulan:</strong> Dilengkapi dengan sensor presisi untuk mengukur kualitas air dan terintegrasi sistem transmisi data jarak jauh.
+                                                </p>
                                             </div>
-                                            <p class="text-[11px] text-right text-gray-500 mt-1 font-bold">85% Selesai
-                                            </p>
+                                            <!-- Kolom 2: Foto Alat (Diperbesar Luas) -->
+                                            <div class="flex-1 flex justify-center items-center w-full">
+                                                <img src="ALBA.jpeg" alt="Alat ALBA" class="w-full max-w-[360px] h-48 md:h-52 object-cover rounded-xl bg-gray-200 shadow-md border border-gray-200">
+                                            </div>
+                                            <!-- Kolom 3: Progres Keseluruhan & Tombol -->
+                                            <div class="flex flex-col justify-center items-start md:items-end gap-3 w-full md:w-1/3 shrink-0">
+                                                <div class="w-full">
+                                                    <div class="flex justify-between items-center text-xs font-bold text-gray-600 mb-1">
+                                                        <span>Progres Keseluruhan</span>
+                                                        <span class="text-[#2A7C13]">85%</span>
+                                                    </div>
+                                                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                                        <div class="bg-[#76c457] h-2.5 rounded-full" style="width: 85%"></div>
+                                                    </div>
+                                                </div>
+                                                <a href="progres.html" class="inline-flex font-semibold text-white bg-[#2A7C13] px-4 py-2 rounded-lg hover:bg-[#76C457] text-xs transition-colors items-center gap-2 shadow-sm z-20 relative">
+                                                    Klik ke Progres <i class="fa-solid fa-arrow-right-long"></i>
+                                                </a>
+                                            </div>
                                         </div>
 
-                                        <!-- ALAT 2: BAT -->
-                                        <div
-                                            class="bg-gray-50 rounded-xl p-4 border border-gray-200 shadow-sm text-left flex flex-col hover:border-[#76C457] transition-colors">
-                                            <!-- Ganti foto-bat.jpg sesuai file aslimu -->
-                                            <img src="BAT.jpeg" alt="Alat BAT"
-                                                class="w-full h-28 object-cover rounded-lg mb-3 bg-gray-200">
-                                            <h4 class="font-bold text-[#2A7C13] text-[15px] mb-1">BAT</h4>
-                                            <p class="text-xs text-[#454545] mb-3 leading-relaxed flex-grow">
-                                                <strong>Keunggulan:</strong> Mampu memantau pergerakan arus secara
-                                                akurat menggunakan teknologi pelampung pintar berdaya rendah.
-                                            </p>
-                                            <div class="w-full bg-gray-200 rounded-full h-2 mt-auto">
-                                                <div class="bg-[#76c457] h-2 rounded-full" style="width: 60%"></div>
+                                        <!-- 2. ALAT: BAT -->
+                                        <div class="bg-gray-50 rounded-xl p-5 border border-gray-200 shadow-sm hover:border-[#76C457] transition-all flex flex-col md:flex-row items-center gap-6">
+                                            <!-- Kolom 1: Nama & Keunggulan (Terbatas Lebarnya & Justify) -->
+                                            <div class="flex flex-col text-left w-full md:w-1/4 max-w-[220px] shrink-0">
+                                                <h4 class="font-bold text-[#2A7C13] text-lg mb-1">BAT</h4>
+                                                <p class="text-xs sm:text-sm text-[#454545] leading-relaxed text-justify">
+                                                    <strong>Keunggulan:</strong> Mampu memantau pergerakan arus secara akurat menggunakan teknologi pelampung pintar berdaya rendah.
+                                                </p>
                                             </div>
-                                            <p class="text-[11px] text-right text-gray-500 mt-1 font-bold">60% Selesai
-                                            </p>
+                                            <!-- Kolom 2: Foto Alat (Diperbesar Luas) -->
+                                            <div class="flex-1 flex justify-center items-center w-full">
+                                                <img src="BAT.jpeg" alt="Alat BAT" class="w-full max-w-[360px] h-48 md:h-52 object-cover rounded-xl bg-gray-200 shadow-md border border-gray-200">
+                                            </div>
+                                            <!-- Kolom 3: Progres Keseluruhan & Tombol -->
+                                            <div class="flex flex-col justify-center items-start md:items-end gap-3 w-full md:w-1/3 shrink-0">
+                                                <div class="w-full">
+                                                    <div class="flex justify-between items-center text-xs font-bold text-gray-600 mb-1">
+                                                        <span>Progres Keseluruhan</span>
+                                                        <span class="text-[#2A7C13]">60%</span>
+                                                    </div>
+                                                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                                        <div class="bg-[#76c457] h-2.5 rounded-full" style="width: 60%"></div>
+                                                    </div>
+                                                </div>
+                                                <a href="progres.html" class="inline-flex font-semibold text-white bg-[#2A7C13] px-4 py-2 rounded-lg hover:bg-[#76C457] text-xs transition-colors items-center gap-2 shadow-sm z-20 relative">
+                                                    Klik ke Progres <i class="fa-solid fa-arrow-right-long"></i>
+                                                </a>
+                                            </div>
                                         </div>
 
-                                        <!-- ALAT 3: TROSS -->
-                                        <div
-                                            class="bg-gray-50 rounded-xl p-4 border border-gray-200 shadow-sm text-left flex flex-col hover:border-[#76C457] transition-colors">
-                                            <!-- Ganti foto-tross.jpg sesuai file aslimu -->
-                                            <img src="TROSS.jpeg" alt="Alat TROSS"
-                                                class="w-full h-28 object-cover rounded-lg mb-3 bg-gray-200">
-                                            <h4 class="font-bold text-[#2A7C13] text-[15px] mb-1">TROSS</h4>
-                                            <p class="text-xs text-[#454545] mb-3 leading-relaxed flex-grow">
-                                                <strong>Keunggulan:</strong> Sistem deteksi tingkat sedimentasi secara
-                                                otomatis dengan fitur peringatan dini berbasis IoT.
-                                            </p>
-                                            <div class="w-full bg-gray-200 rounded-full h-2 mt-auto">
-                                                <div class="bg-[#76c457] h-2 rounded-full" style="width: 45%"></div>
+                                        <!-- 3. ALAT: TROSS -->
+                                        <div class="bg-gray-50 rounded-xl p-5 border border-gray-200 shadow-sm hover:border-[#76C457] transition-all flex flex-col md:flex-row items-center gap-6">
+                                            <!-- Kolom 1: Nama & Keunggulan (Terbatas Lebarnya & Justify) -->
+                                            <div class="flex flex-col text-left w-full md:w-1/4 max-w-[220px] shrink-0">
+                                                <h4 class="font-bold text-[#2A7C13] text-lg mb-1">TROSS</h4>
+                                                <p class="text-xs sm:text-sm text-[#454545] leading-relaxed text-justify">
+                                                    <strong>Keunggulan:</strong> Sistem deteksi tingkat sedimentasi secara otomatis dengan fitur peringatan dini berbasis IoT.
+                                                </p>
                                             </div>
-                                            <p class="text-[11px] text-right text-gray-500 mt-1 font-bold">45% Selesai
-                                            </p>
+                                            <!-- Kolom 2: Foto Alat (Diperbesar Luas) -->
+                                            <div class="flex-1 flex justify-center items-center w-full">
+                                                <img src="TROSS.jpeg" alt="Alat TROSS" class="w-full max-w-[360px] h-48 md:h-52 object-cover rounded-xl bg-gray-200 shadow-md border border-gray-200">
+                                            </div>
+                                            <!-- Kolom 3: Progres Keseluruhan & Tombol -->
+                                            <div class="flex flex-col justify-center items-start md:items-end gap-3 w-full md:w-1/3 shrink-0">
+                                                <div class="w-full">
+                                                    <div class="flex justify-between items-center text-xs font-bold text-gray-600 mb-1">
+                                                        <span>Progres Keseluruhan</span>
+                                                        <span class="text-[#2A7C13]">45%</span>
+                                                    </div>
+                                                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                                        <div class="bg-[#76c457] h-2.5 rounded-full" style="width: 45%"></div>
+                                                    </div>
+                                                </div>
+                                                <a href="progres.html" class="inline-flex font-semibold text-white bg-[#2A7C13] px-4 py-2 rounded-lg hover:bg-[#76C457] text-xs transition-colors items-center gap-2 shadow-sm z-20 relative">
+                                                    Klik ke Progres <i class="fa-solid fa-arrow-right-long"></i>
+                                                </a>
+                                            </div>
                                         </div>
+
                                     </div>
-
-                                    <a href="progres.html"
-                                        class="inline-flex font-bold text-white bg-[#2A7C13] px-5 py-2.5 rounded-full hover:bg-[#76C457] text-sm transition-colors items-center gap-2 group z-20 relative shadow-md">
-                                        Lihat Progres <i
-                                            class="fa-solid fa-arrow-right-long transition-transform group-hover:translate-x-1"></i>
-                                    </a>
                                 </div>
                             </div>
                         </div>
