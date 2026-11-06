@@ -226,9 +226,9 @@
                         <div
                             class="flex bg-[#2A7C13]/70 rounded-full p-1 backdrop-blur-sm border border-white/20 transition-all shadow-inner">
                             <!-- Tambahkan onclick di sini -->
-                             <a href="progres-en.html" onclick="saveScrollPosition()"
+                            <a href="progres-en.html" onclick="saveScrollPosition()"
                                 class="w-8 h-8 flex items-center justify-center rounded-full text-xs font-bold text-white transition-all hover:bg-slate-500/50">EN</a>
-                            <span 
+                            <span
                                 class="w-8 h-8 flex items-center justify-center rounded-full text-xs font-bold bg-white text-slate-800 shadow-sm cursor-default">ID</span>
                         </div>
                     </li>
@@ -253,9 +253,9 @@
                     <span class="text-sm font-semibold text-[#76C457]">BAHASA</span>
                     <div class="flex bg-[#2A7C13]/70 rounded-full p-1">
                         <!-- Tambahkan onclick di sini -->
-                         <a href="progres-en.html" onclick="saveScrollPosition()"
+                        <a href="progres-en.html" onclick="saveScrollPosition()"
                             class="w-8 h-8 flex items-center justify-center rounded-full text-xs font-bold text-white transition-all">EN</a>
-                        <span 
+                        <span
                             class=" w-8 h-8 flex items-center justify-center rounded-full text-xs font-bold bg-white text-[#2A7C13] shadow-sm cursor-default">ID</span>
                     </div>
                 </div>
@@ -1228,6 +1228,10 @@
 
     <!-- JAVASCRIPT NAVBAR & BACK TO TOP -->
     <script>
+        // Menyimpan posisi scroll sebelum berpindah bahasa
+        function saveScrollPosition() {
+            sessionStorage.setItem('scrollPosition', window.scrollY);
+        }
         const mobileToggleBtn = document.getElementById('mobile-toggle-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         const toggleIcon = document.getElementById('toggle-icon');
