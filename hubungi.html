@@ -1,812 +1,842 @@
-<!DOCTYPE html>
-<html lang="id">
+    <!DOCTYPE html>
+    <html lang="id">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kontak Kami | ALBATROSS</title>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Kontak Kami | ALBATROSS</title>
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+        <!-- Tailwind CSS -->
+        <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anta&family=Inter:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet">
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Anta&family=Inter:wght@400;500;600;700;800&display=swap"
+            rel="stylesheet">
 
-    <!-- FontAwesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <!-- FontAwesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Konfigurasi Tailwind -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        anta: ['Anta', 'sans-serif'],
-                        inter: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        primary: '#2A7C13',
-                        secondary: '#76C457',
-                        dark: '#1a1a1a',
+        <!-- Konfigurasi Tailwind -->
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        fontFamily: {
+                            anta: ['Anta', 'sans-serif'],
+                            inter: ['Inter', 'sans-serif'],
+                        },
+                        colors: {
+                            primary: '#2A7C13',
+                            secondary: '#76C457',
+                            dark: '#1a1a1a',
+                        }
                     }
                 }
             }
-        }
-    </script>
+        </script>
 
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            scroll-behavior: smooth;
-        }
-
-        .font-tech {
-            font-family: 'Anta', sans-serif;
-        }
-
-        .nav-text-wrap {
-            position: relative;
-            display: inline-block;
-        }
-
-        .nav-line {
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background-color: currentColor;
-            transform: scaleX(0);
-            transform-origin: bottom right;
-            transition: transform 0.3s ease-out;
-        }
-
-        .nav-item:hover .nav-line {
-            transform: scaleX(1);
-            transform-origin: bottom left;
-        }
-
-        .contact-input {
-            width: 100%;
-            padding: 14px 16px 14px 44px;
-            border-radius: 12px;
-            color: #374151;
-            background-color: #f9fafb;
-            border: 1px solid #e5e7eb;
-            outline: none;
-            transition: all 0.3s ease;
-        }
-
-        .contact-input:focus {
-            background-color: #ffffff;
-            border-color: #76C457;
-            box-shadow: 0 0 0 4px rgba(118, 196, 87, 0.15);
-        }
-
-        .input-icon {
-            position: absolute;
-            left: 16px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #9ca3af;
-            transition: color 0.3s ease;
-        }
-
-        .contact-input:focus+.input-icon,
-        .contact-input:not(:placeholder-shown)+.input-icon {
-            color: #2A7C13;
-        }
-
-        .glass-overlay {
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(4px);
-        }
-
-        /* Aksen hijau minimalis dan pattern lingkaran dekoratif */
-        .contact-card {
-            animation: contact-rise-in 0.75s cubic-bezier(.2, .7, .2, 1) both;
-        }
-
-        .contact-accent {
-            min-height: 100%;
-        }
-
-
-        /* Pattern lingkaran di sisi kiri */
-        .contact-accent-ring {
-            position: absolute;
-            width: 190px;
-            height: 190px;
-            border: 24px solid rgba(255, 255, 255, 0.25);
-            border-radius: 9999px;
-            pointer-events: none;
-        }
-
-        .contact-accent-ring-top {
-            top: 7%;
-            left: -145px;
-        }
-
-        .contact-accent-ring-bottom {
-            bottom: 5%;
-            left: -145px;
-            width: 230px;
-            height: 230px;
-        }
-
-        /* Pattern lingkaran pada area putih formulir */
-        .form-decoration {
-            position: absolute;
-            border-radius: 9999px;
-            pointer-events: none;
-            border: 1px solid rgba(42, 124, 19, 0.12);
-        }
-
-        .form-decoration-top {
-            width: 300px;
-            height: 300px;
-            top: -210px;
-            right: -130px;
-            box-shadow:
-                0 0 0 24px rgba(42, 124, 19, 0.06),
-                0 0 0 48px rgba(42, 124, 19, 0.04);
-        }
-
-        .form-decoration-bottom {
-            width: 220px;
-            height: 220px;
-            bottom: -175px;
-            left: 18%;
-            box-shadow:
-                0 0 0 22px rgba(42, 124, 19, 0.04);
-        }
-
-        .send-button:active {
-            transform: translateY(0) scale(.985);
-        }
-
-        @keyframes contact-rise-in {
-            from {
-                opacity: 0;
-                transform: translateY(18px);
+        <style>
+            body {
+                font-family: 'Inter', sans-serif;
+                scroll-behavior: smooth;
             }
 
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @media (max-width: 640px) {
-            .contact-form-panel {
-                padding: 1.5rem 1.25rem;
+            .font-tech {
+                font-family: 'Anta', sans-serif;
             }
 
-            .contact-accent-ring {
-                border-width: 14px;
+            .nav-text-wrap {
+                position: relative;
+                display: inline-block;
             }
 
-            .form-decoration-top {
-                width: 220px;
-                height: 220px;
-                top: -165px;
-                right: -120px;
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-
-            *,
-            *::before,
-            *::after {
-                animation-duration: .01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: .01ms !important;
-                scroll-behavior: auto !important;
-            }
-        }
-
-        /* RESPONSIVE NAVBAR, disamakan dengan homepage */
-        @media (max-width: 768px) {
-            #navbar {
-                padding: 12px 16px;
-            }
-
-            #navbar img {
-                height: 42px;
-            }
-
-            #logo-circle {
-                width: 50px;
-                height: 50px;
-            }
-
-            #mobile-toggle-btn {
-                font-size: 22px;
-                padding: 8px;
-            }
-        }
-
-
-        /* Tambahan responsivitas mobile; konten dan fungsi yang ada tetap dipertahankan */
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
-        }
-
-        html,
-        body {
-            max-width: 100%;
-            overflow-x: hidden;
-        }
-
-        img,
-        iframe {
-            max-width: 100%;
-        }
-
-        @media (max-width: 640px) {
-            #navbar {
-                width: 100%;
+            .nav-line {
+                position: absolute;
+                bottom: -2px;
                 left: 0;
-                right: 0;
+                width: 100%;
+                height: 2px;
+                background-color: currentColor;
+                transform: scaleX(0);
+                transform-origin: bottom right;
+                transition: transform 0.3s ease-out;
             }
 
-            #mobile-menu {
-                max-width: 100%;
-                overflow-wrap: anywhere;
-            }
-
-            main,
-            section,
-            footer {
-                min-width: 0;
-            }
-
-            .contact-card {
-                grid-template-columns: 8px minmax(0, 1fr);
-                border-radius: 1.25rem;
-            }
-
-            .contact-form-panel {
-                min-width: 0;
-                padding: 1.25rem 1rem;
-            }
-
-            .contact-form-panel h2,
-            main h1,
-            main h2 {
-                overflow-wrap: break-word;
+            .nav-item:hover .nav-line {
+                transform: scaleX(1);
+                transform-origin: bottom left;
             }
 
             .contact-input {
-                min-width: 0;
-                font-size: 16px;
-                padding-left: 42px;
+                width: 100%;
+                padding: 14px 16px 14px 44px;
+                border-radius: 12px;
+                color: #374151;
+                background-color: #f9fafb;
+                border: 1px solid #e5e7eb;
+                outline: none;
+                transition: all 0.3s ease;
             }
 
-            textarea.contact-input {
-                padding-top: 1rem;
+            .contact-input:focus {
+                background-color: #ffffff;
+                border-color: #76C457;
+                box-shadow: 0 0 0 4px rgba(118, 196, 87, 0.15);
+            }
+
+            .input-icon {
+                position: absolute;
+                left: 16px;
+                top: 50%;
+                transform: translateY(-50%);
+                color: #9ca3af;
+                transition: color 0.3s ease;
+            }
+
+            .contact-input:focus+.input-icon,
+            .contact-input:not(:placeholder-shown)+.input-icon {
+                color: #2A7C13;
+            }
+
+            .glass-overlay {
+                background: rgba(0, 0, 0, 0.6);
+                backdrop-filter: blur(4px);
+            }
+
+            /* Aksen hijau minimalis dan pattern lingkaran dekoratif */
+            .contact-card {
+                animation: contact-rise-in 0.75s cubic-bezier(.2, .7, .2, 1) both;
+            }
+
+            .contact-accent {
+                min-height: 100%;
+            }
+
+
+            /* Pattern lingkaran di sisi kiri */
+            .contact-accent-ring {
+                position: absolute;
+                width: 190px;
+                height: 190px;
+                border: 24px solid rgba(255, 255, 255, 0.25);
+                border-radius: 9999px;
+                pointer-events: none;
+            }
+
+            .contact-accent-ring-top {
+                top: 7%;
+                left: -145px;
+            }
+
+            .contact-accent-ring-bottom {
+                bottom: 5%;
+                left: -145px;
+                width: 230px;
+                height: 230px;
+            }
+
+            /* Pattern lingkaran pada area putih formulir */
+            .form-decoration {
+                position: absolute;
+                border-radius: 9999px;
+                pointer-events: none;
+                border: 1px solid rgba(42, 124, 19, 0.12);
             }
 
             .form-decoration-top {
-                width: 180px;
-                height: 180px;
-                top: -135px;
-                right: -105px;
+                width: 300px;
+                height: 300px;
+                top: -210px;
+                right: -130px;
+                box-shadow:
+                    0 0 0 24px rgba(42, 124, 19, 0.06),
+                    0 0 0 48px rgba(42, 124, 19, 0.04);
             }
 
             .form-decoration-bottom {
-                width: 150px;
-                height: 150px;
-                bottom: -120px;
-                left: 10%;
+                width: 220px;
+                height: 220px;
+                bottom: -175px;
+                left: 18%;
+                box-shadow:
+                    0 0 0 22px rgba(42, 124, 19, 0.04);
             }
 
-            main section {
-                scroll-margin-top: 80px;
+            .send-button:active {
+                transform: translateY(0) scale(.985);
             }
 
-            main section iframe {
-                height: 280px;
+            @keyframes contact-rise-in {
+                from {
+                    opacity: 0;
+                    transform: translateY(18px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
             }
 
-            footer a {
-                min-width: 0;
-                overflow-wrap: anywhere;
+            @media (max-width: 640px) {
+                .contact-form-panel {
+                    padding: 1.5rem 1.25rem;
+                }
+
+                .contact-accent-ring {
+                    border-width: 14px;
+                }
+
+                .form-decoration-top {
+                    width: 220px;
+                    height: 220px;
+                    top: -165px;
+                    right: -120px;
+                }
             }
 
-            footer img {
+            @media (prefers-reduced-motion: reduce) {
+
+                *,
+                *::before,
+                *::after {
+                    animation-duration: .01ms !important;
+                    animation-iteration-count: 1 !important;
+                    transition-duration: .01ms !important;
+                    scroll-behavior: auto !important;
+                }
+            }
+
+            /* RESPONSIVE NAVBAR, disamakan dengan homepage */
+            @media (max-width: 768px) {
+                #navbar {
+                    padding: 12px 16px;
+                }
+
+                #navbar img {
+                    height: 42px;
+                }
+
+                #logo-circle {
+                    width: 50px;
+                    height: 50px;
+                }
+
+                #mobile-toggle-btn {
+                    font-size: 22px;
+                    padding: 8px;
+                }
+            }
+
+
+            /* Tambahan responsivitas mobile; konten dan fungsi yang ada tetap dipertahankan */
+            *,
+            *::before,
+            *::after {
+                box-sizing: border-box;
+            }
+
+            html,
+            body {
                 max-width: 100%;
-                height: auto;
-                max-height: 10rem;
+                overflow-x: hidden;
             }
 
-            footer .group {
+            img,
+            iframe {
                 max-width: 100%;
             }
-        }
 
-        @media (max-width: 380px) {
-            .contact-card {
-                grid-template-columns: 6px minmax(0, 1fr);
+            @media (max-width: 640px) {
+                #navbar {
+                    width: 100%;
+                    left: 0;
+                    right: 0;
+                }
+
+                #mobile-menu {
+                    max-width: 100%;
+                    overflow-wrap: anywhere;
+                }
+
+                main,
+                section,
+                footer {
+                    min-width: 0;
+                }
+
+                .contact-card {
+                    grid-template-columns: 8px minmax(0, 1fr);
+                    border-radius: 1.25rem;
+                }
+
+                .contact-form-panel {
+                    min-width: 0;
+                    padding: 1.25rem 1rem;
+                }
+
+                .contact-form-panel h2,
+                main h1,
+                main h2 {
+                    overflow-wrap: break-word;
+                }
+
+                .contact-input {
+                    min-width: 0;
+                    font-size: 16px;
+                    padding-left: 42px;
+                }
+
+                textarea.contact-input {
+                    padding-top: 1rem;
+                }
+
+                .form-decoration-top {
+                    width: 180px;
+                    height: 180px;
+                    top: -135px;
+                    right: -105px;
+                }
+
+                .form-decoration-bottom {
+                    width: 150px;
+                    height: 150px;
+                    bottom: -120px;
+                    left: 10%;
+                }
+
+                main section {
+                    scroll-margin-top: 80px;
+                }
+
+                main section iframe {
+                    height: 280px;
+                }
+
+                footer a {
+                    min-width: 0;
+                    overflow-wrap: anywhere;
+                }
+
+                footer img {
+                    max-width: 100%;
+                    height: auto;
+                    max-height: 10rem;
+                }
+
+                footer .group {
+                    max-width: 100%;
+                }
             }
 
-            .contact-form-panel {
-                padding: 1rem 0.875rem;
+            @media (max-width: 380px) {
+                .contact-card {
+                    grid-template-columns: 6px minmax(0, 1fr);
+                }
+
+                .contact-form-panel {
+                    padding: 1rem 0.875rem;
+                }
+
+                .contact-input {
+                    padding-right: 0.75rem;
+                }
+
+                main section iframe {
+                    height: 240px;
+                }
             }
 
-            .contact-input {
-                padding-right: 0.75rem;
+            /* Custom Scrollbar Umum */
+            ::-webkit-scrollbar {
+                width: 6px;
+                height: 6px;
             }
 
-            main section iframe {
-                height: 240px;
+            ::-webkit-scrollbar-track {
+                background: #f1f1f1;
+                border-radius: 4px;
             }
-        }
 
-        /* Custom Scrollbar Umum */
-        ::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
-        }
+            ::-webkit-scrollbar-thumb {
+                background: #76C457;
+                /* Warna hijau terang untuk pegangan scrollbar */
+                border-radius: 4px;
+            }
 
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 4px;
-        }
+            ::-webkit-scrollbar-thumb:hover {
+                background: #2A7C13;
+                /* Warna hijau tua saat kursor diarahkan ke scrollbar */
+            }
+        </style>
+    </head>
 
-        ::-webkit-scrollbar-thumb {
-            background: #76C457;
-            /* Warna hijau terang untuk pegangan scrollbar */
-            border-radius: 4px;
-        }
+    <body class="bg-gray-50 text-gray-800">
 
-        ::-webkit-scrollbar-thumb:hover {
-            background: #2A7C13;
-            /* Warna hijau tua saat kursor diarahkan ke scrollbar */
-        }
-    </style>
-</head>
+        <!-- STICKY NAVIGATION BAR -->
+        <nav id="navbar"
+            class="fixed top-0 left-0 w-full z-50 p-4 lg:px-12 transition-all duration-300 text-white bg-transparent">
 
-<body class="bg-gray-50 text-gray-800">
+            <div class="max-w-7xl mx-auto flex justify-between items-center relative">
 
-    <!-- STICKY NAVIGATION BAR -->
-    <nav id="navbar"
-        class="fixed top-0 left-0 w-full z-50 p-4 lg:px-12 transition-all duration-300 text-white bg-transparent">
-
-        <div class="max-w-7xl mx-auto flex justify-between items-center relative">
-
-            <!-- Logo ALBATROSS -->
-            <div class="relative flex items-center justify-center">
-                <a href="#" id="logo-btn"
-                    class="relative z-10 flex items-center justify-center transition-transform hover:scale-105 mx-[5px]">
-                    <img src="Logo_IPB.png" alt="LOGO IPB University" class="h-12 w-auto object-contain mx-[10px]">
-                </a>
-                <a href="#" id="logo-btn-2"
-                    class="relative z-10 flex items-center justify-center transition-transform hover:scale-105 mx-[5px]">
-                    <img src="logo mitr.png" alt="LOGO MIT+R" class="h-12 w-auto object-contain mx-[10px]"
-                        style="margin-left: -5px;">
-                </a>
-                <a href="#" id="logo-btn-3"
-                    class="relative flex items-center justify-center transition-transform hover:scale-105">
-                    <div id="logo-circle"
-                        class="absolute bg-[#2A7C13] rounded-full w-14 h-14 -z-0 opacity-0 scale-75 transition-all duration-300 ease-in-out pointer-events-none">
-                    </div>
-                    <img src="logo ALBATROSS.png" alt="LOGO ALBATROSS" class="relative z-10 h-12 w-auto object-contain">
-                </a>
-            </div>
-
-            <!-- Container Kanan Navigasi -->
-            <div class="flex items-center space-x-3">
-                <ul id="nav-links"
-                    class="hidden md:flex items-center space-x-2 sm:space-x-3 text-xs sm:text-sm font-semibold tracking-wider sm:tracking-widest uppercase transition-all duration-300 py-1 font-inter">
-                    <li>
-                        <a href="index.html"
-                            class="nav-item whitespace-nowrap px-3 sm:px-4 py-2 rounded-full transition-all duration-200 text-white hover:bg-[#76C457]/40 hover:text-white nav-underline">
-                            <span class="nav-text-wrap">BERANDA<span class="nav-line"></span></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="profil.html"
-                            class="nav-item whitespace-nowrap px-3 sm:px-4 py-2 rounded-full transition-all duration-200 text-white hover:bg-[#76C457]/40 hover:text-white nav-underline">
-                            <span class="nav-text-wrap">PROFIL<span class="nav-line"></span></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="hubungi.html"
-                            class="nav-item whitespace-nowrap px-3 sm:px-4 py-2 rounded-full transition-all duration-200 text-white hover:bg-[#76C457]/40 hover:text-white nav-underline">
-                            <span class="nav-text-wrap">HUBUNGI<span class="nav-line"></span></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="progres.html"
-                            class="nav-item whitespace-nowrap px-3 sm:px-4 py-2 rounded-full transition-all duration-200 text-white hover:bg-[#76C457]/40 hover:text-white nav-underline">
-                            <span class="nav-text-wrap">PROGRES<span class="nav-line"></span></span>
-                        </a>
-                    </li>
-                </ul>
-
-                <!-- Tombol Mobile -->
-                <button id="mobile-toggle-btn" class="md:hidden text-2xl p-2 transition-colors focus:outline-none"
-                    aria-label="Buka menu navigasi">
-                    <i id="toggle-icon" class="fas fa-bars"></i>
-                </button>
-            </div>
-        </div>
-
-        <!-- Menu Mobile -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white mt-4 rounded-xl shadow-lg p-4">
-            <div class="flex flex-col space-y-2 text-sm font-semibold text-[#76C457]">
-                <a href="index.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">BERANDA</a>
-                <a href="profil.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">PROFIL</a>
-                <a href="hubungi.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">HUBUNGI</a>
-                <a href="progres.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">PROGRES</a>
-            </div>
-        </div>
-    </nav>
-
-    <main>
-        <!-- BANNER KONTAK KAMI -->
-        <section class="relative overflow-hidden bg-gray-900 px-5 py-16 sm:py-20 md:py-24">
-            <div class="absolute inset-0 z-0">
-                <img src="bg hubungi.jpg" alt="Latar belakang banner Kontak Kami"
-                    class="w-full h-full object-cover object-[center_75%]">
-                <div class="absolute inset-0 bg-black/50"></div>
-            </div>
-
-            <div class="relative z-10 max-w-4xl mx-auto text-center">
-                <h1
-                    class="font-tech text-4xl sm:text-5xl md:text-6xl font-bold text-white drop-shadow-lg translate-y-4">
-                    KONTAK KAMI
-                </h1>
-
-                <p
-                    class="mx-auto text-white text-xs sm:text-sm md:text-base lg:text-lg max-w-3xl leading-relaxed drop-shadow-md mb-6 sm:mb-10 font-medium px-2 translate-y-4">
-                    Tim ALBATROSS
-                </p>
-            </div>
-        </section>
-
-        <!-- PENGANTAR HALAMAN KONTAK -->
-        <section class="px-5 pt-6 pb-8 sm:pt-10 sm:pb-10 bg-gray-100">
-            <div class="max-w-3xl mx-auto text-center">
-
-                <span class="inline-flex items-center gap-2 text-primary
-                     text-xs sm:text-sm font-bold uppercase
-                     tracking-[0.18em] mb-3">
-                    <span class="w-8 h-[3px] rounded-full bg-secondary"></span>
-                    Kolaborasi
-                    <span class="w-8 h-[3px] rounded-full bg-secondary"></span>
-                </span>
-
-                <h2 class="font-tech text-2xl sm:text-3xl md:text-4xl
-                   font-bold text-gray-800 mb-4">
-                    Mari Terhubung dengan ALBATROSS
-                </h2>
-
-                <p class="text-gray-500 text-sm sm:text-base
-                  leading-relaxed max-w-3xl mx-auto">
-                    Kami percaya inovasi lahir dari komunikasi yang baik. Sampaikan gagasan, potensi kerja sama, atau
-                    pertanyaan Anda melalui formulir di bawah ini. Tim kami akan segera menindaklanjutinya.
-                </p>
-
-            </div>
-        </section>
-
-        <br><br><br>
-
-        <section class="max-w-[1200px] mx-auto px-4 sm:px-6 pt-0 pb-16 md:pb-20 -mt-20 relative z-20">
-            <div
-                class="contact-card relative grid grid-cols-[16px_minmax(0,1fr)] bg-white rounded-3xl shadow-[0_18px_55px_rgba(0,0,0,0.10)] overflow-hidden border border-gray-100">
-                <!-- Aksen hijau tipis dengan pattern lingkaran dekoratif -->
-                <aside class="contact-accent relative overflow-hidden bg-primary" aria-hidden="true">
-                    <div class="contact-accent-ring contact-accent-ring-top"></div>
-                    <div class="contact-accent-ring contact-accent-ring-bottom"></div>
-                </aside>
-
-                <!-- Formulir mengambil seluruh area utama -->
-                <div class="contact-form-panel min-w-0 p-6 sm:p-8 lg:p-10 bg-white relative overflow-hidden">
-                    <div class="form-decoration form-decoration-top" aria-hidden="true"></div>
-                    <div class="form-decoration form-decoration-bottom" aria-hidden="true"></div>
-
-                    <div class="relative z-10">
-                        <div class="mb-7 sm:mb-8">
-                            <h2 class="font-tech text-2xl sm:text-3xl font-bold text-gray-800 mb-2">Kirim Pesan</h2>
-                            <p class="text-gray-500 text-sm sm:text-[15px] leading-relaxed max-w-2xl">
-                                Gunakan formulir di bawah ini untuk mengirimkan pesan langsung ke email kami.
-                            </p>
+                <!-- Logo ALBATROSS -->
+                <div class="relative flex items-center justify-center">
+                    <a href="#" id="logo-btn"
+                        class="relative z-10 flex items-center justify-center transition-transform hover:scale-105 mx-[5px]">
+                        <img src="Logo_IPB.png" alt="LOGO IPB University" class="h-12 w-auto object-contain mx-[10px]">
+                    </a>
+                    <a href="#" id="logo-btn-2"
+                        class="relative z-10 flex items-center justify-center transition-transform hover:scale-105 mx-[5px]">
+                        <img src="logo mitr.png" alt="LOGO MIT+R" class="h-12 w-auto object-contain mx-[10px]"
+                            style="margin-left: -5px;">
+                    </a>
+                    <a href="#" id="logo-btn-3"
+                        class="relative flex items-center justify-center transition-transform hover:scale-105">
+                        <div id="logo-circle"
+                            class="absolute bg-[#2A7C13] rounded-full w-14 h-14 -z-0 opacity-0 scale-75 transition-all duration-300 ease-in-out pointer-events-none">
                         </div>
-
-                        <form action="https://formspree.io/f/xljgongg" method="POST" class="space-y-6">
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
-                                <div class="relative">
-                                    <label for="nama" class="block text-sm font-semibold text-gray-700 mb-2">Nama
-                                        Lengkap</label>
-                                    <div class="relative">
-                                        <input type="text" id="nama" name="nama" autocomplete="name" maxlength="100"
-                                            required placeholder="Masukkan nama Anda" class="contact-input">
-                                        <i class="fa-regular fa-user input-icon" aria-hidden="true"></i>
-                                    </div>
-                                </div>
-                                <div class="relative">
-                                    <label for="email" class="block text-sm font-semibold text-gray-700 mb-2">Alamat
-                                        Email</label>
-                                    <div class="relative">
-                                        <input type="email" id="email" name="email" autocomplete="email" maxlength="254"
-                                            required placeholder="Masukkan email Anda" class="contact-input">
-                                        <i class="fa-regular fa-envelope input-icon" aria-hidden="true"></i>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="relative">
-                                <label for="pesan" class="block text-sm font-semibold text-gray-700 mb-2">Pesan
-                                    Anda</label>
-                                <div class="relative">
-                                    <textarea id="pesan" name="pesan" required maxlength="3000"
-                                        placeholder="Tuliskan detail pesan Anda di sini..."
-                                        class="contact-input min-h-[155px] sm:min-h-[170px] resize-y py-4"></textarea>
-                                    <i class="fa-regular fa-comment-dots input-icon" style="top: 24px; transform: none;"
-                                        aria-hidden="true"></i>
-                                </div>
-                            </div>
-
-                            <div class="flex flex-col sm:flex-row sm:items-center gap-4 pt-1">
-                                <button type="submit"
-                                    class="send-button w-full sm:w-auto px-8 py-4 bg-primary text-white rounded-xl font-semibold shadow-lg shadow-primary/25 hover:bg-[#236510] hover:-translate-y-0.5 hover:shadow-xl focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-secondary/40 transition-all duration-300 flex items-center justify-center gap-3">
-                                    <span>Kirim Pesan</span>
-                                    <i class="fa-solid fa-paper-plane text-sm" aria-hidden="true"></i>
-                                </button>
-                                <p class="text-xs text-gray-400 leading-relaxed">
-                                    *Pastikan email yang dimasukkan aktif
-                                </p>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- LOKASI PETA MAPS -->
-        <section class="max-w-[1200px] mx-auto px-4 sm:px-6 pb-16">
-            <div class="text-center mb-8">
-                <h2 class="font-tech text-3xl font-bold text-gray-800 mb-3">
-                    Kunjungi Lokasi Kami
-                </h2>
-
-                <p class="text-gray-500 text-sm sm:text-base leading-relaxed max-w-4xl mx-auto">
-                    Workshop Instrumentasi dan Robotika Kelautan (Bengkel) ITK,
-                    Babakan, Dramaga, Bogor, Indonesia 16680
-                </p>
-            </div>
-
-            <div class="w-full overflow-hidden rounded-3xl shadow-lg">
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3432.116223214542!2d106.72390709999999!3d-6.5586025999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69c4ad56ee1525%3A0x16aeacee84366f06!2sWorkshop%20Instrumentasi%20dan%20Robotika%20Kelautan%20(Bengkel)%20ITK!5e1!3m2!1sen!2sid!4v1792046221888!5m2!1sen!2sid"
-                    class="block w-full h-[350px] md:h-[450px]" style="border: 0;" allowfullscreen loading="lazy"
-                    referrerpolicy="strict-origin-when-cross-origin">
-                </iframe>
-            </div>
-        </section>
-    </main>
-
-    <!-- FOOTER -->
-    <footer class="bg-[#2A7C13] px-4 sm:px-6 py-10 border-t-[2px] border-[#2A7C13]">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
-
-            <div class="md:col-span-2 flex flex-col gap-4 text-white">
-                <h3 class="font-bold text-xl mb-2">Kontak Kami</h3>
-                <a href="https://maps.app.goo.gl/mirmGEEjNxX9zrjp9"
-                    class="flex items-start gap-3 hover:text-[#76C457] transition">
-                    <i class="fa-solid fa-location-dot text-xl mt-1"></i>
-                    <span class="leading-relaxed break-words">
-                        Workshop Instrumentasi dan Robotika Kelautan (Bengkel) ITK, Babakan,
-                        Dramaga, Bogor, Indonesia 16680
-                    </span>
-                </a>
-                <a href="mailto:mitr.ipb@gmail.com" class="flex items-center gap-3 hover:text-[#76C457] transition">
-                    <i class="fa-regular fa-envelope text-xl"></i>
-                    <span>mitr.ipb@gmail.com</span>
-                </a>
-                <a href="https://wa.me/6281283435353" class="flex items-center gap-3 hover:text-[#76C457] transition">
-                    <i class="fa-brands fa-whatsapp text-xl"></i>
-                    <span class="break-words">+6281283435353 (Hanifa Rahmaliya)</span>
-                </a>
-            </div>
-
-            <div class="flex flex-col gap-4 text-white">
-                <h3 class="font-bold text-xl mb-2">Media Sosial</h3>
-                <a href="https://www.instagram.com/mitr_ipb/"
-                    class="flex items-center gap-3 hover:text-[#76C457] transition">
-                    <i class="fa-brands fa-instagram text-xl"></i>
-                    <span>@mitr_ipb</span>
-                </a>
-                <a href="https://www.instagram.com/dmitr6teen/"
-                    class="flex items-center gap-3 hover:text-[#76C457] transition">
-                    <i class="fa-brands fa-instagram text-xl"></i>
-                    <span>@dmitr6teen</span>
-                </a>
-                <a href="https://www.tiktok.com/@albatross.project?_r=1&_t=ZS-9Axq4vlIaHd"
-                    class="flex items-center gap-3 hover:text-[#76C457] transition">
-                    <i class="fa-brands fa-tiktok text-xl"></i>
-                    <span>@albatross.project</span>
-                </a>
-            </div>
-
-            <div class="flex flex-col items-start gap-7 text-white h-full">
-                <div class="w-full flex flex-wrap items-center justify-start pb-12 gap-4" style="margin-top: -30px;">
-                    <div
-                        class="h-16 sm:h-[120px] w-20 h-20 sm:w-28 sm:h-28 object-contain shrink-0 p-0 transform sm:-translate-x-4 translate-y-4 sm:translate-y-8">
-                        <img src="Logo_IPB.png" alt="Logo IPB University"
-                            class="h-16 sm:h-[120px] w-auto object-contain transform sm:-translate-y-1">
-                    </div>
-                    <div
-                        class="flex items-center justify-center w-16 h-16 sm:w-28 sm:h-28 bg-white rounded-full shadow-md shrink-0 p-2 transform sm:-translate-x-4 translate-y-3 sm:translate-y-8">
-                        <img src="logo mitr.png" alt="Logo MIT+R"
-                            class="h-16 sm:h-[120px] w-auto object-contain transform sm:-translate-y-1">
-                    </div>
-                    <img src="logo ALBATROSS.png" alt="Logo ALBATROSS"
-                        class="h-16 sm:h-[150px] w-auto object-contain transform sm:-translate-x-9 translate-y-4 sm:translate-y-8">
+                        <img src="logo ALBATROSS.png" alt="LOGO ALBATROSS" class="relative z-10 h-12 w-auto object-contain">
+                    </a>
                 </div>
 
-                <div class="w-full flex justify-end mt-auto">
-                    <button id="back-to-top"
-                        class="group flex items-center p-3 bg-white text-white rounded-full shadow-md hover:bg-[#FFFFFF] hover:shadow-xl hover:-translate-y-1 transition-all duration-500 ease-in-out cursor-pointer">
-                        <span
-                            class="whitespace-nowrap overflow-hidden transition-all duration-500 ease-in-out max-w-0 opacity-0 group-hover:max-w-[160px] group-hover:opacity-100 group-hover:mr-3 group-hover:pl-2 font-semibold text-[#2A7C13]">
-                            Kembali ke Atas
-                        </span>
-                        <span
-                            class="flex items-center justify-center w-7 h-7 bg-white text-[#2A7C13] rounded-full transition-transform duration-500 group-hover:scale-110 shrink-0">
-                            <i class="fa-solid fa-arrow-up text-sm"></i>
-                        </span>
+                <!-- Container Kanan Navigasi -->
+                <div class="flex items-center space-x-3">
+                    <ul id="nav-links"
+                        class="hidden md:flex items-center space-x-2 sm:space-x-3 text-xs sm:text-sm font-semibold tracking-wider sm:tracking-widest uppercase transition-all duration-300 py-1 font-inter">
+                        <li>
+                            <a href="index.html"
+                                class="nav-item whitespace-nowrap px-3 sm:px-4 py-2 rounded-full transition-all duration-200 text-white hover:bg-[#76C457]/40 hover:text-white nav-underline">
+                                <span class="nav-text-wrap">BERANDA<span class="nav-line"></span></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="profil.html"
+                                class="nav-item whitespace-nowrap px-3 sm:px-4 py-2 rounded-full transition-all duration-200 text-white hover:bg-[#76C457]/40 hover:text-white nav-underline">
+                                <span class="nav-text-wrap">PROFIL<span class="nav-line"></span></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="hubungi.html"
+                                class="nav-item whitespace-nowrap px-3 sm:px-4 py-2 rounded-full transition-all duration-200 text-white hover:bg-[#76C457]/40 hover:text-white nav-underline">
+                                <span class="nav-text-wrap">HUBUNGI<span class="nav-line"></span></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="progres.html"
+                                class="nav-item whitespace-nowrap px-3 sm:px-4 py-2 rounded-full transition-all duration-200 text-white hover:bg-[#76C457]/40 hover:text-white nav-underline">
+                                <span class="nav-text-wrap">PROGRES<span class="nav-line"></span></span>
+                            </a>
+                        </li>
+                        <li class="ml-2 flex items-center">
+                            <div
+                                class="flex bg-[#2A7C13]/70 rounded-full p-1 backdrop-blur-sm border border-white/20 transition-all shadow-inner">
+                                <!-- Tambahkan onclick di sini -->
+                                <a href="hubungi-en.html" onclick="saveScrollPosition()"
+                                    class="w-8 h-8 flex items-center justify-center rounded-full text-xs font-bold text-white transition-all hover:bg-slate-500/50">EN</a>
+                                <span 
+                                    class="w-8 h-8 flex items-center justify-center rounded-full text-xs font-bold bg-white text-slate-800 shadow-sm cursor-default">ID</span>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <!-- Tombol Mobile -->
+                    <button id="mobile-toggle-btn" class="md:hidden text-2xl p-2 transition-colors focus:outline-none"
+                        aria-label="Buka menu navigasi">
+                        <i id="toggle-icon" class="fas fa-bars"></i>
                     </button>
                 </div>
             </div>
-        </div>
-    </footer>
 
-    <!-- Copyright Bar -->
-    <div class="w-full relative bg-[#FFFFFF] py-4 px-6 border-t-[1px] border-[#2A7C13] overflow-hidden">
-        <div class="absolute inset-0 opacity-15 pointer-events-none"
-            style="background-image: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpath d='M30 0l15 15-15 15-15-15zm0 30l15 15-15 15-15-15z' fill='%232A7C13' fill-opacity='0.8' fill-rule='evenodd' /%3E%3C/svg%3E&quot;); background-size: 30px 30px;">
-        </div>
+            <!-- Menu Mobile -->
+            <div id="mobile-menu" class="hidden md:hidden bg-white mt-4 rounded-xl shadow-lg p-4">
+                <div class="flex flex-col space-y-2 text-sm font-semibold text-[#76C457]">
+                    <a href="index.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">BERANDA</a>
+                    <a href="profil.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">PROFIL</a>
+                    <a href="hubungi.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">HUBUNGI</a>
+                    <a href="progres.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">PROGRES</a>
+                    <div class="px-4 py-3 flex justify-between items-center border-t border-gray-100 mt-2">
+                        <span class="text-sm font-semibold text-[#76C457]">BAHASA</span>
+                        <div class="flex bg-[#2A7C13]/70 rounded-full p-1">
+                            <!-- Tambahkan onclick di sini -->
+                            <a href="hubungi-en.html" onclick="saveScrollPosition()"
+                                class="w-8 h-8 flex items-center justify-center rounded-full text-xs font-bold text-white transition-all">EN</a>
+                            <span 
+                                class=" w-8 h-8 flex items-center justify-center rounded-full text-xs font-bold bg-white text-[#2A7C13] shadow-sm cursor-default">ID</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
 
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-center gap-4 relative z-10">
-            <div class="text-[#403100] font-semibold text-sm text-center">
-                © 2026 Diklat MIT+R 16. All Rights Reserved.
+        <main>
+            <!-- BANNER KONTAK KAMI -->
+            <section class="relative overflow-hidden bg-gray-900 px-5 py-16 sm:py-20 md:py-24">
+                <div class="absolute inset-0 z-0">
+                    <img src="bg hubungi.jpg" alt="Latar belakang banner Kontak Kami"
+                        class="w-full h-full object-cover object-[center_75%]">
+                    <div class="absolute inset-0 bg-black/50"></div>
+                </div>
+
+                <div class="relative z-10 max-w-4xl mx-auto text-center">
+                    <h1
+                        class="font-tech text-4xl sm:text-5xl md:text-6xl font-bold text-white drop-shadow-lg translate-y-4">
+                        KONTAK KAMI
+                    </h1>
+
+                    <p
+                        class="mx-auto text-white text-xs sm:text-sm md:text-base lg:text-lg max-w-3xl leading-relaxed drop-shadow-md mb-6 sm:mb-10 font-medium px-2 translate-y-4">
+                        Tim ALBATROSS
+                    </p>
+                </div>
+            </section>
+
+            <!-- PENGANTAR HALAMAN KONTAK -->
+            <section class="px-5 pt-6 pb-8 sm:pt-10 sm:pb-10 bg-gray-100">
+                <div class="max-w-3xl mx-auto text-center">
+
+                    <span class="inline-flex items-center gap-2 text-primary
+                        text-xs sm:text-sm font-bold uppercase
+                        tracking-[0.18em] mb-3">
+                        <span class="w-8 h-[3px] rounded-full bg-secondary"></span>
+                        Kolaborasi
+                        <span class="w-8 h-[3px] rounded-full bg-secondary"></span>
+                    </span>
+
+                    <h2 class="font-tech text-2xl sm:text-3xl md:text-4xl
+                    font-bold text-gray-800 mb-4">
+                        Mari Terhubung dengan ALBATROSS
+                    </h2>
+
+                    <p class="text-gray-500 text-sm sm:text-base
+                    leading-relaxed max-w-3xl mx-auto">
+                        Kami percaya inovasi lahir dari komunikasi yang baik. Sampaikan gagasan, potensi kerja sama, atau
+                        pertanyaan Anda melalui formulir di bawah ini. Tim kami akan segera menindaklanjutinya.
+                    </p>
+
+                </div>
+            </section>
+
+            <br><br><br>
+
+            <section class="max-w-[1200px] mx-auto px-4 sm:px-6 pt-0 pb-16 md:pb-20 -mt-20 relative z-20">
+                <div
+                    class="contact-card relative grid grid-cols-[16px_minmax(0,1fr)] bg-white rounded-3xl shadow-[0_18px_55px_rgba(0,0,0,0.10)] overflow-hidden border border-gray-100">
+                    <!-- Aksen hijau tipis dengan pattern lingkaran dekoratif -->
+                    <aside class="contact-accent relative overflow-hidden bg-primary" aria-hidden="true">
+                        <div class="contact-accent-ring contact-accent-ring-top"></div>
+                        <div class="contact-accent-ring contact-accent-ring-bottom"></div>
+                    </aside>
+
+                    <!-- Formulir mengambil seluruh area utama -->
+                    <div class="contact-form-panel min-w-0 p-6 sm:p-8 lg:p-10 bg-white relative overflow-hidden">
+                        <div class="form-decoration form-decoration-top" aria-hidden="true"></div>
+                        <div class="form-decoration form-decoration-bottom" aria-hidden="true"></div>
+
+                        <div class="relative z-10">
+                            <div class="mb-7 sm:mb-8">
+                                <h2 class="font-tech text-2xl sm:text-3xl font-bold text-gray-800 mb-2">Kirim Pesan</h2>
+                                <p class="text-gray-500 text-sm sm:text-[15px] leading-relaxed max-w-2xl">
+                                    Gunakan formulir di bawah ini untuk mengirimkan pesan langsung ke email kami.
+                                </p>
+                            </div>
+
+                            <form action="https://formspree.io/f/xljgongg" method="POST" class="space-y-6">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
+                                    <div class="relative">
+                                        <label for="nama" class="block text-sm font-semibold text-gray-700 mb-2">Nama
+                                            Lengkap</label>
+                                        <div class="relative">
+                                            <input type="text" id="nama" name="nama" autocomplete="name" maxlength="100"
+                                                required placeholder="Masukkan nama Anda" class="contact-input">
+                                            <i class="fa-regular fa-user input-icon" aria-hidden="true"></i>
+                                        </div>
+                                    </div>
+                                    <div class="relative">
+                                        <label for="email" class="block text-sm font-semibold text-gray-700 mb-2">Alamat
+                                            Email</label>
+                                        <div class="relative">
+                                            <input type="email" id="email" name="email" autocomplete="email" maxlength="254"
+                                                required placeholder="Masukkan email Anda" class="contact-input">
+                                            <i class="fa-regular fa-envelope input-icon" aria-hidden="true"></i>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="relative">
+                                    <label for="pesan" class="block text-sm font-semibold text-gray-700 mb-2">Pesan
+                                        Anda</label>
+                                    <div class="relative">
+                                        <textarea id="pesan" name="pesan" required maxlength="3000"
+                                            placeholder="Tuliskan detail pesan Anda di sini..."
+                                            class="contact-input min-h-[155px] sm:min-h-[170px] resize-y py-4"></textarea>
+                                        <i class="fa-regular fa-comment-dots input-icon" style="top: 24px; transform: none;"
+                                            aria-hidden="true"></i>
+                                    </div>
+                                </div>
+
+                                <div class="flex flex-col sm:flex-row sm:items-center gap-4 pt-1">
+                                    <button type="submit"
+                                        class="send-button w-full sm:w-auto px-8 py-4 bg-primary text-white rounded-xl font-semibold shadow-lg shadow-primary/25 hover:bg-[#236510] hover:-translate-y-0.5 hover:shadow-xl focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-secondary/40 transition-all duration-300 flex items-center justify-center gap-3">
+                                        <span>Kirim Pesan</span>
+                                        <i class="fa-solid fa-paper-plane text-sm" aria-hidden="true"></i>
+                                    </button>
+                                    <p class="text-xs text-gray-400 leading-relaxed">
+                                        *Pastikan email yang dimasukkan aktif
+                                    </p>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- LOKASI PETA MAPS -->
+            <section class="max-w-[1200px] mx-auto px-4 sm:px-6 pb-16">
+                <div class="text-center mb-8">
+                    <h2 class="font-tech text-3xl font-bold text-gray-800 mb-3">
+                        Kunjungi Lokasi Kami
+                    </h2>
+
+                    <p class="text-gray-500 text-sm sm:text-base leading-relaxed max-w-4xl mx-auto">
+                        Workshop Instrumentasi dan Robotika Kelautan (Bengkel) ITK,
+                        Babakan, Dramaga, Bogor, Indonesia 16680
+                    </p>
+                </div>
+
+                <div class="w-full overflow-hidden rounded-3xl shadow-lg">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3432.116223214542!2d106.72390709999999!3d-6.5586025999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69c4ad56ee1525%3A0x16aeacee84366f06!2sWorkshop%20Instrumentasi%20dan%20Robotika%20Kelautan%20(Bengkel)%20ITK!5e1!3m2!1sen!2sid!4v1792046221888!5m2!1sen!2sid"
+                        class="block w-full h-[350px] md:h-[450px]" style="border: 0;" allowfullscreen loading="lazy"
+                        referrerpolicy="strict-origin-when-cross-origin">
+                    </iframe>
+                </div>
+            </section>
+        </main>
+
+        <!-- FOOTER -->
+        <footer class="bg-[#2A7C13] px-4 sm:px-6 py-10 border-t-[2px] border-[#2A7C13]">
+            <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+
+                <div class="md:col-span-2 flex flex-col gap-4 text-white">
+                    <h3 class="font-bold text-xl mb-2">Kontak Kami</h3>
+                    <a href="https://maps.app.goo.gl/mirmGEEjNxX9zrjp9"
+                        class="flex items-start gap-3 hover:text-[#76C457] transition">
+                        <i class="fa-solid fa-location-dot text-xl mt-1"></i>
+                        <span class="leading-relaxed break-words">
+                            Workshop Instrumentasi dan Robotika Kelautan (Bengkel) ITK, Babakan,
+                            Dramaga, Bogor, Indonesia 16680
+                        </span>
+                    </a>
+                    <a href="mailto:mitr.ipb@gmail.com" class="flex items-center gap-3 hover:text-[#76C457] transition">
+                        <i class="fa-regular fa-envelope text-xl"></i>
+                        <span>mitr.ipb@gmail.com</span>
+                    </a>
+                    <a href="https://wa.me/6281283435353" class="flex items-center gap-3 hover:text-[#76C457] transition">
+                        <i class="fa-brands fa-whatsapp text-xl"></i>
+                        <span class="break-words">+6281283435353 (Hanifa Rahmaliya)</span>
+                    </a>
+                </div>
+
+                <div class="flex flex-col gap-4 text-white">
+                    <h3 class="font-bold text-xl mb-2">Media Sosial</h3>
+                    <a href="https://www.instagram.com/mitr_ipb/"
+                        class="flex items-center gap-3 hover:text-[#76C457] transition">
+                        <i class="fa-brands fa-instagram text-xl"></i>
+                        <span>@mitr_ipb</span>
+                    </a>
+                    <a href="https://www.instagram.com/dmitr6teen/"
+                        class="flex items-center gap-3 hover:text-[#76C457] transition">
+                        <i class="fa-brands fa-instagram text-xl"></i>
+                        <span>@dmitr6teen</span>
+                    </a>
+                    <a href="https://www.tiktok.com/@albatross.project?_r=1&_t=ZS-9Axq4vlIaHd"
+                        class="flex items-center gap-3 hover:text-[#76C457] transition">
+                        <i class="fa-brands fa-tiktok text-xl"></i>
+                        <span>@albatross.project</span>
+                    </a>
+                </div>
+
+                <div class="flex flex-col items-start gap-7 text-white h-full">
+                    <div class="w-full flex flex-wrap items-center justify-start pb-12 gap-4" style="margin-top: -30px;">
+                        <div
+                            class="h-16 sm:h-[120px] w-20 h-20 sm:w-28 sm:h-28 object-contain shrink-0 p-0 transform sm:-translate-x-4 translate-y-4 sm:translate-y-8">
+                            <img src="Logo_IPB.png" alt="Logo IPB University"
+                                class="h-16 sm:h-[120px] w-auto object-contain transform sm:-translate-y-1">
+                        </div>
+                        <div
+                            class="flex items-center justify-center w-16 h-16 sm:w-28 sm:h-28 bg-white rounded-full shadow-md shrink-0 p-2 transform sm:-translate-x-4 translate-y-3 sm:translate-y-8">
+                            <img src="logo mitr.png" alt="Logo MIT+R"
+                                class="h-16 sm:h-[120px] w-auto object-contain transform sm:-translate-y-1">
+                        </div>
+                        <img src="logo ALBATROSS.png" alt="Logo ALBATROSS"
+                            class="h-16 sm:h-[150px] w-auto object-contain transform sm:-translate-x-9 translate-y-4 sm:translate-y-8">
+                    </div>
+
+                    <div class="w-full flex justify-end mt-auto">
+                        <button id="back-to-top"
+                            class="group flex items-center p-3 bg-white text-white rounded-full shadow-md hover:bg-[#FFFFFF] hover:shadow-xl hover:-translate-y-1 transition-all duration-500 ease-in-out cursor-pointer">
+                            <span
+                                class="whitespace-nowrap overflow-hidden transition-all duration-500 ease-in-out max-w-0 opacity-0 group-hover:max-w-[160px] group-hover:opacity-100 group-hover:mr-3 group-hover:pl-2 font-semibold text-[#2A7C13]">
+                                Kembali ke Atas
+                            </span>
+                            <span
+                                class="flex items-center justify-center w-7 h-7 bg-white text-[#2A7C13] rounded-full transition-transform duration-500 group-hover:scale-110 shrink-0">
+                                <i class="fa-solid fa-arrow-up text-sm"></i>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Copyright Bar -->
+        <div class="w-full relative bg-[#FFFFFF] py-4 px-6 border-t-[1px] border-[#2A7C13] overflow-hidden">
+            <div class="absolute inset-0 opacity-15 pointer-events-none"
+                style="background-image: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpath d='M30 0l15 15-15 15-15-15zm0 30l15 15-15 15-15-15z' fill='%232A7C13' fill-opacity='0.8' fill-rule='evenodd' /%3E%3C/svg%3E&quot;); background-size: 30px 30px;">
+            </div>
+
+            <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-center gap-4 relative z-10">
+                <div class="text-[#403100] font-semibold text-sm text-center">
+                    © 2026 Diklat MIT+R 16. All Rights Reserved.
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- JAVASCRIPT NAVBAR -->
+        <!-- JAVASCRIPT NAVBAR -->
 
-    <script>
-        const mobileToggleBtn = document.getElementById('mobile-toggle-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const toggleIcon = document.getElementById('toggle-icon');
+        <script>
+            const mobileToggleBtn = document.getElementById('mobile-toggle-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const toggleIcon = document.getElementById('toggle-icon');
 
-        mobileToggleBtn.addEventListener('click', function () {
-            mobileMenu.classList.toggle('hidden');
+            mobileToggleBtn.addEventListener('click', function () {
+                mobileMenu.classList.toggle('hidden');
 
-            if (mobileMenu.classList.contains('hidden')) {
-                toggleIcon.classList.remove('fa-times');
-                toggleIcon.classList.add('fa-bars');
-            } else {
-                toggleIcon.classList.remove('fa-bars');
-                toggleIcon.classList.add('fa-times');
-            }
-        });
-
-        window.addEventListener('scroll', function () {
-            const navbar = document.getElementById('navbar');
-            const navItems = document.querySelectorAll('.nav-item');
-            const mobileBtn = document.getElementById('mobile-toggle-btn');
-            const logoCircle = document.getElementById('logo-circle');
-
-            if (window.scrollY > 50) {
-                // Navbar putih dengan bayangan
-                navbar.classList.remove('bg-transparent', 'text-white');
-                navbar.classList.add('bg-white', 'shadow-md');
-
-                // Menu berubah menjadi hijau
-                navItems.forEach(link => {
-                    link.classList.remove('text-white');
-                    link.classList.add(
-                        'text-[#2A7C13]',
-                        'hover:bg-[#76C457]/25',
-                        'hover:text-[#2A7C13]'
-                    );
-                });
-
-                if (mobileBtn) {
-                    mobileBtn.classList.add('text-[#2A7C13]');
+                if (mobileMenu.classList.contains('hidden')) {
+                    toggleIcon.classList.remove('fa-times');
+                    toggleIcon.classList.add('fa-bars');
+                } else {
+                    toggleIcon.classList.remove('fa-bars');
+                    toggleIcon.classList.add('fa-times');
                 }
-
-                // Lingkaran hijau di belakang logo muncul
-                if (logoCircle) {
-                    logoCircle.classList.remove('opacity-0', 'scale-75');
-                    logoCircle.classList.add('opacity-100', 'scale-100');
-                }
-
-            } else {
-                // Navbar kembali transparan
-                navbar.classList.add('bg-transparent', 'text-white');
-                navbar.classList.remove('bg-white', 'shadow-md');
-
-                // Menu kembali putih
-                navItems.forEach(link => {
-                    link.classList.remove(
-                        'text-[#2A7C13]',
-                        'hover:bg-[#76C457]/20',
-                        'hover:text-[#2A7C13]'
-                    );
-                    link.classList.add('text-white');
-                });
-
-                if (mobileBtn) {
-                    mobileBtn.classList.remove('text-[#2A7C13]');
-                }
-
-                // Lingkaran logo menghilang
-                if (logoCircle) {
-                    logoCircle.classList.remove('opacity-100', 'scale-100');
-                    logoCircle.classList.add('opacity-0', 'scale-75');
-                }
-            }
-        });
-        const backToTop = document.getElementById('back-to-top');
-        backToTop.addEventListener('click', function () {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
             });
-        });
-    </script>
 
-    <script>
-        window.addEventListener('scroll', function () {
-            const navbar = document.getElementById('navbar');
-            const navItems = document.querySelectorAll('.nav-item');
-            const mobileBtn = document.getElementById('mobile-toggle-btn');
-            const logoCircle = document.getElementById('logo-circle');
+            window.addEventListener('scroll', function () {
+                const navbar = document.getElementById('navbar');
+                const navItems = document.querySelectorAll('.nav-item');
+                const mobileBtn = document.getElementById('mobile-toggle-btn');
+                const logoCircle = document.getElementById('logo-circle');
 
-            if (window.scrollY > 50) {
-                // KODE INI YANG MENGUBAH TAMPILAN SAAT DI-SCROLL KE BAWAH:
-                navbar.classList.remove('bg-transparent', 'text-white');
-                navbar.classList.add('bg-white', 'shadow-md'); // Navbar jadi putih
+                if (window.scrollY > 50) {
+                    // Navbar putih dengan bayangan
+                    navbar.classList.remove('bg-transparent', 'text-white');
+                    navbar.classList.add('bg-white', 'shadow-md');
 
-                navItems.forEach(link => {
-                    link.classList.remove('text-white');
-                    link.classList.add(
-                        'text-[#2A7C13]', // Teks menu jadi warna hijau (#2A7C13)
-                        'hover:bg-[#76C457]/25',
-                        'hover:text-[#2A7C13]'
-                    );
+                    // Menu berubah menjadi hijau
+                    navItems.forEach(link => {
+                        link.classList.remove('text-white');
+                        link.classList.add(
+                            'text-[#2A7C13]',
+                            'hover:bg-[#76C457]/25',
+                            'hover:text-[#2A7C13]'
+                        );
+                    });
+
+                    if (mobileBtn) {
+                        mobileBtn.classList.add('text-[#2A7C13]');
+                    }
+
+                    // Lingkaran hijau di belakang logo muncul
+                    if (logoCircle) {
+                        logoCircle.classList.remove('opacity-0', 'scale-75');
+                        logoCircle.classList.add('opacity-100', 'scale-100');
+                    }
+
+                } else {
+                    // Navbar kembali transparan
+                    navbar.classList.add('bg-transparent', 'text-white');
+                    navbar.classList.remove('bg-white', 'shadow-md');
+
+                    // Menu kembali putih
+                    navItems.forEach(link => {
+                        link.classList.remove(
+                            'text-[#2A7C13]',
+                            'hover:bg-[#76C457]/20',
+                            'hover:text-[#2A7C13]'
+                        );
+                        link.classList.add('text-white');
+                    });
+
+                    if (mobileBtn) {
+                        mobileBtn.classList.remove('text-[#2A7C13]');
+                    }
+
+                    // Lingkaran logo menghilang
+                    if (logoCircle) {
+                        logoCircle.classList.remove('opacity-100', 'scale-100');
+                        logoCircle.classList.add('opacity-0', 'scale-75');
+                    }
+                }
+            });
+            const backToTop = document.getElementById('back-to-top');
+            backToTop.addEventListener('click', function () {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
                 });
+            });
+        </script>
 
-                if (mobileBtn) {
-                    mobileBtn.classList.add('text-[#2A7C13]'); // Tombol menu mobile jadi hijau
+        <script>
+            window.addEventListener('scroll', function () {
+                const navbar = document.getElementById('navbar');
+                const navItems = document.querySelectorAll('.nav-item');
+                const mobileBtn = document.getElementById('mobile-toggle-btn');
+                const logoCircle = document.getElementById('logo-circle');
+
+                if (window.scrollY > 50) {
+                    // KODE INI YANG MENGUBAH TAMPILAN SAAT DI-SCROLL KE BAWAH:
+                    navbar.classList.remove('bg-transparent', 'text-white');
+                    navbar.classList.add('bg-white', 'shadow-md'); // Navbar jadi putih
+
+                    navItems.forEach(link => {
+                        link.classList.remove('text-white');
+                        link.classList.add(
+                            'text-[#2A7C13]', // Teks menu jadi warna hijau (#2A7C13)
+                            'hover:bg-[#76C457]/25',
+                            'hover:text-[#2A7C13]'
+                        );
+                    });
+
+                    if (mobileBtn) {
+                        mobileBtn.classList.add('text-[#2A7C13]'); // Tombol menu mobile jadi hijau
+                    }
+
+                    if (logoCircle) {
+                        logoCircle.classList.remove('opacity-0', 'scale-75');
+                        logoCircle.classList.add('opacity-100', 'scale-100');
+                    }
+
+                } else {
+                    // Kondisi awal saat berada di paling atas (mengembalikan ke warna transparan/putih)
+                    navbar.classList.add('bg-transparent', 'text-white');
+                    navbar.classList.remove('bg-white', 'shadow-md');
+                    // ... (kode selanjutnya)
                 }
-
-                if (logoCircle) {
-                    logoCircle.classList.remove('opacity-0', 'scale-75');
-                    logoCircle.classList.add('opacity-100', 'scale-100');
+            });
+            // Fungsi untuk mengembalikan posisi scroll saat halaman baru dimuat
+            document.addEventListener("DOMContentLoaded", function () {
+                let savedScroll = sessionStorage.getItem('scrollPosition');
+                if (savedScroll !== null) {
+                    // Langsung gulir ke posisi yang tersimpan tanpa animasi (instan)
+                    window.scrollTo(0, parseInt(savedScroll));
+                    // Hapus memori scroll agar tidak mengganggu navigasi selanjutnya
+                    sessionStorage.removeItem('scrollPosition');
                 }
+            });
+        </script>
+    </body>
 
-            } else {
-                // Kondisi awal saat berada di paling atas (mengembalikan ke warna transparan/putih)
-                navbar.classList.add('bg-transparent', 'text-white');
-                navbar.classList.remove('bg-white', 'shadow-md');
-                // ... (kode selanjutnya)
-            }
-        });
-    </script>
-</body>
-
-</html>
+    </html>
