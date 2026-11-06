@@ -220,6 +220,16 @@
                             <span class="nav-text-wrap">PROGRES<span class="nav-line"></span></span>
                         </a>
                     </li>
+                    <li class="ml-2 flex items-center">
+                        <div
+                            class="flex bg-[#2A7C13]/70 rounded-full p-1 backdrop-blur-sm border border-white/20 transition-all shadow-inner">
+                            <!-- Tambahkan onclick di sini -->
+                             <a href="index-en.html" onclick="saveScrollPosition()"
+                                class="w-8 h-8 flex items-center justify-center rounded-full text-xs font-bold text-white transition-all hover:bg-slate-500/50">EN</a>
+                            <span 
+                                class="w-8 h-8 flex items-center justify-center rounded-full text-xs font-bold bg-white text-slate-800 shadow-sm cursor-default">ID</span>
+                        </div>
+                    </li>
                 </ul>
 
                 <!-- Tombol Mobile -->
@@ -237,6 +247,16 @@
                 <a href="profil.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">PROFIL</a>
                 <a href="hubungi.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">HUBUNGI</a>
                 <a href="progres.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">PROGRES</a>
+                <div class="px-4 py-3 flex justify-between items-center border-t border-gray-100 mt-2">
+                    <span class="text-sm font-semibold text-[#76C457]">BAHASA</span>
+                    <div class="flex bg-[#2A7C13]/70 rounded-full p-1">
+                        <!-- Tambahkan onclick di sini -->
+                         <a href="progres-en.html" onclick="saveScrollPosition()"
+                            class="w-8 h-8 flex items-center justify-center rounded-full text-xs font-bold text-white transition-all">EN</a>
+                        <span 
+                            class=" w-8 h-8 flex items-center justify-center rounded-full text-xs font-bold bg-white text-[#2A7C13] shadow-sm cursor-default">ID</span>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
@@ -1283,6 +1303,16 @@
                 });
             });
         }
+        // Fungsi untuk mengembalikan posisi scroll saat halaman baru dimuat
+        document.addEventListener("DOMContentLoaded", function () {
+            let savedScroll = sessionStorage.getItem('scrollPosition');
+            if (savedScroll !== null) {
+                // Langsung gulir ke posisi yang tersimpan tanpa animasi (instan)
+                window.scrollTo(0, parseInt(savedScroll));
+                // Hapus memori scroll agar tidak mengganggu navigasi selanjutnya
+                sessionStorage.removeItem('scrollPosition');
+            }
+        });
     </script>
 </body>
 
