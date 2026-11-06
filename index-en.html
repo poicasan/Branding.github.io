@@ -415,7 +415,7 @@
                         <div
                             class="flex bg-[#2A7C13]/70 rounded-full p-1 backdrop-blur-sm border border-white/20 transition-all shadow-inner">
                             <!-- Tambahkan onclick di sini -->
-                            <span 
+                            <span
                                 class="w-8 h-8 flex items-center justify-center rounded-full text-xs font-bold bg-white text-slate-800 shadow-sm cursor-default">EN</span>
                             <a href="index.html" onclick="saveScrollPosition()"
                                 class="w-8 h-8 flex items-center justify-center rounded-full text-xs font-bold text-white transition-all hover:bg-slate-500/50">ID</a>
@@ -437,7 +437,7 @@
                     <span class="text-sm font-semibold text-[#76C457]">BAHASA</span>
                     <div class="flex bg-[#2A7C13]/70 rounded-full p-1">
                         <!-- Tambahkan onclick di sini -->
-                        <span 
+                        <span
                             class=" w-8 h-8 flex items-center justify-center rounded-full text-xs font-bold bg-white text-[#2A7C13] shadow-sm cursor-default">EN</span>
                         <a href="index.html" onclick="saveScrollPosition()"
                             class="w-8 h-8 flex items-center justify-center rounded-full text-xs font-bold text-white transition-all">ID</a>
@@ -675,7 +675,7 @@
                             <!-- DROPDOWN CONTENT (KARTU 1) -->
                             <div class="dropdown-content w-full">
                                 <div class="border-t border-[#76c457] pt-6 mt-2 text-left">
-                                    <p class="text-[#454545] text-sm leading-relaxed mb-8 text-justify">
+                                    <p class="text-[#454545] text-base leading-relaxed mb-8 text-justify">
                                         Proyek ALBATROSS berfokus pada pengembangan 3 alat utama (<strong>ALBA, BAT, dan
                                             TROSS</strong>) untuk memantau parameter perairan di kawasan Kampung Laut.
                                         Data yang diperoleh akan divisualisasikan dalam bentuk peta untuk mendukung
@@ -689,13 +689,15 @@
                                         <div
                                             class="bg-gray-50 rounded-xl p-5 border border-gray-200 shadow-sm hover:border-[#76C457] transition-all flex flex-col md:flex-row items-center gap-6">
                                             <!-- Kolom 1: Nama & Keunggulan (Terbatas Lebarnya & Justify) -->
-                                            <div class="flex flex-col text-left w-full md:w-1/4 max-w-[220px] shrink-0">
-                                                <h4 class="font-bold text-[#2A7C13] text-lg mb-1">ALBA</h4>
-                                                <p
-                                                    class="text-xs sm:text-sm text-[#454545] leading-relaxed text-justify">
-                                                    <strong>Keunggulan:</strong> Dilengkapi dengan sensor presisi untuk
-                                                    mengukur kualitas air dan terintegrasi sistem transmisi data jarak
-                                                    jauh.
+                                            <div
+                                                class="flex flex-col text-left w-full md:w-1/4 max-w-[260px] shrink-0 px-3 py-2">
+                                                <h4 class="font-bold text-[#2A7C13] text-[1.3rem] leading-tight mb-2">
+                                                    ALBA</h4>
+                                                <p class="text-base text-[#454545] leading-relaxed text-justify">
+                                                    <strong>Keunggulan:</strong>
+                                                    <br>
+                                                    Dilengkapi dengan sensor presisi untuk mengukur kualitas air dan
+                                                    terintegrasi sistem transmisi data jarak jauh.
                                                 </p>
                                             </div>
                                             <!-- Kolom 2: Foto Alat (Diperbesar Luas) -->
@@ -706,20 +708,29 @@
                                             <!-- Kolom 3: Progres Keseluruhan & Tombol -->
                                             <div
                                                 class="flex flex-col justify-center items-start md:items-end gap-3 w-full md:w-1/3 shrink-0">
-                                                <div class="w-full">
-                                                    <div
-                                                        class="flex justify-between items-center text-xs font-bold text-gray-600 mb-1">
-                                                        <span>Progres Keseluruhan</span>
-                                                        <span class="text-[#2A7C13]">85%</span>
-                                                    </div>
-                                                    <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                                        <div class="bg-[#76c457] h-2.5 rounded-full" style="width: 85%">
+
+                                                <div class="w-full flex flex-col items-center gap-3">
+                                                    <span class="text-sm font-bold text-gray-600">
+                                                        Progres Keseluruhan
+                                                    </span>
+
+                                                    <div class="relative w-28 h-28">
+                                                        <svg class="w-full h-full" viewBox="0 0 100 100">
+                                                            <circle cx="50" cy="50" r="40" fill="none" stroke="#E5E7EB"
+                                                                stroke-width="9" />
+                                                            <circle cx="50" cy="50" r="40" fill="none" stroke="#2A7C13"
+                                                                stroke-width="9" stroke-linecap="round"
+                                                                stroke-dasharray="251.33" stroke-dashoffset="163.36"
+                                                                transform="rotate(-90 50 50)" />
+                                                        </svg>
+                                                        <div class="absolute inset-0 flex items-center justify-center">
+                                                            <span class="text-xl font-bold text-[#2A7C13]">35%</span>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <a href="progres.html"
                                                     class="inline-flex font-semibold text-white bg-[#2A7C13] px-4 py-2 rounded-lg hover:bg-[#76C457] text-xs transition-colors items-center gap-2 shadow-sm z-20 relative">
-                                                    Klik ke Progres <i class="fa-solid fa-arrow-right-long"></i>
+                                                    Lihat Progres <i class="fa-solid fa-arrow-right-long"></i>
                                                 </a>
                                             </div>
                                         </div>
@@ -728,12 +739,15 @@
                                         <div
                                             class="bg-gray-50 rounded-xl p-5 border border-gray-200 shadow-sm hover:border-[#76C457] transition-all flex flex-col md:flex-row items-center gap-6">
                                             <!-- Kolom 1: Nama & Keunggulan (Terbatas Lebarnya & Justify) -->
-                                            <div class="flex flex-col text-left w-full md:w-1/4 max-w-[220px] shrink-0">
-                                                <h4 class="font-bold text-[#2A7C13] text-lg mb-1">BAT</h4>
-                                                <p
-                                                    class="text-xs sm:text-sm text-[#454545] leading-relaxed text-justify">
-                                                    <strong>Keunggulan:</strong> Mampu memantau pergerakan arus secara
-                                                    akurat menggunakan teknologi pelampung pintar berdaya rendah.
+                                            <div
+                                                class="flex flex-col text-left w-full md:w-1/4 max-w-[260px] shrink-0 px-3 py-2">
+                                                <h4 class="font-bold text-[#2A7C13] text-[1.3rem] leading-tight mb-2">
+                                                    BAT</h4>
+                                                <p class="text-base text-[#454545] leading-relaxed text-justify">
+                                                    <strong>Keunggulan:</strong>
+                                                    <br>
+                                                    Mampu memantau pergerakan arus secara akurat menggunakan teknologi
+                                                    pelampung pintar berdaya rendah.
                                                 </p>
                                             </div>
                                             <!-- Kolom 2: Foto Alat (Diperbesar Luas) -->
@@ -744,20 +758,29 @@
                                             <!-- Kolom 3: Progres Keseluruhan & Tombol -->
                                             <div
                                                 class="flex flex-col justify-center items-start md:items-end gap-3 w-full md:w-1/3 shrink-0">
-                                                <div class="w-full">
-                                                    <div
-                                                        class="flex justify-between items-center text-xs font-bold text-gray-600 mb-1">
-                                                        <span>Progres Keseluruhan</span>
-                                                        <span class="text-[#2A7C13]">60%</span>
-                                                    </div>
-                                                    <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                                        <div class="bg-[#76c457] h-2.5 rounded-full" style="width: 60%">
+
+                                                <div class="w-full flex flex-col items-center gap-3">
+                                                    <span class="text-sm font-bold text-gray-600">
+                                                        Progres Keseluruhan
+                                                    </span>
+
+                                                    <div class="relative w-28 h-28">
+                                                        <svg class="w-full h-full" viewBox="0 0 100 100">
+                                                            <circle cx="50" cy="50" r="40" fill="none" stroke="#E5E7EB"
+                                                                stroke-width="9" />
+                                                            <circle cx="50" cy="50" r="40" fill="none" stroke="#2A7C13"
+                                                                stroke-width="9" stroke-linecap="round"
+                                                                stroke-dasharray="251.33" stroke-dashoffset="125.67"
+                                                                transform="rotate(-90 50 50)" />
+                                                        </svg>
+                                                        <div class="absolute inset-0 flex items-center justify-center">
+                                                            <span class="text-xl font-bold text-[#2A7C13]">50%</span>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <a href="progres.html"
                                                     class="inline-flex font-semibold text-white bg-[#2A7C13] px-4 py-2 rounded-lg hover:bg-[#76C457] text-xs transition-colors items-center gap-2 shadow-sm z-20 relative">
-                                                    Klik ke Progres <i class="fa-solid fa-arrow-right-long"></i>
+                                                    Lihat Progres <i class="fa-solid fa-arrow-right-long"></i>
                                                 </a>
                                             </div>
                                         </div>
@@ -766,12 +789,15 @@
                                         <div
                                             class="bg-gray-50 rounded-xl p-5 border border-gray-200 shadow-sm hover:border-[#76C457] transition-all flex flex-col md:flex-row items-center gap-6">
                                             <!-- Kolom 1: Nama & Keunggulan (Terbatas Lebarnya & Justify) -->
-                                            <div class="flex flex-col text-left w-full md:w-1/4 max-w-[220px] shrink-0">
-                                                <h4 class="font-bold text-[#2A7C13] text-lg mb-1">TROSS</h4>
-                                                <p
-                                                    class="text-xs sm:text-sm text-[#454545] leading-relaxed text-justify">
-                                                    <strong>Keunggulan:</strong> Sistem deteksi tingkat sedimentasi
-                                                    secara otomatis dengan fitur peringatan dini berbasis IoT.
+                                            <div
+                                                class="flex flex-col text-left w-full md:w-1/4 max-w-[260px] shrink-0 px-3 py-2">
+                                                <h4 class="font-bold text-[#2A7C13] text-[1.3rem] leading-tight mb-2">
+                                                    TROSS</h4>
+                                                <p class="text-base text-[#454545] leading-relaxed text-justify">
+                                                    <strong>Keunggulan:</strong>
+                                                    <br>
+                                                    Sistem deteksi tingkat sedimentasi secara otomatis dengan fitur
+                                                    peringatan dini berbasis IoT.
                                                 </p>
                                             </div>
                                             <!-- Kolom 2: Foto Alat (Diperbesar Luas) -->
@@ -782,20 +808,29 @@
                                             <!-- Kolom 3: Progres Keseluruhan & Tombol -->
                                             <div
                                                 class="flex flex-col justify-center items-start md:items-end gap-3 w-full md:w-1/3 shrink-0">
-                                                <div class="w-full">
-                                                    <div
-                                                        class="flex justify-between items-center text-xs font-bold text-gray-600 mb-1">
-                                                        <span>Progres Keseluruhan</span>
-                                                        <span class="text-[#2A7C13]">45%</span>
-                                                    </div>
-                                                    <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                                        <div class="bg-[#76c457] h-2.5 rounded-full" style="width: 45%">
+
+                                                <div class="w-full flex flex-col items-center gap-3">
+                                                    <span class="text-sm font-bold text-gray-600">
+                                                        Progres Keseluruhan
+                                                    </span>
+
+                                                    <div class="relative w-28 h-28">
+                                                        <svg class="w-full h-full" viewBox="0 0 100 100">
+                                                            <circle cx="50" cy="50" r="40" fill="none" stroke="#E5E7EB"
+                                                                stroke-width="9" />
+                                                            <circle cx="50" cy="50" r="40" fill="none" stroke="#2A7C13"
+                                                                stroke-width="9" stroke-linecap="round"
+                                                                stroke-dasharray="251.33" stroke-dashoffset="236.25"
+                                                                transform="rotate(-90 50 50)" />
+                                                        </svg>
+                                                        <div class="absolute inset-0 flex items-center justify-center">
+                                                            <span class="text-xl font-bold text-[#2A7C13]">6%</span>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <a href="progres.html"
                                                     class="inline-flex font-semibold text-white bg-[#2A7C13] px-4 py-2 rounded-lg hover:bg-[#76C457] text-xs transition-colors items-center gap-2 shadow-sm z-20 relative">
-                                                    Klik ke Progres <i class="fa-solid fa-arrow-right-long"></i>
+                                                    Lihat Progres <i class="fa-solid fa-arrow-right-long"></i>
                                                 </a>
                                             </div>
                                         </div>
@@ -829,7 +864,7 @@
                                     class="font-bold text-xl text-gray-800 mb-2 transition-all duration-300 [[.active]_&]:text-3xl">
                                     Penanaman Mangrove <br> & Edukasi Pangan
                                 </h3>
-                                
+
                                 <p
                                     class="text-[#2A7C13] font-semibold text-sm flex items-center justify-center gap-2 group">
 
@@ -1267,6 +1302,10 @@
         const backToTop = document.getElementById('back-to-top');
         backToTop.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
 
+        function saveScrollPosition() {
+            sessionStorage.setItem('scrollPosition', window.scrollY);
+        }
+
         // Fungsi untuk mengembalikan posisi scroll saat halaman baru dimuat
         document.addEventListener("DOMContentLoaded", function () {
             let savedScroll = sessionStorage.getItem('scrollPosition');
@@ -1277,7 +1316,6 @@
                 sessionStorage.removeItem('scrollPosition');
             }
         });
-    </script>
     </script>
 </body>
 
