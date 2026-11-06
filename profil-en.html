@@ -1,0 +1,2168 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil | ALBATROSS</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anta&family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Konfigurasi Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        anta: ['Anta', 'sans-serif'],
+                        inter: ['Inter', 'sans-serif'],
+                        tech: ['Anta', 'sans-serif']
+                    },
+                    colors: {
+                        brandDarkGreen: '#132E22',
+                        brandGreenBorder: '#234435',
+                        brandOrange: '#FF5E2B',
+                        brandOrangeHover: '#E04818',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        .font-tech {
+            font-family: 'Anta', sans-serif;
+        }
+
+        .nav-text-wrap {
+            position: relative;
+            display: inline-block;
+        }
+
+        .nav-line {
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: currentColor;
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.3s ease-out;
+        }
+
+        .nav-item:hover .nav-line {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        /* ----------------------------------------------------
+            DIV UTAMA LINIMASA (CONTAINER SECTION)
+            ---------------------------------------------------- */
+        .timeline-section-wrapper {
+            position: relative;
+            overflow: visible;
+            /* UBAH BAGIAN INI AGAR GELOMBANGNYA MUNCUL */
+            background-color: #f8fafc;
+            z-index: 10;
+            /* Tambahkan ini agar gelombang menimpa section di bawahnya */
+        }
+
+        /* 
+            DIV KHUSUS BACKGROUND SEDIMENTASI DI DALAM DIV LINIMASA
+            */
+        .sediment-background-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            /* Berada di belakang teks dan kartu */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sediment-svg-flow {
+            width: 100%;
+            height: 2%;
+            /* Mulai dari paling atas kotak section linimasa */
+            transition: height 0.03s linear;
+            will-change: height;
+        }
+
+        /* DIV KONTEN KARTU LINIMASA (BERADA DI DEPAN SEDIMEN) */
+        .timeline-content-container {
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Styling untuk Roadmap Zig-Zag */
+        .roadmap-container {
+            position: relative;
+            padding: 40px 0;
+        }
+
+        .roadmap-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 3px;
+            background-color: #cbd5e1;
+            transform: translateX(-50%);
+        }
+
+        .roadmap-item {
+            position: relative;
+            width: 50%;
+            padding: 20px 40px;
+            margin-bottom: 20px;
+        }
+
+        .roadmap-item.left {
+            left: 0;
+            text-align: right;
+        }
+
+        .roadmap-item.right {
+            left: 50%;
+            text-align: left;
+        }
+
+        .roadmap-pin {
+            position: absolute;
+            top: 35px;
+            width: 18px;
+            height: 18px;
+            background-color: #ffffff;
+            border: 4px solid #2A7C13;
+            border-radius: 50%;
+            z-index: 2;
+        }
+
+        .roadmap-item.left .roadmap-pin {
+            right: -9px;
+        }
+
+        .roadmap-item.right .roadmap-pin {
+            left: -9px;
+        }
+
+        .roadmap-card {
+            background: #ffffff;
+            border: 2px solid #543c1d;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .roadmap-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+            border-color: #76C457;
+        }
+
+        @media (max-width: 768px) {
+            .roadmap-container::before {
+                left: 20px;
+            }
+
+            .roadmap-item {
+                width: 100%;
+                padding-left: 50px;
+                padding-right: 15px;
+                text-align: left !important;
+            }
+
+            .roadmap-item.right {
+                left: 0;
+            }
+
+            .roadmap-pin {
+                left: 11px !important;
+            }
+        }
+
+        .visi-misi-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(45, 55, 72, 0.13) !important;
+            border-color: #2A7C13 !important;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .visi-misi-card {
+                transition: none !important;
+            }
+
+            .visi-misi-card:hover {
+                transform: none;
+            }
+        }
+
+        /* Smooth transition effects */
+        .card-transition {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card-transition:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.3);
+        }
+
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+
+        .reveal-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* RESPONSIVE MOBILE OVERRIDES
+           Hanya mengatur tata letak pada layar kecil; konten dan desain utama tetap. */
+        @media (max-width: 640px) {
+
+            html,
+            body {
+                max-width: 100%;
+                overflow-x: clip;
+            }
+
+            #navbar {
+                padding: 0.75rem;
+            }
+
+            #navbar img {
+                max-width: 132px;
+            }
+
+            #mobile-menu {
+                max-height: calc(100dvh - 90px);
+                overflow-y: auto;
+            }
+
+            .profile-hero {
+                padding-left: 1rem;
+                padding-right: 1rem;
+                padding-top: 6rem;
+                padding-bottom: 4.5rem;
+            }
+
+            .profile-hero h1 {
+                font-size: clamp(2rem, 9vw, 2.5rem);
+                line-height: 1.15;
+            }
+
+            /* Kartu profil tetap bertumpuk seperti desain aslinya. */
+            main>div.max-w-7xl {
+                min-width: 0;
+            }
+
+            .roadmap-container {
+                padding-top: 1.5rem;
+                padding-bottom: 1.5rem;
+            }
+
+            .roadmap-item {
+                box-sizing: border-box;
+                padding-top: 0.75rem;
+                padding-bottom: 0.75rem;
+                padding-right: 0.25rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .roadmap-card {
+                padding: 1rem;
+                overflow-wrap: anywhere;
+            }
+
+            .roadmap-card span {
+                line-height: 1.5;
+                white-space: normal;
+            }
+
+            /* Modal tetap menggunakan tampilan, warna, dan perilaku yang sama. */
+            #modal-belayan,
+            #modal-katalog {
+                padding: 0.75rem;
+            }
+
+            #modal-belayan-card,
+            #modal-katalog-card {
+                width: 100%;
+                max-width: 100%;
+                max-height: 90dvh;
+            }
+
+            #modal-belayan-card>div:first-child,
+            #modal-katalog-card>div:first-child {
+                padding: 1rem;
+                gap: 0.75rem;
+            }
+
+            #modal-belayan-card h3,
+            #modal-katalog-card h3 {
+                font-size: 1.25rem;
+                line-height: 1.4;
+                overflow-wrap: anywhere;
+            }
+
+            #modal-belayan-card .p-6,
+            #modal-katalog-card .p-6 {
+                padding: 1rem;
+            }
+
+            #toast {
+                left: 1rem;
+                right: 1rem;
+                bottom: 1rem;
+                max-width: calc(100% - 2rem);
+                box-sizing: border-box;
+            }
+
+            #btn-selengkapnya {
+                max-width: 100%;
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+            }
+
+            footer .grid {
+                min-width: 0;
+            }
+
+            footer a,
+            footer span {
+                overflow-wrap: anywhere;
+            }
+
+            #back-to-top {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .roadmap-item {
+                padding-left: 2.75rem;
+            }
+
+            .roadmap-card {
+                padding: 0.8rem;
+            }
+
+            .roadmap-card h3 {
+                font-size: 1rem;
+                line-height: 1.4;
+            }
+
+            .roadmap-card p {
+                font-size: 0.8rem;
+            }
+
+            .visi-misi-card {
+                padding: 1rem;
+            }
+
+            #btn-selengkapnya {
+                font-size: 0.75rem;
+            }
+        }
+
+
+        /* RESPONSIVE TAMBAHAN
+           Hanya berlaku pada layar mobile; isi, warna, desain desktop,
+           tautan, dan JavaScript asli tetap dipertahankan. */
+        @media (max-width: 640px) {
+
+            *,
+            *::before,
+            *::after {
+                box-sizing: border-box;
+            }
+
+            body,
+            main,
+            section {
+                min-width: 0;
+            }
+
+            #navbar {
+                left: 0;
+                right: 0;
+                width: 100%;
+            }
+
+            #navbar>div {
+                min-width: 0;
+                gap: 0.5rem;
+            }
+
+            #mobile-menu {
+                width: 100%;
+                min-width: 0;
+            }
+
+            .profile-hero,
+            .profile-hero>div {
+                max-width: 100%;
+            }
+
+            main>div.max-w-7xl {
+                width: 100%;
+                min-width: 0;
+            }
+
+            .timeline-content-container,
+            .roadmap-container,
+            .roadmap-item,
+            .roadmap-card {
+                min-width: 0;
+            }
+
+            .roadmap-card h3,
+            .roadmap-card p,
+            .roadmap-card span {
+                overflow-wrap: anywhere;
+            }
+
+            #modal-belayan-card,
+            #modal-katalog-card {
+                min-width: 0;
+                overflow: hidden;
+            }
+
+            #modal-belayan-card .overflow-y-auto,
+            #modal-katalog-card .overflow-y-auto {
+                min-width: 0;
+                overflow-x: hidden;
+            }
+
+            footer img {
+                max-width: 100%;
+                height: auto;
+                object-fit: contain;
+            }
+        }
+
+        @media (max-width: 380px) {
+            #navbar img {
+                max-width: 112px;
+            }
+
+            #mobile-toggle-btn {
+                flex-shrink: 0;
+            }
+
+            .profile-hero p {
+                overflow-wrap: anywhere;
+            }
+
+            #modal-belayan-card .p-6,
+            #modal-katalog-card .p-6 {
+                padding: 0.875rem;
+            }
+        }
+
+
+
+
+        /* =========================================
+   DEKORASI LINGKARAN - CERITA KAMI
+   ========================================= */
+
+        .story-section {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+
+            /* Ubah bagian background-image dengan menambahkan linear-gradient di bagian akhir */
+            background-image:
+                /* Kecil: kiri atas */
+                radial-gradient(circle at 9% 16%, transparent 0 17px, rgba(91, 125, 65, 0.16) 18px 22px, transparent 23px),
+                /* Kecil: kanan tengah */
+                radial-gradient(circle at 93% 43%, transparent 0 23px, rgba(91, 125, 65, 0.15) 24px 29px, transparent 30px),
+                /* Kecil: kiri tengah bawah */
+                radial-gradient(circle at 25% 77%, transparent 0 10px, rgba(91, 125, 65, 0.14) 11px 15px, transparent 16px),
+                /* Besar: kanan bawah */
+                radial-gradient(circle at 72% 82%, transparent 0 48px, rgba(255, 255, 255, 0.13) 49px 59px, transparent 60px),
+                /* Titik kecil: kanan atas */
+                radial-gradient(circle at 78% 17%, rgba(91, 125, 65, 0.12) 0 8px, transparent 9px),
+                linear-gradient(to bottom, #f4f4f0 45%, #543c1d 100%);
+        }
+
+        /* Lingkaran besar kanan atas */
+        .story-section::before {
+            content: "";
+            position: absolute;
+            top: -75px;
+            right: -65px;
+            width: 190px;
+            height: 190px;
+            border: 22px solid rgba(91, 125, 65, 0.12);
+            border-radius: 50%;
+            box-sizing: border-box;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Konten tetap di atas dekorasi */
+        .story-section .story-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Hilangkan lingkaran lama di dalam konten
+   agar tidak bertumpuk dengan pola baru */
+        .story-section .story-content::before,
+        .story-section .story-content::after {
+            content: none;
+        }
+
+        /* Penyesuaian HP */
+        @media (max-width: 640px) {
+            .story-section {
+                background-image:
+                    radial-gradient(circle at 9% 16%, transparent 0 12px, rgba(91, 125, 65, 0.16) 13px 16px, transparent 17px),
+                    radial-gradient(circle at 93% 43%, transparent 0 16px, rgba(91, 125, 65, 0.15) 17px 21px, transparent 22px),
+                    radial-gradient(circle at 25% 77%, transparent 0 7px, rgba(91, 125, 65, 0.14) 8px 11px, transparent 12px),
+                    radial-gradient(circle at 72% 82%, transparent 0 34px, rgba(255, 255, 255, 0.13) 35px 42px, transparent 43px),
+                    radial-gradient(circle at 78% 17%, rgba(91, 125, 65, 0.12) 0 6px, transparent 7px),
+                    linear-gradient(to bottom, #f4f4f0 45%, #543c1d 100%);
+            }
+
+            .story-section::before {
+                top: -55px;
+                right: -65px;
+                width: 145px;
+                height: 145px;
+                border-width: 17px;
+            }
+
+            .story-section::after {
+                bottom: -75px;
+                left: -65px;
+                width: 165px;
+                height: 165px;
+                border-width: 18px;
+            }
+        }
+
+
+        /* =========================================
+   LENGKUNGAN TRANSISI KE SEDIMENTASI
+   Bagian tengah turun ke bawah
+   ========================================= */
+        #timelineSection {
+            position: relative;
+            isolation: isolate;
+            overflow: visible;
+            background-color: #f8fafc;
+        }
+
+        #timelineSection::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 76px;
+            z-index: 1;
+            pointer-events: none;
+            background-color: #543c1d;
+            background-image:
+                radial-gradient(circle at 15% 25%, #3e2a12 4px, transparent 5px),
+                radial-gradient(circle at 75% 65%, #2c1d0b 6px, transparent 7px),
+                radial-gradient(circle at 45% 85%, #473217 8px, transparent 9px),
+                radial-gradient(circle at 85% 15%, #3e2a12 3px, transparent 4px),
+                radial-gradient(circle at 25% 90%, #2c1d0b 7px, transparent 8px);
+            background-size: 120px 120px, 180px 180px, 250px 250px,
+                90px 90px, 200px 200px;
+            clip-path: polygon(0 0,
+                    100% 0,
+                    100% 20%,
+                    85% 35%,
+                    70% 65%,
+                    50% 100%,
+                    30% 65%,
+                    15% 35%,
+                    0 20%);
+        }
+
+        /* Konten linimasa tetap berada di atas background */
+        #timelineSection .timeline-content-container {
+            z-index: 2;
+        }
+
+        /* =========================================
+   IKON FITUR YANG LEBIH MODERN
+   ========================================= */
+        .story-feature {
+            position: relative;
+            flex: 1;
+            min-width: 0;
+            padding: 8px 12px 12px;
+        }
+
+        .story-feature-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 90px;
+            height: 90px;
+            margin-bottom: 14px;
+            border: 1px solid rgba(42, 124, 19, 0.18);
+            border-radius: 18px;
+            color: #2a7c13;
+            background: rgba(255, 255, 255, 0.78);
+            box-shadow: 0 5px 16px rgba(43, 76, 48, 0.07);
+            transition:
+                transform 0.25s ease,
+                color 0.25s ease,
+                background-color 0.25s ease,
+                box-shadow 0.25s ease;
+        }
+
+        .story-feature-icon:hover {
+            transform: translateY(-4px);
+            color: #ffffff;
+            background-color: #2a7c13;
+            box-shadow: 0 10px 22px rgba(42, 124, 19, 0.18);
+        }
+
+        .story-feature-icon i {
+            font-size: 42px;
+        }
+
+        @media (max-width: 640px) {
+            .story-feature {
+                padding: 4px 0;
+            }
+
+            .story-feature-icon {
+                width: 52px;
+                height: 52px;
+                border-radius: 16px;
+            }
+
+            .story-feature-icon i {
+                font-size: 21px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .story-feature-icon {
+                transition: none;
+            }
+
+            .story-feature:hover .story-feature-icon {
+                transform: none;
+            }
+        }
+
+
+        /* =========================================
+   RESPONSIVE BAGIAN CERITA KAMI
+   ========================================= */
+
+        .story-section {
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+        }
+
+        .story-content {
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+
+        /* Fitur Teknologi, Inovasi, Keberlanjutan */
+        .story-features {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 2rem;
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .story-feature {
+            flex: 0 0 120px;
+            min-width: 0;
+            padding: 8px 0 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .story-feature-icon {
+            width: 90px;
+            height: 90px;
+            font-size: 42px;
+        }
+
+        .story-feature-icon i {
+            font-size: 42px;
+        }
+
+        /* Penyesuaian HP */
+        @media (max-width: 640px) {
+            .story-section {
+                padding: 3rem 1rem 5rem;
+            }
+
+            .story-content {
+                max-width: 100%;
+            }
+
+            .story-content p {
+                font-size: 0.9rem;
+                line-height: 1.8;
+                text-align: justify;
+                margin-bottom: 1rem;
+            }
+
+            .story-features {
+                gap: 1rem;
+                width: 100%;
+                max-width: 100%;
+                align-items: flex-start;
+            }
+
+            .story-feature {
+                flex: 0 1 100px;
+                width: 100px;
+                padding: 8px 0;
+            }
+
+            .story-feature-icon {
+                width: 64px;
+                height: 64px;
+                margin-bottom: 10px;
+                font-size: 30px;
+            }
+
+            .story-feature-icon i {
+                font-size: 30px;
+            }
+
+            .story-feature h3 {
+                font-size: 0.8rem;
+                line-height: 1.4;
+                text-align: center;
+            }
+        }
+
+        /* HP berukuran sangat kecil */
+        @media (max-width: 360px) {
+            .story-features {
+                gap: 0.5rem;
+            }
+
+            .story-feature-icon {
+                width: 54px;
+                height: 54px;
+                font-size: 26px;
+            }
+
+            .story-feature-icon i {
+                font-size: 26px;
+            }
+
+            .story-feature h3 {
+                font-size: 0.72rem;
+            }
+        }
+
+
+        /* ===== LAYOUT CERITA TIM ALBATROSS ===== */
+        .team-story-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+            align-items: center;
+            gap: 2.5rem;
+        }
+
+        .team-story-text {
+            min-width: 0;
+            text-align: justify;
+        }
+
+        /* ===== CAROUSEL FOTO BERTUMPUK ===== */
+        .team-carousel {
+            position: relative;
+            width: 100%;
+            max-width: 460px;
+            margin: 0 auto;
+            padding: 8px 0 35px;
+        }
+
+        .team-card-stack {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            perspective: 1000px;
+        }
+
+        .team-photo-card {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            border-radius: 16px;
+            background: #e8eee5;
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.18);
+            transition:
+                transform 0.45s ease,
+                opacity 0.45s ease,
+                box-shadow 0.45s ease;
+            will-change: transform;
+        }
+
+        .team-photo-card img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: inherit;
+        }
+
+        /* Tombol kiri dan kanan */
+        .team-carousel-btn {
+            position: absolute;
+            top: 50%;
+            z-index: 10;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            border-radius: 50%;
+            background: #2a7c13;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            transition: background 0.2s ease, scale 0.2s ease;
+        }
+
+        .team-carousel-btn:hover {
+            background: #1f5e0d;
+            scale: 1.06;
+        }
+
+        .team-prev {
+            left: -16px;
+        }
+
+        .team-next {
+            right: -16px;
+        }
+
+        /* Titik indikator */
+        .team-carousel-dots {
+            position: absolute;
+            bottom: 4px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .team-dot {
+            width: 8px;
+            height: 8px;
+            padding: 0;
+            border: none;
+            border-radius: 50%;
+            background: #cbd5c4;
+            cursor: pointer;
+            transition: background 0.25s ease, transform 0.25s ease;
+        }
+
+        .team-dot.active {
+            background: #2a7c13;
+            transform: scale(1.35);
+        }
+
+        /* Tampilan HP */
+        @media (max-width: 767px) {
+            .team-story-layout {
+                grid-template-columns: minmax(0, 1fr);
+                gap: 1.5rem;
+            }
+
+            .team-carousel {
+                max-width: 500px;
+                width: calc(100% - 12px);
+            }
+
+            .team-story-text {
+                text-align: justify;
+            }
+
+            .team-carousel-btn {
+                width: 36px;
+                height: 36px;
+            }
+
+            .team-prev {
+                left: -12px;
+            }
+
+            .team-next {
+                right: -12px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .team-photo-card,
+            .team-carousel-btn,
+            .team-dot {
+                transition: none;
+            }
+        }
+
+
+        /* RESPONSIVE PENJELASAN MIT+R DAN TIM ALBATROSS */
+        @media (max-width: 640px) {
+
+            /* Penjelasan MIT+R */
+            .story-section>div.max-w-6xl:not(.story-content) p {
+                font-size: 1.05rem;
+                line-height: 1.8;
+                text-align: justify;
+                overflow-wrap: break-word;
+            }
+
+            /* Penjelasan Tim ALBATROSS */
+            .team-story-text p {
+                font-size: 1.05rem !important;
+                line-height: 1.8;
+                text-align: justify;
+                overflow-wrap: break-word;
+            }
+
+            /* Mengurangi padding berlapis */
+            .story-section>div.max-w-6xl,
+            .story-section>.team-story-layout {
+                padding-left: 0;
+                padding-right: 0;
+            }
+
+            /* Jarak antarbagian */
+            .story-section>div.max-w-6xl:not(.story-content) {
+                padding-bottom: 1.5rem;
+            }
+
+            .team-story-layout {
+                gap: 1.25rem;
+            }
+
+        }
+
+        /* Custom Scrollbar Umum */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #76C457;
+            /* Warna hijau terang untuk pegangan scrollbar */
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #2A7C13;
+            /* Warna hijau tua saat kursor diarahkan ke scrollbar */
+        }
+    </style>
+</head>
+
+<body class="bg-white text-gray-800 font-inter">
+
+    <!-- STICKY NAVIGATION BAR -->
+    <nav id="navbar"
+        class="fixed top-0 left-0 w-full z-50 p-4 lg:px-12 transition-all duration-300 text-white bg-transparent">
+
+        <div class="max-w-7xl mx-auto flex justify-between items-center relative">
+
+            <!-- Logo ALBATROSS -->
+            <div class="relative flex items-center justify-center">
+                <a href="#" id="logo-btn"
+                    class="relative z-10 flex items-center justify-center transition-transform hover:scale-105 mx-[5px]">
+                    <img src="Logo_IPB.png" alt="LOGO IPB University" class="h-12 w-auto object-contain mx-[10px]">
+                </a>
+                <a href="#" id="logo-btn-2"
+                    class="relative z-10 flex items-center justify-center transition-transform hover:scale-105 mx-[5px]">
+                    <img src="logo mitr.png" alt="LOGO MIT+R" class="h-12 w-auto object-contain mx-[10px]"
+                        style="margin-left: -5px;">
+                </a>
+                <a href="#" id="logo-btn-3"
+                    class="relative flex items-center justify-center transition-transform hover:scale-105">
+                    <div id="logo-circle"
+                        class="absolute bg-[#2A7C13] rounded-full w-14 h-14 -z-0 opacity-0 scale-75 transition-all duration-300 ease-in-out pointer-events-none">
+                    </div>
+                    <img src="logo ALBATROSS.png" alt="LOGO ALBATROSS" class="relative z-10 h-12 w-auto object-contain">
+                </a>
+            </div>
+
+            <!-- Container Kanan Navigasi -->
+            <div class="flex items-center space-x-3">
+                <ul id="nav-links"
+                    class="hidden md:flex items-center space-x-2 sm:space-x-3 text-xs sm:text-sm font-semibold tracking-wider sm:tracking-widest uppercase transition-all duration-300 py-1 font-inter">
+                    <li>
+                        <a href="index-en.html"
+                            class="nav-item whitespace-nowrap px-3 sm:px-4 py-2 rounded-full transition-all duration-200 text-white hover:bg-[#76C457]/40 hover:text-white nav-underline">
+                            <span class="nav-text-wrap">BERANDA<span class="nav-line"></span></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="profil-en.html"
+                            class="nav-item whitespace-nowrap px-3 sm:px-4 py-2 rounded-full transition-all duration-200 text-white hover:bg-[#76C457]/40 hover:text-white nav-underline">
+                            <span class="nav-text-wrap">PROFIL<span class="nav-line"></span></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="hubungi-en.html"
+                            class="nav-item whitespace-nowrap px-3 sm:px-4 py-2 rounded-full transition-all duration-200 text-white hover:bg-[#76C457]/40 hover:text-white nav-underline">
+                            <span class="nav-text-wrap">HUBUNGI<span class="nav-line"></span></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="progres-en.html"
+                            class="nav-item whitespace-nowrap px-3 sm:px-4 py-2 rounded-full transition-all duration-200 text-white hover:bg-[#76C457]/40 hover:text-white nav-underline">
+                            <span class="nav-text-wrap">PROGRES<span class="nav-line"></span></span>
+                        </a>
+                    </li>
+                    <li class="ml-2 flex items-center">
+                        <div
+                            class="flex bg-[#2A7C13]/70 rounded-full p-1 backdrop-blur-sm border border-white/20 transition-all shadow-inner">
+                            <!-- Tambahkan onclick di sini -->
+                            <span 
+                                class="w-8 h-8 flex items-center justify-center rounded-full text-xs font-bold bg-white text-slate-800 shadow-sm cursor-default">EN</span>
+                            <a href="profil.html" onclick="saveScrollPosition()"
+                                class="w-8 h-8 flex items-center justify-center rounded-full text-xs font-bold text-white transition-all hover:bg-slate-500/50">ID</a>
+                        </div>
+                    </li>
+                </ul>
+
+                <!-- Tombol Mobile -->
+                <button id="mobile-toggle-btn" class="md:hidden text-2xl p-2 transition-colors focus:outline-none"
+                    aria-label="Buka menu navigasi">
+                    <i id="toggle-icon" class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Menu Mobile -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white mt-4 rounded-xl shadow-lg p-4">
+            <div class="flex flex-col space-y-2 text-sm font-semibold text-[#76C457]">
+                <a href="index-en.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">BERANDA</a>
+                <a href="profil-en.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">PROFIL</a>
+                <a href="hubungi-en.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">HUBUNGI</a>
+                <a href="progres-en.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">PROGRES</a>
+                <div class="px-4 py-3 flex justify-between items-center border-t border-gray-100 mt-2">
+                    <span class="text-sm font-semibold text-[#76C457]">BAHASA</span>
+                    <div class="flex bg-[#2A7C13]/70 rounded-full p-1">
+                        <!-- Tambahkan onclick di sini -->
+                        <span 
+                            class=" w-8 h-8 flex items-center justify-center rounded-full text-xs font-bold bg-white text-[#2A7C13] shadow-sm cursor-default">EN</span>
+                        <a href="profil.html" onclick="saveScrollPosition()"
+                            class="w-8 h-8 flex items-center justify-center rounded-full text-xs font-bold text-white transition-all">ID</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- KONTEN UTAMA -->
+    <main>
+
+
+        <!-- BANNER PROFIL -->
+        <section
+            class="profile-hero relative isolate overflow-hidden bg-[#543c1d] px-5 py-[10rem] sm:py-[11rem] md:py-[12rem]">
+
+            <!-- Gambar Background -->
+            <div class="absolute inset-0 z-0">
+                <img src="banner profil.png" alt="Latar belakang banner Profil"
+                    class="h-full w-full object-cover object-[center_60%]">
+
+                <!-- Lapisan gelap -->
+                <div class="absolute inset-0 bg-black/40"></div>
+            </div>
+
+            <!-- Judul di sisi kiri -->
+            <div class="relative z-10 mx-auto max-w-6xl px-6 sm:px-8 lg:px-10">
+                <div class="w-fit text-left text-white">
+                    <h1 class="font-tech text-4xl sm:text-5xl md:text-6xl font-bold drop-shadow-lg mb-2">
+                        PROFIL
+                    </h1>
+
+                    <p class="text-sm sm:text-base md:text-lg leading-relaxed drop-shadow-md font-medium">
+                        Di balik Proyek ALBATROSS
+                    </p>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- SEGMEN CERITA KAMI -->
+        <section class="story-section pt-16 pb-10 px-6 relative z-10">
+
+            <!-- Penjelasan MIT+R -->
+            <div class="max-w-6xl mx-auto px-6 sm:px-8 lg:px-10 pb-8 relative z-10">
+                <p class="text-base sm:text-lg leading-relaxed text-justify text-gray-700">
+                    <strong>MIT+R IPB University</strong> menjadi ruang bagi berkembangnya gagasan dan inovasi berbasis
+                    sains dan teknologi untuk menjawab berbagai tantangan nyata. Bagi kami, inovasi bukan sekadar
+                    menciptakan sesuatu yang baru, tetapi juga menemukan cara agar ilmu pengetahuan dapat memberikan
+                    dampak.
+                    Semangat inilah yang mendorong lahirnya berbagai upaya untuk memahami dan menjawab persoalan
+                    lingkungan, termasuk tantangan yang dihadapi ekosistem pesisir dan mangrove.
+                </p>
+            </div>
+
+
+            <!-- Penjelasan Tim ALBATROSS -->
+            <div class="story-content max-w-6xl mx-auto px-6 sm:px-8 lg:px-10 team-story-layout">
+
+                <!-- Carousel Foto Tim di Sebelah Kiri -->
+                <div class="team-carousel" id="teamCarousel">
+
+                    <div class="team-card-stack">
+                        <div class="team-photo-card">
+                            <img src="tim albatross.jpeg" alt="Tim ALBATROSS">
+                        </div>
+
+                        <div class="team-photo-card">
+                            <img src="mekanik.jpeg" alt="Tim Mekanik ALBATROSS">
+                        </div>
+
+                        <div class="team-photo-card">
+                            <img src="elektro.jpeg" alt="Tim Elektro ALBATROSS">
+                        </div>
+
+                        <div class="team-photo-card">
+                            <img src="program.jpeg" alt="Tim Program ALBATROSS">
+                        </div>
+
+                        <div class="team-photo-card">
+                            <img src="admin.jpeg" alt="Tim Administrasi ALBATROSS">
+                        </div>
+                    </div>
+
+                    <!-- Tombol navigasi -->
+                    <button class="team-carousel-btn team-prev" type="button" aria-label="Foto sebelumnya">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+
+                    <button class="team-carousel-btn team-next" type="button" aria-label="Foto berikutnya">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+
+                    <!-- Indikator foto -->
+                    <div class="team-carousel-dots">
+                        <button class="team-dot active" type="button" aria-label="Foto 1"></button>
+                        <button class="team-dot" type="button" aria-label="Foto 2"></button>
+                        <button class="team-dot" type="button" aria-label="Foto 3"></button>
+                        <button class="team-dot" type="button" aria-label="Foto 4"></button>
+                        <button class="team-dot" type="button" aria-label="Foto 5"></button>
+                    </div>
+
+                </div>
+
+                <!-- Penjelasan di Sebelah Kanan -->
+                <div class="team-story-text">
+                    <p class="text-base sm:text-lg leading-relaxed text-gray-700 mb-5">
+                        Berangkat dari semangat tersebut, <strong>Tim ALBATROSS</strong> hadir sebagai bagian dari
+                        <strong>MIT+R
+                            IPB University</strong>
+                        untuk mengembangkan teknologi pemantauan perairan dan ekosistem pesisir. Melalui pemantauan
+                        kondisi perairan dan sedimentasi, kami berupaya mendukung pemahaman lingkungan serta mendorong
+                        inovasi yang berkelanjutan.
+                    </p>
+                </div>
+
+            </div>
+
+            <br>
+
+            <div class="text-center mb-8">
+                <h3 class="text-lg sm:text-xl font-bold text-[#ffffff]">
+                    Tiga prinsip yang mendasari pengembangan ALBATROSS:
+                </h3>
+            </div>
+
+            <div class="story-features">
+
+
+                <!-- Fitur 1: Teknologi -->
+                <div class="story-feature flex flex-col items-center text-center">
+                    <div class="story-feature-icon">
+                        <i class="fa-solid fa-microchip" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-white m-0">
+                        Teknologi
+                    </h3>
+                </div>
+
+                <!-- Fitur 2: Inovasi -->
+                <div class="story-feature flex flex-col items-center text-center">
+                    <div class="story-feature-icon">
+                        <i class="fa-solid fa-flask-vial" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-white m-0">
+                        Inovasi
+                    </h3>
+                </div>
+
+                <!-- Fitur 3: Keberlanjutan -->
+                <div class="story-feature flex flex-col items-center text-center">
+                    <div class="story-feature-icon">
+                        <i class="fa-solid fa-leaf" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-white m-0">
+                        Keberlanjutan
+                    </h3>
+                </div>
+            </div>
+            </div>
+        </section>
+        <!-- AKHIR SEGMEN CERITA KAMI -->
+
+        <section id="timelineSection" class="timeline-section-wrapper pt-0 pb-16 px-4 sm:px-6 lg:px-8 pb-32">
+
+            <!-- 1. DIV LATAR BELAKANG SEDIMENTASI (DENGAN TRANSISI HALUS, PARTIKEL & GELOMBANG) -->
+            <div class="sediment-background-layer">
+
+                <!-- DIV UTAMA SEDIMEN (Animasi scroll JS akan mengatur tinggi div ini) -->
+                <div id="sedimentFlowSvg" class="sediment-svg-flow" style="
+                    position: relative; 
+                    background-color: #543c1d;
+                    /* Motif titik-titik sedimen tetap ada di sini */
+                    background-image: 
+                        radial-gradient(circle at 15% 25%, #3e2a12 4px, transparent 5px),
+                        radial-gradient(circle at 75% 65%, #2c1d0b 6px, transparent 7px),
+                        radial-gradient(circle at 45% 85%, #473217 8px, transparent 9px),
+                        radial-gradient(circle at 85% 15%, #3e2a12 3px, transparent 4px),
+                        radial-gradient(circle at 25% 90%, #2c1d0b 7px, transparent 8px);
+                    background-size: 120px 120px, 180px 180px, 250px 250px, 90px 90px, 200px 200px;
+                ">
+
+                    <!-- EKOR GELOMBANG BAWAH (Menggantung & membawa motif titik-titik) -->
+                    <div style="
+                        position: absolute;
+                        bottom: -99px; /* Posisinya menggantung keluar di bawah kotak utama */
+                        left: 0;
+                        width: 100%;
+                        height: 100px; /* Tingginya dikunci, sehingga gelombang tidak akan pernah tergencet */
+                        background-color: inherit; /* Otomatis mengambil warna #543c1d */
+                        background-image: inherit; /* Otomatis menjiplak motif titik-titik partikel */
+                        background-size: inherit;
+                        /* Topeng CSS memotong bagian bawah div ini menjadi bentuk ombak */
+                        -webkit-mask-image: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 100' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,0 L1440,0 L1440,30 C1200,90 960,-10 720,40 C480,90 240,-10 0,40 L0,0 Z'%3E%3C/path%3E%3C/svg%3E&quot;);
+                        mask-image: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 100' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,0 L1440,0 L1440,30 C1200,90 960,-10 720,40 C480,90 240,-10 0,40 L0,0 Z'%3E%3C/path%3E%3C/svg%3E&quot;);
+                        -webkit-mask-size: 100% 100%;
+                        mask-size: 100% 100%;
+                    "></div>
+
+                </div>
+            </div>
+
+            <!-- 2. DIV KONTEN KARTU ROADMAP -->
+            <br>
+            <div class="timeline-content-container max-w-5xl mx-auto">
+                <div class="text-center mb-12">
+                    <span
+                        class="text-xs font-bold uppercase tracking-widest text-[#FFFFFF] bg-[#76C457]/20 px-3 py-1 rounded-full">Linimasa
+                        Waktu</span>
+                    <h2 id="timeline-title"
+                        class="font-tech text-3xl sm:text-4xl font-bold text-[#76C457] mt-2 transition-colors duration-300">
+                        Pelaksanaan Kegiatan</h2>
+                </div>
+
+                <div class="roadmap-container">
+
+                    <!-- Item 1 (Kiri) -->
+                    <div class="roadmap-item left">
+                        <div class="roadmap-pin"></div>
+                        <div class="roadmap-card">
+                            <span
+                                class="inline-block text-xs font-bold text-[#2A7C13] bg-[#76C457]/20 px-2.5 py-1 rounded mb-2 uppercase">21
+                                Agu – 10 Sep 2026</span>
+                            <h3 class="text-lg font-bold text-gray-900 mb-1">Perencanaan Kegiatan</h3>
+                            <p class="text-sm text-gray-600 leading-relaxed">Penyusunan konsep awal dan perencanaan
+                                kegiatan secara komprehensif.</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 2 (Kanan) -->
+                    <div class="roadmap-item right">
+                        <div class="roadmap-pin"></div>
+                        <div class="roadmap-card">
+                            <span
+                                class="inline-block text-xs font-bold text-[#2A7C13] bg-[#76C457]/20 px-2.5 py-1 rounded mb-2 uppercase">11
+                                Sep 2026 – 22 Jan 2027</span>
+                            <h3 class="text-lg font-bold text-gray-900 mb-1">Pengembangan & Pengadaan</h3>
+                            <p class="text-sm text-gray-600 leading-relaxed">Pencarian dana, pembuatan alat, serta
+                                pengujian kendali mutu (quality control).</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 3 (Kiri) -->
+                    <div class="roadmap-item left">
+                        <div class="roadmap-pin"></div>
+                        <div class="roadmap-card">
+                            <span
+                                class="inline-block text-xs font-bold text-[#2A7C13] bg-[#76C457]/20 px-2.5 py-1 rounded mb-2 uppercase">24
+                                – 25 Januari 2027</span>
+                            <h3 class="text-lg font-bold text-gray-900 mb-1">Persiapan Lapangan</h3>
+                            <p class="text-sm text-gray-600 leading-relaxed">Survei lokasi, pengurusan perizinan,
+                                dan
+                                persiapan implementasi teknis.</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 4 (Kanan) -->
+                    <div class="roadmap-item right">
+                        <div class="roadmap-pin"></div>
+                        <div class="roadmap-card">
+                            <span
+                                class="inline-block text-xs font-bold text-[#2A7C13] bg-[#76C457]/20 px-2.5 py-1 rounded mb-2 uppercase">26
+                                – 28 Januari 2027</span>
+                            <h3 class="text-lg font-bold text-gray-900 mb-1">Implementasi Lapangan</h3>
+                            <p class="text-sm text-gray-600 leading-relaxed">Implementasi sistem dan pengambilan
+                                data di
+                                lapangan.</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 5 (Kiri) -->
+                    <div class="roadmap-item left">
+                        <div class="roadmap-pin"></div>
+                        <div class="roadmap-card">
+                            <span
+                                class="inline-block text-xs font-bold text-[#2A7C13] bg-[#76C457]/20 px-2.5 py-1 rounded mb-2 uppercase">29
+                                Januari 2027</span>
+                            <h3 class="text-lg font-bold text-gray-900 mb-1">Analisis Data</h3>
+                            <p class="text-sm text-gray-600 leading-relaxed">Mengolah dan memvisualisasikan data
+                                hasil
+                                monitoring kegiatan.</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 6 (Kanan) -->
+                    <div class="roadmap-item right">
+                        <div class="roadmap-pin"></div>
+                        <div class="roadmap-card">
+                            <span
+                                class="inline-block text-xs font-bold text-[#2A7C13] bg-[#76C457]/20 px-2.5 py-1 rounded mb-2 uppercase">30
+                                – 31 Januari 2027</span>
+                            <h3 class="text-lg font-bold text-gray-900 mb-1">Penyusunan Laporan</h3>
+                            <p class="text-sm text-gray-600 leading-relaxed">Penyusunan laporan akhir dan advokasi
+                                hasil
+                                pengembangan.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <br>
+    <!-- Container dengan padding horizontal yang longgar -->
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mt-10 relative z-0">
+        <!-- Header Section -->
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <h2 class="font-tech text-3xl sm:text-4xl font-bold text-gray-900 tracking-tight mb-4">
+                Aktivitas Terkini
+            </h2>
+            <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
+                Ikuti perkembangan terbaru inovasi teknologi kelautan, pengembangan alat pemantauan perairan, serta
+                riset. Dari pengembangan teknologi hingga implementasi di lapangan, setiap inovasi hadir untuk
+                <strong>mendukung pemantauan ekosistem laut, pengelolaan sumber daya pesisir, dan pengembangan
+                    solusi</strong> berbasis teknologi yang berkelanjutan.
+            </p>
+        </div>
+
+        <!-- 1. GRID UTAMA UNTUK CARD 1 s.d. 14 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
+
+            <!-- Card 1 -->
+            <div
+                class="w-full bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
+                <div>
+                    <div class="aspect-square w-full overflow-hidden bg-gray-100">
+                        <img src="Swarm Ship.png" alt="Swarm Ship" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3
+                            class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
+                            Swarm Ship
+                        </h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-6" style="text-align: justify;">
+                            Kapal yang dilengkapi dengan sistem <strong>swarm intelligence</strong>. Dengan sistem ini
+                            diharapkan kapal dapat terintegrasi satu sama lain dan melakukan beberapa formasi untuk
+                            penyergapan, penyerangan, pertahanan.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div
+                class="w-full bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
+                <div>
+                    <div class="aspect-square w-full overflow-hidden bg-gray-100">
+                        <img src="Early Warning Upwelling.png" alt="Early Warning Upwelling"
+                            class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3
+                            class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
+                            Early Warning Upwelling
+                        </h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-6" style="text-align: justify;">
+                            Sistem peringatan dini yang dapat <strong>mendeteksi kejadian upwelling</strong>. Instrumen
+                            ini dilengkapi dengan sensor yang secara real-time memantau suhu udara, suhu permukaan air,
+                            dan suhu di dasar perairan.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 5 -->
+            <div
+                class="w-full bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
+                <div>
+                    <div class="aspect-square w-full overflow-hidden bg-gray-100">
+                        <img src="N1-AUV.png" alt="N1-AUV" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3
+                            class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
+                            N1-AUV
+                        </h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-6" style="text-align: justify;">
+                            Robot bawah air tanpa awak <strong>generasi ke-1</strong> dari Nusantara AUV yang dirancang
+                            untuk eksplorasi dan observasi bawah air.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 6 -->
+            <div
+                class="w-full hidden extra-activity bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
+                <div>
+                    <div class="aspect-square w-full overflow-hidden bg-gray-100">
+                        <img src="N2-AUV.jpg" alt="N2-AUV" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3
+                            class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
+                            N2-AUV
+                        </h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-6" style="text-align: justify;">
+                            Robot bawah air tanpa awak <strong>generasi ke-2</strong> dari Nusantara AUV yang dirancang
+                            untuk eksplorasi dan observasi bawah air.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 7 -->
+            <div
+                class="w-full hidden extra-activity bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
+                <div>
+                    <div class="aspect-square w-full overflow-hidden bg-gray-100">
+                        <img src="N3.2-AUV.jpeg" alt="N3.2-AUV" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3
+                            class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
+                            N3.2-AUV
+                        </h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-6" style="text-align: justify;">
+                            Robot bawah air tanpa awak <strong>generasi ke-3.2</strong> dari Nusantara AUV yang
+                            dirancang untuk eksplorasi dan observasi bawah air.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 8 -->
+            <div
+                class="w-full hidden extra-activity bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
+                <div>
+                    <div class="aspect-square w-full overflow-hidden bg-gray-100">
+                        <img src="N4-AUV.png" alt="N4-AUV" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3
+                            class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
+                            N4-AUV
+                        </h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-6" style="text-align: justify;">
+                            Robot bawah air tanpa awak <strong>generasi ke-4</strong> dari Nusantara AUV yang dirancang
+                            untuk eksplorasi dan observasi bawah air.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 9 -->
+            <div
+                class="w-full hidden extra-activity bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
+                <div>
+                    <div class="aspect-square w-full overflow-hidden bg-gray-100">
+                        <img src="N7-AUV.jpg" alt="N7-AUV" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3
+                            class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
+                            N7-AUV
+                        </h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-6" style="text-align: justify;">
+                            Robot bawah air tanpa awak <strong>generasi ke-7</strong> dari Nusantara AUV yang dirancang
+                            untuk eksplorasi dan observasi bawah air.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 10 -->
+            <div
+                class="w-full hidden extra-activity bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
+                <div>
+                    <div class="aspect-square w-full overflow-hidden bg-gray-100">
+                        <img src="Pelamis IV.png" alt="Pelamis IV" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3
+                            class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
+                            Pelamis IV
+                        </h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-6" style="text-align: justify;">
+                            Kapal kendali jarak jauh <strong>generasi ke-4</strong> dengan sistem monitoring untuk
+                            <strong>pemantauan sumberdaya kelautan.</strong>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 11 -->
+            <div
+                class="w-full hidden extra-activity bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
+                <div>
+                    <div class="aspect-square w-full overflow-hidden bg-gray-100">
+                        <img src="Pelamis VII.png" alt="Pelamis VII" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3
+                            class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
+                            Pelamis VII
+                        </h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-6" style="text-align: justify;">
+                            Kapal kendali jarak jauh <strong>generasi ke-7</strong> dengan sistem monitoring untuk
+                            <strong>pemantauan sumberdaya kelautan.</strong>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 12 -->
+            <div
+                class="w-full hidden extra-activity bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
+                <div>
+                    <div class="aspect-square w-full overflow-hidden bg-gray-100">
+                        <img src="Soil Temperature Humidity Logger.png" alt="Soil Temperature Humidity Logger"
+                            class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3
+                            class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
+                            Soil Temperature Humidity Logger
+                        </h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-6" style="text-align: justify;">
+                            Sistem <strong>pemantau suhu dan kelembaban tanah</strong> berbasis teknologi Internet of
+                            Things (IoT).
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 13 -->
+            <div
+                class="w-full hidden extra-activity bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
+                <div>
+                    <div class="aspect-square w-full overflow-hidden bg-gray-100">
+                        <img src="e-Kan.jpg" alt="e-Kan" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3
+                            class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
+                            e-Kan
+                        </h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-6" style="text-align: justify;">
+                            Instrumen <strong>pengukur panjang dan berat ikan</strong> berbasis AI dan sensor load-cell.
+                            Terintegrasi dengan VTS TREKFISH untuk ketertelusuran data tangkapan dan perikanan
+                            berkelanjutan.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 14 -->
+            <div
+                class="w-full hidden extra-activity bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
+                <div>
+                    <div class="aspect-square w-full overflow-hidden bg-gray-100">
+                        <img src="hydrophone.png" alt="Hydrophone" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3
+                            class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
+                            Hydrophone
+                        </h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-6" style="text-align: justify;">
+                            Sensor akustik untuk <strong>perekaman suara</strong> di bawah air.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 2. CONTAINER KHUSUS UNTUK CARD 15 & 16 DI BAWAH (BERJEJER 2 DI TENGAH) -->
+        <div class="hidden extra-activity flex flex-col md:flex-row justify-center gap-8 mt-8">
+
+            <!-- Card 15 -->
+            <div
+                class="w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.5rem)] bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
+                <div>
+                    <div class="aspect-square w-full overflow-hidden bg-gray-100">
+                        <img src="slk.jpeg" alt="Stasiun Lapang Kelautan" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3
+                            class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
+                            Stasiun Lapang Kelautan
+                        </h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-6" style="text-align: justify;">
+                            Memberikan informasi mengenai <strong>kondisi angin, suhu dan kelembaban udara, suhu air dan
+                                pasang surut</strong> terkini untuk membantu keputusan berlayar.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 16 -->
+            <div
+                class="w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.5rem)] bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
+                <div>
+                    <div class="aspect-square w-full overflow-hidden bg-gray-100">
+                        <img src="trekfish.jpg" alt="TREKFISH" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3
+                            class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
+                            TREKFISH
+                        </h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-6" style="text-align: justify;">
+                            Perangkat pelacakan kapal perikanan berbasis IoT yang membantu <strong>meningkatkan
+                                efisiensi penangkapan ikan, keselamatan nelayan, dan pengelolaan sumber daya
+                                perikanan</strong> secara berkelanjutan.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="w-full flex justify-center mt-12 mb-0">
+        <button id="btn-selengkapnya"
+            class="bg-[#2A7C13] hover:bg-[#132E22] text-white font-semibold text-sm tracking-wider uppercase px-8 py-3 rounded-full shadow-md transition-all duration-300 flex items-center gap-2 cursor-pointer">
+            <span>SELENGKAPNYA</span>
+            <i class="fa-solid fa-chevron-down transition-transform duration-300" id="icon-selengkapnya"></i>
+        </button>
+    </div>
+    </div>
+
+    <br> <br>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#2A7C13] px-4 sm:px-6 py-10 border-t-[2px] border-[#2A7C13]">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+
+            <div class="md:col-span-2 flex flex-col gap-4 text-white">
+                <h3 class="font-bold text-xl mb-2">Kontak Kami</h3>
+                <a href="https://maps.app.goo.gl/mirmGEEjNxX9zrjp9"
+                    class="flex items-start gap-3 hover:text-[#76C457] transition">
+                    <i class="fa-solid fa-location-dot text-xl mt-1"></i>
+                    <span class="leading-relaxed break-words">
+                        Workshop Instrumentasi dan Robotika Kelautan (Bengkel) ITK, Babakan,
+                        Dramaga, Bogor, Indonesia 16680
+                    </span>
+                </a>
+                <a href="mailto:mitr.ipb@gmail.com" class="flex items-center gap-3 hover:text-[#76C457] transition">
+                    <i class="fa-regular fa-envelope text-xl"></i>
+                    <span>mitr.ipb@gmail.com</span>
+                </a>
+                <a href="https://wa.me/6281283435353" class="flex items-center gap-3 hover:text-[#76C457] transition">
+                    <i class="fa-brands fa-whatsapp text-xl"></i>
+                    <span class="break-words">+6281283435353 (Hanifa Rahmaliya)</span>
+                </a>
+            </div>
+
+            <div class="flex flex-col gap-4 text-white">
+                <h3 class="font-bold text-xl mb-2">Media Sosial</h3>
+                <a href="https://www.instagram.com/mitr_ipb/"
+                    class="flex items-center gap-3 hover:text-[#76C457] transition">
+                    <i class="fa-brands fa-instagram text-xl"></i>
+                    <span>@mitr_ipb</span>
+                </a>
+                <a href="https://www.instagram.com/dmitr6teen/"
+                    class="flex items-center gap-3 hover:text-[#76C457] transition">
+                    <i class="fa-brands fa-instagram text-xl"></i>
+                    <span>@dmitr6teen</span>
+                </a>
+                <a href="https://www.tiktok.com/@albatross.project?_r=1&_t=ZS-9Axq4vlIaHd"
+                    class="flex items-center gap-3 hover:text-[#76C457] transition">
+                    <i class="fa-brands fa-tiktok text-xl"></i>
+                    <span>@albatross.project</span>
+                </a>
+            </div>
+
+            <div class="flex flex-col items-start gap-7 text-white h-full">
+                <div class="w-full flex flex-wrap items-center justify-start pb-12 gap-4" style="margin-top: -30px;">
+                    <div
+                        class="h-16 sm:h-[120px] w-20 h-20 sm:w-28 sm:h-28 object-contain shrink-0 p-0 transform sm:-translate-x-4 translate-y-4 sm:translate-y-8">
+                        <img src="Logo_IPB.png" alt="Logo IPB University"
+                            class="h-16 sm:h-[120px] w-auto object-contain transform sm:-translate-y-1">
+                    </div>
+                    <div
+                        class="flex items-center justify-center w-16 h-16 sm:w-28 sm:h-28 bg-white rounded-full shadow-md shrink-0 p-2 transform sm:-translate-x-4 translate-y-3 sm:translate-y-8">
+                        <img src="logo mitr.png" alt="Logo MIT+R"
+                            class="h-16 sm:h-[120px] w-auto object-contain transform sm:-translate-y-1">
+                    </div>
+                    <img src="logo ALBATROSS.png" alt="Logo ALBATROSS"
+                        class="h-16 sm:h-[150px] w-auto object-contain transform sm:-translate-x-9 translate-y-4 sm:translate-y-8">
+                </div>
+
+                <div class="w-full flex justify-end mt-auto">
+                    <button id="back-to-top"
+                        class="group flex items-center p-3 bg-white text-white rounded-full shadow-md hover:bg-[#FFFFFF] hover:shadow-xl hover:-translate-y-1 transition-all duration-500 ease-in-out cursor-pointer">
+                        <span
+                            class="whitespace-nowrap overflow-hidden transition-all duration-500 ease-in-out max-w-0 opacity-0 group-hover:max-w-[160px] group-hover:opacity-100 group-hover:mr-3 group-hover:pl-2 font-semibold text-[#2A7C13]">
+                            Kembali ke Atas
+                        </span>
+                        <span
+                            class="flex items-center justify-center w-7 h-7 bg-white text-[#2A7C13] rounded-full transition-transform duration-500 group-hover:scale-110 shrink-0">
+                            <i class="fa-solid fa-arrow-up text-sm"></i>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Copyright Bar -->
+    <div class="w-full relative bg-[#FFFFFF] py-4 px-6 border-t-[1px] border-[#2A7C13] overflow-hidden">
+        <div class="absolute inset-0 opacity-15 pointer-events-none"
+            style="background-image: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpath d='M30 0l15 15-15 15-15-15zm0 30l15 15-15 15-15-15z' fill='%232A7C13' fill-opacity='0.8' fill-rule='evenodd' /%3E%3C/svg%3E&quot;); background-size: 30px 30px;">
+        </div>
+
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-center gap-4 relative z-10">
+            <div class="text-[#403100] font-semibold text-sm text-center">
+                © 2026 Diklat MIT+R 16. All Rights Reserved.
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT NAVBAR & RESPONSIVE SEDIMENT SCROLL DARI ATAS SECTION -->
+    <script>
+        const navbar = document.getElementById('navbar');
+        const logoCircle = document.getElementById('logo-circle');
+        const mobileToggleBtn = document.getElementById('mobile-toggle-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const toggleIcon = document.getElementById('toggle-icon');
+        const navLinks = document.querySelectorAll('#nav-links a');
+        const backToTop = document.getElementById('back-to-top');
+
+        function updateNavbar() {
+            const isScrolled = window.scrollY > 50;
+
+            if (isScrolled) {
+                navbar.classList.remove('bg-transparent', 'text-white');
+                navbar.classList.add('bg-white', 'shadow-md');
+
+                logoCircle.classList.remove('opacity-0', 'scale-75');
+                logoCircle.classList.add('opacity-100', 'scale-100');
+
+                navLinks.forEach(link => {
+                    link.classList.remove('text-white', 'hover:bg-[#76C457]/40', 'hover:text-white');
+                    link.classList.add('text-[#2A7C13]', 'hover:bg-[#76C457]/25', 'hover:text-[#2A7C13]');
+                });
+
+                mobileToggleBtn.classList.remove('text-white');
+                mobileToggleBtn.classList.add('text-[#2A7C13]');
+            } else {
+                navbar.classList.remove('bg-white', 'shadow-md');
+                navbar.classList.add('bg-transparent', 'text-white');
+
+                logoCircle.classList.remove('opacity-100', 'scale-100');
+                logoCircle.classList.add('opacity-0', 'scale-75');
+
+                navLinks.forEach(link => {
+                    link.classList.remove('text-[#2A7C13]', 'hover:bg-[#76C457]/25', 'hover:text-[#2A7C13]');
+                    link.classList.add('text-white', 'hover:bg-[#76C457]/40', 'hover:text-white');
+                });
+
+                mobileToggleBtn.classList.remove('text-[#2A7C13]');
+                mobileToggleBtn.classList.add('text-white');
+            }
+        }
+
+        window.addEventListener('scroll', updateNavbar);
+        updateNavbar();
+
+        mobileToggleBtn.addEventListener('click', function () {
+            const isOpening = mobileMenu.classList.contains('hidden');
+            mobileMenu.classList.toggle('hidden');
+            mobileToggleBtn.setAttribute('aria-expanded', String(isOpening));
+            toggleIcon.classList.toggle('fa-bars', !isOpening);
+            toggleIcon.classList.toggle('fa-xmark', isOpening);
+        });
+
+        backToTop.addEventListener('click', function () {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // EFEK SEDIMENTASI DIMULAI DARI GARIS ATAS SECTION DAN MENGALIR KE BAWAH MENGIKUTI SCROLL
+        window.addEventListener('scroll', function () {
+            const timelineSection = document.getElementById('timelineSection');
+            const sedimentSvg = document.getElementById('sedimentFlowSvg');
+            const timelineTitle = document.getElementById('timeline-title'); // Mengambil elemen teks judul
+
+            if (timelineSection && sedimentSvg) {
+                const sectionRect = timelineSection.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                const sectionHeight = timelineSection.offsetHeight;
+
+                // Titik pemicu ada di tengah layar (50% dari atas layar)
+                const triggerLine = windowHeight * 0.5;
+
+                if (sectionRect.top <= triggerLine) {
+                    let distanceInsideSection = triggerLine - sectionRect.top;
+                    let scrollProgress = distanceInsideSection / sectionHeight;
+                    scrollProgress = Math.max(0.02, Math.min(1, scrollProgress));
+
+                    sedimentSvg.style.height = (scrollProgress * 100) + '%';
+
+                    // MENGUBAH WARNA TEKS SAAT TERTUTUP SEDIMEN
+                    if (timelineTitle) {
+                        // Menghitung batas bawah teks judul dari atas kotak linimasa
+                        const titleBottom = timelineTitle.offsetTop + (timelineTitle.offsetHeight / 2);
+                        const currentSedimentHeight = scrollProgress * sectionHeight;
+
+                        if (currentSedimentHeight > titleBottom) {
+                            timelineTitle.classList.remove('text-[#76C457]');
+                            timelineTitle.classList.add('text-white');
+                        } else {
+                            timelineTitle.classList.remove('text-white');
+                            timelineTitle.classList.add('text-[#76C457]');
+                        }
+                    }
+
+                } else {
+                    // Reset ke awal jika di-scroll ke atas melewati section
+                    sedimentSvg.style.height = '2%';
+
+                    // Reset warna teks ke warna gelap
+                    if (timelineTitle) {
+                        timelineTitle.classList.remove('text-white');
+                        timelineTitle.classList.add('text-[#76C457]');
+                    }
+                }
+            }
+        });
+        function openModal(id) {
+            const modal = document.getElementById(id);
+            const card = document.getElementById(id + '-card');
+
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                card.classList.remove('scale-95');
+                card.classList.add('scale-100');
+            }, 10);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(id) {
+            const modal = document.getElementById(id);
+            const card = document.getElementById(id + '-card');
+
+            modal.classList.add('opacity-0');
+            card.classList.remove('scale-100');
+            card.classList.add('scale-95');
+
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }, 300);
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function (event) {
+            const modalBelayan = document.getElementById('modal-belayan');
+            const modalKatalog = document.getElementById('modal-katalog');
+            if (event.target === modalBelayan) closeModal('modal-belayan');
+            if (event.target === modalKatalog) closeModal('modal-katalog');
+        }
+
+        function copyCode() {
+            const htmlContent = document.documentElement.outerHTML;
+
+            const textarea = document.createElement('textarea');
+            textarea.value = htmlContent;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+
+            // Toast UI feedback
+            const toast = document.getElementById('toast');
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+        document.addEventListener("DOMContentLoaded", function () {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+
+            document.querySelectorAll('.reveal-on-scroll').forEach((el) => {
+                observer.observe(el);
+            });
+        });
+        // LOGIKA TOMBOL SELENGKAPNYA (AKTIVITAS TERKINI)
+        const btnSelengkapnya = document.getElementById('btn-selengkapnya');
+        const extraActivities = document.querySelectorAll('.extra-activity');
+        const iconSelengkapnya = document.getElementById('icon-selengkapnya');
+        let isExpanded = false;
+
+        if (btnSelengkapnya) {
+            btnSelengkapnya.addEventListener('click', function () {
+                isExpanded = !isExpanded;
+
+                if (isExpanded) {
+                    // Saat dibuka: langsung tampilkan elemen, lalu ubah teks/ikon
+                    extraActivities.forEach(card => {
+                        card.classList.remove('hidden');
+                        card.classList.add('animate-fade-in');
+                    });
+                    btnSelengkapnya.querySelector('span').innerText = 'Lebih Sedikit';
+                    iconSelengkapnya.classList.replace('fa-chevron-down', 'fa-chevron-up');
+                } else {
+                    // Saat ditutup: ubah teks/ikon, scroll dulu, baru sembunyikan elemen
+                    btnSelengkapnya.querySelector('span').innerText = 'Selengkapnya';
+                    iconSelengkapnya.classList.replace('fa-chevron-up', 'fa-chevron-down');
+
+                    // Scroll perlahan ke atas
+                    document.querySelector('.max-w-7xl.mx-auto.mt-10').scrollIntoView({ behavior: 'smooth' });
+
+                    // Beri jeda 600ms (waktu yang cukup untuk smooth scroll) sebelum menghilangkan kartu
+                    setTimeout(() => {
+                        extraActivities.forEach(card => {
+                            card.classList.add('hidden');
+                            card.classList.remove('animate-fade-in');
+                        });
+                    }, 800);
+                }
+            });
+        }
+    </script>
+
+    <script>
+        window.addEventListener('scroll', function () {
+            const navbar = document.getElementById('navbar');
+            const navItems = document.querySelectorAll('.nav-item');
+            const mobileBtn = document.getElementById('mobile-toggle-btn');
+            const logoCircle = document.getElementById('logo-circle');
+
+            if (window.scrollY > 50) {
+                // KODE INI YANG MENGUBAH TAMPILAN SAAT DI-SCROLL KE BAWAH:
+                navbar.classList.remove('bg-transparent', 'text-white');
+                navbar.classList.add('bg-white', 'shadow-md'); // Navbar jadi putih
+
+                navItems.forEach(link => {
+                    link.classList.remove('text-white');
+                    link.classList.add(
+                        'text-[#2A7C13]', // Teks menu jadi warna hijau (#2A7C13)
+                        'hover:bg-[#76C457]/25',
+                        'hover:text-[#2A7C13]'
+                    );
+                });
+
+                if (mobileBtn) {
+                    mobileBtn.classList.add('text-[#2A7C13]'); // Tombol menu mobile jadi hijau
+                }
+
+                if (logoCircle) {
+                    logoCircle.classList.remove('opacity-0', 'scale-75');
+                    logoCircle.classList.add('opacity-100', 'scale-100');
+                }
+
+            } else {
+                // Kondisi awal saat berada di paling atas (mengembalikan ke warna transparan/putih)
+                navbar.classList.add('bg-transparent', 'text-white');
+                navbar.classList.remove('bg-white', 'shadow-md');
+                // ... (kode selanjutnya)
+            }
+        });
+    </script>
+
+    <script>
+        document.querySelectorAll(".team-carousel").forEach((carousel) => {
+            const cards = Array.from(
+                carousel.querySelectorAll(".team-photo-card")
+            );
+
+            const dots = Array.from(
+                carousel.querySelectorAll(".team-dot")
+            );
+
+            const prevButton = carousel.querySelector(".team-prev");
+            const nextButton = carousel.querySelector(".team-next");
+
+            if (!cards.length) return;
+
+            let currentIndex = 0;
+            let touchStartX = 0;
+
+            function updateCarousel() {
+                cards.forEach((card, index) => {
+                    const position =
+                        (index - currentIndex + cards.length) % cards.length;
+
+                    card.style.zIndex = cards.length - position;
+                    card.style.opacity = "1";
+                    card.style.pointerEvents = position === 0 ? "auto" : "none";
+
+                    if (position === 0) {
+                        card.style.transform =
+                            "translate(0, 0) rotate(0deg) scale(1)";
+                    } else {
+                        const offset = Math.min(position, 4);
+
+                        card.style.transform =
+                            `translate(${-offset * 9}px, ${offset * 5}px) ` +
+                            `rotate(${-offset * 1.5}deg) ` +
+                            `scale(${1 - offset * 0.025})`;
+                    }
+                });
+
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle("active", index === currentIndex);
+                    dot.setAttribute(
+                        "aria-current",
+                        index === currentIndex ? "true" : "false"
+                    );
+                });
+            }
+
+            function goTo(index) {
+                currentIndex = (index + cards.length) % cards.length;
+                updateCarousel();
+            }
+
+            prevButton.addEventListener("click", () => {
+                goTo(currentIndex - 1);
+            });
+
+            nextButton.addEventListener("click", () => {
+                goTo(currentIndex + 1);
+            });
+
+            dots.forEach((dot, index) => {
+                dot.addEventListener("click", () => goTo(index));
+            });
+
+            // Geser foto di layar sentuh
+            const stack = carousel.querySelector(".team-card-stack");
+
+            stack.addEventListener("touchstart", (event) => {
+                touchStartX = event.changedTouches[0].screenX;
+            }, { passive: true });
+
+            stack.addEventListener("touchend", (event) => {
+                const touchEndX = event.changedTouches[0].screenX;
+                const difference = touchEndX - touchStartX;
+
+                if (Math.abs(difference) > 40) {
+                    goTo(currentIndex + (difference < 0 ? 1 : -1));
+                }
+            }, { passive: true });
+
+            updateCarousel();
+        });
+
+        // Fungsi untuk mengembalikan posisi scroll saat halaman baru dimuat
+        document.addEventListener("DOMContentLoaded", function () {
+            let savedScroll = sessionStorage.getItem('scrollPosition');
+            if (savedScroll !== null) {
+                // Langsung gulir ke posisi yang tersimpan tanpa animasi (instan)
+                window.scrollTo(0, parseInt(savedScroll));
+                // Hapus memori scroll agar tidak mengganggu navigasi selanjutnya
+                sessionStorage.removeItem('scrollPosition');
+            }
+        });
+    </script>
+
+</body>
+
+</html>
