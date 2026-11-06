@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Albatross - Sistem Pemantauan Perairan</title>
+    <title>Albatross - Aquatic Monitoring System</title>
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -272,7 +272,6 @@
             transform: translateY(-5px);
         }
 
-        /* FOTO + EFEK FADING */
         .problem-image-wrap {
             position: absolute;
             inset: 0 0 auto 0;
@@ -303,7 +302,6 @@
             transform: scale(1.05);
         }
 
-        /* KONTEN: POSISI SERAGAM */
         .problem-content {
             position: relative;
             z-index: 1;
@@ -314,7 +312,6 @@
             align-items: flex-start;
         }
 
-        /* BADGE ANGKA BULAT */
         .problem-number {
             width: 48px;
             height: 48px;
@@ -331,8 +328,8 @@
             flex-shrink: 0;
         }
 
-        /* JUDUL DISAMAKAN TINGGINYA */
         .problem-title {
+            width: 100%;
             font-size: 1.3rem;
             line-height: 1.35;
             font-weight: 700;
@@ -352,24 +349,24 @@
         }
 
         @media (max-width: 767px) {
-            .problem-section {
-                padding: 48px 18px 56px;
+            .problem-card {
+                min-height: 0;
             }
 
-            .problem-card {
-                min-height: 420px;
+            .problem-image-wrap {
+                height: 420px;
             }
 
             .problem-content {
-                padding: 210px 22px 24px;
+                padding: 300px 22px 24px;
             }
 
             .problem-title {
-                min-height: auto;
+                min-height: 3.5em;
             }
         }
     </style>
-
+    <link rel="icon" type="image/png" href="logo ALBATROSS.png">
 </head>
 
 <body class="bg-white text-gray-800 font-inter">
@@ -381,44 +378,44 @@
             <div class="relative flex items-center justify-center">
                 <a href="#"
                     class="relative z-10 flex items-center justify-center transition-transform hover:scale-105 mx-[5px]">
-                    <img src="Logo_IPB.png" alt="LOGO IPB University" class="h-12 w-auto object-contain mx-[10px]">
+                    <img src="Logo_IPB.png" alt="IPB University Logo" class="h-12 w-auto object-contain mx-[10px]">
                 </a>
                 <a href="#"
                     class="relative z-10 flex items-center justify-center transition-transform hover:scale-105 mx-[5px]">
-                    <img src="logo mitr.png" alt="LOGO MIT+R" class="h-12 w-auto object-contain mx-[10px]"
+                    <img src="logo mitr.png" alt="MIT+R Logo" class="h-12 w-auto object-contain mx-[10px]"
                         style="margin-left: -5px;">
                 </a>
                 <a href="#" class="relative flex items-center justify-center transition-transform hover:scale-105">
                     <div id="logo-circle"
                         class="absolute bg-[#2A7C13] rounded-full w-14 h-14 -z-0 opacity-0 scale-75 transition-all duration-300 ease-in-out pointer-events-none">
                     </div>
-                    <img src="logo ALBATROSS.png" alt="LOGO ALBATROSS" class="relative z-10 h-12 w-auto object-contain">
+                    <img src="logo ALBATROSS.png" alt="ALBATROSS Logo" class="relative z-10 h-12 w-auto object-contain">
                 </a>
             </div>
 
             <div class="flex items-center space-x-3">
                 <ul id="nav-links"
                     class="hidden md:flex items-center space-x-2 sm:space-x-3 text-xs sm:text-sm font-semibold tracking-wider sm:tracking-widest uppercase transition-all duration-300 py-1 font-inter">
-                    <li><a href="index-en.html"
+                    <li><a href="index.html"
                             class="nav-item whitespace-nowrap px-3 sm:px-4 py-2 rounded-full transition-all duration-200 text-white hover:bg-[#76C457]/40 hover:text-white nav-underline"><span
-                                class="nav-text-wrap">BERANDA<span class="nav-line"></span></span></a></li>
+                                class="nav-text-wrap">HOME<span class="nav-line"></span></span></a></li>
                     <li><a href="profil-en.html"
                             class="nav-item whitespace-nowrap px-3 sm:px-4 py-2 rounded-full transition-all duration-200 text-white hover:bg-[#76C457]/40 hover:text-white nav-underline"><span
-                                class="nav-text-wrap">PROFIL<span class="nav-line"></span></span></a></li>
+                                class="nav-text-wrap">PROFILE<span class="nav-line"></span></span></a></li>
                     <li><a href="hubungi-en.html"
                             class="nav-item whitespace-nowrap px-3 sm:px-4 py-2 rounded-full transition-all duration-200 text-white hover:bg-[#76C457]/40 hover:text-white nav-underline"><span
-                                class="nav-text-wrap">HUBUNGI<span class="nav-line"></span></span></a></li>
+                                class="nav-text-wrap">CONTACT<span class="nav-line"></span></span></a></li>
                     <li><a href="progres-en.html"
                             class="nav-item whitespace-nowrap px-3 sm:px-4 py-2 rounded-full transition-all duration-200 text-white hover:bg-[#76C457]/40 hover:text-white nav-underline"><span
-                                class="nav-text-wrap">PROGRES<span class="nav-line"></span></span></a></li>
+                                class="nav-text-wrap">PROGRESS<span class="nav-line"></span></span></a></li>
                     <li class="ml-2 flex items-center">
                         <div
                             class="flex bg-[#2A7C13]/70 rounded-full p-1 backdrop-blur-sm border border-white/20 transition-all shadow-inner">
                             <!-- Tambahkan onclick di sini -->
-                            <span
-                                class="w-8 h-8 flex items-center justify-center rounded-full text-xs font-bold bg-white text-slate-800 shadow-sm cursor-default">EN</span>
                             <a href="index.html" onclick="saveScrollPosition()"
                                 class="w-8 h-8 flex items-center justify-center rounded-full text-xs font-bold text-white transition-all hover:bg-slate-500/50">ID</a>
+                            <span
+                                class="w-8 h-8 flex items-center justify-center rounded-full text-xs font-bold bg-white text-slate-800 shadow-sm cursor-default">EN</span>
                         </div>
                     </li>
                 </ul>
@@ -429,18 +426,18 @@
 
         <div id="mobile-menu" class="hidden md:hidden bg-white mt-4 rounded-xl shadow-lg p-4">
             <div class="flex flex-col space-y-2 text-sm font-semibold text-[#76C457]">
-                <a href="index-en.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">BERANDA</a>
-                <a href="profil-en.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">PROFIL</a>
-                <a href="hubungi-en.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">HUBUNGI</a>
-                <a href="progres-en.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">PROGRES</a>
+                <a href="index.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">HOME</a>
+                <a href="profil-en.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">PROFILE</a>
+                <a href="hubungi-en.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">CONTACT</a>
+                <a href="progres-en.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">PROGRESS</a>
                 <div class="px-4 py-3 flex justify-between items-center border-t border-gray-100 mt-2">
-                    <span class="text-sm font-semibold text-[#76C457]">BAHASA</span>
+                    <span class="text-sm font-semibold text-[#76C457]">LANGUAGE</span>
                     <div class="flex bg-[#2A7C13]/70 rounded-full p-1">
                         <!-- Tambahkan onclick di sini -->
-                        <span
-                            class=" w-8 h-8 flex items-center justify-center rounded-full text-xs font-bold bg-white text-[#2A7C13] shadow-sm cursor-default">EN</span>
                         <a href="index.html" onclick="saveScrollPosition()"
                             class="w-8 h-8 flex items-center justify-center rounded-full text-xs font-bold text-white transition-all">ID</a>
+                        <span
+                            class=" w-8 h-8 flex items-center justify-center rounded-full text-xs font-bold bg-white text-[#2A7C13] shadow-sm cursor-default">EN</span>
                     </div>
                 </div>
             </div>
@@ -450,13 +447,13 @@
     <!-- Hero Section -->
     <section class="relative w-full min-h-[600px] h-[100svh] flex flex-col bg-gray-900 overflow-hidden pt-20">
         <div class="absolute inset-0 z-0 overflow-hidden bg-gray-900">
-            <img src="mangrove banner.jpeg" alt="Mangrove Background 1"
+            <img src="mangrove banner.jpeg" alt="Mangrove background 1"
                 class="bg-slide active absolute inset-0 w-full h-full object-cover">
-            <img src="mangrove banner 2.png" alt="Mangrove Background 2"
+            <img src="mangrove banner 2.png" alt="Mangrove background 2"
                 class="bg-slide absolute inset-0 w-full h-full object-cover">
-            <img src="mangrove banner 3.jpeg" alt="Mangrove Background 3"
+            <img src="mangrove banner 3.jpeg" alt="Mangrove background 3"
                 class="bg-slide absolute inset-0 w-full h-full object-cover">
-            <img src="mangrove banner 4.jpeg" alt="Mangrove Background 4"
+            <img src="mangrove banner 4.jpeg" alt="Mangrove background 4"
                 class="bg-slide absolute inset-0 w-full h-full object-cover">
             <div class="absolute inset-0 z-10 pointer-events-none"
                 style="background: radial-gradient(ellipse 80% 80% at 50% 50%, rgba(0,0,0,0.90) 0%, rgba(0,0,0,0.6) 30%, rgba(0,0,0,0.45) 60%, rgba(0,0,0,0.25) 85%, transparent 100%);">
@@ -467,11 +464,11 @@
             class="relative z-20 flex-grow flex flex-col justify-center items-center text-center px-4 sm:px-6 mt-[-20px] sm:mt-[-40px]">
             <h1
                 class="font-tech text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-white tracking-[0.05em] sm:tracking-[0.08em] drop-shadow-lg mb-4 sm:mb-6 leading-tight">
-                Menata Harapan <br> untuk Segara Anakan
+                Shaping a Hopeful Future <br> for Segara Anakan
             </h1>
             <p
                 class="text-white text-base sm:text-lg md:text-xl lg:text-2xl max-w-none whitespace-nowrap leading-relaxed drop-shadow-md mb-6 sm:mb-10 font-medium px-2">
-                Memantau, melestarikan, dan mengedukasi demi keberlanjutan lingkungan.
+                Monitoring, conserving, and educating for a sustainable environment.
             </p>
         </div>
     </section>
@@ -481,15 +478,14 @@
         style="width: 100%; max-width: 1200px; margin: 0 auto; padding: 20px 20px 0; box-sizing: border-box; font-family: Arial, sans-serif; display: flex; flex-direction: column; gap: 20px;">
 
         <br>
-        <h2 style="font-size: 35px; font-weight: bold; color: #2A7C13; margin-top: 0; text-align: center;">Apa yang
-            terjadi di Laguna Segara Anakan?</h2>
+        <h2 style="font-size: 35px; font-weight: bold; color: #2A7C13; margin-top: 0; text-align: center;">What Is
+            Happening in Segara Anakan Lagoon?</h2>
         <p style="font-size: 16px; line-height: 1.7; color: #454545; text-align: justify; margin: 0;">
-            Saat ini, Laguna Segara Anakan menghadapi <strong>penyusutan wilayah perairan akibat sedimentasi yang terus
-                berlangsung.</strong> Sedimentasi merupakan proses alami yang berperan dalam pembentukan daratan dan
-            habitat di kawasan pesisir. Namun, <strong>akumulasi yang berlebihan dapat menyebabkan pendangkalan dan
-                penyusutan perairan serta menekan ekosistem mangrove.</strong> Kondisi ini menjadikan pemantauan
-            perairan penting untuk memahami perubuhan lingkungan dan mendukung keberlanjutan ekosistem serta masyarakat
-            pesisir.
+            Segara Anakan Lagoon is currently facing <strong>a shrinking water area due to ongoing
+                sedimentation.</strong> Sedimentation is a natural process that contributes to the formation of land and
+            habitats in coastal areas. However, <strong>excessive sediment accumulation can cause shallowing, reduce the
+                water area, and put pressure on mangrove ecosystems.</strong> This makes water monitoring important for
+            understanding environmental changes and supporting the sustainability of ecosystems and coastal communities.
         </p>
 
         <div class="flex flex-col md:flex-row items-center md:items-center gap-6 w-full">
@@ -497,10 +493,10 @@
                 <div class="w-full max-w-xl">
                     <div id="lsa-compare" class="relative w-full overflow-hidden rounded-xl shadow-lg select-none"
                         style="aspect-ratio: 16 / 9; cursor: ew-resize;">
-                        <img src="LSA2023.png" alt="LSA di tahun 2023"
+                        <img src="LSA2023.png" alt="Segara Anakan Lagoon in 2023"
                             class="absolute inset-0 w-full h-full object-cover" draggable="false">
                         <div id="lsa-before" class="absolute inset-0 overflow-hidden" style="width: 50%;">
-                            <img src="LSA1984.png" alt="LSA di tahun 1984"
+                            <img src="LSA1984.png" alt="Segara Anakan Lagoon in 1984"
                                 class="absolute inset-0 max-w-none h-full object-cover"
                                 style="width: 100%; height: 100%;" id="lsa-before-image" draggable="false">
                         </div>
@@ -515,7 +511,7 @@
                             class="absolute inset-0 z-20 h-full w-full opacity-0"
                             style="cursor: ew-resize; touch-action: pan-y;">
                     </div>
-                    <p class="mt-2 text-center text-xs text-gray-500">Sumber citra: Google Earth</p>
+                    <p class="mt-2 text-center text-xs text-gray-500">Image source: Google Earth</p>
                 </div>
             </div>
 
@@ -528,7 +524,8 @@
                                     <span class="counter" data-target="2906">0</span> <span
                                         class="text-2xl sm:text-3xl">ha</span>
                                 </h3>
-                                <p class="text-[#454545] font-semibold text-sm sm:text-base">Luas Perairan LSA (1984)
+                                <p class="text-[#454545] font-semibold text-sm sm:text-base">Water Area of Segara Anakan
+                                    Lagoon (1984)
                                 </p>
                             </div>
                             <div
@@ -540,17 +537,18 @@
                                     &lt; <span class="counter" data-target="400">0</span> <span
                                         class="text-2xl sm:text-3xl">ha</span>
                                 </h3>
-                                <p class="text-[#454545] font-semibold text-sm sm:text-base">Luas Perairan LSA (2023)
+                                <p class="text-[#454545] font-semibold text-sm sm:text-base">Water Area of Segara Anakan
+                                    Lagoon (2023)
                                 </p>
                             </div>
                         </div>
                         <div class="w-full h-[2px] bg-[#76C457]"></div>
                         <div class="w-full p-2 transition-transform hover:scale-105 duration-300">
                             <h3 class="font-tech text-4xl sm:text-5xl font-bold text-[#2A7C13] mb-2 drop-shadow-sm">
-                                <span class="counter" data-target="4.5">0</span> <span class="text-2xl sm:text-3xl">Juta
-                                    Ton</span>
+                                <span class="counter" data-target="4.5">0</span> <span
+                                    class="text-2xl sm:text-3xl">Million Tonnes</span>
                             </h3>
-                            <p class="text-[#454545] font-semibold text-base sm:text-lg">Sedimen Masuk per Tahun</p>
+                            <p class="text-[#454545] font-semibold text-base sm:text-lg">Sediment Inflow per Year</p>
                         </div>
                     </div>
                 </div>
@@ -564,11 +562,11 @@
             <div class="max-w-6xl mx-auto text-center">
 
                 <h1 class="text-3xl md:text-4xl font-bold text-[#2A7C13]">
-                    3 Permasalahan Utama
+                    3 Key Challenges
                 </h1>
 
                 <h2 class="text-xl font-medium text-[#454545] mt-2">
-                    di Laguna Segara Anakan
+                    in Segara Anakan Lagoon
                 </h2>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-10">
@@ -581,11 +579,10 @@
 
                         <div class="problem-content">
                             <span class="problem-number">01</span>
-                            <h3 class="problem-title">Penyusutan Luas Perairan</h3>
+                            <h3 class="problem-title">Shrinking Water Area</h3>
                             <p class="problem-description">
-                                Sedimentasi terus menggerus perairan Segara Anakan,
-                                memicu pendangkalan dan penyusutan yang mengancam
-                                keseimbangan ekosistem pesisir.
+                                Ongoing sedimentation is reducing the water area of Segara Anakan, causing shallowing
+                                and shrinkage that threaten the balance of coastal ecosystems.
                             </p>
                         </div>
                     </div>
@@ -598,11 +595,10 @@
 
                         <div class="problem-content">
                             <span class="problem-number">02</span>
-                            <h3 class="problem-title">Ancaman terhadap Ekosistem Mangrove</h3>
+                            <h3 class="problem-title">Threats to Mangrove Ecosystems</h3>
                             <p class="problem-description">
-                                Perubahan lingkungan pesisir dapat menghilangkan
-                                habitat biota dan melemahkan fungsi mangrove
-                                sebagai pelindung alami pantai.
+                                Changes in coastal environments can lead to habitat loss for wildlife and weaken the
+                                role of mangroves as natural coastal protection.
                             </p>
                         </div>
                     </div>
@@ -615,11 +611,11 @@
 
                         <div class="problem-content">
                             <span class="problem-number">03</span>
-                            <h3 class="problem-title">Potensi Mangrove yang Belum Optimal</h3>
+                            <h3 class="problem-title">Untapped Mangrove Potential</h3>
                             <p class="problem-description">
-                                Potensi mangrove Kampung Laut menyimpan peluang
-                                bagi alam dan masyarakat yang dapat dikembangkan
-                                melalui inovasi dan pemberdayaan berkelanjutan.
+                                Kampung Laut's mangroves offer opportunities to benefit both nature and local
+                                communities, which can be developed through innovation and sustainable community
+                                empowerment.
                             </p>
                         </div>
                     </div>
@@ -629,7 +625,7 @@
         </section>
 
         <!-- ==========================================
-             PROGRAM & SOLUSI KAMI (2 KARTU INTERAKTIF)
+             OUR PROGRAMS & SOLUTIONS (2 KARTU INTERAKTIF)
         =========================================== -->
         <div class="w-screen relative bg-gray-100 py-16 px-4 sm:px-12 mb-0 border-y border-gray-300/70 shadow-inner"
             style="margin-left: calc(50% - 50vw); margin-top: -20px;">
@@ -637,11 +633,11 @@
             <div class="max-w-6xl mx-auto px-3">
                 <div class="text-center mb-12">
                     <h2 class="font-tech text-3xl sm:text-4xl font-bold text-gray-800 tracking-wide mb-3">
-                        PROGRAM & SOLUSI KAMI
+                        OUR PROGRAMS & SOLUTIONS
                     </h2>
                     <p class="text-[#454545] text-sm sm:text-base max-w-2xl mx-auto">
-                        Pendekatan terpadu berbasis teknologi dan partisipasi aktif untuk menjawab tantangan pesisir
-                        Laguna Segara Anakan.
+                        An integrated approach combining technology and active community participation to address the
+                        coastal challenges of Segara Anakan Lagoon.
                     </p>
                 </div>
 
@@ -655,7 +651,7 @@
                         onclick="toggleCard(this)"
                         style="background-color: rgba(110, 53, 17, 0.04); border: 2px solid rgba(110, 53, 17, 0.25); box-shadow: 0 5px 18px rgba(45, 55, 72, 0.08);">
 
-                        <img src="alat.jpeg" alt="Background Alat Pemantauan"
+                        <img src="alat.jpeg" alt="Monitoring equipment background"
                             class="absolute inset-0 w-full h-full object-cover opacity-15 pointer-events-none z-0">
 
                         <div class="relative z-10 p-8 flex flex-col items-center text-center h-full justify-center">
@@ -664,11 +660,11 @@
                                 <i class="fa-solid fa-microchip"></i>
                             </div>
 
-                            <h3 class="font-bold text-xl text-gray-800 mb-2">Monitoring Kawasan <br> Pesisir (ALBATROSS)
+                            <h3 class="font-bold text-xl text-gray-800 mb-2">Coastal Area <br> Monitoring (ALBATROSS)
                             </h3>
 
                             <p class="text-[#2A7C13] font-semibold text-sm flex items-center gap-2 group">
-                                <span class="action-text">Klik untuk detail</span>
+                                <span class="action-text">Click for details</span>
                                 <i class="fa-solid fa-chevron-down icon-toggle"></i>
                             </p>
 
@@ -676,10 +672,10 @@
                             <div class="dropdown-content w-full">
                                 <div class="border-t border-[#76c457] pt-6 mt-2 text-left">
                                     <p class="text-[#454545] text-base leading-relaxed mb-8 text-justify">
-                                        Proyek ALBATROSS berfokus pada pengembangan 3 alat utama (<strong>ALBA, BAT, dan
-                                            TROSS</strong>) untuk memantau parameter perairan di kawasan Kampung Laut.
-                                        Data yang diperoleh akan divisualisasikan dalam bentuk peta untuk mendukung
-                                        pemantauan dan konservasi ekosistem secara real-time.
+                                        The ALBATROSS project focuses on developing three main devices (<strong>ALBA,
+                                            BAT, and TROSS</strong>) to monitor water parameters in the Kampung Laut
+                                        area. The collected data will be visualized on maps to support real-time
+                                        ecosystem monitoring and conservation.
                                     </p>
 
                                     <!-- DAFTAR ALAT (TEKS TERBATAS DI GARIS MERAH + RATA KANAN-KIRI + FOTO ALAT LEBIH BESAR) -->
@@ -694,24 +690,24 @@
                                                 <h4 class="font-bold text-[#2A7C13] text-[1.3rem] leading-tight mb-2">
                                                     ALBA</h4>
                                                 <p class="text-base text-[#454545] leading-relaxed text-justify">
-                                                    <strong>Keunggulan:</strong>
+                                                    <strong>Key Features:</strong>
                                                     <br>
-                                                    Dilengkapi dengan sensor presisi untuk mengukur kualitas air dan
-                                                    terintegrasi sistem transmisi data jarak jauh.
+                                                    Equipped with precision sensors to measure water quality and an
+                                                    integrated long-range data transmission system.
                                                 </p>
                                             </div>
                                             <!-- Kolom 2: Foto Alat (Diperbesar Luas) -->
                                             <div class="flex-1 flex justify-center items-center w-full">
-                                                <img src="ALBA.png" alt="Alat ALBA"
+                                                <img src="ALBA.png" alt="ALBA device"
                                                     class="w-full max-w-[360px] h-48 md:h-52 object-cover rounded-xl bg-gray-200 shadow-md border border-gray-200">
                                             </div>
-                                            <!-- Kolom 3: Progres Keseluruhan & Tombol -->
+                                            <!-- Kolom 3: Overall Progress & Tombol -->
                                             <div
                                                 class="flex flex-col justify-center items-start md:items-end gap-3 w-full md:w-1/3 shrink-0">
 
                                                 <div class="w-full flex flex-col items-center gap-3">
                                                     <span class="text-sm font-bold text-gray-600">
-                                                        Progres Keseluruhan
+                                                        Overall Progress
                                                     </span>
 
                                                     <div class="relative w-28 h-28">
@@ -728,9 +724,9 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <a href="progres.html"
+                                                <a href="progres-en.html"
                                                     class="inline-flex font-semibold text-white bg-[#2A7C13] px-4 py-2 rounded-lg hover:bg-[#76C457] text-xs transition-colors items-center gap-2 shadow-sm z-20 relative">
-                                                    Lihat Progres <i class="fa-solid fa-arrow-right-long"></i>
+                                                    View Progress <i class="fa-solid fa-arrow-right-long"></i>
                                                 </a>
                                             </div>
                                         </div>
@@ -744,24 +740,24 @@
                                                 <h4 class="font-bold text-[#2A7C13] text-[1.3rem] leading-tight mb-2">
                                                     BAT</h4>
                                                 <p class="text-base text-[#454545] leading-relaxed text-justify">
-                                                    <strong>Keunggulan:</strong>
+                                                    <strong>Key Features:</strong>
                                                     <br>
-                                                    Mampu memantau pergerakan arus secara akurat menggunakan teknologi
-                                                    pelampung pintar berdaya rendah.
+                                                    Accurately monitors current movements using low-power smart buoy
+                                                    technology.
                                                 </p>
                                             </div>
                                             <!-- Kolom 2: Foto Alat (Diperbesar Luas) -->
                                             <div class="flex-1 flex justify-center items-center w-full">
-                                                <img src="BAT.png" alt="Alat BAT"
+                                                <img src="BAT.png" alt="BAT device"
                                                     class="w-full max-w-[360px] h-48 md:h-52 object-cover rounded-xl bg-gray-200 shadow-md border border-gray-200">
                                             </div>
-                                            <!-- Kolom 3: Progres Keseluruhan & Tombol -->
+                                            <!-- Kolom 3: Overall Progress & Tombol -->
                                             <div
                                                 class="flex flex-col justify-center items-start md:items-end gap-3 w-full md:w-1/3 shrink-0">
 
                                                 <div class="w-full flex flex-col items-center gap-3">
                                                     <span class="text-sm font-bold text-gray-600">
-                                                        Progres Keseluruhan
+                                                        Overall Progress
                                                     </span>
 
                                                     <div class="relative w-28 h-28">
@@ -778,9 +774,9 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <a href="progres.html"
+                                                <a href="progres-en.html"
                                                     class="inline-flex font-semibold text-white bg-[#2A7C13] px-4 py-2 rounded-lg hover:bg-[#76C457] text-xs transition-colors items-center gap-2 shadow-sm z-20 relative">
-                                                    Lihat Progres <i class="fa-solid fa-arrow-right-long"></i>
+                                                    View Progress <i class="fa-solid fa-arrow-right-long"></i>
                                                 </a>
                                             </div>
                                         </div>
@@ -794,24 +790,24 @@
                                                 <h4 class="font-bold text-[#2A7C13] text-[1.3rem] leading-tight mb-2">
                                                     TROSS</h4>
                                                 <p class="text-base text-[#454545] leading-relaxed text-justify">
-                                                    <strong>Keunggulan:</strong>
+                                                    <strong>Key Features:</strong>
                                                     <br>
-                                                    Sistem deteksi tingkat sedimentasi secara otomatis dengan fitur
-                                                    peringatan dini berbasis IoT.
+                                                    Automatically detects sedimentation levels and provides IoT-based
+                                                    early warnings.
                                                 </p>
                                             </div>
                                             <!-- Kolom 2: Foto Alat (Diperbesar Luas) -->
                                             <div class="flex-1 flex justify-center items-center w-full">
-                                                <img src="TROSS.png" alt="Alat TROSS"
+                                                <img src="TROSS.png" alt="TROSS device"
                                                     class="w-full max-w-[360px] h-48 md:h-52 object-cover rounded-xl bg-gray-200 shadow-md border border-gray-200">
                                             </div>
-                                            <!-- Kolom 3: Progres Keseluruhan & Tombol -->
+                                            <!-- Kolom 3: Overall Progress & Tombol -->
                                             <div
                                                 class="flex flex-col justify-center items-start md:items-end gap-3 w-full md:w-1/3 shrink-0">
 
                                                 <div class="w-full flex flex-col items-center gap-3">
                                                     <span class="text-sm font-bold text-gray-600">
-                                                        Progres Keseluruhan
+                                                        Overall Progress
                                                     </span>
 
                                                     <div class="relative w-28 h-28">
@@ -828,9 +824,9 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <a href="progres.html"
+                                                <a href="progres-en.html"
                                                     class="inline-flex font-semibold text-white bg-[#2A7C13] px-4 py-2 rounded-lg hover:bg-[#76C457] text-xs transition-colors items-center gap-2 shadow-sm z-20 relative">
-                                                    Lihat Progres <i class="fa-solid fa-arrow-right-long"></i>
+                                                    View Progress <i class="fa-solid fa-arrow-right-long"></i>
                                                 </a>
                                             </div>
                                         </div>
@@ -842,13 +838,13 @@
                     </div>
 
                     <!-- ==============================================
-                        KARTU 2: PENANAMAN MANGROVE & EDUKASI PANGAN
+                        CARD 2: MANGROVE PLANTING & FOOD EDUCATION
                         =============================================== -->
                     <div class="interactive-card relative bg-white rounded-2xl flex flex-col justify-between overflow-hidden cursor-pointer"
                         onclick="toggleCard(this)"
                         style="background-color: rgba(110, 53, 17, 0.04); border: 2px solid rgba(110, 53, 17, 0.25); box-shadow: 0 5px 18px rgba(45, 55, 72, 0.08);">
 
-                        <img src="tanam.jpg" alt="Background Penanaman Mangrove"
+                        <img src="tanam.jpg" alt="Mangrove planting background"
                             class="absolute inset-0 w-full h-full object-cover opacity-15 pointer-events-none z-0">
 
                         <div class="relative z-10 p-8 flex flex-col items-center text-center h-full justify-center">
@@ -862,14 +858,14 @@
 
                                 <h3
                                     class="font-bold text-xl text-gray-800 mb-2 transition-all duration-300 [[.active]_&]:text-3xl">
-                                    Penanaman Mangrove <br> & Edukasi Pangan
+                                    Mangrove Planting <br> & Food Education
                                 </h3>
 
                                 <p
                                     class="text-[#2A7C13] font-semibold text-sm flex items-center justify-center gap-2 group">
 
                                     <span class="action-text transition-all duration-300 [[.active]_&]:text-base">
-                                        Klik untuk detail
+                                        Click for details
                                     </span>
 
                                     <i
@@ -882,7 +878,7 @@
                             <div class="dropdown-content w-full">
                                 <div class="border-t border-[#76c457] pt-6 mt-2 text-left flex flex-col gap-6">
 
-                                    <!-- 1. Bagian Penanaman Mangrove -->
+                                    <!-- 1. Bagian Mangrove Planting -->
                                     <div
                                         class="bg-gray-50 rounded-xl p-5 border border-gray-200 shadow-sm hover:border-[#76C457] transition-all grid grid-cols-1 md:grid-cols-12 items-center gap-6">
                                         <!-- Kolom Kiri: Teks (Font Lebih Besar & Terbatas sebelum Batas Merah) -->
@@ -890,18 +886,18 @@
                                             <h4 class="font-bold text-[#2A7C13] text-lg sm:text-xl mb-2 flex items-center"
                                                 style="font-size: 25px;">
                                                 <i class="fa-solid fa-leaf mr-2 text-[#76C457]"
-                                                    style="font-size: 30px;"></i> Penanaman Mangrove
+                                                    style="font-size: 30px;"></i> Mangrove Planting
                                             </h4>
                                             <p class="text-sm sm:text-base text-[#454545] leading-relaxed text-justify">
-                                                Kegiatan penanaman mangrove bersama masyarakat Kampung Laut untuk
-                                                menjaga kelestarian ekosistem pesisir dan habitat biota mangrove. Upaya
-                                                ini turut mendukung pemulihan mangrove sebagai ekosistem karbon biru
-                                                yang berperan dalam mitigasi perubahan iklim.
+                                                A mangrove planting initiative carried out with the Kampung Laut
+                                                community to help preserve coastal ecosystems and mangrove wildlife
+                                                habitats. This effort also supports mangrove restoration as a blue
+                                                carbon ecosystem that contributes to climate change mitigation.
                                             </p>
                                         </div>
                                         <!-- Kolom Kanan: Foto Kotak Persegi (Square) di Sebelah Kanan Batas Merah -->
                                         <div class="md:col-span-4 flex justify-center items-center">
-                                            <img src="mangrove.png" alt="Penanaman Mangrove"
+                                            <img src="mangrove.png" alt="Mangrove planting activity"
                                                 class="w-45 h-45 sm:w-50 sm:h-50 aspect-square object-cover rounded-xl">
                                         </div>
                                     </div>
@@ -913,20 +909,19 @@
                                         <div class="flex flex-col text-left md:col-span-8">
                                             <h4
                                                 class="font-bold text-[#2A7C13] text-lg sm:text-xl mb-2 flex items-center">
-                                                <i class="fa-solid fa-store mr-2 text-[#76C457]"></i> Mendukung
-                                                Pemasaran Hasil Olahan Mangrove
+                                                <i class="fa-solid fa-store mr-2 text-[#76C457]"></i> Promoting
+                                                Mangrove-Based Products
                                             </h4>
                                             <p class="text-sm sm:text-base text-[#454545] leading-relaxed text-justify">
-                                                Mangrove memiliki potensi luar biasa untuk diolah menjadi berbagai
-                                                produk bernilai ekonomi. Pengenalan dan penyebaran informasi mengenai
-                                                hasil olahan tersebut diharapkan dapat meningkatkan wawasan masyarakat
-                                                tentang potensi produk lokal serta mendukung pengembangannya agar lebih
-                                                dikenal luas.
+                                                Mangroves have great potential to be processed into a variety of
+                                                products with economic value. Sharing information about these products
+                                                is expected to broaden community awareness of local product potential
+                                                and support their development so they can reach a wider audience.
                                             </p>
                                         </div>
                                         <!-- Kolom Kanan: Foto Kotak Persegi (Square) di Sebelah Kanan Batas Merah -->
                                         <div class="md:col-span-4 flex justify-center items-center">
-                                            <img src="pemasaran.png" alt="Olahan Mangrove"
+                                            <img src="pemasaran.png" alt="Mangrove-based products"
                                                 class="w-45 h-45 sm:w-50 sm:h-50 aspect-square object-cover rounded-xl">
                                         </div>
                                     </div>
@@ -949,25 +944,25 @@
                 if (isAlreadyExpanded) {
                     allCards.forEach(card => {
                         card.classList.remove('card-expanded', 'card-faded');
-                        card.querySelector('.action-text').textContent = "Klik untuk detail";
+                        card.querySelector('.action-text').textContent = "Click for details";
                     });
                 } else {
                     allCards.forEach(card => {
                         if (card === clickedCard) {
                             card.classList.remove('card-faded');
                             card.classList.add('card-expanded');
-                            card.querySelector('.action-text').textContent = "Tutup detail";
+                            card.querySelector('.action-text').textContent = "Close details";
                         } else {
                             card.classList.remove('card-expanded');
                             card.classList.add('card-faded');
-                            card.querySelector('.action-text').textContent = "Klik untuk detail";
+                            card.querySelector('.action-text').textContent = "Click for details";
                         }
                     });
                 }
             }
         </script>
 
-        <!-- KUMPULAN BERITA -->
+        <!-- NEWS & UPDATES -->
         <div
             style="position: relative; isolation: isolate; width: 100vw; margin-left: calc(-50vw + 50%); margin-right: calc(-50vw + 50%); margin-top: -20px; margin-bottom: -50px !important; padding: 50px 20px; box-sizing: border-box; background: linear-gradient(to bottom, #ffffff 60%, #543c1d 100%); display: block; margin-bottom: -5px;">
             <div
@@ -977,23 +972,23 @@
                 style="width: 100%; max-width: 1160px; margin: 0 auto; display: flex; flex-direction: column; gap: 22px;">
                 <header class="mb-0 text-center md:text-left">
                     <h1 class="font-tech text-3xl font-bold text-gray-900 tracking-tight" style="text-align: center;">
-                        Kumpulan Berita Segara Anakan</h1>
-                    <p class="text-gray-600 mt-2" style="text-align: center;">Beragam pemberitaan mengenai kondisi
-                        lingkungan, sedimentasi, dan kelestarian ekosistem mangrove di Segara Anakan.</p>
+                        Segara Anakan News & Updates</h1>
+                    <p class="text-gray-600 mt-2" style="text-align: center;">The latest coverage of environmental
+                        conditions, sedimentation, and mangrove ecosystem conservation in Segara Anakan.</p>
                 </header>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch pt-6">
                     <a href="https://www.kpa.or.id/2024/01/petani-cilacap-harapkan-pengakuan-atas-sawah-sedimentasi-segara-anakan/"
                         target="_blank" rel="noopener noreferrer"
                         class="bg-white shadow-md flex flex-col no-underline cursor-pointer rounded-t-none rounded-b-[150px] border border-gray-100 group transition-all duration-300 hover:-translate-y-3 hover:shadow-2xl overflow-hidden pb-14">
-                        <div class="mb-5 w-full"><img src="berita satu.jpg" alt="Petani Cilacap"
+                        <div class="mb-5 w-full"><img src="berita satu.jpg" alt="Farmers in Cilacap"
                                 class="w-full aspect-[4/3] object-cover rounded-t-none"></div>
                         <div class="flex flex-col items-center text-center flex-grow px-6">
-                            <p class="text-sm text-gray-500 mb-3">17 Januari 2024</p>
-                            <h2 class="text-lg font-bold text-[#2A7C13] mb-4 line-clamp-3">Petani Cilacap Harapkan
-                                Pengakuan atas Sawah Sedimentasi Segara Anakan</h2>
+                            <p class="text-sm text-gray-500 mb-3">January 17, 2024</p>
+                            <h2 class="text-lg font-bold text-[#2A7C13] mb-4 line-clamp-3">Cilacap Farmers Hope for
+                                Recognition of Segara Anakan Sedimentation Rice Fields</h2>
                             <div
                                 class="mt-auto pt-2 flex items-center gap-2 text-[#543c1d] font-semibold text-sm group-hover:text-[#76C457] transition-colors">
-                                Baca selengkapnya <i
+                                Read more <i
                                     class="fa-solid fa-arrow-up-right-from-square transition-transform group-hover:-translate-y-1 group-hover:translate-x-1"></i>
                             </div>
                         </div>
@@ -1001,15 +996,15 @@
                     <a href="https://www.antaranews.com/berita/3762855/mencermati-ancaman-hilangnya-segara-anakan-cilacap"
                         target="_blank" rel="noopener noreferrer"
                         class="bg-white shadow-md flex flex-col no-underline cursor-pointer rounded-t-none rounded-b-[150px] border border-gray-100 group transition-all duration-300 hover:-translate-y-3 hover:shadow-2xl overflow-hidden pb-14">
-                        <div class="mb-5 w-full"><img src="berita dua.webp" alt="Ancaman Hilang"
+                        <div class="mb-5 w-full"><img src="berita dua.webp" alt="Threat of disappearance"
                                 class="w-full aspect-[4/3] object-cover rounded-t-none"></div>
                         <div class="flex flex-col items-center text-center flex-grow px-6">
-                            <p class="text-sm text-gray-500 mb-3">8 Oktober 2023</p>
-                            <h2 class="text-lg font-bold text-[#2A7C13] mb-4 line-clamp-3">Mencermati ancaman hilangnya
-                                Segara Anakan Cilacap</h2>
+                            <p class="text-sm text-gray-500 mb-3">October 8, 2023</p>
+                            <h2 class="text-lg font-bold text-[#2A7C13] mb-4 line-clamp-3">Observing the threat of the
+                                disappearance of Segara Anakan Cilacap</h2>
                             <div
                                 class="mt-auto pt-2 flex items-center gap-2 text-[#543c1d] font-semibold text-sm group-hover:text-[#76C457] transition-colors">
-                                Baca selengkapnya <i
+                                Read more <i
                                     class="fa-solid fa-arrow-up-right-from-square transition-transform group-hover:-translate-y-1 group-hover:translate-x-1"></i>
                             </div>
                         </div>
@@ -1017,15 +1012,15 @@
                     <a href="https://darilaut.id/berita/kerusakan-hutan-bakau-segara-anakan-merugikan-nelayan"
                         target="_blank" rel="noopener noreferrer"
                         class="bg-white shadow-md flex flex-col no-underline cursor-pointer rounded-t-none rounded-b-[150px] border border-gray-100 group transition-all duration-300 hover:-translate-y-3 hover:shadow-2xl overflow-hidden pb-14">
-                        <div class="mb-5 w-full"><img src="berita tiga.jpg" alt="Kerusakan Hutan Bakau"
+                        <div class="mb-5 w-full"><img src="berita tiga.jpg" alt="Mangrove forest damage"
                                 class="w-full aspect-[4/3] object-cover rounded-t-none"></div>
                         <div class="flex flex-col items-center text-center flex-grow px-6">
-                            <p class="text-sm text-gray-500 mb-3">25 September 2020</p>
-                            <h2 class="text-lg font-bold text-[#2A7C13] mb-4 line-clamp-3">Kerusakan Hutan Bakau Segara
-                                Anakan Merugikan Nelayan</h2>
+                            <p class="text-sm text-gray-500 mb-3">September 25, 2020</p>
+                            <h2 class="text-lg font-bold text-[#2A7C13] mb-4 line-clamp-3">Damage to Segara Anakan
+                                Mangrove Forest Harms Fishermen</h2>
                             <div
                                 class="mt-auto pt-2 flex items-center gap-2 text-[#543c1d] font-semibold text-sm group-hover:text-[#76C457] transition-colors">
-                                Baca selengkapnya <i
+                                Read more <i
                                     class="fa-solid fa-arrow-up-right-from-square transition-transform group-hover:-translate-y-1 group-hover:translate-x-1"></i>
                             </div>
                         </div>
@@ -1055,13 +1050,13 @@
                                 style="width: 38px; height: 38px; border-radius: 11px; background-color: #2A7C13; display: flex; justify-content: center; align-items: center; color: white; font-size: 20px; flex-shrink: 0;">
                                 <i class="fa-solid fa-eye"></i>
                             </div>
-                            <h3 style="font-size: 22px; font-weight: bold; color: #2d3748; margin: 0;">VISI</h3>
+                            <h3 style="font-size: 22px; font-weight: bold; color: #2d3748; margin: 0;">VISION</h3>
                         </div>
                         <p
                             style="font-size: 16px; line-height: 1.8; color: #35475a; margin: 0; width: 100%; max-width: 100%; text-align: justify; text-align-last: left;">
-                            Mewujudkan pemantauan pesisir terintegrasi berbasis teknologi dan data untuk mendukung
-                            kelestarian ekosistem perairan dan mangrove serta masa depan Kampung Laut yang
-                            berkelanjutan.</p>
+                            To establish integrated, technology- and data-driven coastal monitoring that supports the
+                            conservation of aquatic and mangrove ecosystems and a sustainable future for Kampung Laut.
+                        </p>
                     </div>
                 </div>
 
@@ -1076,7 +1071,7 @@
                                 style="width: 38px; height: 38px; border-radius: 11px; background-color: #2A7C13; display: flex; justify-content: center; align-items: center; color: white; font-size: 20px; flex-shrink: 0;">
                                 <i class="fa-solid fa-edit"></i>
                             </div>
-                            <h3 style="font-size: 22px; font-weight: bold; color: #2d3748; margin: 0;">MISI</h3>
+                            <h3 style="font-size: 22px; font-weight: bold; color: #2d3748; margin: 0;">MISSIONS</h3>
                         </div>
                         <div style="display: flex; flex-direction: column; gap: 0;">
                             <div
@@ -1084,32 +1079,32 @@
                                 <span style="font-size: 16px; line-height: 1.7; color: #454545;">1.</span>
                                 <p
                                     style="font-size: 16px; line-height: 1.7; color: #454545; text-align: justify; margin: 0;">
-                                    Mengintegrasikan pemantauan kondisi perairan, dinamika arus, dan aktivitas fauna
-                                    mangrove melalui inovasi ALBA, BAT, dan TROSS.</p>
+                                    Integrate the monitoring of water conditions, current dynamics, and mangrove
+                                    wildlife activity through the ALBA, BAT, and TROSS innovations.</p>
                             </div>
                             <div
                                 style="display: grid; grid-template-columns: 22px minmax(0, 1fr); column-gap: 4px; padding-bottom: 8px;">
                                 <span style="font-size: 16px; line-height: 1.7; color: #454545;">2.</span>
                                 <p
                                     style="font-size: 16px; line-height: 1.7; color: #454545; text-align: justify; margin: 0;">
-                                    Mengolah data lingkungan menjadi informasi yang terstruktur, informatif, dan mudah
-                                    dipahami melalui visualisasi digital.</p>
+                                    Turn environmental data into structured, informative, and easy-to-understand
+                                    information through digital visualization.</p>
                             </div>
                             <div
                                 style="display: grid; grid-template-columns: 22px minmax(0, 1fr); column-gap: 4px; padding-bottom: 8px;">
                                 <span style="font-size: 16px; line-height: 1.7; color: #454545;">3.</span>
                                 <p
                                     style="font-size: 16px; line-height: 1.7; color: #454545; text-align: justify; margin: 0;">
-                                    Mendukung pemahaman terhadap sedimentasi dan perubahan ekosistem sebagai dasar
-                                    penentuan langkah konservasi, termasuk penanaman mangrove berbasis data.</p>
+                                    Improve understanding of sedimentation and ecosystem changes as a basis for
+                                    conservation efforts, including data-driven mangrove planting.</p>
                             </div>
                             <div
                                 style="display: grid; grid-template-columns: 22px minmax(0, 1fr); column-gap: 4px; padding-bottom: 8px;">
                                 <span style="font-size: 16px; line-height: 1.7; color: #454545;">4.</span>
                                 <p
                                     style="font-size: 16px; line-height: 1.7; color: #454545; text-align: justify; margin: 0;">
-                                    Mendorong kolaborasi antara akademisi, masyarakat lokal, dan pemangku kepentingan
-                                    untuk mendukung pemantauan serta pengelolaan lingkungan pesisir yang berkelanjutan.
+                                    Encourage collaboration among academics, local communities, and stakeholders to
+                                    support sustainable coastal environmental monitoring and management.
                                 </p>
                             </div>
                         </div>
@@ -1230,11 +1225,11 @@
     <footer class="bg-[#2A7C13] px-4 sm:px-6 py-10 border-t-[2px] border-[#2A7C13]">
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
             <div class="md:col-span-2 flex flex-col gap-4 text-white">
-                <h3 class="font-bold text-xl mb-2">Kontak Kami</h3>
+                <h3 class="font-bold text-xl mb-2">Contact Us</h3>
                 <a href="https://maps.app.goo.gl/mirmGEEjNxX9zrjp9"
                     class="flex items-start gap-3 hover:text-[#76C457] transition">
                     <i class="fa-solid fa-location-dot text-xl mt-1"></i>
-                    <span class="leading-relaxed break-words">Workshop Instrumentasi dan Robotika Kelautan (Bengkel)
+                    <span class="leading-relaxed break-words">Marine Instrumentation and Robotics Workshop (Bengkel),
                         ITK, Babakan, Dramaga, Bogor, Indonesia 16680</span>
                 </a>
                 <a href="mailto:mitr.ipb@gmail.com" class="flex items-center gap-3 hover:text-[#76C457] transition">
@@ -1246,7 +1241,7 @@
                 </a>
             </div>
             <div class="flex flex-col gap-4 text-white">
-                <h3 class="font-bold text-xl mb-2">Media Sosial</h3>
+                <h3 class="font-bold text-xl mb-2">Social Media</h3>
                 <a href="https://www.instagram.com/mitr_ipb/"
                     class="flex items-center gap-3 hover:text-[#76C457] transition"><i
                         class="fa-brands fa-instagram text-xl"></i><span>@mitr_ipb</span></a>
@@ -1276,8 +1271,8 @@
                     <button id="back-to-top"
                         class="group flex items-center p-3 bg-white text-white rounded-full shadow-md hover:bg-[#FFFFFF] hover:shadow-xl hover:-translate-y-1 transition-all duration-500 ease-in-out cursor-pointer">
                         <span
-                            class="whitespace-nowrap overflow-hidden transition-all duration-500 ease-in-out max-w-0 opacity-0 group-hover:max-w-[160px] group-hover:opacity-100 group-hover:mr-3 group-hover:pl-2 font-semibold text-[#2A7C13]">Kembali
-                            ke Atas</span>
+                            class="whitespace-nowrap overflow-hidden transition-all duration-500 ease-in-out max-w-0 opacity-0 group-hover:max-w-[160px] group-hover:opacity-100 group-hover:mr-3 group-hover:pl-2 font-semibold text-[#2A7C13]">Back
+                            to Top</span>
                         <span
                             class="flex items-center justify-center w-7 h-7 bg-white text-[#2A7C13] rounded-full transition-transform duration-500 group-hover:scale-110 shrink-0"><i
                                 class="fa-solid fa-arrow-up text-sm"></i></span>
@@ -1306,13 +1301,13 @@
             sessionStorage.setItem('scrollPosition', window.scrollY);
         }
 
-        // Fungsi untuk mengembalikan posisi scroll saat halaman baru dimuat
+        // Restore the scroll position when the new page loads
         document.addEventListener("DOMContentLoaded", function () {
             let savedScroll = sessionStorage.getItem('scrollPosition');
             if (savedScroll !== null) {
-                // Langsung gulir ke posisi yang tersimpan tanpa animasi (instan)
+                // Instantly return to the saved scroll position without animation
                 window.scrollTo(0, parseInt(savedScroll));
-                // Hapus memori scroll agar tidak mengganggu navigasi selanjutnya
+                // Clear the saved scroll position so it does not affect future navigation
                 sessionStorage.removeItem('scrollPosition');
             }
         });
