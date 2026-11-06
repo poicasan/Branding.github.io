@@ -718,15 +718,13 @@
                                                         <svg class="w-full h-full" viewBox="0 0 100 100">
                                                             <circle cx="50" cy="50" r="40" fill="none" stroke="#E5E7EB"
                                                                 stroke-width="9" />
-
                                                             <circle cx="50" cy="50" r="40" fill="none" stroke="#2A7C13"
                                                                 stroke-width="9" stroke-linecap="round"
-                                                                stroke-dasharray="251.33" stroke-dashoffset="37.7"
+                                                                stroke-dasharray="251.33" stroke-dashoffset="163.36"
                                                                 transform="rotate(-90 50 50)" />
                                                         </svg>
-
                                                         <div class="absolute inset-0 flex items-center justify-center">
-                                                            <span class="text-xl font-bold text-[#2A7C13]">85%</span>
+                                                            <span class="text-xl font-bold text-[#2A7C13]">35%</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -770,15 +768,13 @@
                                                         <svg class="w-full h-full" viewBox="0 0 100 100">
                                                             <circle cx="50" cy="50" r="40" fill="none" stroke="#E5E7EB"
                                                                 stroke-width="9" />
-
                                                             <circle cx="50" cy="50" r="40" fill="none" stroke="#2A7C13"
                                                                 stroke-width="9" stroke-linecap="round"
-                                                                stroke-dasharray="251.33" stroke-dashoffset="100.5"
+                                                                stroke-dasharray="251.33" stroke-dashoffset="125.67"
                                                                 transform="rotate(-90 50 50)" />
                                                         </svg>
-
                                                         <div class="absolute inset-0 flex items-center justify-center">
-                                                            <span class="text-xl font-bold text-[#2A7C13]">60%</span>
+                                                            <span class="text-xl font-bold text-[#2A7C13]">50%</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -822,15 +818,13 @@
                                                         <svg class="w-full h-full" viewBox="0 0 100 100">
                                                             <circle cx="50" cy="50" r="40" fill="none" stroke="#E5E7EB"
                                                                 stroke-width="9" />
-
                                                             <circle cx="50" cy="50" r="40" fill="none" stroke="#2A7C13"
                                                                 stroke-width="9" stroke-linecap="round"
-                                                                stroke-dasharray="251.33" stroke-dashoffset="138.2"
+                                                                stroke-dasharray="251.33" stroke-dashoffset="236.25"
                                                                 transform="rotate(-90 50 50)" />
                                                         </svg>
-
                                                         <div class="absolute inset-0 flex items-center justify-center">
-                                                            <span class="text-xl font-bold text-[#2A7C13]">45%</span>
+                                                            <span class="text-xl font-bold text-[#2A7C13]">6%</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1308,6 +1302,10 @@
         const backToTop = document.getElementById('back-to-top');
         backToTop.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
 
+        function saveScrollPosition() {
+            sessionStorage.setItem('scrollPosition', window.scrollY);
+        }
+
         // Fungsi untuk mengembalikan posisi scroll saat halaman baru dimuat
         document.addEventListener("DOMContentLoaded", function () {
             let savedScroll = sessionStorage.getItem('scrollPosition');
@@ -1318,7 +1316,6 @@
                 sessionStorage.removeItem('scrollPosition');
             }
         });
-    </script>
     </script>
 </body>
 
