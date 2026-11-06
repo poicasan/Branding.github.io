@@ -1293,6 +1293,10 @@
                 });
             });
         }
+        function saveScrollPosition() {
+            sessionStorage.setItem('scrollPosition', window.scrollY);
+        }
+
         // Fungsi untuk mengembalikan posisi scroll saat halaman baru dimuat
         document.addEventListener("DOMContentLoaded", function () {
             let savedScroll = sessionStorage.getItem('scrollPosition');
