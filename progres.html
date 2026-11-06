@@ -163,6 +163,8 @@
             background: #2A7C13;
         }
     </style>
+
+    <link rel="icon" type="image/png" href="logo ALBATROSS.png">
 </head>
 
 <body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen overflow-x-hidden">
@@ -1303,10 +1305,6 @@
                 });
             });
         }
-        function saveScrollPosition() {
-            sessionStorage.setItem('scrollPosition', window.scrollY);
-        }
-
         // Fungsi untuk mengembalikan posisi scroll saat halaman baru dimuat
         document.addEventListener("DOMContentLoaded", function () {
             let savedScroll = sessionStorage.getItem('scrollPosition');
