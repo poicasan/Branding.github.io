@@ -180,8 +180,9 @@
             transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
+        /* Diperbesar agar muat 3 foto alat */
         .interactive-card.card-expanded .dropdown-content {
-            max-height: 2200px;
+            max-height: 1500px;
             opacity: 1;
             margin-top: 1.5rem;
         }
@@ -193,6 +194,8 @@
         .interactive-card.card-expanded .icon-toggle {
             transform: rotate(180deg);
         }
+
+        /* ------------------------------------------------------------- */
 
         @media (max-width: 640px) {
 
@@ -216,6 +219,11 @@
                 font-size: clamp(0.9rem, 3.8vw, 1rem);
                 padding-left: 0.25rem;
                 padding-right: 0.25rem;
+            }
+
+            body>div[style*="max-width: 1200px"] h2 {
+                font-size: clamp(1.5rem, 6vw, 2rem) !important;
+                line-height: 1.25;
             }
 
             .visi-misi-card {
@@ -242,134 +250,6 @@
             background: #2A7C13;
         }
     </style>
-
-    <style>
-        /* SECTION FULL-WIDTH */
-        .problem-section {
-            width: 100vw;
-            margin-left: calc(50% - 50vw);
-            margin-right: calc(50% - 50vw);
-            margin-bottom: 0;
-            padding: 64px 24px 72px;
-            box-sizing: border-box;
-            background: #F3F7F0;
-        }
-
-        /* KARTU */
-        .problem-card {
-            position: relative;
-            min-height: 450px;
-            overflow: hidden;
-            border-radius: 22px;
-            background: #F3F7F0;
-            text-align: left;
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.3s ease;
-        }
-
-        .problem-card:hover {
-            transform: translateY(-5px);
-        }
-
-        /* FOTO + EFEK FADING */
-        .problem-image-wrap {
-            position: absolute;
-            inset: 0 0 auto 0;
-            height: 68%;
-            overflow: hidden;
-        }
-
-        .problem-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            -webkit-mask-image: linear-gradient(to bottom,
-                    black 0%,
-                    black 35%,
-                    rgba(0, 0, 0, 0.75) 55%,
-                    rgba(0, 0, 0, 0.25) 78%,
-                    transparent 100%);
-            mask-image: linear-gradient(to bottom,
-                    black 0%,
-                    black 35%,
-                    rgba(0, 0, 0, 0.75) 55%,
-                    rgba(0, 0, 0, 0.25) 78%,
-                    transparent 100%);
-            transition: transform 0.5s ease;
-        }
-
-        .problem-card:hover .problem-image {
-            transform: scale(1.05);
-        }
-
-        /* KONTEN: POSISI SERAGAM */
-        .problem-content {
-            position: relative;
-            z-index: 1;
-            margin-top: auto;
-            padding: 220px 26px 28px;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
-
-        /* BADGE ANGKA BULAT */
-        .problem-number {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background: #2A7C13;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            font-weight: 700;
-            line-height: 1;
-            margin-bottom: 14px;
-            flex-shrink: 0;
-        }
-
-        /* JUDUL DISAMAKAN TINGGINYA */
-        .problem-title {
-            font-size: 1.3rem;
-            line-height: 1.35;
-            font-weight: 700;
-            color: #2A7C13;
-            margin: 0 0 12px;
-            min-height: 3.5em;
-            display: flex;
-            align-items: flex-start;
-        }
-
-        .problem-description {
-            font-size: 0.95rem;
-            line-height: 1.7;
-            color: #454545;
-            text-align: justify;
-            margin: 0;
-        }
-
-        @media (max-width: 767px) {
-            .problem-section {
-                padding: 48px 18px 56px;
-            }
-
-            .problem-card {
-                min-height: 420px;
-            }
-
-            .problem-content {
-                padding: 210px 22px 24px;
-            }
-
-            .problem-title {
-                min-height: auto;
-            }
-        }
-    </style>
-
 </head>
 
 <body class="bg-white text-gray-800 font-inter">
@@ -411,6 +291,17 @@
                     <li><a href="progres.html"
                             class="nav-item whitespace-nowrap px-3 sm:px-4 py-2 rounded-full transition-all duration-200 text-white hover:bg-[#76C457]/40 hover:text-white nav-underline"><span
                                 class="nav-text-wrap">PROGRES<span class="nav-line"></span></span></a></li>
+
+                    <li class="ml-2 flex items-center">
+                        <div
+                            class="flex bg-[#2A7C13]/70 rounded-full p-1 backdrop-blur-sm border border-white/20 transition-all shadow-inner">
+                            <!-- Tambahkan onclick di sini -->
+                             <a href="index-en.html" onclick="saveScrollPosition()"
+                                class="w-8 h-8 flex items-center justify-center rounded-full text-xs font-bold text-white transition-all hover:bg-slate-500/50">EN</a>
+                            <span 
+                                class="w-8 h-8 flex items-center justify-center rounded-full text-xs font-bold bg-white text-slate-800 shadow-sm cursor-default">ID</span>
+                        </div>
+                    </li>
                 </ul>
                 <button id="mobile-toggle-btn" class="md:hidden text-2xl p-2 transition-colors focus:outline-none"><i
                         id="toggle-icon" class="fas fa-bars"></i></button>
@@ -423,6 +314,16 @@
                 <a href="profil.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">PROFIL</a>
                 <a href="hubungi.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">HUBUNGI</a>
                 <a href="progres.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">PROGRES</a>
+                <div class="px-4 py-3 flex justify-between items-center border-t border-gray-100 mt-2">
+                    <span class="text-sm font-semibold text-[#76C457]">BAHASA</span>
+                    <div class="flex bg-[#2A7C13]/70 rounded-full p-1">
+                        <!-- Tambahkan onclick di sini -->
+                         <a href="index-en.html" onclick="saveScrollPosition()"
+                            class="w-8 h-8 flex items-center justify-center rounded-full text-xs font-bold text-white transition-all">EN</a>
+                        <span 
+                            class=" w-8 h-8 flex items-center justify-center rounded-full text-xs font-bold bg-white text-[#2A7C13] shadow-sm cursor-default">ID</span>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
@@ -460,7 +361,7 @@
     <div
         style="width: 100%; max-width: 1200px; margin: 0 auto; padding: 20px 20px 0; box-sizing: border-box; font-family: Arial, sans-serif; display: flex; flex-direction: column; gap: 20px;">
 
-        <br>
+        <br><br>
         <h2 style="font-size: 35px; font-weight: bold; color: #2A7C13; margin-top: 0; text-align: center;">Apa yang
             terjadi di Laguna Segara Anakan?</h2>
         <p style="font-size: 16px; line-height: 1.7; color: #454545; text-align: justify; margin: 0;">
@@ -472,6 +373,7 @@
             pesisir.
         </p>
 
+        <br>
         <div class="flex flex-col md:flex-row items-center md:items-center gap-6 w-full">
             <div class="flex justify-center items-center w-full md:w-1/2 min-w-0">
                 <div class="w-full max-w-xl">
@@ -537,76 +439,53 @@
             </div>
         </div>
 
-        <br>
+        <br><br>
 
-        <!-- 3 PERMASALAHAN UTAMA -->
-        <section class="problem-section">
-            <div class="max-w-6xl mx-auto text-center">
+        <div class="max-w-6xl mx-auto text-center">
+            <h1 class="text-3xl md:text-4xl font-bold text-[#2A7C13]">3 Permasalahan Utama</h1>
+            <h2 class="text-xl md:text-1xl font-medium text-[#454545] mt-1">di Laguna Segara Anakan</h2>
+            <div class="w-16 h-1 bg-[#6E3511] mx-auto mt-3 mb-6"></div>
 
-                <h1 class="text-3xl md:text-4xl font-bold text-[#2A7C13]">
-                    3 Permasalahan Utama
-                </h1>
-
-                <h2 class="text-xl font-medium text-[#454545] mt-2">
-                    di Laguna Segara Anakan
-                </h2>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-10">
-
-                    <!-- KARTU 1 -->
-                    <div class="problem-card group">
-                        <div class="problem-image-wrap">
-                            <img src="penyusutan.webp" alt="Penyusutan luas perairan" class="problem-image">
-                        </div>
-
-                        <div class="problem-content">
-                            <span class="problem-number">01</span>
-                            <h3 class="problem-title">Penyusutan Luas Perairan</h3>
-                            <p class="problem-description">
-                                Sedimentasi terus menggerus perairan Segara Anakan,
-                                memicu pendangkalan dan penyusutan yang mengancam
-                                keseimbangan ekosistem pesisir.
-                            </p>
-                        </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="flex flex-col items-center text-center group">
+                    <div class="h-40 flex items-center justify-center mb-4"><img src="penyusutan.jpeg" alt="Penyusutan"
+                            class="max-h-full object-contain transition-transform duration-300 group-hover:scale-105">
                     </div>
-
-                    <!-- KARTU 2 -->
-                    <div class="problem-card group">
-                        <div class="problem-image-wrap">
-                            <img src="ancaman.jpg" alt="Ancaman terhadap ekosistem mangrove" class="problem-image">
-                        </div>
-
-                        <div class="problem-content">
-                            <span class="problem-number">02</span>
-                            <h3 class="problem-title">Ancaman terhadap Ekosistem Mangrove</h3>
-                            <p class="problem-description">
-                                Perubahan lingkungan pesisir dapat menghilangkan
-                                habitat biota dan melemahkan fungsi mangrove
-                                sebagai pelindung alami pantai.
-                            </p>
-                        </div>
+                    <h3 class="text-lg font-bold text-[#454545]">Penyusutan <span class="text-[#76C457]"> <br>Luas
+                            Perairan</span></h3>
+                    <div class="w-8 h-0.5 bg-[#0B2545] my-2"></div>
+                    <p class="text-xs md:text-sm text-gray-500" style="text-align: justify;">Sedimentasi terus menggerus
+                        perairan Segara Anakan, memicu <strong>pendangkalan dan penyusutan</strong> yang
+                        <strong>mengancam keseimbangan</strong> ekosistem pesisir.
+                    </p>
+                </div>
+                <div class="flex flex-col items-center text-center group">
+                    <div class="h-40 flex items-center justify-center mb-4"><img src="ancaman.jpeg" alt="Ancaman"
+                            class="max-h-full object-contain transition-transform duration-300 group-hover:scale-105">
                     </div>
-
-                    <!-- KARTU 3 -->
-                    <div class="problem-card group">
-                        <div class="problem-image-wrap">
-                            <img src="potensi.jpg" alt="Potensi mangrove" class="problem-image">
-                        </div>
-
-                        <div class="problem-content">
-                            <span class="problem-number">03</span>
-                            <h3 class="problem-title">Potensi Mangrove yang Belum Optimal</h3>
-                            <p class="problem-description">
-                                Potensi mangrove Kampung Laut menyimpan peluang
-                                bagi alam dan masyarakat yang dapat dikembangkan
-                                melalui inovasi dan pemberdayaan berkelanjutan.
-                            </p>
-                        </div>
+                    <h3 class="text-lg font-bold text-[#454545]">Ancaman <span class="text-[#76C457]">terhadap
+                            <br>Ekosistem Mangrove</span></h3>
+                    <div class="w-8 h-0.5 bg-[#0B2545] my-2"></div>
+                    <p class="text-xs md:text-sm text-gray-500" style="text-align: justify;">Di tengah perubahan
+                        pesisir, ekosistem mangrove menghadapi ancaman yang dapat <strong>menghilangkan habitat biota
+                            dan melemahkan benteng alami</strong> pelindung pantai.</p>
+                </div>
+                <div class="flex flex-col items-center text-center group">
+                    <div class="h-40 flex items-center justify-center mb-4"><img src="potensi.jpeg" alt="Potensi"
+                            class="max-h-full object-contain transition-transform duration-300 group-hover:scale-105">
                     </div>
-
+                    <h3 class="text-lg font-bold text-[#454545]">Potensi Mangrove <span class="text-[#76C457]"><br>yang
+                            Belum Optimal</span></h3>
+                    <div class="w-8 h-0.5 bg-[#0B2545] my-2"></div>
+                    <p class="text-xs md:text-sm text-gray-500" style="text-align: justify;">Potensi mangrove Kampung
+                        Laut menyimpan <strong> peluang besar</strong> bagi alam dan masyarakat. Saatnya mengubah
+                        kekayaan ekologis menjadi <strong>manfaat berkelanjutan</strong> melalui inovasi dan
+                        pemberdayaan.</p>
                 </div>
             </div>
-        </section>
+        </div>
+
+        <br><br>
 
         <!-- ==========================================
              PROGRAM & SOLUSI KAMI (2 KARTU INTERAKTIF)
@@ -654,141 +533,85 @@
 
                             <!-- DROPDOWN CONTENT (KARTU 1) -->
                             <div class="dropdown-content w-full">
-                                <div class="border-t border-[#76c457] pt-6 mt-2 text-left">
-                                    <p class="text-[#454545] text-sm leading-relaxed mb-8 text-justify">
+                                <div class="border-t border-[#76c457] pt-4 mt-2">
+                                    <p class="text-[#454545] text-sm leading-relaxed mb-6 text-justify">
                                         Proyek ALBATROSS berfokus pada pengembangan 3 alat utama (<strong>ALBA, BAT, dan
                                             TROSS</strong>) untuk memantau parameter perairan di kawasan Kampung Laut.
                                         Data yang diperoleh akan divisualisasikan dalam bentuk peta untuk mendukung
                                         pemantauan dan konservasi ekosistem secara real-time.
                                     </p>
 
-                                    <!-- DAFTAR ALAT (TEKS TERBATAS DI GARIS MERAH + RATA KANAN-KIRI + FOTO ALAT LEBIH BESAR) -->
-                                    <div class="flex flex-col gap-6 mb-4">
+                                    <!-- GRID 3 ALAT (ALBA, BAT, TROSS) -->
+                                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
 
-                                        <!-- 1. ALAT: ALBA -->
+                                        <!-- ALAT 1: ALBA -->
                                         <div
-                                            class="bg-gray-50 rounded-xl p-5 border border-gray-200 shadow-sm hover:border-[#76C457] transition-all flex flex-col md:flex-row items-center gap-6">
-                                            <!-- Kolom 1: Nama & Keunggulan (Terbatas Lebarnya & Justify) -->
-                                            <div class="flex flex-col text-left w-full md:w-1/4 max-w-[220px] shrink-0">
-                                                <h4 class="font-bold text-[#2A7C13] text-lg mb-1">ALBA</h4>
-                                                <p
-                                                    class="text-xs sm:text-sm text-[#454545] leading-relaxed text-justify">
-                                                    <strong>Keunggulan:</strong> Dilengkapi dengan sensor presisi untuk
-                                                    mengukur kualitas air dan terintegrasi sistem transmisi data jarak
-                                                    jauh.
-                                                </p>
+                                            class="bg-gray-50 rounded-xl p-4 border border-gray-200 shadow-sm text-left flex flex-col hover:border-[#76C457] transition-colors">
+                                            <!-- Ganti foto-alba.jpg sesuai file aslimu -->
+                                            <img src="ALBA.jpeg" alt="Alat ALBA"
+                                                class="w-full h-28 object-cover rounded-lg mb-3 bg-gray-200">
+                                            <h4 class="font-bold text-[#2A7C13] text-[15px] mb-1">ALBA</h4>
+                                            <p class="text-xs text-[#454545] mb-3 leading-relaxed flex-grow">
+                                                <strong>Keunggulan:</strong> Dilengkapi dengan sensor presisi untuk
+                                                mengukur kualitas air dan terintegrasi sistem transmisi data jarak jauh.
+                                            </p>
+                                            <div class="w-full bg-gray-200 rounded-full h-2 mt-auto">
+                                                <div class="bg-[#76c457] h-2 rounded-full" style="width: 85%"></div>
                                             </div>
-                                            <!-- Kolom 2: Foto Alat (Diperbesar Luas) -->
-                                            <div class="flex-1 flex justify-center items-center w-full">
-                                                <img src="ALBA.png" alt="Alat ALBA"
-                                                    class="w-full max-w-[360px] h-48 md:h-52 object-cover rounded-xl bg-gray-200 shadow-md border border-gray-200">
-                                            </div>
-                                            <!-- Kolom 3: Progres Keseluruhan & Tombol -->
-                                            <div
-                                                class="flex flex-col justify-center items-start md:items-end gap-3 w-full md:w-1/3 shrink-0">
-                                                <div class="w-full">
-                                                    <div
-                                                        class="flex justify-between items-center text-xs font-bold text-gray-600 mb-1">
-                                                        <span>Progres Keseluruhan</span>
-                                                        <span class="text-[#2A7C13]">85%</span>
-                                                    </div>
-                                                    <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                                        <div class="bg-[#76c457] h-2.5 rounded-full" style="width: 85%">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <a href="progres.html"
-                                                    class="inline-flex font-semibold text-white bg-[#2A7C13] px-4 py-2 rounded-lg hover:bg-[#76C457] text-xs transition-colors items-center gap-2 shadow-sm z-20 relative">
-                                                    Klik ke Progres <i class="fa-solid fa-arrow-right-long"></i>
-                                                </a>
-                                            </div>
+                                            <p class="text-[11px] text-right text-gray-500 mt-1 font-bold">85% Selesai
+                                            </p>
                                         </div>
 
-                                        <!-- 2. ALAT: BAT -->
+                                        <!-- ALAT 2: BAT -->
                                         <div
-                                            class="bg-gray-50 rounded-xl p-5 border border-gray-200 shadow-sm hover:border-[#76C457] transition-all flex flex-col md:flex-row items-center gap-6">
-                                            <!-- Kolom 1: Nama & Keunggulan (Terbatas Lebarnya & Justify) -->
-                                            <div class="flex flex-col text-left w-full md:w-1/4 max-w-[220px] shrink-0">
-                                                <h4 class="font-bold text-[#2A7C13] text-lg mb-1">BAT</h4>
-                                                <p
-                                                    class="text-xs sm:text-sm text-[#454545] leading-relaxed text-justify">
-                                                    <strong>Keunggulan:</strong> Mampu memantau pergerakan arus secara
-                                                    akurat menggunakan teknologi pelampung pintar berdaya rendah.
-                                                </p>
+                                            class="bg-gray-50 rounded-xl p-4 border border-gray-200 shadow-sm text-left flex flex-col hover:border-[#76C457] transition-colors">
+                                            <!-- Ganti foto-bat.jpg sesuai file aslimu -->
+                                            <img src="BAT.jpeg" alt="Alat BAT"
+                                                class="w-full h-28 object-cover rounded-lg mb-3 bg-gray-200">
+                                            <h4 class="font-bold text-[#2A7C13] text-[15px] mb-1">BAT</h4>
+                                            <p class="text-xs text-[#454545] mb-3 leading-relaxed flex-grow">
+                                                <strong>Keunggulan:</strong> Mampu memantau pergerakan arus secara
+                                                akurat menggunakan teknologi pelampung pintar berdaya rendah.
+                                            </p>
+                                            <div class="w-full bg-gray-200 rounded-full h-2 mt-auto">
+                                                <div class="bg-[#76c457] h-2 rounded-full" style="width: 60%"></div>
                                             </div>
-                                            <!-- Kolom 2: Foto Alat (Diperbesar Luas) -->
-                                            <div class="flex-1 flex justify-center items-center w-full">
-                                                <img src="BAT.png" alt="Alat BAT"
-                                                    class="w-full max-w-[360px] h-48 md:h-52 object-cover rounded-xl bg-gray-200 shadow-md border border-gray-200">
-                                            </div>
-                                            <!-- Kolom 3: Progres Keseluruhan & Tombol -->
-                                            <div
-                                                class="flex flex-col justify-center items-start md:items-end gap-3 w-full md:w-1/3 shrink-0">
-                                                <div class="w-full">
-                                                    <div
-                                                        class="flex justify-between items-center text-xs font-bold text-gray-600 mb-1">
-                                                        <span>Progres Keseluruhan</span>
-                                                        <span class="text-[#2A7C13]">60%</span>
-                                                    </div>
-                                                    <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                                        <div class="bg-[#76c457] h-2.5 rounded-full" style="width: 60%">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <a href="progres.html"
-                                                    class="inline-flex font-semibold text-white bg-[#2A7C13] px-4 py-2 rounded-lg hover:bg-[#76C457] text-xs transition-colors items-center gap-2 shadow-sm z-20 relative">
-                                                    Klik ke Progres <i class="fa-solid fa-arrow-right-long"></i>
-                                                </a>
-                                            </div>
+                                            <p class="text-[11px] text-right text-gray-500 mt-1 font-bold">60% Selesai
+                                            </p>
                                         </div>
 
-                                        <!-- 3. ALAT: TROSS -->
+                                        <!-- ALAT 3: TROSS -->
                                         <div
-                                            class="bg-gray-50 rounded-xl p-5 border border-gray-200 shadow-sm hover:border-[#76C457] transition-all flex flex-col md:flex-row items-center gap-6">
-                                            <!-- Kolom 1: Nama & Keunggulan (Terbatas Lebarnya & Justify) -->
-                                            <div class="flex flex-col text-left w-full md:w-1/4 max-w-[220px] shrink-0">
-                                                <h4 class="font-bold text-[#2A7C13] text-lg mb-1">TROSS</h4>
-                                                <p
-                                                    class="text-xs sm:text-sm text-[#454545] leading-relaxed text-justify">
-                                                    <strong>Keunggulan:</strong> Sistem deteksi tingkat sedimentasi
-                                                    secara otomatis dengan fitur peringatan dini berbasis IoT.
-                                                </p>
+                                            class="bg-gray-50 rounded-xl p-4 border border-gray-200 shadow-sm text-left flex flex-col hover:border-[#76C457] transition-colors">
+                                            <!-- Ganti foto-tross.jpg sesuai file aslimu -->
+                                            <img src="TROSS.jpeg" alt="Alat TROSS"
+                                                class="w-full h-28 object-cover rounded-lg mb-3 bg-gray-200">
+                                            <h4 class="font-bold text-[#2A7C13] text-[15px] mb-1">TROSS</h4>
+                                            <p class="text-xs text-[#454545] mb-3 leading-relaxed flex-grow">
+                                                <strong>Keunggulan:</strong> Sistem deteksi tingkat sedimentasi secara
+                                                otomatis dengan fitur peringatan dini berbasis IoT.
+                                            </p>
+                                            <div class="w-full bg-gray-200 rounded-full h-2 mt-auto">
+                                                <div class="bg-[#76c457] h-2 rounded-full" style="width: 45%"></div>
                                             </div>
-                                            <!-- Kolom 2: Foto Alat (Diperbesar Luas) -->
-                                            <div class="flex-1 flex justify-center items-center w-full">
-                                                <img src="TROSS.png" alt="Alat TROSS"
-                                                    class="w-full max-w-[360px] h-48 md:h-52 object-cover rounded-xl bg-gray-200 shadow-md border border-gray-200">
-                                            </div>
-                                            <!-- Kolom 3: Progres Keseluruhan & Tombol -->
-                                            <div
-                                                class="flex flex-col justify-center items-start md:items-end gap-3 w-full md:w-1/3 shrink-0">
-                                                <div class="w-full">
-                                                    <div
-                                                        class="flex justify-between items-center text-xs font-bold text-gray-600 mb-1">
-                                                        <span>Progres Keseluruhan</span>
-                                                        <span class="text-[#2A7C13]">45%</span>
-                                                    </div>
-                                                    <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                                        <div class="bg-[#76c457] h-2.5 rounded-full" style="width: 45%">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <a href="progres.html"
-                                                    class="inline-flex font-semibold text-white bg-[#2A7C13] px-4 py-2 rounded-lg hover:bg-[#76C457] text-xs transition-colors items-center gap-2 shadow-sm z-20 relative">
-                                                    Klik ke Progres <i class="fa-solid fa-arrow-right-long"></i>
-                                                </a>
-                                            </div>
+                                            <p class="text-[11px] text-right text-gray-500 mt-1 font-bold">45% Selesai
+                                            </p>
                                         </div>
-
                                     </div>
+
+                                    <a href="progres.html"
+                                        class="inline-flex font-bold text-white bg-[#2A7C13] px-5 py-2.5 rounded-full hover:bg-[#76C457] text-sm transition-colors items-center gap-2 group z-20 relative shadow-md">
+                                        Lihat Progres <i
+                                            class="fa-solid fa-arrow-right-long transition-transform group-hover:translate-x-1"></i>
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- ==============================================
-                        KARTU 2: PENANAMAN MANGROVE & EDUKASI PANGAN
-                        =============================================== -->
+                         KARTU 2: PENANAMAN MANGROVE & EDUKASI PANGAN
+                    =============================================== -->
                     <div class="interactive-card relative bg-white rounded-2xl flex flex-col justify-between overflow-hidden cursor-pointer"
                         onclick="toggleCard(this)"
                         style="background-color: rgba(110, 53, 17, 0.04); border: 2px solid rgba(110, 53, 17, 0.25); box-shadow: 0 5px 18px rgba(45, 55, 72, 0.08);">
@@ -812,54 +635,33 @@
 
                             <!-- DROPDOWN CONTENT (KARTU 2) -->
                             <div class="dropdown-content w-full">
-                                <div class="border-t border-[#76c457] pt-6 mt-2 text-left flex flex-col gap-6">
+                                <div class="border-t border-[#76c457] pt-5 mt-2 text-left">
 
-                                    <!-- 1. Bagian Penanaman Mangrove -->
-                                    <div
-                                        class="bg-gray-50 rounded-xl p-5 border border-gray-200 shadow-sm hover:border-[#76C457] transition-all grid grid-cols-1 md:grid-cols-12 items-center gap-6">
-                                        <!-- Kolom Kiri: Teks (Font Lebih Besar & Terbatas sebelum Batas Merah) -->
-                                        <div class="flex flex-col text-left md:col-span-8">
-                                            <h4
-                                                class="font-bold text-[#2A7C13] text-lg sm:text-xl mb-2 flex items-center">
-                                                <i class="fa-solid fa-leaf mr-2 text-[#76C457]"></i> Penanaman Mangrove
-                                            </h4>
-                                            <p class="text-sm sm:text-base text-[#454545] leading-relaxed text-justify">
-                                                Kegiatan penanaman mangrove bersama masyarakat Kampung Laut untuk
-                                                menjaga kelestarian ekosistem pesisir dan habitat biota mangrove. Upaya
-                                                ini turut mendukung pemulihan mangrove sebagai ekosistem karbon biru
-                                                yang berperan dalam mitigasi perubahan iklim.
-                                            </p>
-                                        </div>
-                                        <!-- Kolom Kanan: Foto Kotak Persegi (Square) di Sebelah Kanan Batas Merah -->
-                                        <div class="md:col-span-4 flex justify-center items-center">
-                                            <img src="mangrove.png" alt="Penanaman Mangrove"
-                                                class="w-45 h-45 sm:w-50 sm:h-50 aspect-square object-cover rounded-xl">
-                                        </div>
+                                    <!-- Bagian Penanaman Mangrove -->
+                                    <div class="mb-5 bg-white/60 p-4 rounded-xl shadow-sm border border-gray-100">
+                                        <h4 class="font-bold text-[#2A7C13] text-[15px] mb-2 flex items-center">
+                                            <i class="fa-solid fa-leaf mr-2 text-[#76C457]"></i> Penanaman Mangrove
+                                        </h4>
+                                        <p class="text-[#454545] text-sm leading-relaxed text-justify">
+                                            Kegiatan penanaman mangrove bersama masyarakat Kampung Laut untuk menjaga
+                                            kelestarian ekosistem pesisir dan habitat biota mangrove. Upaya ini turut
+                                            mendukung pemulihan mangrove sebagai ekosistem karbon biru yang berperan
+                                            dalam mitigasi perubahan iklim.
+                                        </p>
                                     </div>
 
-                                    <!-- 2. Bagian Hasil Olahan Mangrove -->
-                                    <div
-                                        class="bg-gray-50 rounded-xl p-5 border border-gray-200 shadow-sm hover:border-[#76C457] transition-all grid grid-cols-1 md:grid-cols-12 items-center gap-6">
-                                        <!-- Kolom Kiri: Teks (Font Lebih Besar & Terbatas sebelum Batas Merah) -->
-                                        <div class="flex flex-col text-left md:col-span-8">
-                                            <h4
-                                                class="font-bold text-[#2A7C13] text-lg sm:text-xl mb-2 flex items-center">
-                                                <i class="fa-solid fa-store mr-2 text-[#76C457]"></i> Mendukung
-                                                Pemasaran Hasil Olahan Mangrove
-                                            </h4>
-                                            <p class="text-sm sm:text-base text-[#454545] leading-relaxed text-justify">
-                                                Mangrove memiliki potensi luar biasa untuk diolah menjadi berbagai
-                                                produk bernilai ekonomi. Pengenalan dan penyebaran informasi mengenai
-                                                hasil olahan tersebut diharapkan dapat meningkatkan wawasan masyarakat
-                                                tentang potensi produk lokal serta mendukung pengembangannya agar lebih
-                                                dikenal luas.
-                                            </p>
-                                        </div>
-                                        <!-- Kolom Kanan: Foto Kotak Persegi (Square) di Sebelah Kanan Batas Merah -->
-                                        <div class="md:col-span-4 flex justify-center items-center">
-                                            <img src="pemasaran.png" alt="Olahan Mangrove"
-                                                class="w-45 h-45 sm:w-50 sm:h-50 aspect-square object-cover rounded-xl">
-                                        </div>
+                                    <!-- Bagian Hasil Olahan Mangrove -->
+                                    <div class="bg-white/60 p-4 rounded-xl shadow-sm border border-gray-100">
+                                        <h4 class="font-bold text-[#2A7C13] text-[15px] mb-2 flex items-center">
+                                            <i class="fa-solid fa-store mr-2 text-[#76C457]"></i> Mendukung Pemasaran
+                                            Hasil Olahan Mangrove
+                                        </h4>
+                                        <p class="text-[#454545] text-sm leading-relaxed text-justify">
+                                            Mangrove memiliki potensi luar biasa untuk diolah menjadi berbagai produk
+                                            bernilai ekonomi. Pengenalan dan penyebaran informasi mengenai hasil olahan
+                                            tersebut diharapkan dapat meningkatkan wawasan masyarakat tentang potensi
+                                            produk lokal serta mendukung pengembangannya agar lebih dikenal luas.
+                                        </p>
                                     </div>
 
                                 </div>
@@ -1232,6 +1034,21 @@
     <script>
         const backToTop = document.getElementById('back-to-top');
         backToTop.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+        function saveScrollPosition() {
+            sessionStorage.setItem('scrollPosition', window.scrollY);
+        }
+
+        // Fungsi untuk mengembalikan posisi scroll saat halaman baru dimuat
+        document.addEventListener("DOMContentLoaded", function () {
+            let savedScroll = sessionStorage.getItem('scrollPosition');
+            if (savedScroll !== null) {
+                // Langsung gulir ke posisi yang tersimpan tanpa animasi (instan)
+                window.scrollTo(0, parseInt(savedScroll));
+                // Hapus memori scroll agar tidak mengganggu navigasi selanjutnya
+                sessionStorage.removeItem('scrollPosition');
+            }
+        });
     </script>
 </body>
 
