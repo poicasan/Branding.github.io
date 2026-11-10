@@ -764,10 +764,10 @@
                         img: "IMG_0103.png"
                     },
                     {
-                        title: "Pengujian Kendali Autonomous",
+                        title: "Pengujian Mode Kendali Manual dan Otonom",
                         tag: "Program",
                         date: "08 November 2026",
-                        desc: "Uji coba pengendalian ALBA secara manual maupun autonomous.",
+                        desc: "Uji coba responsivitas kontrol ALBA, baik melalui navigasi manual maupun navigasi otonom berbasis titik acuan (waypoint).",
                         img: "Pengujian Kendali Autonomous.jpeg"
                     }
                 ]
@@ -845,18 +845,25 @@
                         img: "Pengujian pembacaan dan pengambilan data GPS.png"
                     },
                     {
-                        title: "Penyesuaian Komponen BAT",
+                        title: "Optimasi dan Penyesuaian Komponen BAT",
                         tag: "Elektronika",
                         date: "3 November 2026",
-                        desc: "Menambahkan satu tingkat dan penyesuaian ukuran pada rangkaian BAT.",
+                        desc: "Penambahan sasis bertingkat (tier) internal dan penyesuaian tata letak komponen elektronika pada BAT.",
                         img: "Penyesuaian Komponen BAT.jpeg"
                     },
                     {
-                        title: "Membuat Penyambung Buoy ke Hook Drouge",
+                        title: "Pemasangan Penyambung Buoy ke Hook Drogue",
                         tag: "Mekanik",
                         date: "3 November 2026",
-                        desc: "Pembuatan penyambungan swivvel ke drouge dengan simpul tali tambang.",
+                        desc: "Pembuatan sistem penyambung antara swivel dan drogue menggunakan teknik simpul tali tambang.",
                         img: "Membuat penyambung buoy ke hook drouge.jpeg"
+                    },
+                    {
+                        title: "Fabrikasi Ring Struktur Drogue",
+                        tag: "Mekanik",
+                        date: "10 November 2026",
+                        desc: "Proses pembuatan dan pembentukan komponen ring penyeimbang pada struktur drogue.",
+                        img: "video ring.mp4"
                     }
                 ]
             },
@@ -942,6 +949,13 @@
             `).join('');
         }
 
+        function renderMediaHtml(src, altClass = "w-full h-full object-cover") {
+            if (src.endsWith('.mp4')) {
+                return `<video src="${src}" class="${altClass}" autoplay loop muted playsinline></video>`;
+            }
+            return `<img src="${src}" alt="Dokumentasi" class="${altClass}">`;
+        }
+
         function switchDevice(devId) {
             activeDeviceId = devId;
             activeMilestoneIndex = 0;
@@ -971,7 +985,7 @@
                          onmouseenter="handleCardHover(${index})" 
                          onmouseleave="handleCardLeave()">
                       
-                      <img src="${m.img}" alt="${m.title}" class="w-full h-full object-cover pointer-events-none">
+                      ${renderMediaHtml(m.img, "w-full h-full object-cover pointer-events-none")}
                       
                       <div class="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/30 to-transparent pointer-events-none"></div>
 
@@ -1212,7 +1226,7 @@
                             ${items.map(m => `
                                 <div class="snap-start shrink-0 w-[260px] sm:w-[280px] md:w-[300px] bg-gray-50 border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow flex flex-col">
                                     <div class="h-40 w-full overflow-hidden relative">
-                                        <img src="${m.img}" alt="${m.title}" class="w-full h-full object-cover">
+                                        ${renderMediaHtml(m.img, "w-full h-full object-cover")}
                                         <span class="absolute top-2.5 left-2.5 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white bg-[#2A7C13] rounded-full shadow">
                                             ${m.tag || 'Dokumentasi'}
                                         </span>
