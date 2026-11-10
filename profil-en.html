@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Progress | ALBATROSS</title>
+    <title>Profile | ALBATROSS</title>
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -26,11 +26,13 @@
                     fontFamily: {
                         anta: ['Anta', 'sans-serif'],
                         inter: ['Inter', 'sans-serif'],
+                        tech: ['Anta', 'sans-serif']
                     },
                     colors: {
-                        primary: '#2A7C13',
-                        secondary: '#76C457',
-                        dark: '#1a1a1a',
+                        brandDarkGreen: '#132E22',
+                        brandGreenBorder: '#234435',
+                        brandOrange: '#FF5E2B',
+                        brandOrangeHover: '#E04818',
                     }
                 }
             }
@@ -40,7 +42,9 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            scroll-behavior: smooth;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
         }
 
         .font-tech {
@@ -54,7 +58,7 @@
 
         .nav-line {
             position: absolute;
-            bottom: -2px;
+            bottom: -4px;
             left: 0;
             width: 100%;
             height: 2px;
@@ -69,59 +73,920 @@
             transform-origin: bottom left;
         }
 
-        /* Stack Container Perspective - Responsif Mobile */
-        .stack-perspective {
-            perspective: 1200px;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-        }
-
-        .card-stack {
+        /* ----------------------------------------------------
+            DIV UTAMA LINIMASA (CONTAINER SECTION)
+            ---------------------------------------------------- */
+        .timeline-section-wrapper {
             position: relative;
-            width: 260px;
-            height: 360px;
+            overflow: visible;
+            /* UBAH BAGIAN INI AGAR GELOMBANGNYA MUNCUL */
+            background-color: #f8fafc;
+            z-index: 10;
+            /* Tambahkan ini agar gelombang menimpa section di bawahnya */
         }
 
-        @media (min-width: 640px) {
-            .card-stack {
-                width: 300px;
-                height: 400px;
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .card-stack {
-                width: 320px;
-                height: 440px;
-            }
-        }
-
-        /* Base Card Style */
-        .stack-card {
+        /* 
+            DIV KHUSUS BACKGROUND SEDIMENTASI DI DALAM DIV LINIMASA
+            */
+        .sediment-background-layer {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            border-radius: 1.25rem;
-            background: #161e2e;
-            border: 1px solid rgba(118, 196, 87, 1);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
-            cursor: pointer;
-            user-select: none;
-            transform-origin: center bottom;
-            transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
-                box-shadow 0.3s ease,
-                border-color 0.3s ease,
-                z-index 0s linear 0.1s;
-            overflow: hidden;
+            pointer-events: none;
+            z-index: 0;
+            /* Berada di belakang teks dan kartu */
+            display: flex;
+            flex-direction: column;
         }
 
-        /* Dynamic Shadow Glow */
-        .stack-card:hover {
-            border-color: rgba(118, 196, 87, 1);
-            box-shadow: 0 20px 45px rgba(110, 53, 17, 0.25), 0 0 20px rgba(110, 53, 17, 0.25);
+        .sediment-svg-flow {
+            width: 100%;
+            height: 2%;
+            /* Mulai dari paling atas kotak section linimasa */
+            transition: height 0.03s linear;
+            will-change: height;
+        }
+
+        /* DIV KONTEN KARTU LINIMASA (BERADA DI DEPAN SEDIMEN) */
+        .timeline-content-container {
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Styling untuk Roadmap Zig-Zag */
+        .roadmap-container {
+            position: relative;
+            padding: 40px 0;
+        }
+
+        .roadmap-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 3px;
+            background-color: #cbd5e1;
+            transform: translateX(-50%);
+        }
+
+        .roadmap-item {
+            position: relative;
+            width: 50%;
+            padding: 20px 40px;
+            margin-bottom: 20px;
+        }
+
+        .roadmap-item.left {
+            left: 0;
+            text-align: right;
+        }
+
+        .roadmap-item.right {
+            left: 50%;
+            text-align: left;
+        }
+
+        .roadmap-pin {
+            position: absolute;
+            top: 35px;
+            width: 18px;
+            height: 18px;
+            background-color: #ffffff;
+            border: 4px solid #2A7C13;
+            border-radius: 50%;
+            z-index: 2;
+        }
+
+        .roadmap-item.left .roadmap-pin {
+            right: -9px;
+        }
+
+        .roadmap-item.right .roadmap-pin {
+            left: -9px;
+        }
+
+        .roadmap-card {
+            background: #ffffff;
+            border: 2px solid #543c1d;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .roadmap-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+            border-color: #76C457;
+        }
+
+        @media (max-width: 768px) {
+            .roadmap-container::before {
+                left: 20px;
+            }
+
+            .roadmap-item {
+                width: 100%;
+                padding-left: 50px;
+                padding-right: 15px;
+                text-align: left !important;
+            }
+
+            .roadmap-item.right {
+                left: 0;
+            }
+
+            .roadmap-pin {
+                left: 11px !important;
+            }
+        }
+
+        .visi-misi-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(45, 55, 72, 0.13) !important;
+            border-color: #2A7C13 !important;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .visi-misi-card {
+                transition: none !important;
+            }
+
+            .visi-misi-card:hover {
+                transform: none;
+            }
+        }
+
+        /* Smooth transition effects */
+        .card-transition {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card-transition:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.3);
+        }
+
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+
+        .reveal-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* RESPONSIVE MOBILE OVERRIDES
+           Hanya mengatur tata letak pada layar kecil; konten dan desain utama tetap. */
+        @media (max-width: 640px) {
+
+            html,
+            body {
+                max-width: 100%;
+                overflow-x: clip;
+            }
+
+            #navbar {
+                padding: 0.75rem;
+            }
+
+            #navbar img {
+                max-width: 132px;
+            }
+
+            #mobile-menu {
+                max-height: calc(100dvh - 90px);
+                overflow-y: auto;
+            }
+
+            .profile-hero {
+                padding-left: 1rem;
+                padding-right: 1rem;
+                padding-top: 6rem;
+                padding-bottom: 4.5rem;
+            }
+
+            .profile-hero h1 {
+                font-size: clamp(2rem, 9vw, 2.5rem);
+                line-height: 1.15;
+            }
+
+            /* Kartu profil tetap bertumpuk seperti desain aslinya. */
+            main>div.max-w-7xl {
+                min-width: 0;
+            }
+
+            .roadmap-container {
+                padding-top: 1.5rem;
+                padding-bottom: 1.5rem;
+            }
+
+            .roadmap-item {
+                box-sizing: border-box;
+                padding-top: 0.75rem;
+                padding-bottom: 0.75rem;
+                padding-right: 0.25rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .roadmap-card {
+                padding: 1rem;
+                overflow-wrap: anywhere;
+            }
+
+            .roadmap-card span {
+                line-height: 1.5;
+                white-space: normal;
+            }
+
+            /* Modal tetap menggunakan tampilan, warna, dan perilaku yang sama. */
+            #modal-belayan,
+            #modal-katalog {
+                padding: 0.75rem;
+            }
+
+            #modal-belayan-card,
+            #modal-katalog-card {
+                width: 100%;
+                max-width: 100%;
+                max-height: 90dvh;
+            }
+
+            #modal-belayan-card>div:first-child,
+            #modal-katalog-card>div:first-child {
+                padding: 1rem;
+                gap: 0.75rem;
+            }
+
+            #modal-belayan-card h3,
+            #modal-katalog-card h3 {
+                font-size: 1.25rem;
+                line-height: 1.4;
+                overflow-wrap: anywhere;
+            }
+
+            #modal-belayan-card .p-6,
+            #modal-katalog-card .p-6 {
+                padding: 1rem;
+            }
+
+            #toast {
+                left: 1rem;
+                right: 1rem;
+                bottom: 1rem;
+                max-width: calc(100% - 2rem);
+                box-sizing: border-box;
+            }
+
+            #btn-selengkapnya {
+                max-width: 100%;
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+            }
+
+            footer .grid {
+                min-width: 0;
+            }
+
+            footer a,
+            footer span {
+                overflow-wrap: anywhere;
+            }
+
+            #back-to-top {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .roadmap-item {
+                padding-left: 2.75rem;
+            }
+
+            .roadmap-card {
+                padding: 0.8rem;
+            }
+
+            .roadmap-card h3 {
+                font-size: 1rem;
+                line-height: 1.4;
+            }
+
+            .roadmap-card p {
+                font-size: 0.8rem;
+            }
+
+            .visi-misi-card {
+                padding: 1rem;
+            }
+
+            #btn-selengkapnya {
+                font-size: 0.75rem;
+            }
+        }
+
+
+        /* RESPONSIVE TAMBAHAN
+           Hanya berlaku pada layar mobile; isi, warna, desain desktop,
+           tautan, dan JavaScript asli tetap dipertahankan. */
+        @media (max-width: 640px) {
+
+            *,
+            *::before,
+            *::after {
+                box-sizing: border-box;
+            }
+
+            body,
+            main,
+            section {
+                min-width: 0;
+            }
+
+            #navbar {
+                left: 0;
+                right: 0;
+                width: 100%;
+            }
+
+            #navbar>div {
+                min-width: 0;
+                gap: 0.5rem;
+            }
+
+            #mobile-menu {
+                width: 100%;
+                min-width: 0;
+            }
+
+            .profile-hero,
+            .profile-hero>div {
+                max-width: 100%;
+            }
+
+            main>div.max-w-7xl {
+                width: 100%;
+                min-width: 0;
+            }
+
+            .timeline-content-container,
+            .roadmap-container,
+            .roadmap-item,
+            .roadmap-card {
+                min-width: 0;
+            }
+
+            .roadmap-card h3,
+            .roadmap-card p,
+            .roadmap-card span {
+                overflow-wrap: anywhere;
+            }
+
+            #modal-belayan-card,
+            #modal-katalog-card {
+                min-width: 0;
+                overflow: hidden;
+            }
+
+            #modal-belayan-card .overflow-y-auto,
+            #modal-katalog-card .overflow-y-auto {
+                min-width: 0;
+                overflow-x: hidden;
+            }
+
+            footer img {
+                max-width: 100%;
+                height: auto;
+                object-fit: contain;
+            }
+        }
+
+        @media (max-width: 380px) {
+            #navbar img {
+                max-width: 112px;
+            }
+
+            #mobile-toggle-btn {
+                flex-shrink: 0;
+            }
+
+            .profile-hero p {
+                overflow-wrap: anywhere;
+            }
+
+            #modal-belayan-card .p-6,
+            #modal-katalog-card .p-6 {
+                padding: 0.875rem;
+            }
+        }
+
+
+
+
+        /* =========================================
+   DEKORASI LINGKARAN - CERITA KAMI
+   ========================================= */
+
+        .story-section {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+
+            /* Ubah bagian background-image dengan menambahkan linear-gradient di bagian akhir */
+            background-image:
+                /* Kecil: kiri atas */
+                radial-gradient(circle at 9% 16%, transparent 0 17px, rgba(91, 125, 65, 0.16) 18px 22px, transparent 23px),
+                /* Kecil: kanan tengah */
+                radial-gradient(circle at 93% 43%, transparent 0 23px, rgba(91, 125, 65, 0.15) 24px 29px, transparent 30px),
+                /* Kecil: kiri tengah bawah */
+                radial-gradient(circle at 25% 77%, transparent 0 10px, rgba(91, 125, 65, 0.14) 11px 15px, transparent 16px),
+                /* Besar: kanan bawah */
+                radial-gradient(circle at 72% 82%, transparent 0 48px, rgba(255, 255, 255, 0.13) 49px 59px, transparent 60px),
+                /* Titik kecil: kanan atas */
+                radial-gradient(circle at 78% 17%, rgba(91, 125, 65, 0.12) 0 8px, transparent 9px),
+                linear-gradient(to bottom, #f4f4f0 45%, #543c1d 100%);
+        }
+
+        /* Lingkaran besar kanan atas */
+        .story-section::before {
+            content: "";
+            position: absolute;
+            top: -75px;
+            right: -65px;
+            width: 190px;
+            height: 190px;
+            border: 22px solid rgba(91, 125, 65, 0.12);
+            border-radius: 50%;
+            box-sizing: border-box;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Konten tetap di atas dekorasi */
+        .story-section .story-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Hilangkan lingkaran lama di dalam konten
+   agar tidak bertumpuk dengan pola baru */
+        .story-section .story-content::before,
+        .story-section .story-content::after {
+            content: none;
+        }
+
+        /* Penyesuaian HP */
+        @media (max-width: 640px) {
+            .story-section {
+                background-image:
+                    radial-gradient(circle at 9% 16%, transparent 0 12px, rgba(91, 125, 65, 0.16) 13px 16px, transparent 17px),
+                    radial-gradient(circle at 93% 43%, transparent 0 16px, rgba(91, 125, 65, 0.15) 17px 21px, transparent 22px),
+                    radial-gradient(circle at 25% 77%, transparent 0 7px, rgba(91, 125, 65, 0.14) 8px 11px, transparent 12px),
+                    radial-gradient(circle at 72% 82%, transparent 0 34px, rgba(255, 255, 255, 0.13) 35px 42px, transparent 43px),
+                    radial-gradient(circle at 78% 17%, rgba(91, 125, 65, 0.12) 0 6px, transparent 7px),
+                    linear-gradient(to bottom, #f4f4f0 45%, #543c1d 100%);
+            }
+
+            .story-section::before {
+                top: -55px;
+                right: -65px;
+                width: 145px;
+                height: 145px;
+                border-width: 17px;
+            }
+
+            .story-section::after {
+                bottom: -75px;
+                left: -65px;
+                width: 165px;
+                height: 165px;
+                border-width: 18px;
+            }
+        }
+
+
+        /* =========================================
+   LENGKUNGAN TRANSISI KE SEDIMENTASI
+   Bagian tengah turun ke bawah
+   ========================================= */
+        #timelineSection {
+            position: relative;
+            isolation: isolate;
+            overflow: visible;
+            background-color: #f8fafc;
+        }
+
+        #timelineSection::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 76px;
+            z-index: 1;
+            pointer-events: none;
+            background-color: #543c1d;
+            background-image:
+                radial-gradient(circle at 15% 25%, #3e2a12 4px, transparent 5px),
+                radial-gradient(circle at 75% 65%, #2c1d0b 6px, transparent 7px),
+                radial-gradient(circle at 45% 85%, #473217 8px, transparent 9px),
+                radial-gradient(circle at 85% 15%, #3e2a12 3px, transparent 4px),
+                radial-gradient(circle at 25% 90%, #2c1d0b 7px, transparent 8px);
+            background-size: 120px 120px, 180px 180px, 250px 250px,
+                90px 90px, 200px 200px;
+            clip-path: polygon(0 0,
+                    100% 0,
+                    100% 20%,
+                    85% 35%,
+                    70% 65%,
+                    50% 100%,
+                    30% 65%,
+                    15% 35%,
+                    0 20%);
+        }
+
+        /* Konten linimasa tetap berada di atas background */
+        #timelineSection .timeline-content-container {
+            z-index: 2;
+        }
+
+        /* =========================================
+   IKON FITUR YANG LEBIH MODERN
+   ========================================= */
+        .story-feature {
+            position: relative;
+            flex: 1;
+            min-width: 0;
+            padding: 8px 12px 12px;
+        }
+
+        .story-feature-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 90px;
+            height: 90px;
+            margin-bottom: 14px;
+            border: 1px solid rgba(42, 124, 19, 0.18);
+            border-radius: 18px;
+            color: #2a7c13;
+            background: rgba(255, 255, 255, 0.78);
+            box-shadow: 0 5px 16px rgba(43, 76, 48, 0.07);
+            transition:
+                transform 0.25s ease,
+                color 0.25s ease,
+                background-color 0.25s ease,
+                box-shadow 0.25s ease;
+        }
+
+        .story-feature-icon:hover {
+            transform: translateY(-4px);
+            color: #ffffff;
+            background-color: #2a7c13;
+            box-shadow: 0 10px 22px rgba(42, 124, 19, 0.18);
+        }
+
+        .story-feature-icon i {
+            font-size: 42px;
+        }
+
+        @media (max-width: 640px) {
+            .story-feature {
+                padding: 4px 0;
+            }
+
+            .story-feature-icon {
+                width: 52px;
+                height: 52px;
+                border-radius: 16px;
+            }
+
+            .story-feature-icon i {
+                font-size: 21px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .story-feature-icon {
+                transition: none;
+            }
+
+            .story-feature:hover .story-feature-icon {
+                transform: none;
+            }
+        }
+
+
+        /* =========================================
+   RESPONSIVE BAGIAN CERITA KAMI
+   ========================================= */
+
+        .story-section {
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+        }
+
+        .story-content {
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+
+        /* Fitur Technology, Innovation, Sustainability */
+        .story-features {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 2rem;
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .story-feature {
+            flex: 0 0 120px;
+            min-width: 0;
+            padding: 8px 0 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .story-feature-icon {
+            width: 90px;
+            height: 90px;
+            font-size: 42px;
+        }
+
+        .story-feature-icon i {
+            font-size: 42px;
+        }
+
+        /* Penyesuaian HP */
+        @media (max-width: 640px) {
+            .story-section {
+                padding: 3rem 1rem 5rem;
+            }
+
+            .story-content {
+                max-width: 100%;
+            }
+
+            .story-content p {
+                font-size: 0.9rem;
+                line-height: 1.8;
+                text-align: justify;
+                margin-bottom: 1rem;
+            }
+
+            .story-features {
+                gap: 1rem;
+                width: 100%;
+                max-width: 100%;
+                align-items: flex-start;
+            }
+
+            .story-feature {
+                flex: 0 1 100px;
+                width: 100px;
+                padding: 8px 0;
+            }
+
+            .story-feature-icon {
+                width: 64px;
+                height: 64px;
+                margin-bottom: 10px;
+                font-size: 30px;
+            }
+
+            .story-feature-icon i {
+                font-size: 30px;
+            }
+
+            .story-feature h3 {
+                font-size: 0.8rem;
+                line-height: 1.4;
+                text-align: center;
+            }
+        }
+
+        /* HP berukuran sangat kecil */
+        @media (max-width: 360px) {
+            .story-features {
+                gap: 0.5rem;
+            }
+
+            .story-feature-icon {
+                width: 54px;
+                height: 54px;
+                font-size: 26px;
+            }
+
+            .story-feature-icon i {
+                font-size: 26px;
+            }
+
+            .story-feature h3 {
+                font-size: 0.72rem;
+            }
+        }
+
+
+        /* ===== LAYOUT CERITA TIM ALBATROSS ===== */
+        .team-story-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+            align-items: center;
+            gap: 2.5rem;
+        }
+
+        .team-story-text {
+            min-width: 0;
+            text-align: justify;
+        }
+
+        /* ===== CAROUSEL FOTO BERTUMPUK ===== */
+        .team-carousel {
+            position: relative;
+            width: 100%;
+            max-width: 460px;
+            margin: 0 auto;
+            padding: 8px 0 35px;
+        }
+
+        .team-card-stack {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            perspective: 1000px;
+        }
+
+        .team-photo-card {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            border-radius: 16px;
+            background: #e8eee5;
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.18);
+            transition:
+                transform 0.45s ease,
+                opacity 0.45s ease,
+                box-shadow 0.45s ease;
+            will-change: transform;
+        }
+
+        .team-photo-card img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: inherit;
+        }
+
+        /* Tombol kiri dan kanan */
+        .team-carousel-btn {
+            position: absolute;
+            top: 50%;
+            z-index: 10;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            border-radius: 50%;
+            background: #2a7c13;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            transition: background 0.2s ease, scale 0.2s ease;
+        }
+
+        .team-carousel-btn:hover {
+            background: #1f5e0d;
+            scale: 1.06;
+        }
+
+        .team-prev {
+            left: -16px;
+        }
+
+        .team-next {
+            right: -16px;
+        }
+
+        /* Titik indikator */
+        .team-carousel-dots {
+            position: absolute;
+            bottom: 4px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .team-dot {
+            width: 8px;
+            height: 8px;
+            padding: 0;
+            border: none;
+            border-radius: 50%;
+            background: #cbd5c4;
+            cursor: pointer;
+            transition: background 0.25s ease, transform 0.25s ease;
+        }
+
+        .team-dot.active {
+            background: #2a7c13;
+            transform: scale(1.35);
+        }
+
+        /* Tampilan HP */
+        @media (max-width: 767px) {
+            .team-story-layout {
+                grid-template-columns: minmax(0, 1fr);
+                gap: 1.5rem;
+            }
+
+            .team-carousel {
+                max-width: 500px;
+                width: calc(100% - 12px);
+            }
+
+            .team-story-text {
+                text-align: justify;
+            }
+
+            .team-carousel-btn {
+                width: 36px;
+                height: 36px;
+            }
+
+            .team-prev {
+                left: -12px;
+            }
+
+            .team-next {
+                right: -12px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .team-photo-card,
+            .team-carousel-btn,
+            .team-dot {
+                transition: none;
+            }
+        }
+
+
+        /* RESPONSIVE PENJELASAN MIT+R DAN TIM ALBATROSS */
+        @media (max-width: 640px) {
+
+            /* Penjelasan MIT+R */
+            .story-section>div.max-w-6xl:not(.story-content) p {
+                font-size: 1.05rem;
+                line-height: 1.8;
+                text-align: justify;
+                overflow-wrap: break-word;
+            }
+
+            /* Penjelasan ALBATROSS Team */
+            .team-story-text p {
+                font-size: 1.05rem !important;
+                line-height: 1.8;
+                text-align: justify;
+                overflow-wrap: break-word;
+            }
+
+            /* Mengurangi padding berlapis */
+            .story-section>div.max-w-6xl,
+            .story-section>.team-story-layout {
+                padding-left: 0;
+                padding-right: 0;
+            }
+
+            /* Jarak antarbagian */
+            .story-section>div.max-w-6xl:not(.story-content) {
+                padding-bottom: 1.5rem;
+            }
+
+            .team-story-layout {
+                gap: 1.25rem;
+            }
+
         }
 
         /* Custom Scrollbar Umum */
@@ -137,44 +1002,27 @@
 
         ::-webkit-scrollbar-thumb {
             background: #76C457;
+            /* Warna hijau terang untuk pegangan scrollbar */
             border-radius: 4px;
         }
 
         ::-webkit-scrollbar-thumb:hover {
             background: #2A7C13;
-        }
-
-        /* Custom Scrollbar khusus Slider Horizontal Dropdown */
-        .custom-slider-scroll::-webkit-scrollbar {
-            height: 6px;
-        }
-
-        .custom-slider-scroll::-webkit-scrollbar-track {
-            background: #E5E7EB;
-            border-radius: 9999px;
-        }
-
-        .custom-slider-scroll::-webkit-scrollbar-thumb {
-            background: #76C457;
-            border-radius: 9999px;
-        }
-
-        .custom-slider-scroll::-webkit-scrollbar-thumb:hover {
-            background: #2A7C13;
+            /* Warna hijau tua saat kursor diarahkan ke scrollbar */
         }
     </style>
-
     <link rel="icon" type="image/png" href="logo ALBATROSS.png">
 </head>
 
-<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen overflow-x-hidden">
+<body class="bg-white text-gray-800 font-inter">
+
     <!-- STICKY NAVIGATION BAR -->
     <nav id="navbar"
         class="fixed top-0 left-0 w-full z-50 p-4 lg:px-12 transition-all duration-300 text-white bg-transparent">
 
         <div class="max-w-7xl mx-auto flex justify-between items-center relative">
 
-            <!-- Logo ALBATROSS -->
+            <!-- ALBATROSS Logo -->
             <div class="relative flex items-center justify-center">
                 <a href="#" id="logo-btn"
                     class="relative z-10 flex items-center justify-center transition-transform hover:scale-105 mx-[5px]">
@@ -205,7 +1053,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="profil-en.html"
+                        <a href="profil.html"
                             class="nav-item whitespace-nowrap px-3 sm:px-4 py-2 rounded-full transition-all duration-200 text-white hover:bg-[#76C457]/40 hover:text-white nav-underline">
                             <span class="nav-text-wrap">PROFILE<span class="nav-line"></span></span>
                         </a>
@@ -228,7 +1076,7 @@
                             <!-- Tambahkan onclick di sini -->
                             <span
                                 class="w-8 h-8 flex items-center justify-center rounded-full text-xs font-bold bg-white text-slate-800 shadow-sm cursor-default">EN</span>
-                            <a href="progres.html" onclick="saveScrollPosition()"
+                            <a href="profil.html" onclick="saveScrollPosition()"
                                 class="w-8 h-8 flex items-center justify-center rounded-full text-xs font-bold text-white transition-all hover:bg-slate-500/50">ID</a>
                         </div>
                     </li>
@@ -236,7 +1084,7 @@
 
                 <!-- Tombol Mobile -->
                 <button id="mobile-toggle-btn" class="md:hidden text-2xl p-2 transition-colors focus:outline-none"
-                    aria-label="Open navigation menu">
+                    aria-label="Buka menu navigasi">
                     <i id="toggle-icon" class="fas fa-bars"></i>
                 </button>
             </div>
@@ -246,7 +1094,7 @@
         <div id="mobile-menu" class="hidden md:hidden bg-white mt-4 rounded-xl shadow-lg p-4">
             <div class="flex flex-col space-y-2 text-sm font-semibold text-[#76C457]">
                 <a href="index-en.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">HOME</a>
-                <a href="profil-en.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">PROFILE</a>
+                <a href="profil.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">PROFILE</a>
                 <a href="hubungi-en.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">CONTACT</a>
                 <a href="progres-en.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">PROGRESS</a>
                 <div class="px-4 py-3 flex justify-between items-center border-t border-gray-100 mt-2">
@@ -254,8 +1102,8 @@
                     <div class="flex bg-[#2A7C13]/70 rounded-full p-1">
                         <!-- Tambahkan onclick di sini -->
                         <span
-                            class=" w-8 h-8 flex items-center justify-center rounded-full text-xs font-bold bg-white text-[#2A7C13] shadow-sm cursor-default">EN</span>
-                        <a href="progres.html" onclick="saveScrollPosition()"
+                            class="w-8 h-8 flex items-center justify-center rounded-full text-xs font-bold bg-white text-[#2A7C13] shadow-sm cursor-default">EN</span>
+                        <a href="profil.html" onclick="saveScrollPosition()"
                             class="w-8 h-8 flex items-center justify-center rounded-full text-xs font-bold text-white transition-all">ID</a>
                     </div>
                 </div>
@@ -263,267 +1111,615 @@
         </div>
     </nav>
 
-    <main class="flex-grow">
-        <!-- BANNER GALERI -->
-        <section class="relative overflow-hidden bg-gray-900 px-5 py-16 sm:py-20 md:py-24">
+    <!-- KONTEN UTAMA -->
+    <main>
+
+
+        <!-- BANNER PROFILE -->
+        <section
+            class="profile-hero relative isolate overflow-hidden bg-[#543c1d] px-5 py-[10rem] sm:py-[11rem] md:py-[12rem]">
+
+            <!-- Gambar Background -->
             <div class="absolute inset-0 z-0">
-                <img src="banner galeri.png" alt="Pre-program banner background"
-                    class="w-full h-full object-cover object-[center_60%]">
-                <div class="absolute inset-0 bg-black/50"></div>
+                <img src="banner profil.png" alt="Profile banner background"
+                    class="h-full w-full object-cover object-[center_60%]">
+
+                <!-- Lapisan gelap -->
+                <div class="absolute inset-0 bg-black/40"></div>
             </div>
 
-            <div class="relative z-10 max-w-4xl mx-auto text-center">
-                <h1
-                    class="font-tech text-4xl sm:text-5xl md:text-6xl font-bold text-white drop-shadow-lg translate-y-4">
-                    PROGRESS
-                </h1>
-                <p
-                    class="mx-auto text-white text-xs sm:text-sm md:text-base lg:text-lg max-w-3xl leading-relaxed drop-shadow-md mb-6 sm:mb-10 font-medium px-2 translate-y-4">
-                    Documentation & Device Progress - ALBATROSS Team
-                </p>
+            <!-- Judul di sisi kiri -->
+            <div class="relative z-10 mx-auto max-w-6xl px-6 sm:px-8 lg:px-10">
+                <div class="w-fit text-left text-white">
+                    <h1 class="font-tech text-4xl sm:text-5xl md:text-6xl font-bold drop-shadow-lg mb-2">
+                        PROFILE
+                    </h1>
+
+                    <p class="text-sm sm:text-base md:text-lg leading-relaxed drop-shadow-md font-medium">
+                        Behind the ALBATROSS Project
+                    </p>
+                </div>
             </div>
+
         </section>
 
-        <!-- SECTION PROGRES INTERAKTIF -->
-        <section class="py-12 px-4 sm:px-6 lg:px-8 bg-[#FFFFFF] text-gray-100 relative overflow-hidden">
-            <div class="max-w-7xl mx-auto">
+        <!-- SEGMEN CERITA KAMI -->
+        <section class="story-section pt-16 pb-10 px-6 relative z-10">
 
-                <!-- Device Switcher Tabs (Tanpa shadow-xl) -->
-                <div
-                    class="flex justify-start md:justify-center mb-8 md:mb-20 overflow-x-auto py-2 px-4 w-full custom-slider-scroll">
-                    <div id="deviceTabs"
-                        class="flex flex-nowrap md:flex-wrap gap-2 bg-[#2A7C13]/20 p-2 rounded-full border border-[#76C457] backdrop-blur-md min-w-max md:min-w-fit">
-                        <!-- Generated dynamically by JS -->
-                    </div>
-                </div>
-
-                <!-- MAIN 2-COLUMN GRID (Kartu Kiri & Panel Kanan) -->
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
-
-                    <!-- LEFT SIDE (6 COLS): 3D Stacked Cards Gallery -->
-                    <div
-                        class="lg:col-span-6 flex flex-col items-center justify-center min-h-[380px] sm:min-h-[440px] lg:min-h-[480px] w-full px-2 lg:-ml-6 transform lg:-translate-y-8">
-                        <div class="stack-perspective py-4 w-full">
-                            <div id="cardStack" class="card-stack mx-auto">
-                                <!-- Cards rendered by JS -->
-                            </div>
-                        </div>
-
-                        <div class="h-6"></div>
-
-                        <!-- Instruction Tip -->
-                        <div
-                            class="mt-2 flex items-center gap-2 text-xs text-[#454545] bg-[#2A7C13]/20 px-4 py-2 rounded-full border border-[#76C457] text-center">
-                            <i class="fa-solid fa-hand-pointer text-[#6E3511] animate-bounce shrink-0"></i>
-                            <span>Click a card to bring it to the front</span>
-                        </div>
-                    </div>
-
-                    <!-- RIGHT SIDE (6 COLS): Percentage & Milestone Info Panel -->
-                    <div class="lg:col-span-6 flex flex-col justify-center w-full mt-4 lg:-mt-20 lg:-ml-14">
-                        <div
-                            class="bg-[#76C457]/30 border border-[#76C457] rounded-3xl p-5 sm:p-6 md:p-8 backdrop-blur-xl relative overflow-hidden shadow-2xl">
-
-                            <div
-                                class="absolute -right-20 -top-20 w-60 h-60 bg-[#2A7C13]/30 rounded-full blur-3xl pointer-events-none">
-                            </div>
-
-                            <!-- Kumpulan Progres Bar -->
-                            <div class="flex flex-col gap-4 mb-6 relative z-10">
-
-                                <!-- 1. Overall Progres Bar -->
-                                <div class="bg-[white]/50 rounded-2xl p-4 sm:p-5 border border-[#76C457]">
-                                    <div class="flex justify-between items-baseline mb-2">
-                                        <span
-                                            class="text-[11px] sm:text-xs font-semibold text-[#454545] uppercase tracking-wider">Total Device Completion</span>
-                                        <div class="flex items-baseline gap-0.5">
-                                            <span id="percentageText"
-                                                class="text-3xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#76C457] to-emerald-400">0</span>
-                                            <span class="text-xl sm:text-2xl font-bold text-[#76C457]">%</span>
-                                        </div>
-                                    </div>
-                                    <div
-                                        class="w-full h-3 sm:h-3.5 bg-gray-800 rounded-full overflow-hidden p-0.5 border border-gray-700/50">
-                                        <div id="progressBar"
-                                            class="h-full bg-gradient-to-r from-[#2A7C13] via-[#76C457] to-emerald-400 rounded-full transition-all duration-500 ease-out"
-                                            style="width: 0%"></div>
-                                    </div>
-                                </div>
-
-                                <!-- 2. Divisi Progress Bars -->
-                                <div class="flex flex-col gap-4">
-
-                                    <!-- Mekanik (Lebar Penuh) -->
-                                    <div class="bg-[white]/50 rounded-2xl p-4 sm:p-5 border border-[#76C457]">
-                                        <div class="flex justify-between items-baseline mb-2">
-                                            <span
-                                                class="text-[11px] sm:text-xs font-semibold text-[#454545] uppercase tracking-wider">Mechanics Progress</span>
-                                            <div class="flex items-baseline gap-0.5">
-                                                <span id="mekanikText"
-                                                    class="text-3xl sm:text-4xl font-extrabold text-[#2A7C13]">0</span>
-                                                <span class="text-xl sm:text-2xl font-bold text-[#2A7C13]">%</span>
-                                            </div>
-                                        </div>
-                                        <div
-                                            class="w-full h-3 sm:h-3.5 bg-gray-800 rounded-full overflow-hidden p-0.5 border border-gray-700/50">
-                                            <div id="mekanikBar"
-                                                class="h-full bg-[#2A7C13] rounded-full transition-all duration-500 ease-out"
-                                                style="width: 0%"></div>
-                                        </div>
-                                    </div>
-
-                                    <!-- CONTAINER ALAT ALBA: Elektronika Data & Navigasi (Grid 2 Kolom) -->
-                                    <div id="elektroDualContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                        <!-- Elektronika (Data) -->
-                                        <div class="bg-[white]/50 rounded-2xl p-4 sm:p-5 border border-[#76C457]">
-                                            <div class="flex justify-between items-baseline mb-2">
-                                                <span
-                                                    class="text-[11px] sm:text-xs font-semibold text-[#454545] uppercase tracking-wider">Electronics (Data)</span>
-                                                <div class="flex items-baseline gap-0.5">
-                                                    <span id="elektroDataText"
-                                                        class="text-3xl sm:text-4xl font-extrabold text-[#76C457]">0</span>
-                                                    <span class="text-xl sm:text-2xl font-bold text-[#76C457]">%</span>
-                                                </div>
-                                            </div>
-                                            <div
-                                                class="w-full h-3 sm:h-3.5 bg-gray-800 rounded-full overflow-hidden p-0.5 border border-gray-700/50">
-                                                <div id="elektroDataBar"
-                                                    class="h-full bg-[#76C457] rounded-full transition-all duration-500 ease-out"
-                                                    style="width: 0%"></div>
-                                            </div>
-                                        </div>
-                                        <!-- Elektronika (Navigasi) -->
-                                        <div class="bg-[white]/50 rounded-2xl p-4 sm:p-5 border border-[#76C457]">
-                                            <div class="flex justify-between items-baseline mb-2">
-                                                <span
-                                                    class="text-[11px] sm:text-xs font-semibold text-[#454545] uppercase tracking-wider">Electronics (Navigation)</span>
-                                                <div class="flex items-baseline gap-0.5">
-                                                    <span id="elektroNavText"
-                                                        class="text-3xl sm:text-4xl font-extrabold text-[#2A7C13]">0</span>
-                                                    <span class="text-xl sm:text-2xl font-bold text-[#2A7C13]">%</span>
-                                                </div>
-                                            </div>
-                                            <div
-                                                class="w-full h-3 sm:h-3.5 bg-gray-800 rounded-full overflow-hidden p-0.5 border border-gray-700/50">
-                                                <div id="elektroNavBar"
-                                                    class="h-full bg-[#2A7C13] rounded-full transition-all duration-500 ease-out"
-                                                    style="width: 0%"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- CONTAINER ALAT BAT & TROSS: Elektronika Single (Lebar Penuh) -->
-                                    <div id="elektroSingleContainer"
-                                        class="hidden bg-[white]/50 rounded-2xl p-4 sm:p-5 border border-[#76C457]">
-                                        <div class="flex justify-between items-baseline mb-2">
-                                            <span
-                                                class="text-[11px] sm:text-xs font-semibold text-[#454545] uppercase tracking-wider">Electronics Progress</span>
-                                            <div class="flex items-baseline gap-0.5">
-                                                <span id="elektroText"
-                                                    class="text-3xl sm:text-4xl font-extrabold text-[#76C457]">0</span>
-                                                <span class="text-xl sm:text-2xl font-bold text-[#76C457]">%</span>
-                                            </div>
-                                        </div>
-                                        <div
-                                            class="w-full h-3 sm:h-3.5 bg-gray-800 rounded-full overflow-hidden p-0.5 border border-gray-700/50">
-                                            <div id="elektroBar"
-                                                class="h-full bg-[#76C457] rounded-full transition-all duration-500 ease-out"
-                                                style="width: 0%"></div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Program (Lebar Penuh di Bawah Elektronika) -->
-                                    <div class="bg-[white]/50 rounded-2xl p-4 sm:p-5 border border-[#76C457]">
-                                        <div class="flex justify-between items-baseline mb-2">
-                                            <span
-                                                class="text-[11px] sm:text-xs font-semibold text-[#454545] uppercase tracking-wider">Software Progress</span>
-                                            <div class="flex items-baseline gap-0.5">
-                                                <span id="programText"
-                                                    class="text-3xl sm:text-4xl font-extrabold text-[#2A7C13]">0</span>
-                                                <span class="text-xl sm:text-2xl font-bold text-[#2A7C13]">%</span>
-                                            </div>
-                                        </div>
-                                        <div
-                                            class="w-full h-3 sm:h-3.5 bg-gray-800 rounded-full overflow-hidden p-0.5 border border-gray-700/50">
-                                            <div id="programBar"
-                                                class="h-full bg-gradient-to-r from-[#2A7C13] via-[#76C457] to-emerald-400 rounded-full transition-all duration-500 ease-out"
-                                                style="width: 0%"></div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
+            <!-- Penjelasan MIT+R -->
+            <div class="max-w-6xl mx-auto px-6 sm:px-8 lg:px-10 pb-8 relative z-10">
+                <p class="text-base sm:text-lg leading-relaxed text-justify text-gray-700">
+                    <strong>MIT+R IPB University</strong> provides a space for ideas and innovations grounded in
+                    science and technology to address real-world challenges. For us, innovation is not merely
+                    about creating something new, but also about finding ways for knowledge to make a meaningful
+                    impact.
+                    This spirit drives our efforts to understand and address environmental issues,
+                    including the challenges faced by coastal and mangrove ecosystems.
+                </p>
             </div>
 
 
-            <!-- Status & Stats Highlights -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mx-4 lg:mx-12 mt-6 lg:mt-0">
-                <div class="bg-[white]/50 border border-[#76C457] rounded-xl p-3 sm:p-3.5 flex items-center gap-3">
-                    <div
-                        class="w-10 h-10 rounded-lg bg-[#2A7C13]/35 border border-[#76C457] flex items-center justify-center text-[#6E3511] shrink-0">
-                        <i class="fa-solid fa-spinner animate-spin text-[#6E3511]" id="statusIcon"></i>
-                    </div>
-                    <div>
-                        <div class="text-[11px] font-semibold text-[#6E3511] uppercase tracking-wider">
-                            Device Status</div>
-                        <div id="displayStatus" class="text-xs sm:text-sm font-bold text-[#454545]">
-                            In Progress
+            <!-- Penjelasan ALBATROSS Team -->
+            <div class="story-content max-w-6xl mx-auto px-6 sm:px-8 lg:px-10 team-story-layout">
+
+                <!-- Carousel Foto Tim di Sebelah Kiri -->
+                <div class="team-carousel" id="teamCarousel">
+
+                    <div class="team-card-stack">
+                        <div class="team-photo-card">
+                            <img src="tim albatross.jpeg" alt="ALBATROSS Team">
+                        </div>
+
+                        <div class="team-photo-card">
+                            <img src="mekanik.jpeg" alt="ALBATROSS Mechanical Team">
+                        </div>
+
+                        <div class="team-photo-card">
+                            <img src="elektro.jpeg" alt="ALBATROSS Electrical Team">
+                        </div>
+
+                        <div class="team-photo-card">
+                            <img src="program.jpeg" alt="ALBATROSS Program Team">
+                        </div>
+
+                        <div class="team-photo-card">
+                            <img src="admin.jpeg" alt="ALBATROSS Administration Team">
                         </div>
                     </div>
-                </div>
 
-                <div class="bg-[white]/50 border border-[#76C457] rounded-xl p-3 sm:p-3.5 flex items-center gap-3">
-                    <div
-                        class="w-10 h-10 rounded-lg bg-[#2A7C13]/35 border border-[#76C457] flex items-center justify-center text-[#6E3511] shrink-0">
-                        <i class="fa-solid fa-images"></i>
-                    </div>
-                    <div>
-                        <div class="text-[11px] font-semibold text-[#6E3511] uppercase tracking-wider">
-                            Total Documentation</div>
-                        <div id="totalMilestones" class="text-xs sm:text-sm font-bold text-[#454545]">0
-                            Photos</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- KOTAK MEMANJANG KE SAMPING (DROPDOWN DETAIL PROGRESS SLIDER) -->
-            <div class="mt-12 max-w-6xl mx-auto w-full px-4 sm:px-5">
-                <div class="border border-[#76C457] rounded-2xl shadow-xl overflow-hidden transition-all duration-300">
-
-                    <!-- Tombol Kotak Utama (Bisa Dipencet) -->
-                    <button onclick="toggleDetailedDropdown()"
-                        class="w-full px-6 py-4 bg-[#2A7C13]/30 hover:bg-[#236510]/30 text-[#236510] flex items-center justify-between transition-colors duration-200 cursor-pointer focus:outline-none">
-                        <div class="flex items-center gap-3">
-                            <i class="fa-solid fa-circle-info text-lg"></i>
-                            <span class="font-bold text-sm sm:text-base tracking-wide text-left">View our progress in detail</span>
-                        </div>
-                        <i id="dropdownArrow" class="fa-solid fa-chevron-down transition-transform duration-300"></i>
+                    <!-- Tombol navigasi -->
+                    <button class="team-carousel-btn team-prev" type="button" aria-label="Previous photo">
+                        <i class="fa-solid fa-chevron-left"></i>
                     </button>
 
-                    <!-- Area Isi Dropdown (Slider Horizontal per Bidang) -->
-                    <div id="detailedDropdownContent"
-                        class="hidden bg-white p-6 sm:p-8 border-t border-[#76C457] transition-all duration-300">
-                        <div class="mb-6">
-                            <h3 class="text-lg sm:text-xl font-bold text-[#6E3511] mb-1">Progress Breakdown by Division</h3>
-                            <p class="text-xs sm:text-sm text-[#454545]">Scroll sideways to see all documentation and progress details for each division.</p>
-                        </div>
+                    <button class="team-carousel-btn team-next" type="button" aria-label="Next photo">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
 
-                        <!-- Container Pengelompokan Kategori Horizontal Slider -->
-                        <div id="dropdownMilestonesGrouped" class="space-y-8">
-                            <!-- Data dikelompokkan dan dapat digeser oleh JavaScript -->
-                        </div>
+                    <!-- Indikator foto -->
+                    <div class="team-carousel-dots">
+                        <button class="team-dot active" type="button" aria-label="Photo 1"></button>
+                        <button class="team-dot" type="button" aria-label="Photo 2"></button>
+                        <button class="team-dot" type="button" aria-label="Photo 3"></button>
+                        <button class="team-dot" type="button" aria-label="Photo 4"></button>
+                        <button class="team-dot" type="button" aria-label="Photo 5"></button>
                     </div>
+
+                </div>
+
+                <!-- Penjelasan di Sebelah Kanan -->
+                <div class="team-story-text">
+                    <p class="text-base sm:text-lg leading-relaxed text-gray-700 mb-5">
+                        Driven by this spirit, <strong>ALBATROSS Team</strong> is part of
+                        <strong>MIT+R
+                            IPB University</strong>
+                        and works to develop monitoring technologies for aquatic environments and coastal ecosystems. By
+                        monitoring
+                        water conditions and sedimentation, we aim to support environmental understanding and encourage
+                        sustainable innovation.
+                    </p>
+                </div>
+
+            </div>
+
+            <br>
+
+            <div class="text-center mb-8">
+                <h3 class="text-lg sm:text-xl font-bold text-[#ffffff]">
+                    Three principles guide the development of ALBATROSS:
+                </h3>
+            </div>
+
+            <div class="story-features">
+
+
+                <!-- Fitur 1: Technology -->
+                <div class="story-feature flex flex-col items-center text-center">
+                    <div class="story-feature-icon">
+                        <i class="fa-solid fa-microchip" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-white m-0">
+                        Technology
+                    </h3>
+                </div>
+
+                <!-- Fitur 2: Innovation -->
+                <div class="story-feature flex flex-col items-center text-center">
+                    <div class="story-feature-icon">
+                        <i class="fa-solid fa-flask-vial" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-white m-0">
+                        Innovation
+                    </h3>
+                </div>
+
+                <!-- Fitur 3: Sustainability -->
+                <div class="story-feature flex flex-col items-center text-center">
+                    <div class="story-feature-icon">
+                        <i class="fa-solid fa-leaf" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-white m-0">
+                        Sustainability
+                    </h3>
+                </div>
+            </div>
+            </div>
+        </section>
+        <!-- AKHIR SEGMEN CERITA KAMI -->
+
+        <section id="timelineSection" class="timeline-section-wrapper pt-0 pb-16 px-4 sm:px-6 lg:px-8 pb-32">
+
+            <!-- 1. DIV LATAR BELAKANG SEDIMENTASI (DENGAN TRANSISI HALUS, PARTIKEL & GELOMBANG) -->
+            <div class="sediment-background-layer">
+
+                <!-- DIV UTAMA SEDIMEN (Animasi scroll JS akan mengatur tinggi div ini) -->
+                <div id="sedimentFlowSvg" class="sediment-svg-flow" style="
+                    position: relative; 
+                    background-color: #543c1d;
+                    /* Motif titik-titik sedimen tetap ada di sini */
+                    background-image: 
+                        radial-gradient(circle at 15% 25%, #3e2a12 4px, transparent 5px),
+                        radial-gradient(circle at 75% 65%, #2c1d0b 6px, transparent 7px),
+                        radial-gradient(circle at 45% 85%, #473217 8px, transparent 9px),
+                        radial-gradient(circle at 85% 15%, #3e2a12 3px, transparent 4px),
+                        radial-gradient(circle at 25% 90%, #2c1d0b 7px, transparent 8px);
+                    background-size: 120px 120px, 180px 180px, 250px 250px, 90px 90px, 200px 200px;
+                ">
+
+                    <!-- EKOR GELOMBANG BAWAH (Menggantung & membawa motif titik-titik) -->
+                    <div style="
+                        position: absolute;
+                        bottom: -99px; /* Posisinya menggantung keluar di bawah kotak utama */
+                        left: 0;
+                        width: 100%;
+                        height: 100px; /* Tingginya dikunci, sehingga gelombang tidak akan pernah tergencet */
+                        background-color: inherit; /* Otomatis mengambil warna #543c1d */
+                        background-image: inherit; /* Otomatis menjiplak motif titik-titik partikel */
+                        background-size: inherit;
+                        /* Topeng CSS memotong bagian bawah div ini menjadi bentuk ombak */
+                        -webkit-mask-image: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 100' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,0 L1440,0 L1440,30 C1200,90 960,-10 720,40 C480,90 240,-10 0,40 L0,0 Z'%3E%3C/path%3E%3C/svg%3E&quot;);
+                        mask-image: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 100' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,0 L1440,0 L1440,30 C1200,90 960,-10 720,40 C480,90 240,-10 0,40 L0,0 Z'%3E%3C/path%3E%3C/svg%3E&quot;);
+                        -webkit-mask-size: 100% 100%;
+                        mask-size: 100% 100%;
+                    "></div>
 
                 </div>
             </div>
 
+            <!-- 2. DIV KONTEN KARTU ROADMAP -->
+            <br>
+            <div class="timeline-content-container max-w-5xl mx-auto">
+                <div class="text-center mb-12">
+                    <span
+                        class="text-xs font-bold uppercase tracking-widest text-[#FFFFFF] bg-[#76C457]/20 px-3 py-1 rounded-full">Timeline</span>
+                    <h2 id="timeline-title"
+                        class="font-tech text-3xl sm:text-4xl font-bold text-[#76C457] mt-2 transition-colors duration-300">
+                        Project Timeline</h2>
+                </div>
+
+                <div class="roadmap-container">
+
+                    <!-- Item 1 (Kiri) -->
+                    <div class="roadmap-item left">
+                        <div class="roadmap-pin"></div>
+                        <div class="roadmap-card">
+                            <span
+                                class="inline-block text-xs font-bold text-[#2A7C13] bg-[#76C457]/20 px-2.5 py-1 rounded mb-2 uppercase">21
+                                Agu – 10 Sep 2026</span>
+                            <h3 class="text-lg font-bold text-gray-900 mb-1">Project Planning</h3>
+                            <p class="text-sm text-gray-600 leading-relaxed">Developing the initial concept and
+                                preparing a comprehensive project plan.</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 2 (Kanan) -->
+                    <div class="roadmap-item right">
+                        <div class="roadmap-pin"></div>
+                        <div class="roadmap-card">
+                            <span
+                                class="inline-block text-xs font-bold text-[#2A7C13] bg-[#76C457]/20 px-2.5 py-1 rounded mb-2 uppercase">11
+                                Sep 2026 – 22 Jan 2027</span>
+                            <h3 class="text-lg font-bold text-gray-900 mb-1">Development & Procurement</h3>
+                            <p class="text-sm text-gray-600 leading-relaxed">Fundraising, equipment development, and
+                                quality control testing.</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 3 (Kiri) -->
+                    <div class="roadmap-item left">
+                        <div class="roadmap-pin"></div>
+                        <div class="roadmap-card">
+                            <span
+                                class="inline-block text-xs font-bold text-[#2A7C13] bg-[#76C457]/20 px-2.5 py-1 rounded mb-2 uppercase">24
+                                – 25 Januari 2027</span>
+                            <h3 class="text-lg font-bold text-gray-900 mb-1">Field Preparation</h3>
+                            <p class="text-sm text-gray-600 leading-relaxed">Site surveys, permit arrangements, and
+                                technical implementation preparations.</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 4 (Kanan) -->
+                    <div class="roadmap-item right">
+                        <div class="roadmap-pin"></div>
+                        <div class="roadmap-card">
+                            <span
+                                class="inline-block text-xs font-bold text-[#2A7C13] bg-[#76C457]/20 px-2.5 py-1 rounded mb-2 uppercase">26
+                                – 28 Januari 2027</span>
+                            <h3 class="text-lg font-bold text-gray-900 mb-1">Field Implementation</h3>
+                            <p class="text-sm text-gray-600 leading-relaxed">System implementation and field data
+                                collection.</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 5 (Kiri) -->
+                    <div class="roadmap-item left">
+                        <div class="roadmap-pin"></div>
+                        <div class="roadmap-card">
+                            <span
+                                class="inline-block text-xs font-bold text-[#2A7C13] bg-[#76C457]/20 px-2.5 py-1 rounded mb-2 uppercase">29
+                                Januari 2027</span>
+                            <h3 class="text-lg font-bold text-gray-900 mb-1">Data Analysis</h3>
+                            <p class="text-sm text-gray-600 leading-relaxed">Processing and visualizing data collected
+                                through project monitoring.</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 6 (Kanan) -->
+                    <div class="roadmap-item right">
+                        <div class="roadmap-pin"></div>
+                        <div class="roadmap-card">
+                            <span
+                                class="inline-block text-xs font-bold text-[#2A7C13] bg-[#76C457]/20 px-2.5 py-1 rounded mb-2 uppercase">30
+                                – 31 Januari 2027</span>
+                            <h3 class="text-lg font-bold text-gray-900 mb-1">Report Preparation</h3>
+                            <p class="text-sm text-gray-600 leading-relaxed">Preparing the final report and presenting
+                                the development outcomes.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
+
+    <br>
+    <!-- Container dengan padding horizontal yang longgar -->
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mt-10 relative z-0">
+        <!-- Header Section -->
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <h2 class="font-tech text-3xl sm:text-4xl font-bold text-gray-900 tracking-tight mb-4">
+                Latest Activities
+            </h2>
+            <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
+                Follow the latest developments in marine technology innovation, aquatic monitoring equipment, and
+                research. From technology development to field implementation, every innovation aims to
+                <strong>support marine ecosystem monitoring, coastal resource management, and the development of
+                    solutions</strong> powered by sustainable technology.
+            </p>
+        </div>
+
+        <!-- 1. GRID UTAMA UNTUK CARD 1 s.d. 14 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
+
+            <!-- Card 1 -->
+            <div
+                class="w-full bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
+                <div>
+                    <div class="aspect-square w-full overflow-hidden bg-gray-100">
+                        <img src="Swarm Ship.png" alt="Swarm Ship" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3
+                            class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
+                            Swarm Ship
+                        </h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-6" style="text-align: justify;">
+                            A vessel equipped with a <strong>swarm intelligence</strong> system, designed to enable
+                            vessels to coordinate with one another and operate in various formations for interception,
+                            attack, and defense.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div
+                class="w-full bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
+                <div>
+                    <div class="aspect-square w-full overflow-hidden bg-gray-100">
+                        <img src="Early Warning Upwelling.png" alt="Early Warning Upwelling"
+                            class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3
+                            class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
+                            Early Warning Upwelling
+                        </h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-6" style="text-align: justify;">
+                            An early warning system designed to <strong>detect upwelling events</strong>. The instrument
+                            is equipped with sensors that monitor air temperature, water surface temperature, and
+                            bottom-water temperature in real time.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 5 -->
+            <div
+                class="w-full bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
+                <div>
+                    <div class="aspect-square w-full overflow-hidden bg-gray-100">
+                        <img src="N1-AUV.png" alt="N1-AUV" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3
+                            class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
+                            N1-AUV
+                        </h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-6" style="text-align: justify;">
+                            The first unmanned underwater vehicle from Nusantara AUV, designed for underwater
+                            exploration and observation.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 6 -->
+            <div
+                class="w-full hidden extra-activity bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
+                <div>
+                    <div class="aspect-square w-full overflow-hidden bg-gray-100">
+                        <img src="N2-AUV.jpg" alt="N2-AUV" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3
+                            class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
+                            N2-AUV
+                        </h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-6" style="text-align: justify;">
+                            The second unmanned underwater vehicle from Nusantara AUV, designed for underwater
+                            exploration and observation.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 7 -->
+            <div
+                class="w-full hidden extra-activity bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
+                <div>
+                    <div class="aspect-square w-full overflow-hidden bg-gray-100">
+                        <img src="N3.2-AUV.jpeg" alt="N3.2-AUV" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3
+                            class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
+                            N3.2-AUV
+                        </h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-6" style="text-align: justify;">
+                            The third-generation (3.2) unmanned underwater vehicle from Nusantara AUV, designed for
+                            underwater exploration and observation.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 8 -->
+            <div
+                class="w-full hidden extra-activity bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
+                <div>
+                    <div class="aspect-square w-full overflow-hidden bg-gray-100">
+                        <img src="N4-AUV.png" alt="N4-AUV" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3
+                            class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
+                            N4-AUV
+                        </h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-6" style="text-align: justify;">
+                            The fourth unmanned underwater vehicle from Nusantara AUV, designed for underwater
+                            exploration and observation.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 9 -->
+            <div
+                class="w-full hidden extra-activity bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
+                <div>
+                    <div class="aspect-square w-full overflow-hidden bg-gray-100">
+                        <img src="N7-AUV.jpg" alt="N7-AUV" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3
+                            class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
+                            N7-AUV
+                        </h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-6" style="text-align: justify;">
+                            The seventh unmanned underwater vehicle from Nusantara AUV, designed for underwater
+                            exploration and observation.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 10 -->
+            <div
+                class="w-full hidden extra-activity bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
+                <div>
+                    <div class="aspect-square w-full overflow-hidden bg-gray-100">
+                        <img src="Pelamis IV.png" alt="Pelamis IV" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3
+                            class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
+                            Pelamis IV
+                        </h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-6" style="text-align: justify;">
+                            The fourth-generation remotely operated vessel equipped with a monitoring system for marine
+                            resource observation.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 11 -->
+            <div
+                class="w-full hidden extra-activity bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
+                <div>
+                    <div class="aspect-square w-full overflow-hidden bg-gray-100">
+                        <img src="Pelamis VII.png" alt="Pelamis VII" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3
+                            class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
+                            Pelamis VII
+                        </h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-6" style="text-align: justify;">
+                            The seventh-generation remotely operated vessel equipped with a monitoring system for marine
+                            resource observation.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 12 -->
+            <div
+                class="w-full hidden extra-activity bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
+                <div>
+                    <div class="aspect-square w-full overflow-hidden bg-gray-100">
+                        <img src="Soil Temperature Humidity Logger.png" alt="Soil Temperature Humidity Logger"
+                            class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3
+                            class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
+                            Soil Temperature Humidity Logger
+                        </h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-6" style="text-align: justify;">
+                            An Internet of Things (IoT)-based system for monitoring <strong>soil temperature and
+                                moisture</strong>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 13 -->
+            <div
+                class="w-full hidden extra-activity bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
+                <div>
+                    <div class="aspect-square w-full overflow-hidden bg-gray-100">
+                        <img src="e-Kan.jpg" alt="e-Kan" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3
+                            class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
+                            e-Kan
+                        </h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-6" style="text-align: justify;">
+                            An AI- and load-cell sensor-based instrument for <strong>measuring fish length and
+                                weight</strong>. It is integrated with VTS TREKFISH to support catch data traceability
+                            and sustainable fisheries.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 14 -->
+            <div
+                class="w-full hidden extra-activity bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
+                <div>
+                    <div class="aspect-square w-full overflow-hidden bg-gray-100">
+                        <img src="hydrophone.png" alt="Hydrophone" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3
+                            class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
+                            Hydrophone
+                        </h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-6" style="text-align: justify;">
+                            An acoustic sensor for <strong>underwater sound recording</strong>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 2. CONTAINER KHUSUS UNTUK CARD 15 & 16 DI BAWAH (BERJEJER 2 DI TENGAH) -->
+        <div class="hidden extra-activity flex flex-col md:flex-row justify-center gap-8 mt-8">
+
+            <!-- Card 15 -->
+            <div
+                class="w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.5rem)] bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
+                <div>
+                    <div class="aspect-square w-full overflow-hidden bg-gray-100">
+                        <img src="slk.jpeg" alt="Marine Field Station" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3
+                            class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
+                            Marine Field Station
+                        </h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-6" style="text-align: justify;">
+                            Provides up-to-date information on <strong>wind conditions, air temperature and humidity,
+                                water temperature, and tides</strong> to support sailing decisions.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 16 -->
+            <div
+                class="w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.5rem)] bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between transition hover:shadow-md">
+                <div>
+                    <div class="aspect-square w-full overflow-hidden bg-gray-100">
+                        <img src="trekfish.jpg" alt="TREKFISH" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3
+                            class="text-lg font-bold text-gray-900 mb-3 leading-snug hover:text-[#2A7C13] transition cursor-pointer">
+                            TREKFISH
+                        </h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-6" style="text-align: justify;">
+                            An IoT-based fishing vessel tracking device that helps <strong>improve fishing efficiency,
+                                fisher safety, and sustainable fisheries resource management</strong>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="w-full flex justify-center mt-12 mb-0">
+        <button id="btn-selengkapnya"
+            class="bg-[#2A7C13] hover:bg-[#132E22] text-white font-semibold text-sm tracking-wider uppercase px-8 py-3 rounded-full shadow-md transition-all duration-300 flex items-center gap-2 cursor-pointer">
+            <span>LEARN MORE</span>
+            <i class="fa-solid fa-chevron-down transition-transform duration-300" id="icon-selengkapnya"></i>
+        </button>
+    </div>
+    </div>
+
+    <br> <br>
 
     <!-- FOOTER -->
     <footer class="bg-[#2A7C13] px-4 sm:px-6 py-10 border-t-[2px] border-[#2A7C13]">
@@ -535,8 +1731,8 @@
                     class="flex items-start gap-3 hover:text-[#76C457] transition">
                     <i class="fa-solid fa-location-dot text-xl mt-1"></i>
                     <span class="leading-relaxed break-words">
-                        Marine Instrumentation and Robotics Workshop (Bengkel) ITK, Babakan,
-                        Dramaga, Bogor, Indonesia 16680
+                        Marine Instrumentation and Robotics Workshop (ITK Workshop), Babakan, Dramaga, Bogor, Indonesia
+                        16680
                     </span>
                 </a>
                 <a href="mailto:mitr.ipb@gmail.com" class="flex items-center gap-3 hover:text-[#76C457] transition">
@@ -614,637 +1810,223 @@
         </div>
     </div>
 
-    <!-- JAVASCRIPT MAIN & GALLERY LOGIC -->
+    <!-- JAVASCRIPT NAVBAR & RESPONSIVE SEDIMENT SCROLL DARI ATAS SECTION -->
     <script>
-        let devicesData = [
-            {
-                id: "alat-1",
-                name: "ALBA: Autonomous Littoral Bathimetry and Aquatic",
-                icon: "fa-seedling",
-                overallPercentage: 37,
-                mekanikPercentage: 71,
-                elektroDataPercentage: 5,
-                elektroNavigasiPercentage: 55,
-                programPercentage: 18,
-                milestones: [
-                    {
-                        title: "Mechanical Design Planning",
-                        tag: "Mechanics",
-                        date: "August 26, 2026",
-                        desc: "Creation of a 3D structural model and physical blueprint for the device using SketchUp software.",
-                        img: "Perancangan desain mekanik ALBA.jpg"
-                    },
-                    {
-                        title: "Hull Molding Process",
-                        tag: "Mechanics",
-                        date: "September 6, 2026",
-                        desc: "Fabrication process of the vessel hull using resin and fiberglass materials based on the blueprint.",
-                        img: "Memasang pencetak.jpg"
-                    },
-                    {
-                        title: "Hull Rib Structure Assembly",
-                        tag: "Mechanics",
-                        date: "September 20, 2026",
-                        desc: "Installation and joining of the internal frame (ribs) with the hull to reinforce the base construction.",
-                        img: "tulang.jpeg"
-                    },
-                    {
-                        title: "Drainage System Installation",
-                        tag: "Mechanics",
-                        date: "September 23, 2026",
-                        desc: "Creation of water drainage paths on both sides of the hull to prevent flooding and maintain stability.",
-                        img: "Pembuatan sistem drainase pada kedua lambung.jpg"
-                    },
-                    {
-                        title: "Hull Cover Fitting",
-                        tag: "Mechanics",
-                        date: "September 25, 2026",
-                        desc: "Installation of the upper hull cover to protect internal components from water ingress (waterproofing) and debris.",
-                        img: "Tutup lambung.jpg"
-                    },
-                    {
-                        title: "Motor Mount Iron Reinforcement",
-                        tag: "Mechanics",
-                        date: "September 30, 2026",
-                        desc: "Addition of structural iron components to the motor mount to absorb vibrations and support thrust loads.",
-                        img: "Pembuatan komponen besi sebagai penguat dudukan trolling motor.jpg"
-                    },
-                    {
-                        title: "Inter-hull Connector Assembly",
-                        tag: "Mechanics",
-                        date: "September 30, 2026",
-                        desc: "Connecting both hulls using an iron crossbeam structure to form a robust and precise catamaran configuration.",
-                        img: "Pembuatan struktur besi penghubung antarlambung.jpg"
-                    },
-                    {
-                        title: "Trolling Motor Mount Fabrication",
-                        tag: "Mechanics",
-                        date: "October 1, 2026",
-                        desc: "Fabrication of a custom mounting frame to support the propulsion motor (trolling motor) during operation.",
-                        img: "pembuatan dudukan.jpg"
-                    },
-                    {
-                        title: "Electronics Compartment Fabrication",
-                        tag: "Mechanics",
-                        date: "October 2, 2026",
-                        desc: "Creation of a custom plywood tray designed specifically to hold the electronics box securely and neatly.",
-                        img: "Pembuatan tatakan komponen elektronika menggunakan triplek.jpeg"
-                    },
-                    {
-                        title: "Buoyancy & Water-Tightness Test",
-                        tag: "Mechanics",
-                        date: "October 13, 2026",
-                        desc: "Live water testing to ensure the hull has no leaks and meets standard buoyancy requirements.",
-                        img: "tes-apung.jpg"
-                    },
-                    {
-                        title: "Painting & Component Finishing",
-                        tag: "Mechanics",
-                        date: "October 25, 2026",
-                        desc: "Application of protective coating on the hull, tray, and iron frame to prevent corrosion and improve aesthetics.",
-                        img: "Pengecetan-kapal.jpeg"
-                    },
-                    {
-                        title: "Navigation Box Connector Fabrication",
-                        tag: "Mechanics",
-                        date: "Oct 29, 2026",
-                        desc: "Fabrication and assembly of connecting structures to ensure the navigation box mount is firmly attached to the main frame.",
-                        img: "penyambung box.jpeg"
-                    },
-                    {
-                        title: "Navigation Box & Battery Mounting",
-                        tag: "Mechanics",
-                        date: "Oct 31, 2026",
-                        desc: "Fabrication and assembly of connecting structures to ensure the navigation box and battery mounts are firmly secured to the main frame.",
-                        img: "box aki.jpeg"
-                    },
-                    {
-                        title: "Data System Schematic Design (Sensors)",
-                        tag: "Electronics",
-                        date: "August 23, 2026",
-                        desc: "Design of electrical diagrams and microprocessor communication paths for sensors collecting water parameters.",
-                        img: "Penyusunan skematik elektronika untuk sistem pengambilan data (1).jpeg"
-                    },
-                    {
-                        title: "Navigation System Schematic Design",
-                        tag: "Electronics",
-                        date: "October 22, 2026",
-                        desc: "Creation of electronic circuit designs connecting the main microcontroller with GPS and compass modules.",
-                        img: "skema-elektronika-navigasi.jpeg"
-                    },
-                    {
-                        title: "Navigation Circuit Prototype Test",
-                        tag: "Electronics",
-                        date: "October 24, 2026",
-                        desc: "Electrical and functional testing on the initial prototype to ensure components power up and respond to commands.",
-                        img: "elektro-navigasi.jpeg"
-                    },
-                    {
-                        title: "Sensor Module Programming",
-                        tag: "Software",
-                        date: "September 29, 2026",
-                        desc: "Algorithm code development to read, process, and store raw data captured by marine environment sensors.",
-                        img: "IMG_0105.png"
-                    },
-                    {
-                        title: "Telemetry System Testing (Communication)",
-                        tag: "Software",
-                        date: "October 28, 2026",
-                        desc: "Testing real-time data transmission from the vessel to the Ground Control Station via wireless signals.",
-                        img: "IMG_0103.png"
-                    },
-                    {
-                        title: "Autonomous Control Testing",
-                        tag: "Software",
-                        date: "November 08, 2026",
-                        desc: "Testing manual and autonomous control of ALBA.",
-                        img: "Pengujian Kendali Autonomous.jpeg"
-                    }
-                ]
-            },
-            {
-                id: "alat-2",
-                name: "BAT: Buoy-based Aquatic Tracking",
-                icon: "fa-robot",
-                overallPercentage: 50,
-                mekanikPercentage: 14,
-                elektroPercentage: 87,
-                programPercentage: 50,
-                milestones: [
-                    {
-                        title: "BAT Mechanical Design Planning",
-                        tag: "Mechanics",
-                        date: "October 27, 2026",
-                        desc: "3D physical modeling and component placement planning for the buoy system using CAD software.",
-                        img: "Perancangan desain mekanik BAT.png"
-                    },
-                    {
-                        title: "Buoy Cutting & Dimension Adjustment",
-                        tag: "Mechanics",
-                        date: "October 28, 2026",
-                        desc: "Modifying the physical size of the buoy float to align and balance with the junction box.",
-                        img: "Pemotongan buoy dan penyesuaian dimensinya dengan junction box.jpg"
-                    },
-                    {
-                        title: "BAT Electronics Schematic Design",
-                        tag: "Electronics",
-                        date: "August 26, 2026",
-                        desc: "Designing electrical wiring to connect the microcontroller with sensors, battery, and communication module on the buoy.",
-                        img: "Penyusunan skematik elektronika BAT.jpeg"
-                    },
-                    {
-                        title: "BAT Internal Component Assembly",
-                        tag: "Electronics",
-                        date: "September 20, 2026",
-                        desc: "Soldering and physical wiring of main electrical components for the tracking system.",
-                        img: "Penyelesaian perakitan rangkaian komponen internal.jpg"
-                    },
-                    {
-                        title: "Junction Box Component Arrangement",
-                        tag: "Electronics",
-                        date: "October 17, 2026",
-                        desc: "Neat arrangement of electronic components inside a waterproof junction box to protect from water splashes.",
-                        img: "Penataan komponen di dalam junction box.jpeg"
-                    },
-                    {
-                        title: "Sensor Data Collection Test",
-                        tag: "Electronics",
-                        date: "October 13, 2026",
-                        desc: "Initial calibration to ensure buoy sensors accurately record temperature and water movement data.",
-                        img: "Pengujian sistem pengambilan data.jpg"
-                    },
-                    {
-                        title: "Software & Hardware Integration",
-                        tag: "Software",
-                        date: "October 11, 2026",
-                        desc: "Integrating microcontroller firmware with physical hardware to ensure correct system responsiveness.",
-                        img: "uji coba bat.PNG"
-                    },
-                    {
-                        title: "Database System Development",
-                        tag: "Software",
-                        date: "October 10, 2026",
-                        desc: "Setting up a cloud database schema so all data collected by BAT is securely logged.",
-                        img: "Pengembangan sistem penyimpanan data ke database.png"
-                    },
-                    {
-                        title: "GPS Data Acquisition Test",
-                        tag: "Software",
-                        date: "October 13, 2026",
-                        desc: "Testing the GPS module to ensure live coordinates (latitude and longitude) are tracked accurately.",
-                        img: "Pengujian pembacaan dan pengambilan data GPS.png"
-                    },
-                    {
-                        title: "BAT Component Adjustments",
-                        tag: "Electronics",
-                        date: "November 3, 2026",
-                        desc: "Adding a tier level and adjusting component dimensions on the BAT circuit.",
-                        img: "Penyesuaian Komponen BAT.jpeg"
-                    },
-                    {
-                        title: "Buoy-to-Drogue Hook Connector",
-                        tag: "Mechanics",
-                        date: "November 3, 2026",
-                        desc: "Creating swivel-to-drogue connections using rope knotting techniques.",
-                        img: "Membuat penyambung buoy ke hook drouge.jpeg"
-                    }
-                ]
-            },
-            {
-                id: "alat-3",
-                name: "TROSS: Trap-based Recognition and Observation Surveillance System",
-                icon: "fa-solar-panel",
-                overallPercentage: 6,
-                mekanikPercentage: 5,
-                elektroPercentage: 10,
-                programPercentage: 3,
-                milestones: [
-                    {
-                        title: "TROSS Design Planning",
-                        tag: "Mechanics",
-                        date: "October 25, 2026",
-                        desc: "Designing frame blueprints and trap mechanisms based on the observation system architecture.",
-                        img: "Perancangan desain mekanik TROSS.jpg"
-                    },
-                    {
-                        title: "Electronic Component Preparation",
-                        tag: "Electronics",
-                        date: "September 26, 2026",
-                        desc: "Gathering and testing cameras and sensors to be used in the recognition pipeline.",
-                        img: "Penyusunan skematik elektronika TROSS.png"
-                    },
-                    {
-                        title: "PIR HC-SR501 Sensor Testing",
-                        tag: "Electronics",
-                        date: "October 20, 2026",
-                        desc: "Initial field test to determine detection range of the TROSS observation unit.",
-                        img: "Pengujian sensor PIR HC-SR501.jpg"
-                    },
-                    {
-                        title: "PIR Sensor Calibration & Sensitivity Test",
-                        tag: "Software",
-                        date: "October 20, 2026",
-                        desc: "Testing and tuning program parameters for the Passive Infrared (PIR) sensor to ensure precise movement and thermal detection.",
-                        img: "Uji sensitivitas sensor PIR (Passive Infrared).jpg"
-                    },
-                ]
-            }
-        ];
-
-        let activeDeviceId = "alat-1";
-        let activeMilestoneIndex = 0;
-        let hoveredMilestoneIndex = null;
-        let countAnimationTimers = {};
-
-        let currentStackMilestones = [];
-
-        document.addEventListener("DOMContentLoaded", () => {
-            initStackMilestones();
-            renderDeviceTabs();
-            renderStackCards();
-            updateOverallPanel();
-            renderDropdownMilestones();
-        });
-
-        function getCurrentDevice() {
-            return devicesData.find(d => d.id === activeDeviceId);
-        }
-
-        function initStackMilestones() {
-            const device = getCurrentDevice();
-            const map = {};
-            if (device && device.milestones) {
-                device.milestones.forEach(m => {
-                    map[m.tag] = m;
-                });
-            }
-            currentStackMilestones = Object.values(map);
-        }
-
-        function renderDeviceTabs() {
-            const tabsContainer = document.getElementById("deviceTabs");
-            tabsContainer.innerHTML = devicesData.map(dev => `
-                <button onclick="switchDevice('${dev.id}')" 
-                  class="px-4 py-2 rounded-full text-xs font-bold transition flex items-center gap-2 shrink-0 ${dev.id === activeDeviceId ? 'bg-[#6E3511] text-white' : 'text-[#6E3511] hover:text-white hover:bg-[#2A7C13]'}" style="box-shadow: none !important;">
-                  <i class="fa-solid ${dev.icon}"></i>
-                  ${dev.name}
-                </button>
-            `).join('');
-        }
-
-        function switchDevice(devId) {
-            activeDeviceId = devId;
-            activeMilestoneIndex = 0;
-            hoveredMilestoneIndex = null;
-
-            initStackMilestones();
-
-            renderDeviceTabs();
-            renderStackCards();
-            updateOverallPanel();
-            renderDropdownMilestones();
-        }
-
-        function renderStackCards() {
-            const cardStack = document.getElementById("cardStack");
-
-            if (currentStackMilestones.length === 0) {
-                cardStack.innerHTML = `<div class="text-center text-gray-500 py-20">No documentation photos available.</div>`;
-                return;
-            }
-
-            cardStack.innerHTML = currentStackMilestones.map((m, index) => {
-                return `
-                    <div id="card-${index}" 
-                         class="stack-card" 
-                         onclick="handleCardClick(${index})" 
-                         onmouseenter="handleCardHover(${index})" 
-                         onmouseleave="handleCardLeave()">
-                      
-                      <img src="${m.img}" alt="${m.title}" class="w-full h-full object-cover pointer-events-none">
-                      
-                      <div class="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/30 to-transparent pointer-events-none"></div>
-
-                      <div class="absolute bottom-0 left-0 right-0 p-4 sm:p-5 pointer-events-none">
-                        <span class="inline-block px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white bg-[#2A7C13]/35 border border-[#76C457] rounded-full mb-2">
-                            ${m.tag || 'Documentation'}
-                        </span>
-                        <h3 class="text-sm sm:text-base font-bold text-white line-clamp-1">${m.title}</h3>
-                        <div class="flex justify-between items-center mt-2 text-xs text-gray-300">
-                          <span><i class="fa-regular fa-clock mr-1 text-[#76C457]"></i> ${m.date}</span>
-                        </div>
-                      </div>
-                    </div>
-                `;
-            }).join('');
-
-            applyCardTransforms();
-        }
-
-        function applyCardTransforms() {
-            const total = currentStackMilestones.length;
-
-            currentStackMilestones.forEach((_, index) => {
-                const cardElem = document.getElementById(`card-${index}`);
-                if (!cardElem) return;
-
-                let relPos = (index - activeMilestoneIndex + total) % total;
-                let transformStr = "";
-                let zIndex = total - relPos;
-                let opacity = 1;
-
-                if (relPos === 0) {
-                    transformStr = `translate3d(0, 0, 0) rotate(0deg) scale(1)`;
-                    zIndex = 50;
-                } else {
-                    const isOdd = relPos % 2 !== 0;
-                    const direction = isOdd ? 1 : -1;
-                    const stepMultiplier = Math.ceil(relPos / 2);
-
-                    let translateX = direction * (stepMultiplier * 28);
-                    let translateY = stepMultiplier * 10;
-                    let rotateDeg = direction * (stepMultiplier * 5);
-                    let scale = 1 - (relPos * 0.05);
-
-                    if (hoveredMilestoneIndex === index) {
-                        translateX += direction * 35;
-                        translateY -= 20;
-                        rotateDeg += direction * 4;
-                        scale += 0.08;
-                        zIndex = 45;
-                    }
-
-                    transformStr = `translate3d(${translateX}px, ${translateY}px, -${relPos * 50}px) rotate(${rotateDeg}deg) scale(${scale})`;
-                    opacity = relPos > 3 ? 0 : 1 - (relPos * 0.15);
-                }
-
-                cardElem.style.zIndex = zIndex;
-                cardElem.style.transform = transformStr;
-                cardElem.style.opacity = opacity;
-            });
-        }
-
-        function handleCardHover(index) {
-            hoveredMilestoneIndex = index;
-            applyCardTransforms();
-            if (currentStackMilestones[index]) {
-                updateCardInfo(currentStackMilestones[index]);
-            }
-        }
-
-        function handleCardLeave() {
-            hoveredMilestoneIndex = null;
-            applyCardTransforms();
-            if (currentStackMilestones[activeMilestoneIndex]) {
-                updateCardInfo(currentStackMilestones[activeMilestoneIndex]);
-            }
-        }
-
-        function handleCardClick(index) {
-            activeMilestoneIndex = index;
-            hoveredMilestoneIndex = null;
-            applyCardTransforms();
-            if (currentStackMilestones[index]) {
-                updateCardInfo(currentStackMilestones[index]);
-            }
-        }
-
-        function updateOverallPanel() {
-            const device = getCurrentDevice();
-            if (!device) return;
-
-            if (currentStackMilestones.length > 0) {
-                updateCardInfo(currentStackMilestones[activeMilestoneIndex]);
-            }
-
-            document.getElementById("totalMilestones").innerText = `${device.milestones.length} Photos`;
-
-            const statusText = document.getElementById("displayStatus");
-            const statusIcon = document.getElementById("statusIcon");
-            if (device.overallPercentage >= 100) {
-                statusText.innerText = "Completed (100%)";
-                statusText.className = "text-xs sm:text-sm font-bold text-emerald-400";
-                statusIcon.className = "fa-solid fa-circle-check text-emerald-400";
-            } else {
-                statusText.innerText = "In Progress";
-                statusText.className = "text-xs sm:text-sm font-bold text-[#454545]";
-                statusIcon.className = "fa-solid fa-spinner animate-spin text-[#6E3511]";
-            }
-
-            const dualContainer = document.getElementById("elektroDualContainer");
-            const singleContainer = document.getElementById("elektroSingleContainer");
-
-            animatePercentage("percentageText", "progressBar", device.overallPercentage || 0);
-            animatePercentage("mekanikText", "mekanikBar", device.mekanikPercentage || 0);
-            animatePercentage("programText", "programBar", device.programPercentage || 0);
-
-            if (device.id === "alat-1") {
-                if (dualContainer) dualContainer.classList.remove("hidden");
-                if (singleContainer) singleContainer.classList.add("hidden");
-                animatePercentage("elektroDataText", "elektroDataBar", device.elektroDataPercentage || 0);
-                animatePercentage("elektroNavText", "elektroNavBar", device.elektroNavigasiPercentage || 0);
-            } else {
-                if (dualContainer) dualContainer.classList.add("hidden");
-                if (singleContainer) singleContainer.classList.remove("hidden");
-                animatePercentage("elektroText", "elektroBar", device.elektroPercentage || 0);
-            }
-        }
-
-        function updateCardInfo(milestone) {
-            const titleEl = document.getElementById("displayTitle");
-            const badgeEl = document.getElementById("displayBadge");
-            const dateEl = document.getElementById("displayDate");
-            const descEl = document.getElementById("displayDesc");
-
-            if (titleEl) titleEl.innerText = milestone.title;
-            if (badgeEl) badgeEl.innerText = milestone.tag || "Documentation";
-            if (dateEl) dateEl.innerHTML = `<i class="fa-regular fa-calendar mr-1"></i> ${milestone.date}`;
-            if (descEl) descEl.innerText = milestone.desc || "Documentation of device progress.";
-        }
-
-        function animatePercentage(textId, barId, targetValue) {
-            if (typeof window.countAnimationTimers === 'undefined' || window.countAnimationTimers === null) {
-                window.countAnimationTimers = {};
-            }
-
-            const textElem = document.getElementById(textId);
-            const barElem = document.getElementById(barId);
-
-            if (!textElem || !barElem) return;
-
-            const finalTarget = parseInt(targetValue) || 0;
-            let currentValue = parseInt(textElem.innerText) || 0;
-
-            if (window.countAnimationTimers[textId]) {
-                clearInterval(window.countAnimationTimers[textId]);
-            }
-
-            barElem.style.width = finalTarget + "%";
-
-            if (currentValue === finalTarget) {
-                textElem.innerText = finalTarget;
-                return;
-            }
-
-            const duration = 400;
-            const steps = 25;
-            const stepTime = duration / steps;
-            const increment = (finalTarget - currentValue) / steps;
-
-            let stepCount = 0;
-            window.countAnimationTimers[textId] = setInterval(() => {
-                stepCount++;
-                currentValue += increment;
-
-                if (stepCount >= steps) {
-                    textElem.innerText = finalTarget;
-                    clearInterval(window.countAnimationTimers[textId]);
-                } else {
-                    textElem.innerText = Math.round(currentValue);
-                }
-            }, stepTime);
-        }
-
-        function toggleDetailedDropdown() {
-            const content = document.getElementById("detailedDropdownContent");
-            const arrow = document.getElementById("dropdownArrow");
-
-            content.classList.toggle("hidden");
-            arrow.classList.toggle("rotate-180");
-        }
-
-        function renderDropdownMilestones() {
-            const container = document.getElementById("dropdownMilestonesGrouped");
-            const device = getCurrentDevice();
-            const milestones = device ? device.milestones : [];
-
-            if (milestones.length === 0) {
-                container.innerHTML = `<div class="text-center text-gray-500 py-8">No documentation data available for this device.</div>`;
-                return;
-            }
-
-            const grouped = {};
-            milestones.forEach(m => {
-                const category = m.tag || 'Others';
-                if (!grouped[category]) {
-                    grouped[category] = [];
-                }
-                grouped[category].push(m);
-            });
-
-            const categoryIcons = {
-                'Mechanics': 'fa-gears',
-                'Electronics': 'fa-microchip',
-                'Software': 'fa-code',
-            };
-
-            container.innerHTML = Object.keys(grouped).map(category => {
-                const items = grouped[category];
-                const iconClass = categoryIcons[category] || 'fa-folder-open';
-
-                return `
-                    <div class="border-b border-gray-200 pb-6 last:border-0 last:pb-0">
-                        <div class="flex items-center justify-between mb-3">
-                            <div class="flex items-center gap-2">
-                                <span class="w-8 h-8 rounded-lg bg-[#76C457]/10 text-[#6E3511] border border-[#76C457] flex items-center justify-center font-bold text-sm">
-                                    <i class="fa-solid ${iconClass}"></i>
-                                </span>
-                                <h4 class="text-base sm:text-lg font-bold text-[#6E3511]">
-                                    ${category} Division <span class="text-xs font-semibold text-[#454545]">(${items.length} Photos)</span>
-                                </h4>
-                            </div>
-                            <span class="text-xs text-[#6E3511] flex items-center gap-1 font-medium">
-                                <i class="fa-solid fa-arrows-left-right text-[10px]"></i> Scroll
-                            </span>
-                        </div>
-
-                        <div class="flex gap-4 overflow-x-auto pb-4 custom-slider-scroll scroll-smooth snap-x">
-                            ${items.map(m => `
-                                <div class="snap-start shrink-0 w-[260px] sm:w-[280px] md:w-[300px] bg-gray-50 border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow flex flex-col">
-                                    <div class="h-40 w-full overflow-hidden relative">
-                                        <img src="${m.img}" alt="${m.title}" class="w-full h-full object-cover">
-                                        <span class="absolute top-2.5 left-2.5 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white bg-[#2A7C13] rounded-full shadow">
-                                            ${m.tag || 'Documentation'}
-                                        </span>
-                                    </div>
-                                    <div class="p-4 flex flex-col flex-grow">
-                                        <div class="flex items-center text-xs text-[#2A7C13] font-semibold mb-1">
-                                            <i class="fa-regular fa-calendar mr-1.5"></i> ${m.date}
-                                        </div>
-                                        <h5 class="text-sm font-bold text-gray-900 mb-2 leading-snug">${m.title}</h5>
-                                        <p class="text-xs text-gray-600 leading-relaxed mt-auto line-clamp-3">${m.desc}</p>
-                                    </div>
-                                </div>
-                            `).join('')}
-                        </div>
-                    </div>
-                `;
-            }).join('');
-        }
-    </script>
-
-    <!-- JAVASCRIPT NAVBAR & BACK TO TOP -->
-    <script>
-        // Menyimpan posisi scroll sebelum berpindah bahasa
-        function saveScrollPosition() {
-            sessionStorage.setItem('scrollPosition', window.scrollY);
-        }
+        const navbar = document.getElementById('navbar');
+        const logoCircle = document.getElementById('logo-circle');
         const mobileToggleBtn = document.getElementById('mobile-toggle-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         const toggleIcon = document.getElementById('toggle-icon');
+        const navLinks = document.querySelectorAll('.nav-item');
+        const backToTop = document.getElementById('back-to-top');
+
+        function updateNavbar() {
+            const isScrolled = window.scrollY > 50;
+
+            if (isScrolled) {
+                navbar.classList.remove('bg-transparent', 'text-white');
+                navbar.classList.add('bg-white', 'shadow-md');
+
+                logoCircle.classList.remove('opacity-0', 'scale-75');
+                logoCircle.classList.add('opacity-100', 'scale-100');
+
+                navLinks.forEach(link => {
+                    link.classList.remove('text-white', 'hover:bg-[#76C457]/40', 'hover:text-white');
+                    link.classList.add('text-[#2A7C13]', 'hover:bg-[#76C457]/25', 'hover:text-[#2A7C13]');
+                });
+
+                mobileToggleBtn.classList.remove('text-white');
+                mobileToggleBtn.classList.add('text-[#2A7C13]');
+            } else {
+                navbar.classList.remove('bg-white', 'shadow-md');
+                navbar.classList.add('bg-transparent', 'text-white');
+
+                logoCircle.classList.remove('opacity-100', 'scale-100');
+                logoCircle.classList.add('opacity-0', 'scale-75');
+
+                navLinks.forEach(link => {
+                    link.classList.remove('text-[#2A7C13]', 'hover:bg-[#76C457]/25', 'hover:text-[#2A7C13]');
+                    link.classList.add('text-white', 'hover:bg-[#76C457]/40', 'hover:text-white');
+                });
+
+                mobileToggleBtn.classList.remove('text-[#2A7C13]');
+                mobileToggleBtn.classList.add('text-white');
+            }
+        }
+
+        window.addEventListener('scroll', updateNavbar);
+        updateNavbar();
 
         mobileToggleBtn.addEventListener('click', function () {
+            const isOpening = mobileMenu.classList.contains('hidden');
             mobileMenu.classList.toggle('hidden');
-
-            if (mobileMenu.classList.contains('hidden')) {
-                toggleIcon.classList.remove('fa-times');
-                toggleIcon.classList.add('fa-bars');
-            } else {
-                toggleIcon.classList.remove('fa-bars');
-                toggleIcon.classList.add('fa-times');
-            }
+            mobileToggleBtn.setAttribute('aria-expanded', String(isOpening));
+            toggleIcon.classList.toggle('fa-bars', !isOpening);
+            toggleIcon.classList.toggle('fa-xmark', isOpening);
         });
 
+        backToTop.addEventListener('click', function () {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // EFEK SEDIMENTASI DIMULAI DARI GARIS ATAS SECTION DAN MENGALIR KE BAWAH MENGIKUTI SCROLL
+        window.addEventListener('scroll', function () {
+            const timelineSection = document.getElementById('timelineSection');
+            const sedimentSvg = document.getElementById('sedimentFlowSvg');
+            const timelineTitle = document.getElementById('timeline-title'); // Mengambil elemen teks judul
+
+            if (timelineSection && sedimentSvg) {
+                const sectionRect = timelineSection.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                const sectionHeight = timelineSection.offsetHeight;
+
+                // Titik pemicu ada di tengah layar (50% dari atas layar)
+                const triggerLine = windowHeight * 0.5;
+
+                if (sectionRect.top <= triggerLine) {
+                    let distanceInsideSection = triggerLine - sectionRect.top;
+                    let scrollProgress = distanceInsideSection / sectionHeight;
+                    scrollProgress = Math.max(0.02, Math.min(1, scrollProgress));
+
+                    sedimentSvg.style.height = (scrollProgress * 100) + '%';
+
+                    // MENGUBAH WARNA TEKS SAAT TERTUTUP SEDIMEN
+                    if (timelineTitle) {
+                        // Menghitung batas bawah teks judul dari atas kotak linimasa
+                        const titleBottom = timelineTitle.offsetTop + (timelineTitle.offsetHeight / 2);
+                        const currentSedimentHeight = scrollProgress * sectionHeight;
+
+                        if (currentSedimentHeight > titleBottom) {
+                            timelineTitle.classList.remove('text-[#76C457]');
+                            timelineTitle.classList.add('text-white');
+                        } else {
+                            timelineTitle.classList.remove('text-white');
+                            timelineTitle.classList.add('text-[#76C457]');
+                        }
+                    }
+
+                } else {
+                    // Reset ke awal jika di-scroll ke atas melewati section
+                    sedimentSvg.style.height = '2%';
+
+                    // Reset warna teks ke warna gelap
+                    if (timelineTitle) {
+                        timelineTitle.classList.remove('text-white');
+                        timelineTitle.classList.add('text-[#76C457]');
+                    }
+                }
+            }
+        });
+        function openModal(id) {
+            const modal = document.getElementById(id);
+            const card = document.getElementById(id + '-card');
+
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                card.classList.remove('scale-95');
+                card.classList.add('scale-100');
+            }, 10);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(id) {
+            const modal = document.getElementById(id);
+            const card = document.getElementById(id + '-card');
+
+            modal.classList.add('opacity-0');
+            card.classList.remove('scale-100');
+            card.classList.add('scale-95');
+
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }, 300);
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function (event) {
+            const modalBelayan = document.getElementById('modal-belayan');
+            const modalKatalog = document.getElementById('modal-katalog');
+            if (event.target === modalBelayan) closeModal('modal-belayan');
+            if (event.target === modalKatalog) closeModal('modal-katalog');
+        }
+
+        function copyCode() {
+            const htmlContent = document.documentElement.outerHTML;
+
+            const textarea = document.createElement('textarea');
+            textarea.value = htmlContent;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+
+            // Toast UI feedback
+            const toast = document.getElementById('toast');
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+        document.addEventListener("DOMContentLoaded", function () {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+
+            document.querySelectorAll('.reveal-on-scroll').forEach((el) => {
+                observer.observe(el);
+            });
+        });
+        // LOGIKA TOMBOL LEARN MORE (AKTIVITAS TERKINI)
+        const btnSelengkapnya = document.getElementById('btn-selengkapnya');
+        const extraActivities = document.querySelectorAll('.extra-activity');
+        const iconSelengkapnya = document.getElementById('icon-selengkapnya');
+        let isExpanded = false;
+
+        if (btnSelengkapnya) {
+            btnSelengkapnya.addEventListener('click', function () {
+                isExpanded = !isExpanded;
+
+                if (isExpanded) {
+                    // Saat dibuka
+                    extraActivities.forEach(card => {
+                        card.classList.remove('hidden');
+                        card.classList.add('animate-fade-in');
+                    });
+
+                    btnSelengkapnya.querySelector('span').innerText = 'View Less';
+                    iconSelengkapnya.classList.replace('fa-chevron-down', 'fa-chevron-up');
+
+                } else {
+                    // Saat ditutup
+                    btnSelengkapnya.querySelector('span').innerText = 'Learn More';
+                    iconSelengkapnya.classList.replace('fa-chevron-up', 'fa-chevron-down');
+
+                    // Scroll perlahan ke atas
+                    document.querySelector('.max-w-7xl.mx-auto.mt-10')
+                        .scrollIntoView({ behavior: 'smooth' });
+
+                    // Sembunyikan kembali kartu setelah scroll
+                    setTimeout(() => {
+                        extraActivities.forEach(card => {
+                            card.classList.add('hidden');
+                            card.classList.remove('animate-fade-in');
+                        });
+                    }, 800);
+                }
+            });
+        }
+    </script>
+
+    <script>
         window.addEventListener('scroll', function () {
             const navbar = document.getElementById('navbar');
             const navItems = document.querySelectorAll('.nav-item');
@@ -1252,20 +2034,21 @@
             const logoCircle = document.getElementById('logo-circle');
 
             if (window.scrollY > 50) {
+                // KODE INI YANG MENGUBAH TAMPILAN SAAT DI-SCROLL KE BAWAH:
                 navbar.classList.remove('bg-transparent', 'text-white');
-                navbar.classList.add('bg-white', 'shadow-md');
+                navbar.classList.add('bg-white', 'shadow-md'); // Navbar jadi putih
 
                 navItems.forEach(link => {
                     link.classList.remove('text-white');
                     link.classList.add(
-                        'text-[#2A7C13]',
+                        'text-[#2A7C13]', // Teks menu jadi warna hijau (#2A7C13)
                         'hover:bg-[#76C457]/25',
                         'hover:text-[#2A7C13]'
                     );
                 });
 
                 if (mobileBtn) {
-                    mobileBtn.classList.add('text-[#2A7C13]');
+                    mobileBtn.classList.add('text-[#2A7C13]'); // Tombol menu mobile jadi hijau
                 }
 
                 if (logoCircle) {
@@ -1274,38 +2057,103 @@
                 }
 
             } else {
+                // Kondisi awal saat berada di paling atas (mengembalikan ke warna transparan/putih)
                 navbar.classList.add('bg-transparent', 'text-white');
                 navbar.classList.remove('bg-white', 'shadow-md');
-
-                navItems.forEach(link => {
-                    link.classList.remove(
-                        'text-[#2A7C13]',
-                        'hover:bg-[#76C457]/20',
-                        'hover:text-[#2A7C13]'
-                    );
-                    link.classList.add('text-white');
-                });
-
-                if (mobileBtn) {
-                    mobileBtn.classList.remove('text-[#2A7C13]');
-                }
-
-                if (logoCircle) {
-                    logoCircle.classList.remove('opacity-100', 'scale-100');
-                    logoCircle.classList.add('opacity-0', 'scale-75');
-                }
+                // ... (kode selanjutnya)
             }
         });
+    </script>
 
-        const backToTopBtn = document.getElementById('back-to-top');
-        if (backToTopBtn) {
-            backToTopBtn.addEventListener('click', function () {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
+    <script>
+        document.querySelectorAll(".team-carousel").forEach((carousel) => {
+            const cards = Array.from(
+                carousel.querySelectorAll(".team-photo-card")
+            );
+
+            const dots = Array.from(
+                carousel.querySelectorAll(".team-dot")
+            );
+
+            const prevButton = carousel.querySelector(".team-prev");
+            const nextButton = carousel.querySelector(".team-next");
+
+            if (!cards.length) return;
+
+            let currentIndex = 0;
+            let touchStartX = 0;
+
+            function updateCarousel() {
+                cards.forEach((card, index) => {
+                    const position =
+                        (index - currentIndex + cards.length) % cards.length;
+
+                    card.style.zIndex = cards.length - position;
+                    card.style.opacity = "1";
+                    card.style.pointerEvents = position === 0 ? "auto" : "none";
+
+                    if (position === 0) {
+                        card.style.transform =
+                            "translate(0, 0) rotate(0deg) scale(1)";
+                    } else {
+                        const offset = Math.min(position, 4);
+
+                        card.style.transform =
+                            `translate(${-offset * 9}px, ${offset * 5}px) ` +
+                            `rotate(${-offset * 1.5}deg) ` +
+                            `scale(${1 - offset * 0.025})`;
+                    }
                 });
+
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle("active", index === currentIndex);
+                    dot.setAttribute(
+                        "aria-current",
+                        index === currentIndex ? "true" : "false"
+                    );
+                });
+            }
+
+            function goTo(index) {
+                currentIndex = (index + cards.length) % cards.length;
+                updateCarousel();
+            }
+
+            prevButton.addEventListener("click", () => {
+                goTo(currentIndex - 1);
             });
+
+            nextButton.addEventListener("click", () => {
+                goTo(currentIndex + 1);
+            });
+
+            dots.forEach((dot, index) => {
+                dot.addEventListener("click", () => goTo(index));
+            });
+
+            // Geser foto di layar sentuh
+            const stack = carousel.querySelector(".team-card-stack");
+
+            stack.addEventListener("touchstart", (event) => {
+                touchStartX = event.changedTouches[0].screenX;
+            }, { passive: true });
+
+            stack.addEventListener("touchend", (event) => {
+                const touchEndX = event.changedTouches[0].screenX;
+                const difference = touchEndX - touchStartX;
+
+                if (Math.abs(difference) > 40) {
+                    goTo(currentIndex + (difference < 0 ? 1 : -1));
+                }
+            }, { passive: true });
+
+            updateCarousel();
+        });
+
+        function saveScrollPosition() {
+            sessionStorage.setItem('scrollPosition', window.scrollY);
         }
+
         // Fungsi untuk mengembalikan posisi scroll saat halaman baru dimuat
         document.addEventListener("DOMContentLoaded", function () {
             let savedScroll = sessionStorage.getItem('scrollPosition');
