@@ -18,7 +18,7 @@
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Konfigurasi Tailwind -->
+    <!-- Tailwind Configuration -->
     <script>
         tailwind.config = {
             theme: {
@@ -69,7 +69,7 @@
             transform-origin: bottom left;
         }
 
-        /* Stack Container Perspective - Responsif Mobile */
+        /* Stack Container Perspective - Mobile Responsive */
         .stack-perspective {
             perspective: 1200px;
             width: 100%;
@@ -124,7 +124,7 @@
             box-shadow: 0 20px 45px rgba(110, 53, 17, 0.25), 0 0 20px rgba(110, 53, 17, 0.25);
         }
 
-        /* Custom Scrollbar Umum */
+        /* General Custom Scrollbar */
         ::-webkit-scrollbar {
             width: 6px;
             height: 6px;
@@ -144,7 +144,7 @@
             background: #2A7C13;
         }
 
-        /* Custom Scrollbar khusus Slider Horizontal Dropdown */
+        /* Custom Scrollbar for Horizontal Dropdown Slider */
         .custom-slider-scroll::-webkit-scrollbar {
             height: 6px;
         }
@@ -174,7 +174,7 @@
 
         <div class="max-w-7xl mx-auto flex justify-between items-center relative">
 
-            <!-- Logo ALBATROSS -->
+            <!-- ALBATROSS Logo -->
             <div class="relative flex items-center justify-center">
                 <a href="#" id="logo-btn"
                     class="relative z-10 flex items-center justify-center transition-transform hover:scale-105 mx-[5px]">
@@ -194,24 +194,24 @@
                 </a>
             </div>
 
-            <!-- Container Kanan Navigasi -->
+            <!-- Right Navigation Container -->
             <div class="flex items-center space-x-3">
                 <ul id="nav-links"
                     class="hidden md:flex items-center space-x-2 sm:space-x-3 text-xs sm:text-sm font-semibold tracking-wider sm:tracking-widest uppercase transition-all duration-300 py-1 font-inter">
                     <li>
-                        <a href="index-en.html"
+                        <a href="index.html"
                             class="nav-item whitespace-nowrap px-3 sm:px-4 py-2 rounded-full transition-all duration-200 text-white hover:bg-[#76C457]/40 hover:text-white nav-underline">
                             <span class="nav-text-wrap">HOME<span class="nav-line"></span></span>
                         </a>
                     </li>
                     <li>
-                        <a href="profil-en.html"
+                        <a href="profil.html"
                             class="nav-item whitespace-nowrap px-3 sm:px-4 py-2 rounded-full transition-all duration-200 text-white hover:bg-[#76C457]/40 hover:text-white nav-underline">
                             <span class="nav-text-wrap">PROFILE<span class="nav-line"></span></span>
                         </a>
                     </li>
                     <li>
-                        <a href="hubungi-en.html"
+                        <a href="hubungi.html"
                             class="nav-item whitespace-nowrap px-3 sm:px-4 py-2 rounded-full transition-all duration-200 text-white hover:bg-[#76C457]/40 hover:text-white nav-underline">
                             <span class="nav-text-wrap">CONTACT<span class="nav-line"></span></span>
                         </a>
@@ -233,7 +233,7 @@
                     </li>
                 </ul>
 
-                <!-- Tombol Mobile -->
+                <!-- Mobile Button -->
                 <button id="mobile-toggle-btn" class="md:hidden text-2xl p-2 transition-colors focus:outline-none"
                     aria-label="Open navigation menu">
                     <i id="toggle-icon" class="fas fa-bars"></i>
@@ -241,12 +241,12 @@
             </div>
         </div>
 
-        <!-- Menu Mobile -->
+        <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden bg-white mt-4 rounded-xl shadow-lg p-4">
             <div class="flex flex-col space-y-2 text-sm font-semibold text-[#76C457]">
-                <a href="index-en.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">HOME</a>
-                <a href="profil-en.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">PROFILE</a>
-                <a href="hubungi-en.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">CONTACT</a>
+                <a href="index.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">HOME</a>
+                <a href="profil.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">PROFILE</a>
+                <a href="hubungi.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">CONTACT</a>
                 <a href="progres-en.html" class="px-4 py-3 rounded-lg hover:bg-gray-100">PROGRESS</a>
                 <div class="px-4 py-3 flex justify-between items-center border-t border-gray-100 mt-2">
                     <span class="text-sm font-semibold text-[#76C457]">LANGUAGE</span>
@@ -262,10 +262,10 @@
     </nav>
 
     <main class="flex-grow">
-        <!-- BANNER GALERI -->
+        <!-- GALLERY BANNER -->
         <section class="relative overflow-hidden bg-gray-900 px-5 py-16 sm:py-20 md:py-24">
             <div class="absolute inset-0 z-0">
-                <img src="banner galeri.png" alt="Progress banner background"
+                <img src="banner galeri.png" alt="Pre-program banner background"
                     class="w-full h-full object-cover object-[center_60%]">
                 <div class="absolute inset-0 bg-black/50"></div>
             </div>
@@ -277,12 +277,12 @@
                 </h1>
                 <p
                     class="mx-auto text-white text-xs sm:text-sm md:text-base lg:text-lg max-w-3xl leading-relaxed drop-shadow-md mb-6 sm:mb-10 font-medium px-2 translate-y-4">
-                    Documentation & Device Progress - ALBATROSS Team
+                    Documentation & Tool Progress - ALBATROSS Team
                 </p>
             </div>
         </section>
 
-        <!-- SECTION PROGRES INTERAKTIF -->
+        <!-- INTERACTIVE PROGRESS SECTION -->
         <section class="py-12 px-4 sm:px-6 lg:px-8 bg-[#FFFFFF] text-gray-100 relative overflow-hidden">
             <div class="max-w-7xl mx-auto">
 
@@ -295,7 +295,7 @@
                     </div>
                 </div>
 
-                <!-- MAIN 2-COLUMN GRID -->
+                <!-- MAIN 2-COLUMN GRID (Left Cards & Right Panel) -->
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
 
                     <!-- LEFT SIDE (6 COLS): 3D Stacked Cards Gallery -->
@@ -326,7 +326,7 @@
                                 class="absolute -right-20 -top-20 w-60 h-60 bg-[#2A7C13]/30 rounded-full blur-3xl pointer-events-none">
                             </div>
 
-                            <!-- Progress Bars Group -->
+                            <!-- Progress Bars Collection -->
                             <div class="flex flex-col gap-4 mb-6 relative z-10">
 
                                 <!-- 1. Overall Progress Bar -->
@@ -334,7 +334,7 @@
                                     <div class="flex justify-between items-baseline mb-2">
                                         <span
                                             class="text-[11px] sm:text-xs font-semibold text-[#454545] uppercase tracking-wider">Total
-                                            Device Completion</span>
+                                            Tool Completion</span>
                                         <div class="flex items-baseline gap-0.5">
                                             <span id="percentageText"
                                                 class="text-3xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#76C457] to-emerald-400">0</span>
@@ -352,11 +352,11 @@
                                 <!-- 2. Division Progress Bars -->
                                 <div class="flex flex-col gap-4">
 
-                                    <!-- Mechanics -->
+                                    <!-- Mechanical (Full Width) -->
                                     <div class="bg-[white]/50 rounded-2xl p-4 sm:p-5 border border-[#76C457]">
                                         <div class="flex justify-between items-baseline mb-2">
                                             <span
-                                                class="text-[11px] sm:text-xs font-semibold text-[#454545] uppercase tracking-wider">Mechanics
+                                                class="text-[11px] sm:text-xs font-semibold text-[#454545] uppercase tracking-wider">Mechanical
                                                 Progress</span>
                                             <div class="flex items-baseline gap-0.5">
                                                 <span id="mekanikText"
@@ -372,7 +372,7 @@
                                         </div>
                                     </div>
 
-                                    <!-- CONTAINER ALBA: Electronics Data & Navigation -->
+                                    <!-- ALBA TOOL CONTAINER: Electronics Data & Navigation (2-Column Grid) -->
                                     <div id="elektroDualContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                         <!-- Electronics (Data) -->
                                         <div class="bg-[white]/50 rounded-2xl p-4 sm:p-5 border border-[#76C457]">
@@ -414,7 +414,7 @@
                                         </div>
                                     </div>
 
-                                    <!-- CONTAINER BAT & TROSS: Single Electronics -->
+                                    <!-- BAT & TROSS TOOL CONTAINER: Single Electronics (Full Width) -->
                                     <div id="elektroSingleContainer"
                                         class="hidden bg-[white]/50 rounded-2xl p-4 sm:p-5 border border-[#76C457]">
                                         <div class="flex justify-between items-baseline mb-2">
@@ -435,11 +435,11 @@
                                         </div>
                                     </div>
 
-                                    <!-- Software Progress -->
+                                    <!-- Program (Full Width below Electronics) -->
                                     <div class="bg-[white]/50 rounded-2xl p-4 sm:p-5 border border-[#76C457]">
                                         <div class="flex justify-between items-baseline mb-2">
                                             <span
-                                                class="text-[11px] sm:text-xs font-semibold text-[#454545] uppercase tracking-wider">Software
+                                                class="text-[11px] sm:text-xs font-semibold text-[#454545] uppercase tracking-wider">Program
                                                 Progress</span>
                                             <div class="flex items-baseline gap-0.5">
                                                 <span id="programText"
@@ -473,7 +473,7 @@
                     </div>
                     <div>
                         <div class="text-[11px] font-semibold text-[#6E3511] uppercase tracking-wider">
-                            Device Status</div>
+                            Tool Status</div>
                         <div id="displayStatus" class="text-xs sm:text-sm font-bold text-[#454545]">
                             In Progress
                         </div>
@@ -494,34 +494,33 @@
                 </div>
             </div>
 
-            <!-- DROPDOWN DETAIL PROGRESS SLIDER -->
+            <!-- EXPANDABLE WIDE BOX (DETAILED PROGRESS SLIDER DROPDOWN) -->
             <div class="mt-12 max-w-6xl mx-auto w-full px-4 sm:px-5">
                 <div class="border border-[#76C457] rounded-2xl shadow-xl overflow-hidden transition-all duration-300">
 
-                    <!-- Main Dropdown Button -->
+                    <!-- Main Box Button (Clickable) -->
                     <button onclick="toggleDetailedDropdown()"
                         class="w-full px-6 py-4 bg-[#2A7C13]/30 hover:bg-[#236510]/30 text-[#236510] flex items-center justify-between transition-colors duration-200 cursor-pointer focus:outline-none">
                         <div class="flex items-center gap-3">
                             <i class="fa-solid fa-circle-info text-lg"></i>
                             <span class="font-bold text-sm sm:text-base tracking-wide text-left">View our progress in
-                                detail</span>
+                                greater detail</span>
                         </div>
                         <i id="dropdownArrow" class="fa-solid fa-chevron-down transition-transform duration-300"></i>
                     </button>
 
-                    <!-- Dropdown Content Area -->
+                    <!-- Dropdown Content Area (Horizontal Slider per Field) -->
                     <div id="detailedDropdownContent"
                         class="hidden bg-white p-6 sm:p-8 border-t border-[#76C457] transition-all duration-300">
                         <div class="mb-6">
-                            <h3 class="text-lg sm:text-xl font-bold text-[#6E3511] mb-1">Progress Breakdown by Division
-                            </h3>
-                            <p class="text-xs sm:text-sm text-[#454545]">Scroll sideways to view all documentation and
-                                progress explanations for each division.</p>
+                            <h3 class="text-lg sm:text-xl font-bold text-[#6E3511] mb-1">Progress Breakdown
+                                by Division</h3>
+                            <p class="text-xs sm:text-sm text-[#454545]">Scroll sideways to view all documentation and progress explanations for each division.</p>
                         </div>
 
-                        <!-- Horizontal Slider Grouped Container -->
+                        <!-- Horizontal Slider Category Group Container -->
                         <div id="dropdownMilestonesGrouped" class="space-y-8">
-                            <!-- Data populated by JavaScript -->
+                            <!-- Data grouped and scrollable by JavaScript -->
                         </div>
                     </div>
 
@@ -611,7 +610,7 @@
     <!-- Copyright Bar -->
     <div class="w-full relative bg-[#FFFFFF] py-4 px-6 border-t-[1px] border-[#2A7C13] overflow-hidden">
         <div class="absolute inset-0 opacity-15 pointer-events-none"
-            style="background-image: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpath d='M30 0l15 15-15 15-15-15zm0 30l15 15-15 15-15-15z' fill='%232A7C13' fill-opacity='0.8' fill-rule='evenodd' /%3E%3C/svg%3E&quot;); background-size: 30px 30px;">
+            style="background-image: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpath d='M30 0l15 15-15 15-15-15zm0 30l15 15-15 15-15-15 z' fill='%232A7C13' fill-opacity='0.8' fill-rule='evenodd' /%3E%3C/svg%3E&quot;); background-size: 30px 30px;">
         </div>
 
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-center gap-4 relative z-10">
@@ -636,233 +635,239 @@
                 milestones: [
                     {
                         title: "Mechanical Design Planning",
-                        tag: "Mechanics",
+                        tag: "Mechanical",
                         date: "August 26, 2026",
-                        desc: "Creation of a 3D structural model and physical blueprint for the device using SketchUp software.",
+                        desc: "Creation of 3D design models and blueprints of the device's physical structure using SketchUp software.",
                         img: "Perancangan desain mekanik ALBA.jpg"
                     },
                     {
-                        title: "Hull Molding Process",
-                        tag: "Mechanics",
+                        title: "Boat Hull 3D Printing / Fabrication",
+                        tag: "Mechanical",
                         date: "September 6, 2026",
-                        desc: "Fabrication process of the vessel hull using resin and fiberglass materials based on the blueprint.",
+                        desc: "The hull fabrication process using resin and fiberglass materials based on the blueprint.",
                         img: "Memasang pencetak.jpg"
                     },
                     {
-                        title: "Hull Rib Structure Assembly",
-                        tag: "Mechanics",
+                        title: "Hull Skeleton Structure Assembly",
+                        tag: "Mechanical",
                         date: "September 20, 2026",
-                        desc: "Installation and joining of the internal frame (ribs) with the hull to reinforce the base construction.",
+                        desc: "Installation and integration of the inner frame (skeleton) with the hull to strengthen the boat's basic construction.",
                         img: "tulang.jpeg"
                     },
                     {
                         title: "Drainage System Installation",
-                        tag: "Mechanics",
+                        tag: "Mechanical",
                         date: "September 23, 2026",
-                        desc: "Creation of water drainage paths on both sides of the hull to prevent flooding and maintain stability.",
+                        desc: "Creation of water drainage channels on both sides of the hull to prevent pooling and maintain device balance.",
                         img: "Pembuatan sistem drainase pada kedua lambung.jpg"
                     },
                     {
-                        title: "Hull Cover Fitting",
-                        tag: "Mechanics",
+                        title: "Hull Cover Installation",
+                        tag: "Mechanical",
                         date: "September 25, 2026",
-                        desc: "Installation of the upper hull cover to protect internal components from water ingress (waterproofing) and debris.",
+                        desc: "Installation of the upper hull cover to protect the interior from water ingress (waterproofing) and debris.",
                         img: "Tutup lambung.jpg"
                     },
                     {
-                        title: "Motor Mount Iron Reinforcement",
-                        tag: "Mechanics",
+                        title: "Motor Mount Iron Reinforcement Installation",
+                        tag: "Mechanical",
                         date: "September 30, 2026",
-                        desc: "Addition of structural iron components to the motor mount to absorb vibrations and support thrust loads.",
+                        desc: "Addition of structural iron components to the motor mount to dampen vibrations and withstand thrust loads optimally.",
                         img: "Pembuatan komponen besi sebagai penguat dudukan trolling motor.jpg"
                     },
                     {
                         title: "Inter-hull Connector Assembly",
-                        tag: "Mechanics",
+                        tag: "Mechanical",
                         date: "September 30, 2026",
-                        desc: "Connecting both hulls using an iron crossbeam structure to form a robust and precise catamaran configuration.",
+                        desc: "Connecting both hulls using an iron structure (crossbeam) to form a sturdy and precise catamaran configuration.",
                         img: "Pembuatan struktur besi penghubung antarlambung.jpg"
                     },
                     {
                         title: "Trolling Motor Mount Fabrication",
-                        tag: "Mechanics",
+                        tag: "Mechanical",
                         date: "October 1, 2026",
-                        desc: "Fabrication of a custom mounting frame to support the propulsion motor (trolling motor) during operation.",
+                        desc: "Fabrication of a special mounting frame to support the propulsion motor (trolling motor) for operational stability.",
                         img: "pembuatan dudukan.jpg"
                     },
                     {
                         title: "Electronics Compartment Fabrication",
-                        tag: "Mechanics",
+                        tag: "Mechanical",
                         date: "October 2, 2026",
-                        desc: "Creation of a custom plywood tray designed specifically to hold the electronics box securely and neatly.",
+                        desc: "Creation of a wooden/plywood base specifically designed as a secure and neat placement area for the electronic component box.",
                         img: "Pembuatan tatakan komponen elektronika menggunakan triplek.jpeg"
                     },
                     {
-                        title: "Buoyancy & Water-Tightness Test",
-                        tag: "Mechanics",
+                        title: "Buoyancy & Water-Tight Testing",
+                        tag: "Mechanical",
                         date: "October 13, 2026",
-                        desc: "Live water testing to ensure the hull has no leaks and meets standard buoyancy requirements.",
+                        desc: "Direct water testing (water-tight test) to ensure the hull has no leaks and meets standard buoyancy requirements.",
                         img: "tes-apung.jpg"
                     },
                     {
                         title: "Painting & Component Finishing",
-                        tag: "Mechanics",
+                        tag: "Mechanical",
                         date: "October 25, 2026",
-                        desc: "Application of protective coating on the hull, tray, and iron frame to prevent corrosion and improve aesthetics.",
+                        desc: "Application of protective paint coating on the hull, base, and iron structure to prevent corrosion and enhance appearance.",
                         img: "Pengecetan-kapal.jpeg"
                     },
                     {
                         title: "Navigation Box Connector Fabrication",
-                        tag: "Mechanics",
+                        tag: "Mechanical",
                         date: "October 29, 2026",
-                        desc: "Fabrication and assembly of connecting structures to ensure the navigation box mount is firmly attached to the main frame.",
+                        desc: "Fabrication and assembly of the connecting structure to ensure the navigation box mount is securely attached to the main frame.",
                         img: "penyambung box.jpeg"
                     },
                     {
-                        title: "Navigation Box & Battery Mounting",
-                        tag: "Mechanics",
+                        title: "Navigation Box and Battery Installation",
+                        tag: "Mechanical",
                         date: "October 31, 2026",
-                        desc: "Fabrication and assembly of connecting structures to ensure the navigation box and battery mounts are firmly secured to the main frame.",
+                        desc: "Fabrication and assembly of connecting structures to ensure the navigation and battery boxes are securely mounted to the main frame.",
                         img: "box aki.jpeg"
                     },
                     {
-                        title: "Data System Schematic Design (Sensors)",
+                        title: "Data System Schematic Design (Sensor)",
                         tag: "Electronics",
                         date: "August 23, 2026",
-                        desc: "Design of electrical diagrams and microprocessor communication paths for sensors collecting water parameters.",
+                        desc: "Design of electrical diagrams and microprocessor communication paths for sensors tasked with acquiring water parameter data.",
                         img: "Penyusunan skematik elektronika untuk sistem pengambilan data (1).jpeg"
                     },
                     {
                         title: "Navigation System Schematic Design",
                         tag: "Electronics",
                         date: "October 22, 2026",
-                        desc: "Creation of electronic circuit designs connecting the main microcontroller with GPS and compass modules.",
+                        desc: "Creation of an electronic circuit design connecting the main microcontroller with the GPS and compass modules.",
                         img: "skema-elektronika-navigasi.jpeg"
                     },
                     {
-                        title: "Navigation Circuit Prototype Test",
+                        title: "Navigation Circuit Testing",
                         tag: "Electronics",
                         date: "October 24, 2026",
-                        desc: "Electrical and functional testing on the initial prototype to ensure components power up and respond to commands.",
+                        desc: "Electrical and functional testing on the early prototype to ensure each component powers on and responds to instructions.",
                         img: "elektro-navigasi.jpeg"
                     },
                     {
                         title: "Sensor Module Programming",
-                        tag: "Software",
+                        tag: "Program",
                         date: "September 29, 2026",
-                        desc: "Algorithm code development to read, process, and store raw data captured by marine environment sensors.",
+                        desc: "Writing algorithm code to read, process, and store raw data captured by marine environmental sensors.",
                         img: "IMG_0105.png"
                     },
                     {
                         title: "Telemetry System Testing (Communication)",
-                        tag: "Software",
+                        tag: "Program",
                         date: "October 28, 2026",
-                        desc: "Testing real-time data transmission from the vessel to the Ground Control Station via wireless signals.",
+                        desc: "Real-time data transmission testing from the boat to the Ground Control Station via wireless signals.",
                         img: "IMG_0103.png"
                     },
                     {
-                        title: "Testing Manual and Autonomous Control Modes",
-                        tag: "Software",
+                        title: "Manual and Autonomous Control Mode Testing",
+                        tag: "Program",
                         date: "November 8, 2026",
-                        desc: "Testing ALBA's control responsiveness, including both manual navigation and waypoint-based autonomous navigation.",
+                        desc: "Testing ALBA's control responsiveness, via both manual navigation and waypoint-based autonomous navigation.",
                         img: "Pengujian Kendali Autonomous.jpeg"
-                    },
+                    }
                 ]
             },
             {
                 id: "alat-2",
                 name: "BAT: Buoy-based Aquatic Tracking",
                 icon: "fa-robot",
-                overallPercentage: 50,
-                mekanikPercentage: 14,
+                overallPercentage: 57,
+                mekanikPercentage: 35,
                 elektroPercentage: 87,
                 programPercentage: 50,
                 milestones: [
                     {
                         title: "BAT Mechanical Design Planning",
-                        tag: "Mechanics",
+                        tag: "Mechanical",
                         date: "October 27, 2026",
-                        desc: "3D physical modeling and component placement planning for the buoy system using CAD software.",
+                        desc: "Physical form design process and buoy component placement using 3D design software.",
                         img: "Perancangan desain mekanik BAT.png"
                     },
                     {
                         title: "Buoy Cutting & Dimension Adjustment",
-                        tag: "Mechanics",
+                        tag: "Mechanical",
                         date: "October 28, 2026",
-                        desc: "Modifying the physical size of the buoy float to align and balance with the junction box.",
+                        desc: "Modification of the buoy's physical size to align and balance with the junction box.",
                         img: "Pemotongan buoy dan penyesuaian dimensinya dengan junction box.jpg"
                     },
                     {
                         title: "BAT Electronics Schematic Design",
                         tag: "Electronics",
                         date: "August 26, 2026",
-                        desc: "Designing electrical wiring to connect the microcontroller with sensors, battery, and communication module on the buoy.",
+                        desc: "Electrical circuit design to connect the microcontroller with sensors, battery, and communication modules on the buoy.",
                         img: "Penyusunan skematik elektronika BAT.jpeg"
                     },
                     {
                         title: "BAT Internal Component Assembly",
                         tag: "Electronics",
                         date: "September 20, 2026",
-                        desc: "Soldering and physical wiring of main electrical components for the tracking system.",
+                        desc: "Soldering and physical assembly of main electrical components for the tracking system.",
                         img: "Penyelesaian perakitan rangkaian komponen internal.jpg"
                     },
                     {
-                        title: "Junction Box Component Arrangement",
+                        title: "Junction Box Arrangement",
                         tag: "Electronics",
                         date: "October 17, 2026",
                         desc: "Neat arrangement of electronic components inside a waterproof junction box to protect from water splashes.",
                         img: "Penataan komponen di dalam junction box.jpeg"
                     },
                     {
-                        title: "Sensor Data Collection Test",
+                        title: "Sensor Data Acquisition Testing",
                         tag: "Electronics",
                         date: "October 13, 2026",
-                        desc: "Initial calibration to ensure buoy sensors accurately record temperature and water movement data.",
+                        desc: "Initial calibration to ensure sensors on the buoy accurately read temperature and water movement data.",
                         img: "Pengujian sistem pengambilan data.jpg"
                     },
                     {
-                        title: "Software & Hardware Integration",
-                        tag: "Software",
+                        title: "Program & Hardware Integration",
+                        tag: "Program",
                         date: "October 11, 2026",
-                        desc: "Integrating microcontroller firmware with physical hardware to ensure correct system responsiveness.",
+                        desc: "Integration of microcontroller programming code with physical hardware to ensure proper system response.",
                         img: "uji coba bat.PNG"
                     },
                     {
                         title: "Database System Development",
-                        tag: "Software",
+                        tag: "Program",
                         date: "October 10, 2026",
-                        desc: "Setting up a cloud database schema so all data collected by BAT is securely logged.",
+                        desc: "Creation of a cloud database storage scheme so all data captured by BAT is safely stored.",
                         img: "Pengembangan sistem penyimpanan data ke database.png"
                     },
                     {
-                        title: "GPS Data Acquisition Test",
-                        tag: "Software",
+                        title: "GPS Data Acquisition Testing",
+                        tag: "Program",
                         date: "October 13, 2026",
-                        desc: "Testing the GPS module to ensure live coordinates (latitude and longitude) are tracked accurately.",
+                        desc: "Testing the GPS module to ensure the buoy's coordinate points (latitude and longitude) are tracked live.",
                         img: "Pengujian pembacaan dan pengambilan data GPS.png"
                     },
                     {
-                        title: "Optimization and Adjustment of BAT Components",
+                        title: "BAT Component Optimization and Adjustment",
                         tag: "Electronics",
                         date: "November 3, 2026",
-                        desc: "Adding a tiered internal chassis and optimizing the layout of electronic components inside BAT.",
+                        desc: "Addition of internal tiered chassis and layout adjustments for electronic components on the BAT.",
                         img: "Penyesuaian Komponen BAT.jpeg"
                     },
                     {
-                        title: "Installation of Buoy to Drogue Hook Connector",
-                        tag: "Mechanics",
+                        title: "Buoy to Drogue Hook Connector Installation",
+                        tag: "Mechanical",
                         date: "November 3, 2026",
-                        desc: "Constructing the connecting mechanism between the swivel and drogue using rope knotting techniques.",
+                        desc: "Creation of a connecting system between the swivel and drogue using rope knotting techniques.",
                         img: "Membuat penyambung buoy ke hook drouge.jpeg"
                     },
                     {
-                        title: "Fabrication of Drogue Ring Structure",
-                        tag: "Mechanics",
+                        title: "Drogue Structure Ring Fabrication",
+                        tag: "Mechanical",
                         date: "November 9, 2026",
-                        desc: "Fabrication and shaping process of the balancing ring component for the drogue structure.",
+                        desc: "Fabrication and shaping process of the balancing ring components on the drogue structure.",
                         img: "video ring.mp4"
-                    }
-                    
+                    },
+                    {
+                        title: "Drifter Drogue Fabrication and Assembly",
+                        tag: "Mechanical",
+                        date: "November 13, 2026",
+                        desc: "Net material cutting and sewing processes onto the ring frame to form the drogue structure.",
+                        img: "Pembuatan Drogue pada Drifter.jpeg"
+                    },
                 ]
             },
             {
@@ -876,30 +881,30 @@
                 milestones: [
                     {
                         title: "TROSS Design Planning",
-                        tag: "Mechanics",
+                        tag: "Mechanical",
                         date: "October 25, 2026",
-                        desc: "Designing frame blueprints and trap mechanisms based on the observation system architecture.",
+                        desc: "Creation of blueprint frameworks and trap mechanisms based on observation system designs.",
                         img: "Perancangan desain mekanik TROSS.jpg"
                     },
                     {
                         title: "Electronic Component Preparation",
                         tag: "Electronics",
                         date: "September 26, 2026",
-                        desc: "Gathering and testing cameras and sensors to be used in the recognition pipeline.",
+                        desc: "Gathering and testing camera tools and sensors to be used for the recognition process.",
                         img: "Penyusunan skematik elektronika TROSS.png"
                     },
                     {
                         title: "PIR HC-SR501 Sensor Testing",
                         tag: "Electronics",
                         date: "October 20, 2026",
-                        desc: "Initial field test to determine detection range of the TROSS observation unit.",
+                        desc: "Initial field testing to determine the detection range of TROSS observation devices.",
                         img: "Pengujian sensor PIR HC-SR501.jpg"
                     },
                     {
-                        title: "PIR Sensor Calibration & Sensitivity Test",
-                        tag: "Software",
+                        title: "PIR Sensor Calibration and Sensitivity Testing",
+                        tag: "Program",
                         date: "October 20, 2026",
-                        desc: "Testing and tuning program parameters for the Passive Infrared (PIR) sensor to ensure precise movement and thermal detection.",
+                        desc: "Testing and adjusting program parameters on the Passive Infrared (PIR) sensor to ensure detection accuracy of surrounding object movement or temperature.",
                         img: "Uji sensitivitas sensor PIR (Passive Infrared).jpg"
                     },
                 ]
@@ -951,7 +956,7 @@
             if (src.endsWith('.mp4')) {
                 return `<video src="${src}" class="${altClass}" autoplay loop muted playsinline></video>`;
             }
-            return `<img src="${src}" alt="Dokumentasi" class="${altClass}">`;
+            return `<img src="${src}" alt="Documentation" class="${altClass}">`;
         }
 
         function switchDevice(devId) {
@@ -971,7 +976,7 @@
             const cardStack = document.getElementById("cardStack");
 
             if (currentStackMilestones.length === 0) {
-                cardStack.innerHTML = `<div class="text-center text-gray-500 py-20">No documentation photos available.</div>`;
+                cardStack.innerHTML = `<div class="text-center text-gray-500 py-20">No documentation photos yet.</div>`;
                 return;
             }
 
@@ -1121,7 +1126,7 @@
             if (titleEl) titleEl.innerText = milestone.title;
             if (badgeEl) badgeEl.innerText = milestone.tag || "Documentation";
             if (dateEl) dateEl.innerHTML = `<i class="fa-regular fa-calendar mr-1"></i> ${milestone.date}`;
-            if (descEl) descEl.innerText = milestone.desc || "Documentation of device progress.";
+            if (descEl) descEl.innerText = milestone.desc || "Tool development progress documentation.";
         }
 
         function animatePercentage(textId, barId, targetValue) {
@@ -1181,7 +1186,7 @@
             const milestones = device ? device.milestones : [];
 
             if (milestones.length === 0) {
-                container.innerHTML = `<div class="text-center text-gray-500 py-8">No documentation data available for this device.</div>`;
+                container.innerHTML = `<div class="text-center text-gray-500 py-8">No documentation data available for this tool yet.</div>`;
                 return;
             }
 
@@ -1195,9 +1200,9 @@
             });
 
             const categoryIcons = {
-                'Mechanics': 'fa-gears',
+                'Mechanical': 'fa-gears',
                 'Electronics': 'fa-microchip',
-                'Software': 'fa-code',
+                'Program': 'fa-code',
             };
 
             container.innerHTML = Object.keys(grouped).map(category => {
@@ -1212,7 +1217,7 @@
                                     <i class="fa-solid ${iconClass}"></i>
                                 </span>
                                 <h4 class="text-base sm:text-lg font-bold text-[#6E3511]">
-                                    ${category} Division <span class="text-xs font-semibold text-[#454545]">(${items.length} Photos)</span>
+                                    ${category} Field <span class="text-xs font-semibold text-[#454545]">(${items.length} Documentations)</span>
                                 </h4>
                             </div>
                             <span class="text-xs text-[#6E3511] flex items-center gap-1 font-medium">
@@ -1247,6 +1252,7 @@
 
     <!-- JAVASCRIPT NAVBAR & BACK TO TOP -->
     <script>
+        // Save scroll position before switching language
         function saveScrollPosition() {
             sessionStorage.setItem('scrollPosition', window.scrollY);
         }
@@ -1327,7 +1333,7 @@
                 });
             });
         }
-
+        // Restore scroll position when the new page loads
         document.addEventListener("DOMContentLoaded", function () {
             let savedScroll = sessionStorage.getItem('scrollPosition');
             if (savedScroll !== null) {
