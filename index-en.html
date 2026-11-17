@@ -1140,4 +1140,138 @@
         mobileToggleBtn.addEventListener('click', function () {
             mobileMenu.classList.toggle('hidden');
             if (mobileMenu.classList.contains('hidden')) { toggleIcon.classList.remove('fa-times'); toggleIcon.classList.add('fa-bars'); }
-            else { toggleIcon.classList.remove('fa-bars'); toggleIcon
+            else { toggleIcon.classList.remove('fa-bars'); toggleIcon.classList.add('fa-times'); }
+        });
+
+        window.addEventListener('scroll', function () {
+            const navbar = document.getElementById('navbar');
+            const navItems = document.querySelectorAll('.nav-item');
+            const mobileBtn = document.getElementById('mobile-toggle-btn');
+            const logoCircle = document.getElementById('logo-circle');
+
+            if (window.scrollY > 50) {
+                navbar.classList.remove('bg-transparent', 'text-white');
+                navbar.classList.add('bg-white', 'shadow-md');
+                navItems.forEach(link => { link.classList.remove('text-white'); link.classList.add('text-[#2A7C13]', 'hover:bg-[#76C457]/25', 'hover:text-[#2A7C13]'); });
+                if (mobileBtn) mobileBtn.classList.add('text-[#2A7C13]');
+                if (logoCircle) { logoCircle.classList.remove('opacity-0', 'scale-75'); logoCircle.classList.add('opacity-100', 'scale-100'); }
+            } else {
+                navbar.classList.add('bg-transparent', 'text-white');
+                navbar.classList.remove('bg-white', 'shadow-md');
+                navItems.forEach(link => { link.classList.remove('text-[#2A7C13]', 'hover:bg-[#76C457]/20', 'hover:text-[#2A7C13]'); link.classList.add('text-white'); });
+                if (mobileBtn) mobileBtn.classList.remove('text-[#2A7C13]');
+                if (logoCircle) { logoCircle.classList.remove('opacity-100', 'scale-100'); logoCircle.classList.add('opacity-0', 'scale-75'); }
+            }
+        });
+
+        const lsaRange = document.getElementById('lsa-range');
+        const lsaBefore = document.getElementById('lsa-before');
+        const lsaDivider = document.getElementById('lsa-divider');
+        const lsaBeforeImage = document.getElementById('lsa-before-image');
+        const lsaCompare = document.getElementById('lsa-compare');
+        function updateLSASlider() {
+            if (lsaRange && lsaBefore && lsaDivider && lsaBeforeImage && lsaCompare) {
+                const posisi = Number(lsaRange.value);
+                lsaBefore.style.width = posisi + '%';
+                lsaDivider.style.left = posisi + '%';
+                lsaBeforeImage.style.width = lsaCompare.clientWidth + 'px';
+            }
+        }
+        if (lsaRange) {
+            lsaRange.addEventListener('input', updateLSASlider);
+            window.addEventListener('resize', updateLSASlider);
+            updateLSASlider();
+        }
+    </script>
+
+    <footer class="bg-[#2A7C13] px-4 sm:px-6 py-10 border-t-[2px] border-[#2A7C13]">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div class="md:col-span-2 flex flex-col gap-4 text-white">
+                <h3 class="font-bold text-xl mb-2">Contact Us</h3>
+                <a href="https://maps.app.goo.gl/mirmGEEjNxX9zrjp9"
+                    class="flex items-start gap-3 hover:text-[#76C457] transition">
+                    <i class="fa-solid fa-location-dot text-xl mt-1"></i>
+                    <span class="leading-relaxed break-words">Marine Instrumentation and Robotics Workshop (Bengkel)
+                        ITK, Babakan, Dramaga, Bogor, Indonesia 16680</span>
+                </a>
+                <a href="mailto:mitr.ipb@gmail.com" class="flex items-center gap-3 hover:text-[#76C457] transition">
+                    <i class="fa-regular fa-envelope text-xl"></i><span>mitr.ipb@gmail.com</span>
+                </a>
+                <a href="https://wa.me/6281283435353" class="flex items-center gap-3 hover:text-[#76C457] transition">
+                    <i class="fa-brands fa-whatsapp text-xl"></i><span class="break-words">+6281283435353 (Hanifa
+                        Rahmaliya)</span>
+                </a>
+            </div>
+            <div class="flex flex-col gap-4 text-white">
+                <h3 class="font-bold text-xl mb-2">Social Media</h3>
+                <a href="https://www.instagram.com/mitr_ipb/"
+                    class="flex items-center gap-3 hover:text-[#76C457] transition"><i
+                        class="fa-brands fa-instagram text-xl"></i><span>@mitr_ipb</span></a>
+                <a href="https://www.instagram.com/dmitr6teen/"
+                    class="flex items-center gap-3 hover:text-[#76C457] transition"><i
+                        class="fa-brands fa-instagram text-xl"></i><span>@dmitr6teen</span></a>
+                <a href="https://www.tiktok.com/@albatross.project?_r=1&_t=ZS-9Axq4vlIaHd"
+                    class="flex items-center gap-3 hover:text-[#76C457] transition"><i
+                        class="fa-brands fa-tiktok text-xl"></i><span>@albatross.project</span></a>
+            </div>
+            <div class="flex flex-col items-start gap-7 text-white h-full">
+                <div class="w-full flex flex-wrap items-center justify-start pb-12 gap-4" style="margin-top: -30px;">
+                    <div
+                        class="h-16 sm:h-[120px] w-20 h-20 sm:w-28 sm:h-28 object-contain shrink-0 p-0 transform sm:-translate-x-4 translate-y-4 sm:translate-y-8">
+                        <img src="Logo_IPB.png" alt="IPB University Logo"
+                            class="h-16 sm:h-[120px] w-auto object-contain transform sm:-translate-y-1">
+                    </div>
+                    <div
+                        class="flex items-center justify-center w-16 h-16 sm:w-28 sm:h-28 bg-white rounded-full shadow-md shrink-0 p-2 transform sm:-translate-x-4 translate-y-3 sm:translate-y-8">
+                        <img src="logo mitr.png" alt="Logo MIT+R"
+                            class="h-16 sm:h-[120px] w-auto object-contain transform sm:-translate-y-1">
+                    </div>
+                    <img src="logo ALBATROSS.png" alt="Logo ALBATROSS"
+                        class="h-16 sm:h-[150px] w-auto object-contain transform sm:-translate-x-9 translate-y-4 sm:translate-y-8">
+                </div>
+                <div class="w-full flex justify-end mt-auto">
+                    <button id="back-to-top"
+                        class="group flex items-center p-3 bg-white text-white rounded-full shadow-md hover:bg-[#FFFFFF] hover:shadow-xl hover:-translate-y-1 transition-all duration-500 ease-in-out cursor-pointer">
+                        <span
+                            class="whitespace-nowrap overflow-hidden transition-all duration-500 ease-in-out max-w-0 opacity-0 group-hover:max-w-[160px] group-hover:opacity-100 group-hover:mr-3 group-hover:pl-2 font-semibold text-[#2A7C13]">Back
+                            to Top</span>
+                        <span
+                            class="flex items-center justify-center w-7 h-7 bg-white text-[#2A7C13] rounded-full transition-transform duration-500 group-hover:scale-110 shrink-0"><i
+                                class="fa-solid fa-arrow-up text-sm"></i></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Copyright Bar -->
+    <div class="w-full relative bg-[#FFFFFF] py-4 px-6 border-t-[1px] border-[#2A7C13] overflow-hidden">
+        <div class="absolute inset-0 opacity-15 pointer-events-none"
+            style="background-image: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpath d='M30 0l15 15-15 15-15-15zm0 30l15 15-15 15-15-15z' fill='%232A7C13' fill-opacity='0.8' fill-rule='evenodd' /%3E%3C/svg%3E&quot;); background-size: 30px 30px;">
+        </div>
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-center gap-4 relative z-10">
+            <div class="text-[#403100] font-semibold text-sm text-center">© 2026 Diklat MIT+R 16. All Rights Reserved.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const backToTop = document.getElementById('back-to-top');
+        backToTop.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+        function saveScrollPosition() {
+            sessionStorage.setItem('scrollPosition', window.scrollY);
+        }
+
+        // Restore scroll position when the new page loads
+        document.addEventListener("DOMContentLoaded", function () {
+            let savedScroll = sessionStorage.getItem('scrollPosition');
+            if (savedScroll !== null) {
+                window.scrollTo(0, parseInt(savedScroll));
+                sessionStorage.removeItem('scrollPosition');
+            }
+        });
+    </script>
+</body>
+
+</html>
